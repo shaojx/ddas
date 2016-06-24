@@ -36,6 +36,12 @@ public class FriendsController {
     public void test(String name){
         System.out.println(name);
         LOGGER.info(">>>>>>>>>>>>>>>>>>"+name);
-        userInfoService.getUserInfo();
+        try {
+            userInfoService.getUserInfo();
+            System.out.println(name);
+        }catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
     }
 }
