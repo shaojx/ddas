@@ -1,15 +1,11 @@
-package com.ddas.sns.interceptor;
+package com.ddas.common.interceptor;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
 
 public class LoginRequiredInterceptor implements HandlerInterceptor{
 	
