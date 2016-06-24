@@ -8,10 +8,12 @@
  */
 package com.ddas.sns.friends.impl;
 
+import com.ddas.sns.friends.domain.UserInfo;
 import com.ddas.sns.friends.mapper.UserInfoMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * ClassName:	UserInfoImpl
@@ -25,7 +27,7 @@ import javax.annotation.Resource;
 public class UserInfoImpl {
     @Resource
     private UserInfoMapper userInfoMapper;
-    public void getUserInfo(){
-        userInfoMapper.getUserInfo();
+    public List<UserInfo> getUserInfo(){
+      return   userInfoMapper.getUserInfo();
     }
 }

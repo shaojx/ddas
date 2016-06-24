@@ -11,6 +11,8 @@ package com.ddas.sns.friends.mapper;
 import com.ddas.sns.friends.domain.UserInfo;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * ClassName:	UserInfoMapper
  * Function: 	todo ADD FUNCTION	
@@ -20,5 +22,5 @@ import org.springframework.stereotype.Repository;
  * @since JDK 1.6      
  */
 public interface UserInfoMapper {
-     UserInfo getUserInfo();
+     List<UserInfo> getUserInfo();
 }

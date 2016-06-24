@@ -59,10 +59,42 @@
            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
         </property>  
 	</bean>	-->
-	 
+
+    <!--配置事务-->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
-		p:dataSource-ref="dataSource"/>    
+		p:dataSource-ref="dataSource"/>
+    <!--配置可以使用注解-->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
+    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="login*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="add*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="insert*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="modify*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="change*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="save*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="delete*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="remove*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="count*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="*ToUpdate" propagation="REQUIRED" isolation="READ_COMMITTED" />
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="find*" propagation="SUPPORTS"  read-only="true"/>
+            <tx:method name="check*" propagation="SUPPORTS"  read-only="true"/>
+            <tx:method name="query*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="create*" propagation="SUPPORTS"  read-only="true"/>
+            <tx:method name="load*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="fetch*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="del*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置切面-->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.ddas.sns.*.service.*.*(..))"/>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut"/>
+    </aop:config>
 	
 	
 	<!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

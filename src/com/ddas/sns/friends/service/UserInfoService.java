@@ -8,10 +8,12 @@
  */
 package com.ddas.sns.friends.service;
 
+import com.ddas.sns.friends.domain.UserInfo;
 import com.ddas.sns.friends.impl.UserInfoImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * ClassName:	UserInfoService
@@ -26,6 +28,6 @@ public class UserInfoService {
     @Resource
     private UserInfoImpl userInfoImpl;
     public void getUserInfo(){
-        userInfoImpl.getUserInfo();
+       List<UserInfo> userInfoList= userInfoImpl.getUserInfo();
     }
 }
