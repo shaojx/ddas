@@ -126,4 +126,7 @@
         <property name="basePackage" value="com.ddas.sns.*.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
+    <!--注册 spring context util-->
+    <bean name="springContextUtil" class="com.ddas.common.util.springutil.SpringContextUtil"></bean>
 </beans>
