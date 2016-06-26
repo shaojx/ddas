@@ -32,16 +32,10 @@
         <property name="defaultLocale" value="en"/>
     </bean>
     <mvc:interceptors>
-        <!--<bean id="localeChangeInterceptor"
+        <bean id="localeChangeInterceptor"
               class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="language"/>
-        </bean>-->
-        <mvc:interceptor>
-            <mvc:mapping path="/*" />
-            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" >
-                <property name="paramName" value="language"></property>
-            </bean>
-        </mvc:interceptor>
+        </bean>
     </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

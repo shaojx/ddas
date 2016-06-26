@@ -4,7 +4,7 @@
 <body>
 <h1>Spring MVC internationalization example</h1>
 
-Language : <a href="?language=en">English</a>|<a href="?language=zh_CN">Chinese</a>
+Language : <a href="?language=en_US">English</a>|<a href="?language=zh_CN">Chinese</a>
 
 <h2>
   welcome.springmvc : <spring:message code="index" text="default text" />

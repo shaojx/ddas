@@ -100,6 +100,9 @@
     <logger name="org.apache.struts2">
         <level value="DEBUG" />
     </logger>
+    <logger name="org.springframework.web">
+        <level value="DEBUG"></level>
+    </logger>
 
     <root level="DEBUG">
         <appender-ref ref="stdout" />
