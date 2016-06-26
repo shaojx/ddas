@@ -36,8 +36,8 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">首页</a></li>
-        <li><a href="#about">我的空间</a></li>
+        <li class="active"><a href="index.jsp">首页</a></li>
+        <li><a href="/friends/myHome">我的空间</a></li>
         <li><a href="#contact">朋友圈</a></li>
         <li><a href="#contact">升级</a></li>
         <li><a href="about.html">充值</a></li>
@@ -263,25 +263,56 @@
                 </ul>
               </div>
             <div class="tab-pane " id="panel-tabs2">
-              <div class="panel panel-default">
+              <div class="panel panel-warning">
                 <div class="panel-heading">
-                  <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的心情</a>
-                </div>
-                <div id="panel-element-115285" class="panel-collapse in">
-                  <div class="panel-body">
-                    日志标题是这里
-                    <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                  <div class="tabbable" style="width: 500px" id="tabs-295323">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#panel-324017" data-toggle="tab">我的日志</a>
+                      </li>
+                      <li>
+                        <a href="#panel-8940" data-toggle="tab">朋友的日志</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的心情</a>
-                </div>
-                <div id="panel-element-115286" class="panel-collapse in">
-                  <div class="panel-body">
-                    日志标题是这里
-                    <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="panel-324017">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的日志</a>
+                      </div>
+                      <div id="panel-element-113" class="panel-collapse in">
+                        <div class="panel-body">
+                          我的日志标题是这里
+                          <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的什么鬼</a>
+                      </div>
+                      <div id="panel-element-116" class="panel-collapse in">
+                        <div class="panel-body">
+                          我的日志标题是这里吗？是的
+                          <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="panel-8940">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的日志</a>
+                      </div>
+                      <div id="panel-element-112" class="panel-collapse in">
+                        <div class="panel-body">
+                          朋友的日志标题是这里
+                          <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -290,14 +321,14 @@
 
               <div class="media">
                 <a href="#" class="pull-left"><img src="common/images/140x140.jpg" alt='' class="img-thumbnail"/></a>
-                <div class="media-body">
+                <div class="media-body " style="padding-top: 10px">
                   <h4 class="media-heading">
                     <a>相册封面</a>
                   </h4>
-                  <div class="biaoqian">标签：</div>
-                  <div class="num">照片数量：12</div>
-                  <div class="biaoqian">更新于：2016-06-02 15:50:08</div>
-                  <div class="biaoqian">创建于：2016-04-18 14:09:48</div>
+                  <div>标签：</div>
+                  <div>照片数量：12</div>
+                  <div>更新于：2016-06-02 15:50:08</div>
+                  <div>创建于：2016-04-18 14:09:48</div>
                 </div>
               </div>
 
