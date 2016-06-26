@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
@@ -43,14 +42,6 @@ public class FriendsController {
         }catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
+
     }
-
-    @RequestMapping(value = "/myHome",method ={RequestMethod.POST,RequestMethod.GET})
-    public ModelAndView myHome(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/myHome");
-        return mav;
-    }
-
-
 }
