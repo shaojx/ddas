@@ -44,4 +44,14 @@ public class FriendsController {
         }
 
     }
+    @RequestMapping("/gotoIndex")
+    public String gotoIndex(){
+        try {
+            return "index";
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return null;
+    }
 }

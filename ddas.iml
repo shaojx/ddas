@@ -26,7 +26,6 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.65" level="application_server_libraries" />
     <orderEntry type="module-library">
       <library name="ddas_web_lib">
         <CLASSES>
@@ -41,9 +40,14 @@
           <root url="jar://$USER_HOME$/.ideaLibSources/mybatis-spring-1.2.2-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ideaLibSources/spring-context-3.2.8.RELEASE-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ideaLibSources/spring-data-redis-1.4.2.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/spring-webmvc-3.2.8.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/spring-webmvc-3.2.8.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/javax.servlet-api-3.0.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/javax.servlet-api-3.0.1-sources.jar!/" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.41" level="application_server_libraries" />
   </component>
 </module>
