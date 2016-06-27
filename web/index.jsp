@@ -16,11 +16,11 @@
   <meta name="author" content="">
   <title>Renda - clean blog theme based on Bootstrap</title>
   <!-- Bootstrap core CSS -->
-  <link href="common/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/common/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Custom styles for this template -->
-  <link href="common/css/jquery.bxslider.css" rel="stylesheet">
-  <link href="common/css/style.css" rel="stylesheet">
+  <link href="/common/css/jquery.bxslider.css" rel="stylesheet">
+  <link href="/common/css/style.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation -->
@@ -62,41 +62,41 @@
     <div class="row">
       <div class="col-md-2">
         <div>
-          <img alt="140x140" src="common/images/140x140.jpg" />
+          <img alt="140x140" src="/common/images/140x140.jpg" />
           <div><a>Mariki</a></div>
-          <div class="yue"><img src="common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span>金币：</span><span style="color:#FF471F">0</span></div>
+          <div class="yue"><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span>金币：</span><span style="color:#FF471F">0</span></div>
         </div>
 
         <ul class="nav nav-stacked  nav-pills">
           <li>
-            <a href="#"><img src="common/images/golds_img.jpg"> 充值中心</a>
+            <a href="#"><img src="/common/images/golds_img.jpg"> 充值中心</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/n_left_shengji.jpg"> 升级会员</a>
+            <a href="#"><img src="/common/images/n_left_shengji.jpg"> 升级会员</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/mail.gif">邮箱(0)</a>
+            <a href="#"><img src="/common/images/mail.gif">邮箱(0)</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/n_left_gift.jpg">礼物(0)</a>
+            <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/friends.gif">我的朋友</a>
+            <a href="#"><img src="/common/images/friends.gif">我的朋友</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/album.png">相册</a>
+            <a href="#"><img src="/common/images/album.png">相册</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/n_left_rizhi.jpg">日志</a>
+            <a href="#"><img src="/common/images/n_left_rizhi.jpg">日志</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
+            <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/n_left_mood.jpg">打招呼(3)</a>
+            <a href="#"><img src="/common/images/n_left_mood.jpg">打招呼(3)</a>
           </li>
           <li>
-            <a href="#"><img src="common/images/n_left_game.jpg">游戏开发ing</a>
+            <a href="#"><img src="/common/images/n_left_game.jpg">游戏开发ing</a>
           </li>
 
         </ul>
@@ -114,7 +114,7 @@
           </ol>
           <div class="carousel-inner">
             <div class="item active">
-              <img alt="" src="common/images/logo1.jpg" />
+              <img alt="" src="/common/images/logo1.jpg" />
               <div class="carousel-caption">
                 <h4>
                   First Thumbnail label
@@ -125,7 +125,7 @@
               </div>
             </div>
             <div class="item">
-              <img alt="" src="common/images/logo2.jpg" />
+              <img alt="" src="/common/images/logo2.jpg" />
               <div class="carousel-caption">
                 <h4>
                   Second Thumbnail label
@@ -136,7 +136,7 @@
               </div>
             </div>
             <div class="item">
-              <img alt="" src="common/images/logo3.jpg" />
+              <img alt="" src="/common/images/logo3.jpg" />
               <div class="carousel-caption">
                 <h4>
                   Third Thumbnail label
@@ -166,73 +166,73 @@
           <div class="tab-content">
             <div class="tab-pane active" id="panel-tabs1">
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
                 </div>
                 <div class="col-md-3 column">
-                  <img alt="140x140" src="common/images/140x140.jpg" class="img-thumbnail" />
+                  <img alt="140x140" src="/common/images/140x140.jpg" class="img-thumbnail" />
                   <p>
                     Name <a class="btn" href="#">加好友</a>
                   </p>
@@ -320,7 +320,7 @@
             <div class="tab-pane" id="panel-tabs3">
 
               <div class="media">
-                <a href="#" class="pull-left"><img src="common/images/140x140.jpg" alt='' class="img-thumbnail"/></a>
+                <a href="#" class="pull-left"><img src="/common/images/140x140.jpg" alt='' class="img-thumbnail"/></a>
                 <div class="media-body " style="padding-top: 10px">
                   <h4 class="media-heading">
                     <a>相册封面</a>
@@ -349,56 +349,56 @@
             <div class="widget-container">
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
@@ -410,56 +410,56 @@
             <div class="widget-container">
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
               <article class="widget-post">
                 <div class="post-image">
-                  <a href="post.html"><img src="common/images/90x60-1.jpg" alt=""></a>
+                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
                 </div>
                 <div class="post-body">
                   <h2><a href="post.html">Name...</a></h2>
                   <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="common/images/addfriends.gif"></a></div></span>
+                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
                   </div>
                 </div>
               </article>
@@ -491,9 +491,9 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="common/js/bootstrap.min.js"></script>
-<script src="common/js/jquery.bxslider.js"></script>
-<script src="common/js/mooz.scripts.min.js"></script>
+<script src="/common/js/jquery/jquery.js"></script>
+<script src="/common/js/bootstrap.min.js"></script>
+<script src="/common/js/jquery.bxslider.js"></script>
+<script src="/common/js/mooz.scripts.min.js"></script>
 </body>
 </html>
