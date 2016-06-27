@@ -40,6 +40,10 @@
           <root url="jar://$USER_HOME$/.ideaLibSources/mybatis-spring-1.2.2-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ideaLibSources/spring-context-3.2.8.RELEASE-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ideaLibSources/spring-data-redis-1.4.2.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/spring-webmvc-3.2.8.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/spring-webmvc-3.2.8.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/javax.servlet-api-3.0.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/javax.servlet-api-3.0.1-sources.jar!/" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" />
       </library>

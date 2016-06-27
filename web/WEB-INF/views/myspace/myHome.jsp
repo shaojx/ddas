@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: shaojunxiang
-  Date: 2016/6/23
-  Time: 12:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,44 +10,17 @@
   <title>Renda - clean blog theme based on Bootstrap</title>
   <!-- Bootstrap core CSS -->
   <link href="/common/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="/common/css/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <!-- Custom styles for this template -->
   <link href="/common/css/jquery.bxslider.css" rel="stylesheet">
   <link href="/common/css/style.css" rel="stylesheet">
   <link href="/common/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="/common/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  <script src="/common/js/jquery/jquery.js"></script>
 </head>
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="../index.jsp">首页</a></li>
-        <li><a href="/friends/myHome">我的空间</a></li>
-        <li><a href="#contact">朋友圈</a></li>
-        <li><a href="#contact">升级</a></li>
-        <li><a href="about.html">充值</a></li>
-        <li><a href="about.html">礼物</a></li>
-      </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-        <li><a href="#"><i class="fa fa-reddit"></i></a></li>
-      </ul>
-
-    </div>
-    <!--/.nav-collapse -->
-  </div>
-</nav>
+<%@include file="/business/common/header.jsp"%>
 
 <div class="container">
   <header>
@@ -62,47 +28,7 @@
   </header>
   <section>
     <div class="row">
-      <div class="col-md-2">
-        <div>
-          <img alt="140x140" src="/common/images/140x140.jpg" />
-          <div><a>Mariki</a></div>
-          <div class="yue"><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span>金币：</span><span style="color:#FF471F">0</span></div>
-        </div>
-
-        <ul class="nav nav-stacked  nav-pills">
-          <li>
-            <a href="#"><img src="/common/images/golds_img.jpg"> 充值中心</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/n_left_shengji.jpg"> 升级会员</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/mail.gif">邮箱(0)</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/friends.gif">我的朋友</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/album.png">相册</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/n_left_rizhi.jpg">日志</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/n_left_mood.jpg">打招呼(3)</a>
-          </li>
-          <li>
-            <a href="#"><img src="/common/images/n_left_game.jpg">游戏开发ing</a>
-          </li>
-
-        </ul>
-      </div>
+      <%@include file="/business/common/leftContent.jsp"%>
       <div class="col-md-8">
 
         <div class="carousel slide" id="carousel-188000">
@@ -506,157 +432,19 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 sidebar-gutter">
-        <aside>
-          <!-- sidebar-widget -->
-          <div class="sidebar-widget">
-            <h3 class="sidebar-title">Recommend</h3>
-            <div class="widget-container">
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-          <!-- sidebar-widget -->
-          <div class="sidebar-widget">
-            <h3 class="sidebar-title">Recent visitor</h3>
-            <div class="widget-container">
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-              <article class="widget-post">
-                <div class="post-image">
-                  <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                </div>
-                <div class="post-body">
-                  <h2><a href="post.html">Name...</a></h2>
-                  <div class="post-meta">
-                    <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-      </aside>
-    </div>
+
+    <%@include file="/business/common/rightContent.jsp"%>
 </div>
 </section>
 </div><!-- /.container -->
 
 <footer class="footer">
 
-  <div class="footer-socials">
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-instagram"></i></a>
-    <a href="#"><i class="fa fa-google-plus"></i></a>
-    <a href="#"><i class="fa fa-dribbble"></i></a>
-    <a href="#"><i class="fa fa-reddit"></i></a>
-  </div>
-
-  <div class="footer-bottom">
-    <i class="fa fa-copyright"></i> Copyright 2015. All rights reserved.<br>
-    Theme made by <a href="http://www.moozthemes.com">MOOZ Themes</a>
-  </div>
 </footer>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/common/js/jquery/jquery.js"></script>
 <script src="/common/js/bootstrap.min.js"></script>
 <script src="/common/js/jquery.bxslider.js"></script>
 <script src="/common/js/mooz.scripts.min.js"></script>
