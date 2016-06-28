@@ -36,4 +36,9 @@ public class MySpaceController {
         ModelAndView modelAndView=new ModelAndView("/myspace/myHome");
         return modelAndView;
     }
+
+    @RequestMapping("/getMyspceContent")
+    public String getMyspceContent(){
+        return "myspace/mySpaceContent";
+    }
 }
