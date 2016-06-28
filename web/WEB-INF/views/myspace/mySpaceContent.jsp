@@ -1,17 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <%
     String path=request.getContextPath();
 %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>myspace content</title>
-    <!-- Bootstrap core CSS -->
+    <title>Myspace</title>
+    <meta charset="UTF-8">
     <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=path%>/common/css/font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link href="<%=path%>/common/css/jquery.bxslider.css" rel="stylesheet">
     <link href="<%=path%>/common/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/js/jquery/jquery.js"></script>
     <script src="<%=path%>/common/js/bootstrap.min.js"></script>
+    <%--引入业务JS --%>
+    <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
     <style type="text/css">
         div.row{
             margin-left: 0;
@@ -279,6 +282,8 @@
                     </div>
                 </div>
             </div>
+
+            <%--日志 start--%>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
@@ -294,7 +299,17 @@
                         </div>
                     </div>
                     <div class="tab-content">
+                        <%--我的日志 start--%>
                         <div class="tab-pane active" id="panel-324017">
+                            <%--创建日志 --%>
+                            <div class="row" style="margin-top: 5px;margin-bottom: 3px;">
+                                <div  style="margin-left:85%;">
+                                    <button type="button" id="createMyLog"  class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
+                                        新建日志
+                                    </button>
+                                </div>
+                            </div>
+
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的日志</a>
@@ -306,7 +321,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
+                          <%--  <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的什么鬼</a>
                                 </div>
@@ -316,8 +331,9 @@
                                         <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
                         </div>
+                        <%--朋友日志  start--%>
                         <div class="tab-pane" id="panel-8940">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -378,6 +394,25 @@
             </div>
         </div>
     </div>
+</div>
+
+<%--创建日志弹出框 --%>
+<div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+ </div>
 </div>
 </body>
 </html>

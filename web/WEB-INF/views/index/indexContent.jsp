@@ -21,6 +21,7 @@
     <style type="text/css">
         div.row{
             margin-left: 0;
+            margin-right: 5px;
         }
         body,html{
             overflow: hidden !important;

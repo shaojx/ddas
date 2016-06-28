@@ -19,7 +19,7 @@
   <link href="<%=path%>/common/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   <script src="<%=path%>/common/js/jquery/jquery.js"></script>
     <%--引入自定义样式--%>
-    <link href="<%=path%>/business/common/css/leftContent.css"/>
+    <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
 

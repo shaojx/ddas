@@ -17,7 +17,7 @@
     <link href="<%=path%>/common/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/js/jquery/jquery.js"></script>
     <%--引入自定义样式--%>
-    <link href="<%=path%>/business/common/css/leftContent.css"/>
+    <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
