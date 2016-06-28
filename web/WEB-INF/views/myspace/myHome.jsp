@@ -88,7 +88,7 @@
                     <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/friends.gif">我的朋友</a>
+                    <a href="<%=path%>/userFriend/myFriend" target="content_iframe"><img src="/common/images/friends.gif">我的朋友</a>
                 </li>
                 <li>
                     <a href="#"><img src="/common/images/album.png">相册</a>

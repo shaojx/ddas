@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.List;
  * @since JDK 1.6      
  */
 @Controller
-@RequestMapping("/userfriend")
+@RequestMapping("/userFriend")
 public class UserFriendController {
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserFriendController.class);
     @Resource
@@ -55,6 +56,13 @@ public class UserFriendController {
         userFriend.setFriendId("2");
         userFriend.setGroupName("Update");
         userFriendService.update(userFriend);
+    }
+
+    @RequestMapping(value = "myFriend", method = {RequestMethod.GET})
+    public ModelAndView goToMyFriendPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("myspace/myFriendPage");
+        return modelAndView;
     }
 
 }
