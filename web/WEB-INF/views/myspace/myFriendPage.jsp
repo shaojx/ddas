@@ -31,6 +31,46 @@
         var path="<%=path%>";
     </script>
     <script type="text/javascript" src="<%=path%>/business/myspace/index.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
+    <script>
+        $(function () {
+            var element = $('#pageUl');//对应下面ul的ID
+            var options = {
+                bootstrapMajorVersion: 3,
+                currentPage: 1,//当前页面
+                numberOfPages: 5,//一页显示几个按钮（在ul里面生成5个li）
+                totalPages: 6 //总页数
+            }
+            element.bootstrapPaginator(options);
+        });
+        function paging(page) {
+            $.ajax({
+                type: "GET",
+                url: "${ctx}/api/v1/user/1/" + (page - 1) + "/5",
+                dataType: "json",
+                success: function (msg) {
+                    alert("Json数据");
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "${ctx}/api/v1/user/count/1",
+                dataType: "json",
+                success: function (msg) {
+                    var pages = Math.ceil(msg.data / 5);//这里data里面有数据总量
+                    var element = $('#pageUl');//对应下面ul的ID
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,//当前页面
+                        numberOfPages: 5,//一页显示几个按钮（在ul里面生成5个li）
+                        totalPages: pages //总页数
+                    }
+                    element.bootstrapPaginator(options);
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript" src="<%=path%>/common/js/bootstrap-paginator.js"></script>
 </head>
 <body>
     <div class="row">
@@ -86,6 +126,13 @@
                             <div style="clear:both"></div>
                         </div>
                         <div style="clear:both"></div>
+                    </div>
+                    <div class="row clearfix" style="clear: both;">
+                        <div class="col-md-12">
+                            <!--分页控件-->
+                            <ul class="pagination" id="pageUl">
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>
