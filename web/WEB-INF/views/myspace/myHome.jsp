@@ -27,6 +27,7 @@
         var path="<%=path%>";
     </script>
     <script type="text/javascript" src="<%=path%>/business/myspace/index.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
 </head>
 <body>
 <!-- Navigation -->
@@ -88,7 +89,7 @@
                     <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/friends.gif">我的朋友</a>
+                    <a href="javascript:void(0)" id="myFriend"><img src="/common/images/friends.gif">我的朋友</a>
                 </li>
                 <li>
                     <a href="#"><img src="/common/images/album.png">相册</a>
