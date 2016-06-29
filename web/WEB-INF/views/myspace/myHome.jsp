@@ -298,12 +298,12 @@
 
 </footer>
 
-<script src="<%=path%>/common/js/bootstrap.min.js"></script>
-<script src="<%=path%>/common/js/jquery.bxslider.js"></script>
-<script src="<%=path%>/common/js/mooz.scripts.min.js"></script>
+<script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path%>/common/bxslider/js/jquery.bxslider.js"></script>
+<script src="<%=path%>/common/mooz.scripts.min.js"></script>
 <script type="text/javascript" src="<%=path%>/common/js/jquery/jquery.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<%=path%>/common/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=path%>/common/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<%=path%>/common/js/datePickerLocales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
   $('.form_date').datetimepicker({

@@ -9,10 +9,10 @@
     <meta charset="UTF-8">
     <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=path%>/common/css/font-awesome-4.6.3/css/font-awesome.min.css"/>
-    <link href="<%=path%>/common/css/jquery.bxslider.css" rel="stylesheet">
-    <link href="<%=path%>/common/css/style.css" rel="stylesheet">
-    <script src="<%=path%>/common/js/jquery/jquery.js"></script>
-    <script src="<%=path%>/common/js/bootstrap.min.js"></script>
+    <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
+   <%-- <link href="<%=path%>/common/css/style.css" rel="stylesheet">--%>
+    <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <%--引入业务JS --%>
     <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
     <style type="text/css">
@@ -402,12 +402,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">新建日志</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <label for="inputEmail3" class="col-sm-2 control-label">日志标题</label>
                         <div class="col-sm-10">
                             <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                         </div>

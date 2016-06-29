@@ -325,8 +325,8 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/common/js/bootstrap.min.js"></script>
-<script src="/common/js/jquery.bxslider.js"></script>
-<script src="/common/js/mooz.scripts.min.js"></script>
+<script src="/common/bootstrap/js/bootstrap.min.js"></script>
+<script src="/common/bxslider/js/jquery.bxslider.js"></script>
+<script src="/common/mooz.scripts.min.js"></script>
 </body>
 </html>

@@ -70,7 +70,7 @@
             });
         }
     </script>
-    <script type="text/javascript" src="<%=path%>/common/js/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
 </head>
 <body>
     <div class="row">
