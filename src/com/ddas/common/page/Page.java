@@ -15,8 +15,10 @@ public class Page {
     private  int pageSize;
     /**当前分页(index)*/
     private int currentPage;
-    /**总共的记录数*/
-    private  int totalPage;
+    /**总共的分页数*/
+    private  int totalPages;
+    /**总共的记录数**/
+    private int totalCount;
     /**当前分页的数据*/
     private List<?> dataList;
 
@@ -36,12 +38,24 @@ public class Page {
         this.currentPage = currentPage;
     }
 
-    public int getTotalPage() {
-        return totalPage;
+    public int getTotalPages() {
+        return totalPages;
     }
 
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+        //设置总页数
+        int left=this.totalCount%this.pageSize;
+        int divid=this.totalCount/this.pageSize;
+        setTotalPages(left==0?divid:(divid+1));
     }
 
     public List<?> getDataList() {
@@ -50,5 +64,17 @@ public class Page {
 
     public void setDataList(List<?> dataList) {
         this.dataList = dataList;
+    }
+
+    /**
+     *获取分页数据的起始位置
+     *@return int 此次分页数据的起始位置
+     *@author shaojx
+     *@date 2016/6/29 23:11
+     *@version 1.0
+     *@since 1.6
+     */
+    public int getPageStart(){
+        return (currentPage-1)*pageSize;
     }
 }
