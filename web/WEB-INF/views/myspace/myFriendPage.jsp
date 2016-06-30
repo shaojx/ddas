@@ -13,16 +13,30 @@
 %>
 <head>
     <title>my friend</title>
+    <title>Myspace</title>
+    <meta charset="UTF-8">
+    <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet"/>
+    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
+    <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var path = "<%=path%>";
+    </script>
+    <%--引入业务JS --%>
+    <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
+    <style type="text/css">
+        div.row{
+            margin-left: 0;
+        }
+        body,html{
+            overflow: hidden !important;
+        }
+    </style>
 
-    <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=path%>/common/css/font-awesome-4.6.3/css/font-awesome.min.css"/>
-    <link href="<%=path%>/common/css/jquery.bxslider.css" rel="stylesheet">
-    <link href="<%=path%>/common/css/style.css" rel="stylesheet">
-    <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="<%=path%>/common/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-    <script src="<%=path%>/common/js/jquery/jquery.js"></script>
+    <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <%--引入自定义样式--%>
-    <link href="<%=path%>/business/common/css/leftContent.css"/>
     <link href="<%=path%>/business/common/css/friendList.css"/>
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
@@ -30,7 +44,6 @@
     <script type="text/javascript">
         var path="<%=path%>";
     </script>
-    <script type="text/javascript" src="<%=path%>/business/myspace/index.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
     <script>
         $(function () {
@@ -93,17 +106,13 @@
             <div class="tab-pane active" id="panel-tabs0">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="searchCondition"/>
-                        </div>
-                        <div class="col-sm-1">
+                            <input type="text" style="width:300px;margin-left:20px;float:left" class="form-control" id="searchCondition">
                             <button type="button" class="btn btn-default">搜索</button>
-                        </div>
                     </div>
                     <div class="friend_list" id="itemContainer">
                         <div style="width:70px;height:70px;border:1px #f0f0f0 solid;float:left;margin:10px 2.3%;" >
-                            <div class="touxiang" style="width:59px;height:59px;padding-top:5px;margin-left:5px;float:left;"><img src="<%=path%>/common/images/people.jpg" style="width:100%;height:100%;"></div>
-                            <div class="xinxi" style="float:left;margin-left:15px;" ><div class="username" style="margin:10px 0;font-weight:700;color:#5e635c;">moqiu</div><div><select rel="22" class="zubie" userid="48" value="22"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
+                            <div style="width:59px;height:59px;padding-top:5px;margin-left:5px;float:left;"><img src="<%=path%>/common/images/people.jpg" style="width:100%;height:100%;"></div>
+                            <div style="float:left;margin-left:15px;" ><div class="username" style="margin:10px 0;font-weight:700;color:#5e635c;">moqiu</div><div><select rel="22" class="zubie" userid="48" value="22"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
                             <div style="float:left;margin-left:27px;margin-top:5px;"><a href="/index.php?s=member&amp;c=member_center&amp;a=xinjianyoujian&amp;id=48" target="kuangjia" class="xiaozhitiao" style="cursor:pointer;"></a><a class="del" rel="48" style="cursor:pointer;"></a></div>
                             <div style="clear:both"></div>
                         </div>

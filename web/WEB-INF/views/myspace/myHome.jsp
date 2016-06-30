@@ -5,28 +5,23 @@
   String path=request.getContextPath();
 %>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>my space</title>
-  <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
-  <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
-  <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-
-  <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-  <script src="<%=path%>/common/js/jquery/jquery.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>HomeIndex</title>
+    <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
+    <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
+    <script src="<%=path%>/common/jquery/jquery.js"></script>
     <%--引入自定义样式--%>
     <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
-    <%--引入自定义JS--%>
-    <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
-
     <script type="text/javascript">
-        var path="<%=path%>";
+        var path = "<%=path%>";
     </script>
-    <script type="text/javascript" src="<%=path%>/business/myspace/index.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
 </head>
 <body>
