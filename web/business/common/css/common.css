@@ -21,7 +21,15 @@
 .width300{
     width: 300px;
 }
-
+.width350{
+    width: 350px;
+}
+.width450{
+    width: 450px;
+}
+.width400{
+    width: 400px;
+}
 .inline-block {
     display: inline-block;
 }
