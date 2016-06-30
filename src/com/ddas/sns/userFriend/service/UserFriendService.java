@@ -8,12 +8,19 @@
  */
 package com.ddas.sns.userfriend.service;
 
+import com.ddas.common.page.Page;
 import com.ddas.sns.userfriend.domain.UserFriend;
+import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriend.impl.UserFriendImpl;
+import com.ddas.sns.userfriend.mapper.UserFriendMapper;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName:	UserInfoService
@@ -26,12 +33,42 @@ import java.util.List;
 @Service
 public class UserFriendService {
     @Resource
-    private UserFriendImpl userFriendImpl;
-    public List<UserFriend> getUserFriendList(String userId){
-        return userFriendImpl.getUserFriendList(userId);
+    private UserFriendMapper userFriendMapper;
+
+    public Page queryRecodsByPage(int currentPage, int pageSize, String userId) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
+        userFriendCriteria.setLimitStart(page.getPageStart());
+        userFriendCriteria.setLimitEnd(pageSize);
+        UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        page.setTotalCount(userFriendMapper.countByExample(userFriendCriteria));
+        page.setDataList(userFriendMapper.selectPage(userFriendCriteria));
+        return page;
     }
 
-    public void update(UserFriend userFriend){
-        userFriendImpl.update(userFriend);
+    public UserFriend saveUserFriend(UserFriend userFriend) {
+        if (StringUtils.isEmpty(userFriend.getUserId())) {
+            userFriendMapper.insertSelective(userFriend);
+        }else{
+            UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
+            UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
+            criteria.andUserIdEqualTo(userFriend.getUserId());
+            criteria.andFriendIdEqualTo(userFriend.getFriendId());
+            userFriendMapper.updateByExampleSelective(userFriend, userFriendCriteria);
+        }
+
+        return userFriend;
+    }
+
+    public boolean deleteUserFriend(UserFriend userFriend) {
+        UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
+        UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
+        criteria.andUserIdEqualTo(userFriend.getUserId());
+        criteria.andFriendIdEqualTo(userFriend.getFriendId());
+        userFriendMapper.deleteByExample(userFriendCriteria);
+        return true;
     }
 }

@@ -8,17 +8,21 @@
  */
 package com.ddas.sns.userfriend.control;
 
+import com.ddas.common.page.Page;
+import com.ddas.sns.mylog.domain.MyLogInfoExample;
 import com.ddas.sns.userfriend.domain.UserFriend;
+import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriend.service.UserFriendService;
+import org.hibernate.engine.transaction.internal.jta.CMTTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * ClassName:	FriendsControl
@@ -32,32 +36,18 @@ import java.util.List;
 @RequestMapping("/userFriend")
 public class UserFriendController {
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserFriendController.class);
+
     @Resource
     private UserFriendService userFriendService;
 
-    @RequestMapping(value = "/getFriendList",method = {RequestMethod.GET})
-    public void getFriendList(String userId){
-        userId = "1";
-        LOGGER.info(">>>>>>>>>>>>>>>>>>" + userId);
-        try {
-            List<UserFriend> list = userFriendService.getUserFriendList(userId);
-            for (UserFriend userFriend : list) {
-                LOGGER.info(">>>>>>>>>>>>>>>>>>" + userFriend.getFriendName());
-            }
-        }catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+    //查找page的
+    @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET})
+    @ResponseBody
+    public Page getFriendList(int currentPage, int pageSize, String userId){
+        return userFriendService.queryRecodsByPage(currentPage, pageSize, userId);
     }
 
-    @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
-    public void update() {
-        UserFriend userFriend = new UserFriend();
-        userFriend.setUserId("1");
-        userFriend.setFriendId("2");
-        userFriend.setGroupName("Update");
-        userFriendService.update(userFriend);
-    }
-
+    //iframe跳转到我的好友界面
     @RequestMapping(value = "myFriend", method = {RequestMethod.GET})
     public ModelAndView goToMyFriendPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -65,11 +55,30 @@ public class UserFriendController {
         return modelAndView;
     }
 
+    //测试Photo页面，可以删除
     @RequestMapping(value = "photo", method = {RequestMethod.GET})
     public ModelAndView goToPhotoPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("photo/photo");
         return modelAndView;
     }
+
+    //新建或保存Friend
+    @RequestMapping(value = "save", method = {RequestMethod.POST})
+    @ResponseBody
+    public UserFriend saveUserFriend(UserFriend userFriend){
+        userFriendService.saveUserFriend(userFriend);
+        return userFriend;
+    }
+
+    //删除Friend
+    @RequestMapping(value = "delete", method = {RequestMethod.POST})
+    @ResponseBody
+    public UserFriend deleteUserFriend(UserFriend userFriend){
+        userFriendService.deleteUserFriend(userFriend);
+        return userFriend;
+    }
+
+
 
 }
