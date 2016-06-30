@@ -17,7 +17,7 @@
     <link href="<%=path%>/common/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/js/jquery/jquery.js"></script>
     <%--引入自定义样式--%>
-    <link href="<%=path%>/business/common/css/leftContent.css"/>
+    <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
@@ -325,8 +325,8 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/common/js/bootstrap.min.js"></script>
-<script src="/common/js/jquery.bxslider.js"></script>
-<script src="/common/js/mooz.scripts.min.js"></script>
+<script src="/common/bootstrap/js/bootstrap.min.js"></script>
+<script src="/common/bxslider/js/jquery.bxslider.js"></script>
+<script src="/common/mooz.scripts.min.js"></script>
 </body>
 </html>

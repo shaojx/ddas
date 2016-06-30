@@ -16,11 +16,12 @@
     <link href="<%=path%>/common/css/jquery.bxslider.css" rel="stylesheet">
     <link href="<%=path%>/common/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/js/jquery/jquery.js"></script>
-    <script src="<%=path%>/common/js/bootstrap.min.js"></script>
+    <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
 
     <style type="text/css">
         div.row{
             margin-left: 0;
+            margin-right: 5px;
         }
         body,html{
             overflow: hidden !important;

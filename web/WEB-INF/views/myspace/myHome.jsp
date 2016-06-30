@@ -11,15 +11,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>my space</title>
-  <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="<%=path%>/common/css/font-awesome-4.6.3/css/font-awesome.min.css"/>
-  <link href="<%=path%>/common/css/jquery.bxslider.css" rel="stylesheet">
-  <link href="<%=path%>/common/css/style.css" rel="stylesheet">
-  <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link href="<%=path%>/common/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-  <script src="<%=path%>/common/js/jquery/jquery.js"></script>
+  <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
+  <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
+  <%--<link href="<%=path%>/common/css/style.css" rel="stylesheet">--%>
+  <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  <script src="<%=path%>/common/jquery/jquery.js"></script>
     <%--引入自定义样式--%>
-    <link href="<%=path%>/business/common/css/leftContent.css"/>
+    <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
 
@@ -298,12 +297,12 @@
 
 </footer>
 
-<script src="<%=path%>/common/js/bootstrap.min.js"></script>
-<script src="<%=path%>/common/js/jquery.bxslider.js"></script>
-<script src="<%=path%>/common/js/mooz.scripts.min.js"></script>
+<script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=path%>/common/bxslider/js/jquery.bxslider.js"></script>
+<script src="<%=path%>/common/mooz.scripts.min.js"></script>
 <script type="text/javascript" src="<%=path%>/common/js/jquery/jquery.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<%=path%>/common/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=path%>/common/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<%=path%>/common/js/datePickerLocales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
   $('.form_date').datetimepicker({
