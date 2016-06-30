@@ -11,12 +11,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>my space</title>
+  <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
   <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
   <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-  <%--<link href="<%=path%>/common/css/style.css" rel="stylesheet">--%>
+
   <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-  <script src="<%=path%>/common/jquery/jquery.js"></script>
+  <script src="<%=path%>/common/js/jquery/jquery.js"></script>
     <%--引入自定义样式--%>
     <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <%--引入自定义JS--%>
@@ -65,9 +66,9 @@
 
   </header>
   <section>
-    <div class="row">
-        <%--left content--%>
-        <div class="col-md-2">
+            <div class="row">
+            <%--left content--%>
+            <div class="col-md-2">
             <div>
                 <img alt="140x140" src="/common/images/140x140.jpg" />
                 <div><a>Mariki</a></div>
@@ -289,7 +290,7 @@
                     </div>
                 </aside>
             </div>
-</div>
+            </div>
 </section>
 </div><!-- /.container -->
 

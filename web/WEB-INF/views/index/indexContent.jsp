@@ -11,13 +11,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap core CSS -->
-    <link href="<%=path%>/common/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=path%>/common/css/font-awesome-4.6.3/css/font-awesome.min.css"/>
-    <link href="<%=path%>/common/css/jquery.bxslider.css" rel="stylesheet">
-    <link href="<%=path%>/common/css/style.css" rel="stylesheet">
+    <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
+    <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/js/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
-
     <style type="text/css">
         div.row{
             margin-left: 0;
