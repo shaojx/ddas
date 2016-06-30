@@ -75,7 +75,7 @@
 	<script type='text/javascript' src="<%=path%>/common/js/jquery/jquery.min.js"></script>
 	<script type='text/javascript' src="<%=path%>/common/js/jquery/jquery.mobile.customized.min.js"></script>
 	<script type='text/javascript' src="<%=path%>/common/js/jquery/jquery.easing.1.3.js"></script>
-	<script type='text/javascript' src="<%=path%>/common/js/camera.js"></script>
+	<script type='text/javascript' src="<%=path%>/common/camera/camera.js"></script>
 	<script>
 		jQuery(function(){
 			jQuery('#camera_wrap_4').camera({
