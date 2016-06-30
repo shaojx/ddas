@@ -1,0 +1,39 @@
+/*基本样式属性*/
+.width120 {
+    width: 120px;
+}
+
+.width150{
+    width:150px;
+}
+.width200 {
+    width: 200px;
+}
+.width250 {
+    width: 250px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+.center{
+    margin:0 auto;
+}
+
+.text-span{
+    height:30px;
+    line-height:30px;
+}
+

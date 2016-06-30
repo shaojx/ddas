@@ -7,12 +7,15 @@
 <head>
     <title>Myspace</title>
     <meta charset="UTF-8">
-    <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
-    <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-   <%-- <link href="<%=path%>/common/css/style.css" rel="stylesheet">--%>
+    <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet"/>
+    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var path = "<%=path%>";
+    </script>
     <%--引入业务JS --%>
     <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
     <style type="text/css">
@@ -25,6 +28,7 @@
     </style>
 </head>
 <body>
+<div class="container">
 <div class="row">
     <div class="tabbable" id="tabs-262840">
         <ul class="nav nav-tabs">
@@ -395,51 +399,52 @@
         </div>
     </div>
 </div>
-
-<%--创建日志弹出框 --%>
+    <%--创建日志弹出框 --%>
 <div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">新建日志</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">日志标题</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建日志</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="logTitle" class="col-sm-2 control-label">日志标题</label>
+                            <span class="display-block width250" style="margin-left: 5px;">
+                                <input  class="form-control" id="logTitle" placeholder="日志标题">
+                            </span>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Sign in</button>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
- </div>
+    </div>
 </div>
+
 </body>
 </html>
