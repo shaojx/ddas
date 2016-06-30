@@ -6,12 +6,10 @@
  * 创建日期:	2016/6/24
  * Copyright (c) 2016, All Rights Reserved.
  */
-package com.ddas.sns.userFriend.impl;
+package com.ddas.sns.userfriend.impl;
 
-import com.ddas.sns.friends.domain.UserInfo;
-import com.ddas.sns.friends.mapper.UserInfoMapper;
-import com.ddas.sns.userFriend.domain.UserFriend;
-import com.ddas.sns.userFriend.mapper.UserFriendMapper;
+import com.ddas.sns.userfriend.domain.UserFriend;
+import com.ddas.sns.userfriend.mapper.UserFriendMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

@@ -6,9 +6,9 @@
  * 创建日期:	2016/6/24
  * Copyright (c) 2016, All Rights Reserved.
  */
-package com.ddas.sns.userFriend.mapper;
+package com.ddas.sns.userfriend.mapper;
 
-import com.ddas.sns.userFriend.domain.UserFriend;
+import com.ddas.sns.userfriend.domain.UserFriend;
 
 import java.util.List;
 

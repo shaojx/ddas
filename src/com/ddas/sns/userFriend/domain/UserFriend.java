@@ -6,7 +6,7 @@
  * 创建日期:	2016/6/24
  * Copyright (c) 2016, All Rights Reserved.
  */
-package com.ddas.sns.userFriend.domain;
+package com.ddas.sns.userfriend.domain;
 
 /**
  * ClassName:	UserFriend
