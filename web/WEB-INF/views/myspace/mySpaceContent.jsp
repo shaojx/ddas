@@ -411,15 +411,20 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="logTitle" class="col-sm-2 control-label">日志标题</label>
-                            <span class="display-block width250" style="margin-left: 5px;">
+                            <span class="inline-block width250" style="margin-left: 5px;">
                                 <input  class="form-control" id="logTitle" placeholder="日志标题">
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                            </div>
+                            <label for="logType" class="col-sm-2 control-label">日志分类</label>
+                            <span class="inline-block width250" style="margin-left: 5px;">
+                                <select id="logType" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </span>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
