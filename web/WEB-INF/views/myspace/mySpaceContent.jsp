@@ -410,14 +410,17 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="logTitle" class="col-sm-2 control-label">日志标题</label>
-                            <span class="inline-block width250" style="margin-left: 5px;">
-                                <input  class="form-control" id="logTitle" placeholder="日志标题">
-                            </span>
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logTitle" class="col-sm-2 control-label "><span class="inline-block width120">日志标题</span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="logTitle" placeholder="日志标题">
+                                </span>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="logType" class="col-sm-2 control-label">日志分类</label>
-                            <span class="inline-block width250" style="margin-left: 5px;">
+                            <div class="col-sm-offset-2 col-md-10 float-left">
+                            <label for="logType" class="col-sm-2 control-label"><span class="inline-block width120">日志分类</span></label>
+                            <span class="inline-block width280" style="margin-left: 5px;">
                                 <select id="logType" class="form-control">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -425,26 +428,46 @@
                                     <option value="4">4</option>
                                 </select>
                             </span>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
+                            </div>
+                            <div style="height: 34px;line-height: 34px;">
+                                <a href="javascript:void(0)" id="addTypeHref" class="center">添加分类</a>
+                            </div>
+                            <div class="width250 float-left display">
+                                <input class="col-md-2 form-control width120 float-left" id="addTypeInput" placeholder="分类名称">
+                                <button type="button" class="btn btn-primary float-left margin-left-5px">保存</button>
+                                <button type="button" class="btn btn-default float-left margin-left-5px">取消</button>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Sign in</button>
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logTags" class="col-sm-2 control-label "><span class="inline-block width120">日志标签</span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="logTags" placeholder="日志标签">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                 <label for="privilege" class="col-sm-2 control-label"><span class="inline-block width120">权 限</span></label>
+                                 <span class="inline-block width280" style="margin-left: 5px;">
+                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logContent" class="col-sm-2 control-label float-left"><span class="inline-block width120">日志内容</span></label>
+                                <div class="float-left" style="margin-left: 5px;">
+                                    <textarea rows="5" id="logContent" class="width280"></textarea>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">保存</button>
                 </div>
             </div>
         </div>
