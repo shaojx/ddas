@@ -4,7 +4,7 @@
 (function($) {
 	$(function() {
 		$("#myFriend").click(function () {
-			$("#content_iframe").attr("src", "/userFriend/myFriend");
+			$("#content_iframe").attr("src", "/userfriend/myFriend");
 		});
 
 		function paging(page) {
