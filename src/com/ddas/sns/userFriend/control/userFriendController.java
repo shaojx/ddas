@@ -65,4 +65,11 @@ public class UserFriendController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "photo", method = {RequestMethod.GET})
+    public ModelAndView goToPhotoPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("photo/photo");
+        return modelAndView;
+    }
+
 }

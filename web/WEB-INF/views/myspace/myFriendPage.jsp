@@ -102,30 +102,11 @@
                     </div>
                     <div class="friend_list" id="itemContainer">
                         <div style="width:70px;height:70px;border:1px #f0f0f0 solid;float:left;margin:10px 2.3%;" >
-                            <div class="touxiang" style="width:59px;height:59px;padding-top:5px;margin-left:5px;float:left;"><img src="<%=path%>/common/images/people.gif" style="width:100%;height:100%;"></div>
-                            <div class="xinxi" ><div class="username">moqiu</div><div><select rel="22" class="zubie" userid="48" value="22"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
+                            <div class="touxiang" style="width:59px;height:59px;padding-top:5px;margin-left:5px;float:left;"><img src="<%=path%>/common/images/people.jpg" style="width:100%;height:100%;"></div>
+                            <div class="xinxi" style="float:left;margin-left:15px;" ><div class="username" style="margin:10px 0;font-weight:700;color:#5e635c;">moqiu</div><div><select rel="22" class="zubie" userid="48" value="22"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
                             <div style="float:left;margin-left:27px;margin-top:5px;"><a href="/index.php?s=member&amp;c=member_center&amp;a=xinjianyoujian&amp;id=48" target="kuangjia" class="xiaozhitiao" style="cursor:pointer;"></a><a class="del" rel="48" style="cursor:pointer;"></a></div>
                             <div style="clear:both"></div>
                         </div>
-                        <div class="friend_xinxi">
-                            <div class="touxiang"><img src="<%=path%>/common/images/people.gif"></div>
-                            <div class="xinxi" style="float:left;margin-left:15px;"><div class="username" style="margin:10px 0;font-weight:700;color:#5e635c;">shelly</div><div><select rel="0" class="zubie" userid="122" value="0"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
-                            <div style="float:left;margin-left:27px;margin-top:5px;"><a href="/index.php?s=member&amp;c=member_center&amp;a=xinjianyoujian&amp;id=122" target="kuangjia" class="xiaozhitiao" style="cursor:pointer;"></a><a class="del" rel="122" style="cursor:pointer;"></a></div>
-                            <div style="clear:both"></div>
-                        </div>
-                        <div class="friend_xinxi">
-                            <div class="touxiang"><img src="<%=path%>/common/images/people.gif"></div>
-                            <div class="xinxi"><div class="username">ahteck</div><div><select rel="0" class="zubie" userid="141" value="0"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
-                            <div style="float:left;margin-left:27px;margin-top:5px;"><a href="/index.php?s=member&amp;c=member_center&amp;a=xinjianyoujian&amp;id=141" target="kuangjia" class="xiaozhitiao" style="cursor:pointer;"></a><a class="del" rel="141" style="cursor:pointer;"></a></div>
-                            <div style="clear:both"></div>
-                        </div>
-                        <div class="friend_xinxi">
-                            <div class="touxiang"><img src="<%=path%>/common/images/people.gif"></div>
-                            <div class="xinxi"><div class="username">liyanran511904</div><div><select rel="0" class="zubie" userid="22" value="0"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
-                            <div style="float:left;margin-left:27px;margin-top:5px;"><a href="/index.php?s=member&amp;c=member_center&amp;a=xinjianyoujian&amp;id=22" target="kuangjia" class="xiaozhitiao" style="cursor:pointer;"></a><a class="del" rel="22" style="cursor:pointer;"></a></div>
-                            <div style="clear:both"></div>
-                        </div>
-                        <div style="clear:both"></div>
                     </div>
                     <div class="row clearfix" style="clear: both;">
                         <div class="col-md-12">
