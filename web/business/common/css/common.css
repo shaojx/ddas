@@ -63,3 +63,7 @@
 .display{
     display: none;
 }
+
+.cursor-pointer{
+    cursor:pointer;
+}

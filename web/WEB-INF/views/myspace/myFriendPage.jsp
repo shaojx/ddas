@@ -85,7 +85,7 @@
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
 </head>
 <body>
-    <div class="row">
+<div class="row">
     <div class="tabbable" id="tabs-my-friend">
         <ul class="nav nav-tabs">
             <li class="active">
@@ -147,9 +147,8 @@
                         <div class="inline-block center" style="height: 50px;">
                             <div style="width: 270px;">
                                 <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                               <%-- <button type="button" class="close pull-right" >x</button>--%>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                               <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
                             </div>
                             <div class="width250" style="margin-top: 10px;">
                                 <select class="form-control width80 input-sm">
@@ -169,8 +168,8 @@
                             <div style="width: 270px;">
                                 <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
                                 <%-- <button type="button" class="close pull-right" >x</button>--%>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
                             </div>
                             <div class="width250" style="margin-top: 10px;">
                                 <select class="form-control width80 input-sm">
@@ -183,50 +182,6 @@
                             </div>
                         </div>
                   </div>
-
-                <%--循环添加测试--%>
-                    <div class="panel panel-default width350 pull-left">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                                <%-- <button type="button" class="close pull-right" >x</button>--%>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                            </div>
-                            <div class="width250" style="margin-top: 10px;">
-                                <select class="form-control width80 input-sm">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default width350 pull-left" style="margin-left: 10px;">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                                <%-- <button type="button" class="close pull-right" >x</button>--%>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                            </div>
-                            <div class="width250" style="margin-top: 10px;">
-                                <select class="form-control width80 input-sm">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
                 <%--分页--%>
                 <div class="row clearfix" style="clear: both;">
@@ -258,6 +213,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane " id="panel-tabs1" align="center">
             </div>
             <div class="tab-pane " id="panel-tabs2">
@@ -266,6 +222,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

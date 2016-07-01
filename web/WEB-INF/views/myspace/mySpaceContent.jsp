@@ -29,8 +29,8 @@
 </head>
 <body>
 <div class="container">
-<div class="row">
-    <div class="tabbable" id="tabs-262840">
+    <div class="row">
+      <div class="tabbable" id="tabs-262840">
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="#panel-tabs0" data-toggle="tab">个人主页</a>
@@ -125,35 +125,36 @@
                     </div>
                 </div>
             </div>
+            <%--个人资料--%>
             <div class="tab-pane " id="panel-tabs1" align="center">
-                <div id="tips " style="margin: 15px auto"><span class="label label-default" >填写完整准确的个人资料，可以让更多的朋友找到您。</span></div>
+                <p class="bg-info text-info" style="height: 30px;line-height: 30px;">填写完整准确的个人资料，可以让更多的朋友找到您。</p>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">用户名</label>
-                        <label class="col-sm-offset-1 col-sm-2 control-label">Mariki</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">用户名</span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block">Mariki</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">性别</label>
-                        <label class="col-sm-offset-1 col-sm-2 control-label">女</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left "><span class="inline-block width120">性 别</span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block ">女</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">身高</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">身 高</span></label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="height" />
+                            <input type="text" class="form-control width300 pull-left" id="height" />
                         </div>
-                        <label class="col-sm-1 control-label">CM</label>
+                        <label class="col-sm-1 control-label pull-left"><span class="inline-block" style="height: 34px;line-height: 34px;">CM</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">体重</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">体 重</span></label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="weight" />
+                            <input type="text" class="form-control width300 pull-left" id="weight" />
                         </div>
-                        <label class="col-sm-1 control-label">KG</label>
+                        <label class="col-sm-1 control-label pull-left"><span class="inline-block" style="height:34px;line-height: 34px;">KG</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">国家地区</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">国家地区</span></label>
                         <div class="col-sm-4">
-                            <select class="form-control">
+                            <select class="form-control pull-left width300">
                                 <option>China</option>
                                 <option>U.S.A</option>
                                 <option>TaiWan</option>
@@ -164,9 +165,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="dtp_input2" class="col-sm-offset-1 col-sm-2 control-label">出生日期</label>
+                        <label for="dtp_input2" class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120">出生日期</span>
+                        </label>
                         <div class="col-sm-5">
-                            <div class="input-group date form_date" data-date="1993-09-16T05:25:07Z" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <div class="input-group date form_date width300 pull-left" data-date="1993-09-16T05:25:07Z" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                 <input class="form-control" size="16" type="text" value="" readonly>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
@@ -175,30 +178,38 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">宗教</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120">宗 教</span>
+                        </label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="religion" />
+                            <input type="text" class="form-control width300 pull-left" id="religion" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">教育</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120">教 育</span>
+                        </label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="education" />
+                            <input type="text" class="form-control pull-left width300" id="education" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">交友宣言</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120">交友宣言</span>
+                        </label>
                         <div class="col-sm-5">
-                            <textarea class="form-control" id="declaration" rows="3"></textarea>
+                            <textarea class="form-control width300 pull-left" id="declaration" rows="3"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">年收入</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120">年收入</span>
+                        </label>
                         <div class="col-sm-4">
-                            <select class="form-control">
+                            <select class="form-control width300 pull-left">
                                 <option>50,000-100,000</option>
                                 <option>100,000-500,000</option>
                                 <option>500,000 Above</option>
@@ -207,9 +218,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label">婚恋状态</label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120">婚恋状态</span>
+                        </label>
                         <div class="col-sm-4">
-                            <select class="form-control">
+                            <select class="form-control width300 pull-left">
                                 <option>单身</option>
                                 <option>已婚</option>
                                 <option>离异</option>
@@ -219,6 +232,7 @@
                     </div>
                 </form>
             </div>
+            <%--心情--%>
             <div class="tab-pane " id="panel-tabs2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -286,7 +300,6 @@
                     </div>
                 </div>
             </div>
-
             <%--日志 start--%>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="panel panel-warning">
@@ -325,17 +338,6 @@
                                     </div>
                                 </div>
                             </div>
-                          <%--  <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的什么鬼</a>
-                                </div>
-                                <div id="panel-element-116" class="panel-collapse in">
-                                    <div class="panel-body">
-                                        我的日志标题是这里吗？是的
-                                        <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
-                                    </div>
-                                </div>
-                            </div>--%>
                         </div>
                         <%--朋友日志  start--%>
                         <div class="tab-pane" id="panel-8940">
@@ -375,6 +377,11 @@
                     分享暂时不做
                 </p>
             </div>
+            <div class="tab-pane" id="panel-tabs6">
+                <p>
+                   群组
+                </p>
+            </div>
             <div class="tab-pane" id="panel-tabs7">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
@@ -400,7 +407,7 @@
     </div>
 </div>
     <%--创建日志弹出框 --%>
-<div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -473,6 +480,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
