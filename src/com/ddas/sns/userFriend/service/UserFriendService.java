@@ -11,16 +11,11 @@ package com.ddas.sns.userfriend.service;
 import com.ddas.common.page.Page;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.domain.UserFriendCriteria;
-import com.ddas.sns.userfriend.impl.UserFriendImpl;
 import com.ddas.sns.userfriend.mapper.UserFriendMapper;
-import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * ClassName:	UserInfoService
