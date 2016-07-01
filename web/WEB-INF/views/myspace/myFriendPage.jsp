@@ -142,14 +142,16 @@
                     </div>--%>
                 </form>
                 <div class="row clear-both" style="margin-top:10px;">
-                    <div class="panel panel-default width350">
+                    <div class="panel panel-default width350 pull-left">
                         <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 100%;">
-                            <div class="width250" style="margin:10px;">
-                                <span class="text-muted">name</span>
-                                <button type="button" class="close">x</button>
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
+                               <%-- <button type="button" class="close pull-right" >x</button>--%>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
                             </div>
-                            <div class="width80">
+                            <div class="width250" style="margin-top: 10px;">
                                 <select class="form-control width80 input-sm">
                                     <option>China</option>
                                     <option>U.S.A</option>
@@ -160,7 +162,71 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="panel panel-default width350 pull-left" style="margin-left: 10px;">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
+                                <%-- <button type="button" class="close pull-right" >x</button>--%>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                            </div>
+                            <div class="width250" style="margin-top: 10px;">
+                                <select class="form-control width80 input-sm">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
+                  </div>
+
+                <%--循环添加测试--%>
+                    <div class="panel panel-default width350 pull-left">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
+                                <%-- <button type="button" class="close pull-right" >x</button>--%>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                            </div>
+                            <div class="width250" style="margin-top: 10px;">
+                                <select class="form-control width80 input-sm">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="panel panel-default width350 pull-left" style="margin-left: 10px;">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
+                                <%-- <button type="button" class="close pull-right" >x</button>--%>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                            </div>
+                            <div class="width250" style="margin-top: 10px;">
+                                <select class="form-control width80 input-sm">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <%--分页--%>
                 <div class="row clearfix" style="clear: both;">
