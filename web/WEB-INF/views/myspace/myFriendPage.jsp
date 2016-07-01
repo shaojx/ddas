@@ -102,6 +102,7 @@
             </li>
         </ul>
         <div class="tab-content">
+            <%--我的好友列表--%>
             <div class="tab-pane active" id="panel-tabs0">
                 <form class="form-horizontal" role="form">
                     <div class="col-md-6 form-group pull-left" style="margin-top: 10px;">
@@ -121,26 +122,8 @@
                              </span>
                         </div>
                     </div>
-                  <%--  <div class="form-group">
-                            <input type="text" style="width:300px;margin-left:20px;float:left" class="form-control" id="searchCondition">
-                            <button type="button" class="btn btn-default">搜索</button>
-                    </div>--%>
-                  <%--  <div class="friend_list" id="itemContainer">
-                        <div style="width:70px;height:70px;border:1px #f0f0f0 solid;float:left;margin:10px 2.3%;" >
-                            <div style="width:59px;height:59px;padding-top:5px;margin-left:5px;float:left;"><img src="<%=path%>/common/images/people.jpg" style="width:100%;height:100%;"></div>
-                            <div style="float:left;margin-left:15px;" ><div class="username" style="margin:10px 0;font-weight:700;color:#5e635c;">moqiu</div><div><select rel="22" class="zubie" userid="48" value="22"><option value="0">默认分组</option><option value="22">Work</option> </select></div></div>
-                            <div style="float:left;margin-left:27px;margin-top:5px;"><a href="/index.php?s=member&amp;c=member_center&amp;a=xinjianyoujian&amp;id=48" target="kuangjia" class="xiaozhitiao" style="cursor:pointer;"></a><a class="del" rel="48" style="cursor:pointer;"></a></div>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                    <div class="row clearfix" style="clear: both;">
-                        <div class="col-md-12">
-                            <!--分页控件-->
-                            <ul class="pagination" id="pageUl">
-                            </ul>
-                        </div>
-                    </div>--%>
                 </form>
+                <%--列表内容--%>
                 <div class="row clear-both" style="margin-top:10px;">
                     <div class="panel panel-default width350 pull-left">
                         <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
@@ -183,6 +166,48 @@
                         </div>
                   </div>
                 </div>
+                <div class="row clear-both" style="margin-top:10px;">
+                    <div class="panel panel-default width350 pull-left">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                            </div>
+                            <div class="width250" style="margin-top: 10px;">
+                                <select class="form-control width80 input-sm">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default width350 pull-left" style="margin-left: 10px;">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
+                                <%-- <button type="button" class="close pull-right" >x</button>--%>
+                                <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
+                            </div>
+                            <div class="width250" style="margin-top: 10px;">
+                                <select class="form-control width80 input-sm">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <%--分页--%>
                 <div class="row clearfix" style="clear: both;">
                     <div class="col-md-12">
@@ -213,12 +238,172 @@
                     </div>
                 </div>
             </div>
-
+            <%--好友申请--%>
             <div class="tab-pane " id="panel-tabs1" align="center">
+                <div class="row"  style="margin-top:10px;">
+                    <div class="panel panel-default width350 pull-left margin-left-10px">
+                    <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                    <div class="inline-block center" style="height: 50px;">
+                        <div style="width: 270px;">
+                            <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
+                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void(0)">拒绝</a>
+                            </span>
+                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void (0)">同意</a>
+                            </span>
+                        </div>
+                        <div class="width250 clear-both">
+                            <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
+                                <option>China</option>
+                                <option>U.S.A</option>
+                                <option>TaiWan</option>
+                                <option>HuoXing</option>
+                                <option>Star</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                    <div class="panel panel-default width350 pull-left margin-left-10px">
+                    <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                    <div class="inline-block center" style="height: 50px;">
+                        <div style="width: 270px;">
+                            <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
+                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void(0)">拒绝</a>
+                            </span>
+                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void (0)">同意</a>
+                            </span>
+                        </div>
+                        <div class="width250 clear-both">
+                            <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
+                                <option>China</option>
+                                <option>U.S.A</option>
+                                <option>TaiWan</option>
+                                <option>HuoXing</option>
+                                <option>Star</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row"  style="margin-top:10px;">
+                    <div class="panel panel-default width350 pull-left margin-left-10px">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
+                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void(0)">拒绝</a>
+                            </span>
+                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void (0)">同意</a>
+                            </span>
+                            </div>
+                            <div class="width250 clear-both">
+                                <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default width350 pull-left margin-left-10px">
+                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <div class="inline-block center" style="height: 50px;">
+                            <div style="width: 270px;">
+                                <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
+                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void(0)">拒绝</a>
+                            </span>
+                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
+                                <a href="javascript:void (0)">同意</a>
+                            </span>
+                            </div>
+                            <div class="width250 clear-both">
+                                <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
+                                    <option>China</option>
+                                    <option>U.S.A</option>
+                                    <option>TaiWan</option>
+                                    <option>HuoXing</option>
+                                    <option>Star</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%--分页--%>
+                <div class="row pull-left">
+                    <div class="col-md-12">
+                        <!--分页控件-->
+                        <ul class="pagination">
+                            <li>
+                                <a href="#">Prev</a>
+                            </li>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">5</a>
+                            </li>
+                            <li>
+                                <a href="#">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
             <div class="tab-pane " id="panel-tabs2">
             </div>
             <div class="tab-pane " id="panel-tabs3">
+                <div class="row">
+                    <button class="btn btn-group-sm btn-info pull-right" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;">添加分类</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="checkbox" name="types_checkbox"> </th>
+                            <th>分类名称</th>
+                            <th>创建时间</th>
+                            <th>操 作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
+                            <td>默认分组</td>
+                            <td>2016-7-1 23:00:15</td>
+                            <td><span class="text-muted" style="font-style: italic;">默认分组不允许修改与删除!</span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
+                            <td>自定义分组1</td>
+                            <td>2016-7-1 23:00:15</td>
+                            <td><a href="#">编辑</a> | <a href="#">删除</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
+                            <td>自定义分组2</td>
+                            <td>2016-7-1 23:00:15</td>
+                            <td><a href="#">编辑</a> | <a href="#">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
             </div>
         </div>
     </div>

@@ -154,7 +154,7 @@
 
             <%--center panel--%>
             <%--iframe start--%>
-            <iframe id="content_iframe" src="<%=path%>/myspace/getMyspceContent" style="width: 100%;height: 100%;overflow: hidden;border: 0;">
+            <iframe id="content_iframe" src="<%=path%>/myspace/getMyspceContent" style="width: 100%;height:900px;overflow: hidden;border: 0;">
             </iframe>
             <%--iframe end--%>
           </div>

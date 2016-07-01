@@ -230,6 +230,11 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-8 col-md-8">
+                            <button class="btn btn-info" type="button">保 存</button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <%--心情--%>
