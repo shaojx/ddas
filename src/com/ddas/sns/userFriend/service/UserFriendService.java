@@ -30,6 +30,16 @@ public class UserFriendService {
     @Resource
     private UserFriendMapper userFriendMapper;
 
+    /**
+     * 分页查找userFriend
+     *@Author liuchen6
+     *@Date 2016/7/1 15:00
+     *@param currentPage
+     *@param pageSize
+     *@param userId
+     *@return com.ddas.common.page.Page
+     *@since JDK1.6
+     */
     public Page queryRecodsByPage(int currentPage, int pageSize, String userId) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
@@ -44,6 +54,14 @@ public class UserFriendService {
         return page;
     }
 
+    /**
+     * 新建或者更新userFriend
+     *@Author liuchen6
+     *@Date 2016/7/1 15:00
+     *@param userFriend
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
     public UserFriend saveUserFriend(UserFriend userFriend) {
         if (StringUtils.isEmpty(userFriend.getUserId())) {
             userFriendMapper.insertSelective(userFriend);
@@ -58,12 +76,21 @@ public class UserFriendService {
         return userFriend;
     }
 
+    /**
+     * 删除好友
+     *@Author liuchen6
+     *@Date 2016/7/1 15:01
+     *@param userFriend
+     *@return boolean
+     *@since JDK1.6
+     */
     public boolean deleteUserFriend(UserFriend userFriend) {
         UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
         criteria.andUserIdEqualTo(userFriend.getUserId());
         criteria.andFriendIdEqualTo(userFriend.getFriendId());
         userFriendMapper.deleteByExample(userFriendCriteria);
+
         return true;
     }
 }

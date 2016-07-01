@@ -40,14 +40,30 @@ public class UserFriendController {
     @Resource
     private UserFriendService userFriendService;
 
-    //查找page的
+    /**
+     * 分页查找userFriendList
+     *@Author liuchen6
+     *@Date 2016/7/1 14:51
+     *@param currentPage
+     *@param pageSize
+     *@param userId
+     *@return com.ddas.common.page.Page
+     *@since JDK1.6
+     */
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET})
     @ResponseBody
     public Page getFriendList(int currentPage, int pageSize, String userId){
         return userFriendService.queryRecodsByPage(currentPage, pageSize, userId);
     }
 
-    //iframe跳转到我的好友界面
+    /**
+     * 跳转到我的好友界面
+     *@Author liuchen6
+     *@Date 2016/7/1 14:52
+     *@param
+     *@return org.springframework.web.servlet.ModelAndView
+     *@since JDK1.6
+     */
     @RequestMapping(value = "myFriend", method = {RequestMethod.GET})
     public ModelAndView goToMyFriendPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -55,15 +71,29 @@ public class UserFriendController {
         return modelAndView;
     }
 
-    //测试Photo页面，可以删除
+    /**测试跳转photo页面可以删除
+     *@Author liuchen6
+     *@Date 2016/7/1 14:58
+     *@param
+     *@return org.springframework.web.servlet.ModelAndView
+     *@since JDK1.6
+     */
     @RequestMapping(value = "photo", method = {RequestMethod.GET})
     public ModelAndView goToPhotoPage() {
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("photo/photo");
         return modelAndView;
     }
 
-    //新建或保存Friend
+    /**
+     * 新建或者更新好友
+     *@Author liuchen6
+     *@Date 2016/7/1 14:59
+     *@param userFriend
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public UserFriend saveUserFriend(UserFriend userFriend){
@@ -71,7 +101,14 @@ public class UserFriendController {
         return userFriend;
     }
 
-    //删除Friend
+    /**
+     * 删除好友
+     *@Author liuchen6
+     *@Date 2016/7/1 14:59
+     *@param userFriend
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public UserFriend deleteUserFriend(UserFriend userFriend){
