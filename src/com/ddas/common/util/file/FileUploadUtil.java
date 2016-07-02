@@ -42,7 +42,7 @@ public class FileUploadUtil {
 		  InputStream  inFile = new FileInputStream(file);
 		  //普通做法获取文件类型
 		  fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-		  fileName ="/"+ UUIDUtil.createUUID()+fileType;
+		  fileName ="/"+ UUIDUtil.createUUID(16)+fileType;
 		  //文件输出
 		  OutputStream outFile = new FileOutputStream(new File(rootUrl+fileName));
 		  //文件保存路径
