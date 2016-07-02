@@ -20,7 +20,7 @@
         </property>
     </bean>-->
 
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven/>
     <context:component-scan base-package="com.ddas.sns.*.control"/>
     <!--静态资源不处理-->
     <mvc:default-servlet-handler/>
@@ -29,7 +29,7 @@
     <!--国际化配置-->
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="en_US"/>
+        <property name="defaultLocale" value="zh_CN"/>
     </bean>
     <mvc:interceptors>
         <bean id="localeChangeInterceptor"

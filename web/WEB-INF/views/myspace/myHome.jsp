@@ -50,8 +50,12 @@
                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                 <li><a href="#"><i class="fa fa-reddit"></i></a></li>
             </ul>
-
         </div>
+    </div>
+    <%--语言条--%>
+    <div id="languageDiv" style="position: absolute;right: 10px;top:10px;">
+        <a href="<%=path%>/myspace/gotoIndex?language=zh_CN">中 文</a>|
+        <a href="<%=path%>/myspace/gotoIndex?language=en_US">英 文</a>
     </div>
 </nav>
 

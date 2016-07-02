@@ -2,6 +2,9 @@
 .width80{
     width: 80px;
 }
+.width110 {
+    width: 110px;
+}
 .width120 {
     width: 120px;
 }
@@ -69,7 +72,7 @@
 .margin-right-10px{
     margin-right: 10px;
 }
-.display{
+.displayNone{
     display: none;
 }
 
