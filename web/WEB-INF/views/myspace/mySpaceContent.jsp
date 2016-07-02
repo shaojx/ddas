@@ -66,7 +66,7 @@
                     <div id="panel-element-1331" class="panel-collapse in">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-xs-3 col-md-3">
+                                <div class="col-xs-3 col-md-3 width175">
                                     <div class="thumbnail">
                                         <img src="/common/images/140x140.jpg" alt="140x140">
                                         <div class="caption">
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3 col-md-3">
+                                <div class="col-xs-3 col-md-3 width175">
                                     <div class="thumbnail">
                                         <img src="/common/images/140x140.jpg" alt="140x140">
                                         <div class="caption">
@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3 col-md-3">
+                                <div class="col-xs-3 col-md-3 width175">
                                     <div class="thumbnail">
                                         <img src="/common/images/140x140.jpg" alt="140x140">
                                         <div class="caption">
@@ -90,7 +90,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3 col-md-3">
+                                <div class="col-xs-3 col-md-3 width175">
                                     <div class="thumbnail">
                                         <img src="/common/images/140x140.jpg" alt="140x140">
                                         <div class="caption">

@@ -9,11 +9,8 @@
 package com.ddas.sns.userfriend.control;
 
 import com.ddas.common.page.Page;
-import com.ddas.sns.mylog.domain.MyLogInfoExample;
 import com.ddas.sns.userfriend.domain.UserFriend;
-import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriend.service.UserFriendService;
-import org.hibernate.engine.transaction.internal.jta.CMTTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -42,12 +39,12 @@ public class UserFriendController {
 
     /**
      * 分页查找userFriendList
-     *@Author liuchen6
-     *@Date 2016/7/1 14:51
      *@param currentPage
      *@param pageSize
      *@param userId
      *@return com.ddas.common.page.Page
+     *@Author liuchen6
+     *@Date 2016/7/1 14:51
      *@since JDK1.6
      */
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET})

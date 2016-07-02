@@ -38,7 +38,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index"></spring:message> </a></li>
+                <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"/> </a></li>
                 <li><a href="<%=path%>/myspace/gotoIndex">我的空间</a></li>
                 <li><a href="#contact">朋友圈</a></li>
                 <li><a href="#contact">升级</a></li>
@@ -52,7 +52,6 @@
             </ul>
 
         </div>
-        <!--/.nav-collapse -->
     </div>
 </nav>
 
