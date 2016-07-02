@@ -1,3 +1,4 @@
+/*创建用户表 */
 DROP TABLE IF EXISTS user_info;
 CREATE TABLE user_info(
   user_id VARCHAR(32) PRIMARY KEY COMMENT '用户id--主键',

@@ -229,23 +229,18 @@
             switch (type) {
             case "first":
                 currentTarget.bootstrapPaginator("showFirst");
-                paging(page);
                 break;
             case "prev":
                 currentTarget.bootstrapPaginator("showPrevious");
-                paging(page);
                 break;
             case "next":
                 currentTarget.bootstrapPaginator("showNext");
-                paging(page);
                 break;
             case "last":
                 currentTarget.bootstrapPaginator("showLast");
-                paging(page);
                 break;
             case "page":
                 currentTarget.bootstrapPaginator("show", page);
-                paging(page);
                 break;
             }
 

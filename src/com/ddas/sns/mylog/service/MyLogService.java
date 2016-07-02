@@ -25,13 +25,16 @@ public class MyLogService {
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
         MyLogInfoExample myLogInfoExample = new MyLogInfoExample();
+        myLogInfoExample.setOrderByClause("create_time");
         myLogInfoExample.setLimitStart(page.getPageStart());
         myLogInfoExample.setLimitEnd(pageSize);
         //MyLogInfoExample.Criteria criteria = myLogInfoExample.createCriteria();
         //这个criteria可以设置 字段条件
         // criteria.
-        page.setTotalCount(myLogInfoMapper.countByExample(myLogInfoExample));
-        page.setDataList(myLogInfoMapper.selectPage(myLogInfoExample));
+        if(currentPage==1){//如果是当前第一页，则要求总数
+            page.setTotalCount(myLogInfoMapper.countByExample(myLogInfoExample));
+        }
+        page.setDataList(myLogInfoMapper.selectByExample(myLogInfoExample));
         return page;
     }
 }
