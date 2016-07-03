@@ -46,6 +46,7 @@ function initShowTabs() {
  * @param pageNo 分页
  */
 function getMyLogData(pageNo){
+    $("#myLogContentDiv").html("");//清空数据
     var loader=SLLib.loader({
         ele:"#panel-324017",
         spinner:"spinner2",
@@ -99,7 +100,6 @@ function initMyLogPagnation(pageData) {
  * @param data
  */
 function initMyLogData(data){
-    $("#myLogContentDiv").html("");
     var myLogDivTemplete=' <div class="panel panel-default">'+
        ' <div class="panel-heading">'+
         '  <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">${myLogTitle}</a>'+

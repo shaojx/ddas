@@ -57,7 +57,7 @@
         function initLoaderDivCss(){
             var winW =_options.width|| $(el).width();
             var winH =_options.height|| $(el).height();
-            if($(el).width()==0&&_options.width=="100%"){
+            if(_options.width=="100%"){//$(el).width()==0 如果设置width:100%
                 isNull=true;
             }else{
                 isNull=false;
@@ -74,6 +74,7 @@
             var loaderDivPosition=$(el).find("#loaderDiv").position();
             var loaderDivLeft=loaderDivPosition.left;
             var loaderDivTop=loaderDivPosition.top;
+            
             //绝对定位
             if(isNull){//当width是100%时，winW有可能拿不到对应的高度值，这个时候设置"margin-left" 为"50%"
                 $('.fl').css({
@@ -88,6 +89,7 @@
                     'top': ((winH / 2) - (spinnerH / 2)) + loaderDivTop+"px"
                 });
             }
+            isNull=false;//重置
         }
 
         function start() {
