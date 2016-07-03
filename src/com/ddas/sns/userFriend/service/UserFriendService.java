@@ -9,6 +9,7 @@
 package com.ddas.sns.userfriend.service;
 
 import com.ddas.common.page.Page;
+import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriend.mapper.UserFriendMapper;
@@ -36,20 +37,23 @@ public class UserFriendService {
      *@Date 2016/7/1 15:00
      *@param currentPage
      *@param pageSize
-     *@param userId
+     *@param friendNameCondition
      *@return com.ddas.common.page.Page
      *@since JDK1.6
      */
-    public Page queryRecodsByPage(int currentPage, int pageSize, String userId) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, String friendNameCondition) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
         UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
+        userFriendCriteria.setOrderByClause("created_time");
         userFriendCriteria.setLimitStart(page.getPageStart());
         userFriendCriteria.setLimitEnd(pageSize);
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
-        criteria.andUserIdEqualTo(userId);
-        page.setTotalCount(userFriendMapper.countByExample(userFriendCriteria));
+        criteria.andFriendNameLikeInsensitive("%" + friendNameCondition + "%");
+        if(currentPage==1){//如果是当前第一页，则要求总数
+            page.setTotalCount(userFriendMapper.countByExample(userFriendCriteria));
+        }
         page.setDataList(userFriendMapper.selectByExample(userFriendCriteria));
         return page;
     }
@@ -63,7 +67,13 @@ public class UserFriendService {
      *@since JDK1.6
      */
     public UserFriend saveUserFriend(UserFriend userFriend) {
-        if (StringUtils.isEmpty(userFriend.getUserId())) {
+        if (StringUtils.isEmpty(userFriend.getUfId())) {
+            //********暂时写死测试
+            userFriend.setUserId("1");
+            UUIDUtil.createUUID16();
+            userFriend.setUfId(UUIDUtil.createUUID16());
+            userFriend.setFriendName("Tomorrow");
+            //********暂时写死测试
             userFriendMapper.insertSelective(userFriend);
         }else{
             UserFriendCriteria userFriendCriteria = new UserFriendCriteria();

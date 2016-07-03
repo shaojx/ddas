@@ -41,16 +41,16 @@ public class UserFriendController {
      * 分页查找userFriendList
      *@param currentPage
      *@param pageSize
-     *@param userId
+     *@param friendNameCondition
      *@return com.ddas.common.page.Page
      *@Author liuchen6
      *@Date 2016/7/1 14:51
      *@since JDK1.6
      */
-    @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET})
+    @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Page getFriendList(int currentPage, int pageSize, String userId){
-        return userFriendService.queryRecodsByPage(currentPage, pageSize, userId);
+    public Page getFriendList(int currentPage, int pageSize, String friendNameCondition){
+        return userFriendService.queryRecordsByPage(currentPage, pageSize, friendNameCondition);
     }
 
     /**

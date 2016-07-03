@@ -24,7 +24,6 @@ public class MyLogController {
     @Resource
     private MyLogService myLogService;
 
-
     @RequestMapping("/queryRecodsByPage")
     @ResponseBody
     public Page queryRecordsByPage(@RequestParam int currentPage, @RequestParam int pageSize){

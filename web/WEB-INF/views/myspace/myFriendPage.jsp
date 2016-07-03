@@ -21,6 +21,8 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <%--分页的JS--%>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
@@ -39,56 +41,13 @@
     <link href="<%=path%>/business/common/css/friendList.css"/>
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
-
-    <script type="text/javascript">
-        var path="<%=path%>";
-    </script>
     <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
-    <script>
-        $(function () {
-            var element = $('#pageUl');//对应下面ul的ID
-            var options = {
-                bootstrapMajorVersion: 3,
-                currentPage: 1,//当前页面
-                numberOfPages: 5,//一页显示几个按钮（在ul里面生成5个li）
-                totalPages: 6 //总页数
-            }
-            element.bootstrapPaginator(options);
-        });
-        function paging(page) {
-            $.ajax({
-                type: "GET",
-                url: "${ctx}/api/v1/user/1/" + (page - 1) + "/5",
-                dataType: "json",
-                success: function (msg) {
-                    alert("Json数据");
-                }
-            });
-            $.ajax({
-                type: "GET",
-                url: "${ctx}/api/v1/user/count/1",
-                dataType: "json",
-                success: function (msg) {
-                    var pages = Math.ceil(msg.data / 5);//这里data里面有数据总量
-                    var element = $('#pageUl');//对应下面ul的ID
-                    var options = {
-                        bootstrapMajorVersion: 3,
-                        currentPage: page,//当前页面
-                        numberOfPages: 5,//一页显示几个按钮（在ul里面生成5个li）
-                        totalPages: pages //总页数
-                    }
-                    element.bootstrapPaginator(options);
-                }
-            });
-        }
-    </script>
-    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
 </head>
 <body>
 <div class="row">
     <div class="tabbable" id="tabs-my-friend">
         <ul class="nav nav-tabs">
-            <li class="active">
+            <li class="active" id="myFriendTab">
                 <a href="#panel-tabs0" data-toggle="tab">好友列表</a>
             </li>
             <li>
@@ -116,124 +75,21 @@
                     </div>
                     <div class="col-md-6  pull-left" style="margin-top: 10px;">
                         <div class="input-group width250" >
-                            <input type="text" class="form-control input-sm" placeholder="请输入搜索内容">
+                            <input type="text" id="searchName" class="form-control input-sm" placeholder="请输入搜索内容">
                              <span class="input-group-btn">
-                                 <button class="btn btn-default input-sm" type="button">搜索</button>
+                                 <button class="btn btn-default input-sm" id="searchFriend" type="button">搜索</button>
                              </span>
                         </div>
                     </div>
                 </form>
                 <%--列表内容--%>
-                <div class="row clear-both" style="margin-top:10px;">
-                    <div class="panel panel-default width350 pull-left">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                               <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                            </div>
-                            <div class="width250" style="margin-top: 10px;">
-                                <select class="form-control width80 input-sm">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default width350 pull-left" style="margin-left: 10px;">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                                <%-- <button type="button" class="close pull-right" >x</button>--%>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                            </div>
-                            <div class="width250" style="margin-top: 10px;">
-                                <select class="form-control width80 input-sm">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                  </div>
-                </div>
-                <div class="row clear-both" style="margin-top:10px;">
-                    <div class="panel panel-default width350 pull-left">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                            </div>
-                            <div class="width250" style="margin-top: 10px;">
-                                <select class="form-control width80 input-sm">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default width350 pull-left" style="margin-left: 10px;">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block" style="margin-top: 5px;">name</span>
-                                <%-- <button type="button" class="close pull-right" >x</button>--%>
-                                <span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                                <span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>
-                            </div>
-                            <div class="width250" style="margin-top: 10px;">
-                                <select class="form-control width80 input-sm">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row clear-both" id="myFriendContentDiv" style="margin-top:10px;">
                 </div>
                 <%--分页--%>
                 <div class="row clearfix" style="clear: both;">
                     <div class="col-md-12">
                         <!--分页控件-->
-                        <ul class="pagination">
-                            <li>
-                                <a href="#">Prev</a>
-                            </li>
-                            <li>
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">Next</a>
-                            </li>
+                        <ul class="pagination" id="myFriendPaginationDIV">
                         </ul>
                     </div>
                 </div>
@@ -250,7 +106,7 @@
                                 <a href="javascript:void(0)">拒绝</a>
                             </span>
                             <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void (0)">同意</a>
+                                <a href="javascript:void(0)" id="allowAdd" name="allowAdd">同意</a>
                             </span>
                         </div>
                         <div class="width250 clear-both">
