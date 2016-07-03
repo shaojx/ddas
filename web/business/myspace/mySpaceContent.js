@@ -23,7 +23,7 @@ $(function () {
 
     //点击"我的日志 "tab页
     $("#myLogTab").click(function(){
-        getMyLogData();
+        getMyLogData(1);
     });
 
     //点击'日志'tab页
@@ -46,6 +46,12 @@ function initShowTabs() {
  * @param pageNo 分页
  */
 function getMyLogData(pageNo){
+    var loader=SLLib.loader({
+        ele:"#panel-324017",
+        spinner:"spinner2",
+        height:"500px"
+    });
+    loader.start();
     if(pageNo){
         $.ajax({
             url:path+"/myLog/queryRecodsByPage",
@@ -56,7 +62,9 @@ function getMyLogData(pageNo){
             },
             dataType:"json",
             success:function(data){
-                if(pageNo==1){//如果是第一页，则初始化分页
+                loader.stop();
+
+               if(pageNo==1){//如果是第一页，则初始化分页
                     initMyLogPagnation(data);
                 }
                 initMyLogData(data);

@@ -14,6 +14,8 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--分页--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
@@ -27,6 +29,8 @@
         }
         body,html{
             overflow: hidden !important;
+            height:100%;
+            width:100%;
         }
     </style>
 </head>
@@ -325,7 +329,7 @@
                     </div>
                     <div class="tab-content">
                         <%--我的日志 start--%>
-                        <div class="tab-pane active" id="panel-324017">
+                        <div class="tab-pane active" id="panel-324017" style="height: 100%;">
                             <%--创建日志 --%>
                             <div class="row" style="margin-top: 5px;margin-bottom: 3px;">
                                 <div  style="margin-left:85%;">
