@@ -1,0 +1,81 @@
+/*基本样式属性*/
+.width80{
+    width: 80px;
+}
+.width110 {
+    width: 110px;
+}
+.width120 {
+    width: 120px;
+}
+
+.width150{
+    width:150px;
+}
+.width175{
+    width: 175px;
+}
+.width200 {
+    width: 200px;
+}
+.width250 {
+    width: 250px;
+}
+.width280{
+    width: 280px;
+}
+.width300{
+    width: 300px;
+}
+.width350{
+    width: 350px;
+}
+.width450{
+    width: 450px;
+}
+.width400{
+    width: 400px;
+}
+.inline-block {
+    display: inline-block;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+.center{
+    margin:0 auto;
+}
+
+.text-span{
+    height:30px;
+    line-height:30px;
+}
+.margin-left-5px{
+    margin-left: 5px;
+}
+.margin-left-10px{
+    margin-left:10px;
+}
+.margin-top-10px{
+    margin-top: 10px;
+}
+
+.margin-right-10px{
+    margin-right: 10px;
+}
+.displayNone{
+    display: none;
+}
+
+.cursor-pointer{
+    cursor:pointer;
+}

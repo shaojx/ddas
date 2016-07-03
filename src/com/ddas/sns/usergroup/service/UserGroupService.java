@@ -6,7 +6,7 @@
  * 创建日期:	2016/6/24
  * Copyright (c) 2016, All Rights Reserved.
  */
-package com.ddas.sns.userinfo.service;
+package com.ddas.sns.usergroup.service;
 
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
 import org.springframework.stereotype.Service;

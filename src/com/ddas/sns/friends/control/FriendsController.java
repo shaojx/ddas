@@ -8,7 +8,6 @@
  */
 package com.ddas.sns.friends.control;
 
-import com.ddas.sns.friends.service.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,21 +28,7 @@ import javax.annotation.Resource;
 @RequestMapping("/friends")
 public class FriendsController {
     private static  final Logger LOGGER= LoggerFactory.getLogger(FriendsController.class);
-    @Resource
-    private UserInfoService userInfoService;
 
-    @RequestMapping(value = "/test",method ={RequestMethod.POST,RequestMethod.GET})
-    public void test(String name){
-        System.out.println(name);
-        LOGGER.info(">>>>>>>>>>>>>>>>>>"+name);
-        try {
-            userInfoService.getUserInfo();
-            System.out.println(name);
-        }catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-    }
     @RequestMapping("/gotoIndex")
     public String gotoIndex(){
         try {

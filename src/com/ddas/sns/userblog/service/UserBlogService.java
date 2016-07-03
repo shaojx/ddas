@@ -9,8 +9,6 @@
 package com.ddas.sns.userblog.service;
 
 import com.ddas.sns.userblog.mapper.UserBlogMapper;
-import com.ddas.sns.usergroup.mapper.UserGroupMapper;
-import com.ddas.sns.userphoto.mapper.UserPhotoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

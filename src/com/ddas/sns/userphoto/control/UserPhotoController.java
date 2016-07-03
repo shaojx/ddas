@@ -6,20 +6,13 @@
  * 创建日期:	2016/6/24
  * Copyright (c) 2016, All Rights Reserved.
  */
-package com.ddas.sns.userfriend.control;
+package com.ddas.sns.userphoto.control;
 
-import com.ddas.common.page.Page;
-import com.ddas.sns.userfriend.domain.UserFriend;
-import com.ddas.sns.userfriend.service.UserFriendService;
-import com.ddas.sns.userinfo.service.UserPhotoService;
+import com.ddas.sns.userphoto.service.UserPhotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.annotation.Resource;
 
 /**
