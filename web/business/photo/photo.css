@@ -1,0 +1,17 @@
+.photo{
+    background: url('/common/images/album_bg.gif') no-repeat;
+    width:149px;
+    height:149px;
+}
+.photo .img{
+    margin-top:10px ;
+    margin-left:10px;
+}
+
+#photoInfoDiv span{
+    margin-left: 20px;
+    margin-top: 5px;
+}
+ #photoInfoDiv span a{
+     color: #f0786b;
+ }
