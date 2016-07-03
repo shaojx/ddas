@@ -30,4 +30,9 @@ public class UserPhotoController {
 
     @Resource
     private UserPhotoService userPhotoService;
+
+    @RequestMapping("/gotoIndex")
+    public String gotoIndex(){
+        return "photo/index";
+    }
 }
