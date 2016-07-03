@@ -50,7 +50,7 @@ public class UserFriendService {
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
         page.setTotalCount(userFriendMapper.countByExample(userFriendCriteria));
-        page.setDataList(userFriendMapper.selectPage(userFriendCriteria));
+        page.setDataList(userFriendMapper.selectByExample(userFriendCriteria));
         return page;
     }
 
