@@ -78,7 +78,7 @@
             //绝对定位
             if(isNull){//当width是100%时，winW有可能拿不到对应的高度值，这个时候设置"margin-left" 为"50%"
                 $('.fl').css({
-                    'position': 'absolute',
+                    'position': 'relative',
                     'margin-left': "50%",
                     'top': ((winH / 2) - (spinnerH / 2)) + loaderDivTop+"px"
                 });
