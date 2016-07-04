@@ -8,6 +8,8 @@
  */
 package com.ddas.sns.usergroup.service;
 
+import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.usergroup.domain.UserGroup;
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,23 @@ import javax.annotation.Resource;
 public class UserGroupService {
     @Resource
     private UserGroupMapper userGroupMapper;
+
+    /**
+     *@param groupName
+     *@return void
+     *@Author liuchen6
+     *@Date 2016/7/4 19:22
+     *@since JDK1.7
+     */
+    public void saveUserGroup(String groupName) {
+        UserGroup userGroup = new UserGroup();
+        userGroup.setGroupName(groupName);
+        // ***********写死测试
+        userGroup.setUserId("1");
+        userGroup.setGroupId(UUIDUtil.createUUID16());
+        userGroup.setUseProperty("1");
+        // ***********写死测试
+        userGroupMapper.insert(userGroup);
+    }
 
 }

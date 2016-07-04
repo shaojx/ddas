@@ -50,7 +50,7 @@
             <li class="active" id="myFriendTab">
                 <a href="#panel-tabs0" data-toggle="tab">好友列表</a>
             </li>
-            <li>
+            <li id="myFriendApplyTab">
                 <a href="#panel-tabs1" data-toggle="tab">好友申请</a>
             </li>
             <li>
@@ -96,128 +96,13 @@
             </div>
             <%--好友申请--%>
             <div class="tab-pane " id="panel-tabs1" align="center">
-                <div class="row"  style="margin-top:10px;">
-                    <div class="panel panel-default width350 pull-left margin-left-10px">
-                    <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                    <div class="inline-block center" style="height: 50px;">
-                        <div style="width: 270px;">
-                            <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
-                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void(0)">拒绝</a>
-                            </span>
-                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void(0)" id="allowAdd" name="allowAdd">同意</a>
-                            </span>
-                        </div>
-                        <div class="width250 clear-both">
-                            <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
-                                <option>China</option>
-                                <option>U.S.A</option>
-                                <option>TaiWan</option>
-                                <option>HuoXing</option>
-                                <option>Star</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                    <div class="panel panel-default width350 pull-left margin-left-10px">
-                    <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                    <div class="inline-block center" style="height: 50px;">
-                        <div style="width: 270px;">
-                            <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
-                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void(0)">拒绝</a>
-                            </span>
-                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void (0)">同意</a>
-                            </span>
-                        </div>
-                        <div class="width250 clear-both">
-                            <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
-                                <option>China</option>
-                                <option>U.S.A</option>
-                                <option>TaiWan</option>
-                                <option>HuoXing</option>
-                                <option>Star</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="row"  style="margin-top:10px;">
-                    <div class="panel panel-default width350 pull-left margin-left-10px">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
-                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void(0)">拒绝</a>
-                            </span>
-                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void (0)">同意</a>
-                            </span>
-                            </div>
-                            <div class="width250 clear-both">
-                                <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default width350 pull-left margin-left-10px">
-                        <img src="<%=path%>/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div class="inline-block center" style="height: 50px;">
-                            <div style="width: 270px;">
-                                <span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">name</span>
-                            <span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void(0)">拒绝</a>
-                            </span>
-                            <span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">
-                                <a href="javascript:void (0)">同意</a>
-                            </span>
-                            </div>
-                            <div class="width250 clear-both">
-                                <select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">
-                                    <option>China</option>
-                                    <option>U.S.A</option>
-                                    <option>TaiWan</option>
-                                    <option>HuoXing</option>
-                                    <option>Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" id="myFriendApplyContentDiv"  style="margin-top:10px;">
                 </div>
                 <%--分页--%>
                 <div class="row pull-left">
                     <div class="col-md-12">
                         <!--分页控件-->
-                        <ul class="pagination">
-                            <li>
-                                <a href="#">Prev</a>
-                            </li>
-                            <li>
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">Next</a>
-                            </li>
+                        <ul class="pagination" id="myFriendPaginationApplyDIV">
                         </ul>
                     </div>
                 </div>
@@ -227,8 +112,28 @@
             </div>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="row">
-                    <button class="btn btn-group-sm btn-info pull-right" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;">添加分类</button>
+                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;">添加分类</button>
                 </div>
+
+                <%--创建分组弹出框 --%>
+                <div class="modal fade" id="createMyFriendGroupDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">新建好友分组</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input class="col-md-2 form-control width250" id="userFriendGroupName" placeholder="好友类别">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id="saveMyFriendGroup">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>

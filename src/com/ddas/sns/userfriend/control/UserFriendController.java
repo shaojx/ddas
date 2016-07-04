@@ -49,8 +49,8 @@ public class UserFriendController {
      */
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Page getFriendList(int currentPage, int pageSize, String friendNameCondition){
-        return userFriendService.queryRecordsByPage(currentPage, pageSize, friendNameCondition);
+    public Page getFriendList(int currentPage, int pageSize, String friendNameCondition, String status){
+        return userFriendService.queryRecordsByPage(currentPage, pageSize, friendNameCondition, status);
     }
 
     /**

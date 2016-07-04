@@ -8,16 +8,13 @@
  */
 package com.ddas.sns.usergroup.control;
 
-import com.ddas.common.page.Page;
-import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.service.UserFriendService;
+import com.ddas.sns.usergroup.domain.UserGroup;
+import com.ddas.sns.usergroup.service.UserGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
@@ -33,4 +30,13 @@ import javax.annotation.Resource;
 @RequestMapping("/userGroup")
 public class UserGroupController {
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserGroupController.class);
+
+    @Resource
+    private UserGroupService userGroupService;
+
+    @RequestMapping("/save")
+    public UserGroup saveUserGroup(String groupName) {
+        userGroupService.saveUserGroup(groupName);
+        return new UserGroup();
+    }
 }

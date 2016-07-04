@@ -11,8 +11,8 @@ package com.ddas.sns.userfriend.service;
 import com.ddas.common.page.Page;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userfriend.domain.UserFriend;
-import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriend.mapper.UserFriendMapper;
+import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +41,7 @@ public class UserFriendService {
      *@return com.ddas.common.page.Page
      *@since JDK1.6
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize, String friendNameCondition) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, String friendNameCondition, String status) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -51,6 +51,12 @@ public class UserFriendService {
         userFriendCriteria.setLimitEnd(pageSize);
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
         criteria.andFriendNameLikeInsensitive("%" + friendNameCondition + "%");
+        if ("1".equals(status)) {
+            criteria.andStatusNotEqualTo("0");
+        } else if("0".equals(status)) {
+            criteria.andStatusEqualTo("0");
+        }
+
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userFriendMapper.countByExample(userFriendCriteria));
         }
