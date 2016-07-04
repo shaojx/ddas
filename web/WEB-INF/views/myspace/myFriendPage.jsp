@@ -56,7 +56,7 @@
             <li>
                 <a href="#panel-tabs2" data-toggle="tab">好友邀请</a>
             </li>
-            <li>
+            <li id="myFriendGroupTab">
                 <a href="#panel-tabs3" data-toggle="tab">分组管理</a>
             </li>
         </ul>
@@ -112,7 +112,7 @@
             </div>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="row">
-                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;">添加分类</button>
+                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;" id="addGroup">添加分类</button>
                 </div>
 
                 <%--创建分组弹出框 --%>
@@ -127,7 +127,7 @@
                                 <input class="col-md-2 form-control width250" id="userFriendGroupName" placeholder="好友类别">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-default" id="closeAddGroupModel" data-dismiss="modal">关闭</button>
                                 <button type="button" class="btn btn-primary" id="saveMyFriendGroup">保存</button>
                             </div>
                         </div>

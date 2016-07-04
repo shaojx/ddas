@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -35,6 +36,7 @@ public class UserGroupController {
     private UserGroupService userGroupService;
 
     @RequestMapping("/save")
+    @ResponseBody
     public UserGroup saveUserGroup(String groupName) {
         userGroupService.saveUserGroup(groupName);
         return new UserGroup();

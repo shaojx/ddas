@@ -3,6 +3,7 @@
  */
 var CONST_FRIEND = "1";
 var CONST_APPLY_FRIEND = "0";
+var CONST_USE_PROPERTY_FRIEND = "1";
 var userFriendCondition = {
 	pageNo:1,
 	friendNameCondition:"",
@@ -110,11 +111,135 @@ $(function() {
 			},
 			dataType:"json",
 			success:function(){
+				$("#closeAddGroupModel").click();
 				alert("success!");
 			}
 		})
 	})
+
+	$("#myFriendGroupTab").click(function () {
+		var friendGroupCondition = {
+			pageNo:1,
+			useProperty:CONST_USE_PROPERTY_FRIEND,
+		};//查询条件初始化
+		getMyFriendGroupData(friendGroupCondition);
+		
+	})
 });
+
+/**
+ * 获取我的好友当前页的数据
+ * @param pageNo 分页
+ */
+function getMyFriendGroupData(condition){
+	$("#myFriendGroupContentDiv").html("");//清空数据
+	if(condition.pageNo){
+		$.ajax({
+			url:path+"/userGroup/queryRecordsByPage",
+			type:"POST",
+			data:{
+				"currentPage":condition.pageNo,
+				"pageSize":4,
+				"useProperty":condition.useProperty,
+			},
+			dataType:"json",
+			success:function(data){
+				if(data.dataList.length < 1) {
+					$("#myFriendGroupPaginationDIV").html("");//清空页码
+					return; //如果没有查询到数据，就不分页
+				}
+				if(condition.pageNo==1){//如果是第一页，则初始化分页
+					initMyFriendGroupPagination(data);
+				}
+				initMyFriendGroupData(data);
+			}
+		})
+	}
+}
+
+/**
+ * 初始化分页条
+ * @param pageData
+ */
+function initMyFriendGroupPagination(pageData) {
+	var pageIndex=pageData.currentPage;
+	var totalPages=pageData.totalPages;
+	var options = {
+		alignment:"center",//居中显示
+		currentPage: pageIndex,//当前页数
+		totalPages: totalPages,//总页数 注意不是总条数
+		bootstrapMajorVersion:3,
+		onPageChanged: function(event,oldPage,newPage){
+			if (oldPage==newPage) {
+				return ;
+			} else {
+				var friendGroupCondition = {
+					pageNo:1,
+					useProperty:CONST_USE_PROPERTY_FRIEND,
+				};//查询条件初始化
+				getMyFriendGroupData(friendGroupCondition);//重新拉取数据
+			}
+		}
+	}
+	$("#myFriendGroupPaginationDIV").bootstrapPaginator(options);
+}
+
+/**
+ * 初始化分页条
+ * @param pageData
+ */
+function initMyFriendGroupPagination(pageData) {
+	var pageIndex=pageData.currentPage;
+	var totalPages=pageData.totalPages;
+	var options = {
+		alignment:"center",//居中显示
+		currentPage: pageIndex,//当前页数
+		totalPages: totalPages,//总页数 注意不是总条数
+		bootstrapMajorVersion:3,
+		onPageChanged: function(event,oldPage,newPage){
+			if (oldPage==newPage) {
+				return ;
+			} else {
+				userFriendCondition.pageNo = newPage;
+				userFriendCondition.friendNameCondition = $("#searchName").val().trim();
+				userFriendCondition.status = CONST_FRIEND;
+				getMyFriendData(userFriendCondition); //重新拉取数据
+			}
+		}
+	}
+	$("#myFriendPaginationDIV").bootstrapPaginator(options);
+}
+/**
+ * 初始化我的好友的数据
+ * @param data
+ */
+function initMyFriendGroupData(data) {
+	var myFriendDivTemplete = '<div class="panel panel-default width350 pull-left">' +
+		'<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">' +
+		'<div class="inline-block center" style="height: 50px;">' +
+		'<div style="width: 270px;">' +
+		'<span class="text-muted inline-block" style="margin-top: 5px;">${friendName}</span>' +
+		'<span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
+		'<span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
+		'</div>' +
+		'<div class="width250" style="margin-top: 10px;">' +
+		'<select class="form-control width80 input-sm">' +
+		'<option>China</option>' +
+		'<option>U.S.A</option>' +
+		'<option>TaiWan</option>' +
+		'<option>HuoXing</option>' +
+		'<option>Star</option>' +
+		'</select>' +
+		'</div>' +
+		'</div>' +
+		'</div>';
+	var list = data.dataList;
+	for (var index in list) {
+		var _data = list[index];
+		var _replace = myFriendDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName);
+		$("#myFriendContentDiv").append(_replace);
+	}
+}
 
 /**
  * 获取我的好友当前页的数据
