@@ -94,10 +94,10 @@ public class UserGroupService {
         return page;
     }
 
-    public void deleteUserGroup(String groupId){
+    public void deleteUserGroup(UserGroup userGroup){
         UserGroupCriteria userGroupCriteria = new UserGroupCriteria();
         UserGroupCriteria.Criteria criteria = userGroupCriteria.createCriteria();
-        criteria.andGroupIdEqualTo(groupId);
+        criteria.andGroupIdEqualTo(userGroup.getGroupId());
         userGroupMapper.deleteByExample(userGroupCriteria);
     }
 

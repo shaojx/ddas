@@ -200,7 +200,6 @@ function initMyFriendGroupData(data) {
 	 *Group的A标签删除点击事件
 	 *@Author liuchen6
 	 *@Date 2016/7/5 15:38
-	 *@since JDK1.7
 	 */
 	$("a[name='deleteFriendGroup']").click(function () {
 		var userFriendGroupId = $(this).attr("data-groupid");
@@ -212,6 +211,7 @@ function initMyFriendGroupData(data) {
 			},
 			dataType:"json",
 			success:function(){
+				alert("success!");
 				$("#myFriendGroupTab").click(); //重新加载用户分组的数据
 			}
 		})
@@ -373,10 +373,10 @@ function initMyFriendApplyData(data) {
 		'<div style="width: 270px;">'+
 		'<span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">${friendName}</span>'+
 		'<span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">'+
-		'<a href="javascript:void(0)">拒绝</a>'+
+		'<a href="javascript:void(0)" data-ufId="ufIdValue"  name="refuseAdd">拒绝</a>'+
 		'</span>'+
 		'<span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">'+
-		'<a href="javascript:void(0)" name="allowAdd">同意</a>'+
+		'<a href="javascript:void(0)" data-ufId="ufIdValue" name="allowAdd">同意</a>'+
 		'</span>'+
 		'</div>'+
 		'<div class="width250 clear-both">'+
@@ -393,17 +393,51 @@ function initMyFriendApplyData(data) {
 	var list = data.dataList;
 	for (var index in list) {
 		var _data = list[index];
-		var _replace = myFriendApplyDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName);
+		var _replace = myFriendApplyDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName).replace(/ufIdValue/g, _data.ufId);
 		$("#myFriendApplyContentDiv").append(_replace);
 	}
 	/**
 	 * 同意添加好友的点击事件
 	 *@Author liuchen6
 	 *@Date 2016/7/4 15:21
-	 *@since JDK1.7
 	 */
 	$("a[name='allowAdd']").click(function () {
-		allowAddFriend();
+		var ufId = $(this).attr("data-ufId");
+		$.ajax({
+			url:path+"/userFriend/save",
+			type:"POST",
+			data:{
+				"ufId":ufId,
+				"groupId":"1",
+				"status":"1"
+			},
+			dataType:"json",
+			success:function(){
+				alert("Success!");
+				$("#myFriendApplyTab").click();
+			}
+		})
+	});
+
+	/**
+	 * 拒绝添加好友的点击事件
+	 *@Author liuchen6
+	 *@Date 2016/7/4 15:21
+	 */
+	$("a[name='refuseAdd']").click(function () {
+		var ufId = $(this).attr("data-ufId");
+		$.ajax({
+			url:path+"/userFriend/delete",
+			type:"POST",
+			data:{
+				"ufId":ufId
+			},
+			dataType:"json",
+			success:function(){
+				alert("Success!");
+				$("#myFriendApplyTab").click();
+			}
+		})
 	});
 }
 
@@ -413,17 +447,6 @@ function initMyFriendApplyData(data) {
  *@Date 2016/7/4 15:20
  *@since JDK1.7
  */
-function allowAddFriend(){
-	$.ajax({
-		url:path+"/userFriend/save",
-		type:"POST",
-		userFriend:{
-			"friendId":"100",
-			"groupId":"1",
-		},
-		dataType:"json",
-		success:function(){
-			alert("Success!");
-		}
-	})
+function allowAddFriend(object){
+
 }

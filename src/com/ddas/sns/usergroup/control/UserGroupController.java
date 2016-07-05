@@ -59,8 +59,9 @@ public class UserGroupController {
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public void deleteUserGroup(String groupId){
-        userGroupService.deleteUserGroup(groupId);
+    public UserGroup deleteUserGroup(UserGroup userGroup){
+        userGroupService.deleteUserGroup(userGroup);
+        return userGroup;
     }
 
 }

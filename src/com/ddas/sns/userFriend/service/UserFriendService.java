@@ -9,6 +9,7 @@
 package com.ddas.sns.userfriend.service;
 
 import com.ddas.common.page.Page;
+import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.mapper.UserFriendMapper;
@@ -73,19 +74,24 @@ public class UserFriendService {
      *@since JDK1.6
      */
     public UserFriend saveUserFriend(UserFriend userFriend) {
+        String currentDate = DateUtil.getCurrentDateString();
         if (StringUtils.isEmpty(userFriend.getUfId())) {
             //********暂时写死测试
+            // TODO: 2016/7/5
             userFriend.setUserId("1");
             UUIDUtil.createUUID16();
             userFriend.setUfId(UUIDUtil.createUUID16());
             userFriend.setFriendName("Tomorrow");
+            userFriend.setCreatedTime(currentDate);
+            userFriend.setUpdatedTime(currentDate);
             //********暂时写死测试
             userFriendMapper.insertSelective(userFriend);
         }else{
             UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
             UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
-            criteria.andUserIdEqualTo(userFriend.getUserId());
-            criteria.andFriendIdEqualTo(userFriend.getFriendId());
+            userFriend.setCreatedTime(currentDate);
+            userFriend.setUpdatedTime(currentDate);
+            criteria.andUfIdEqualTo(userFriend.getUfId());
             userFriendMapper.updateByExampleSelective(userFriend, userFriendCriteria);
         }
 
@@ -103,8 +109,7 @@ public class UserFriendService {
     public boolean deleteUserFriend(UserFriend userFriend) {
         UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
-        criteria.andUserIdEqualTo(userFriend.getUserId());
-        criteria.andFriendIdEqualTo(userFriend.getFriendId());
+        criteria.andUfIdEqualTo(userFriend.getUfId());
         userFriendMapper.deleteByExample(userFriendCriteria);
 
         return true;
