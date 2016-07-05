@@ -60,7 +60,7 @@
 </body>
 <script type="text/javascript">
     $(function () {
-        $(".file-drop-zone").height("60%");
+        $(".file-drop-zone").height("55%");
     });
     $("#myfiles").fileinput({
         uploadUrl:path+"/fileUpload/fileUpload",
