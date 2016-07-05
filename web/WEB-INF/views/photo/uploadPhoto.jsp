@@ -20,6 +20,9 @@
     <script src="<%=path%>/common/bootstrap-fileupload/js/fileinput.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrap-fileupload/js/fileinput_locale_zh.js" type="text/javascript"></script>
 
+    <!--[if IE]>
+        <script src="<%=path%>/common/bootstrap-fileupload/js/html5shiv.min.js"></script>
+    <![endif]-->
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
