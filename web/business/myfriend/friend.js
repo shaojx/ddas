@@ -97,6 +97,14 @@ $(function() {
 		getMyFriendApplyData(userFriendCondition);
 	});
 
+	/**
+	 * 点击保存好友分组的事件
+	 *@param
+	 *@return
+	 *@Author liuchen6
+	 *@Date 2016/7/5 9:28
+	 *@since JDK1.7
+	 */
 	$("#saveMyFriendGroup").click(function () {
 		var userFriendGroupName = $("#userFriendGroupName").val();
 		if(userFriendGroupName == "") {
@@ -117,6 +125,14 @@ $(function() {
 		})
 	})
 
+	/**
+	 * 管理好友分组的Tab的点击事件
+	 *@param
+	 *@return
+	 *@Author liuchen6
+	 *@Date 2016/7/5 9:29
+	 *@since JDK1.7
+	 */
 	$("#myFriendGroupTab").click(function () {
 		var friendGroupCondition = {
 			pageNo:1,

@@ -35,6 +35,14 @@ public class UserGroupController {
     @Resource
     private UserGroupService userGroupService;
 
+    /**
+     * 保存用户分组
+     *@param groupName
+     *@return com.ddas.sns.usergroup.domain.UserGroup
+     *@Author liuchen6
+     *@Date 2016/7/5 9:27
+     *@since JDK1.7
+     */
     @RequestMapping("/save")
     @ResponseBody
     public UserGroup saveUserGroup(String groupName) {
