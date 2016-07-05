@@ -36,6 +36,19 @@ public class SpringContextUtil implements ApplicationContextAware {
 	}
 
 	/**
+	 * 根据local获取相应的信息
+	 * @param key
+	 * @param locale
+     * @return
+     */
+	public static String getMsgByKey(String key,Locale locale) {
+		if (key == null | key.trim().length() <= 0) {
+			return null;
+		}
+		return applicationContext.getMessage(key, null, locale);
+	}
+
+	/**
 	 * 寰楀埌鎵�湁鐨勫垎鍖轰俊鎭�
 	 * 
 	 * @return

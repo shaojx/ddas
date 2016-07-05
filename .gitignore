@@ -2,6 +2,7 @@
 ### Java template
 *.class
 ddas.iml
+src/rebel.xml
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

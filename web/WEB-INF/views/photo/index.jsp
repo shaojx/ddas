@@ -24,6 +24,7 @@
 
     <%--引入自定义样式--%>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
+    <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <style type="text/css">
         html,body{
             overflow: hidden!important;
@@ -40,7 +41,7 @@
         <div id="myPhoto" class="tab-pane fade in active">
             <%--新建相册与上传照片--%>
             <div class="row margin-top-10px">
-                <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;">上传照片</button>
+                <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn">上传照片</button>
                 <button type="button" class="btn btn-info pull-right margin-right-10px">新建相册</button>
             </div>
             <div class="panel panel-default" style="margin-top:10px;">

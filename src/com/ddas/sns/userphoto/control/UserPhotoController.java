@@ -31,8 +31,27 @@ public class UserPhotoController {
     @Resource
     private UserPhotoService userPhotoService;
 
+    /**
+     *跳转到首页
+     *@Author shaojunxiang
+     *@Date 2016/7/5 16:40
+     *@return java.lang.String
+     *@since JDK1.6
+     */
     @RequestMapping("/gotoIndex")
     public String gotoIndex(){
         return "photo/index";
+    }
+
+    /**
+     *跳转到照片上传的页面
+     *@Author shaojunxiang
+     *@Date 2016/7/5 16:40
+     *@return java.lang.String
+     *@since JDK1.6
+     */
+    @RequestMapping("/gotoUploadPhotoIndex")
+    public String gotoUploadPhotoIndex(){
+        return "photo/uploadPhoto";
     }
 }
