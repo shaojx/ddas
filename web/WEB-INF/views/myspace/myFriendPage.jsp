@@ -112,7 +112,7 @@
             </div>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="row">
-                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;" id="addGroup">添加分类</button>
+                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-groupname="" data-groupid="" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;" id="addGroup">添加分类</button>
                 </div>
 
                 <%--创建分组弹出框 --%>
@@ -120,6 +120,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
+                                <input type="hidden" id="userFriendGroupId">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">新建好友分组</h4>
                             </div>
@@ -144,7 +145,7 @@
                             <th>操 作</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myFriendGroupContentDiv">
                         <tr>
                             <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
                             <td>默认分组</td>
@@ -155,7 +156,7 @@
                             <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
                             <td>自定义分组1</td>
                             <td>2016-7-1 23:00:15</td>
-                            <td><a href="#">编辑</a> | <a href="#">删除</a></td>
+                            <td><a href="javascript:void(0)" >编辑</a> | <a href="#">删除</a></td>
                         </tr>
                         <tr>
                             <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
@@ -166,6 +167,15 @@
                         </tbody>
                     </table>
             </div>
+                <%--分页--%>
+                <div class="row pull-left">
+                    <div class="col-md-12">
+                        <!--分页控件-->
+                        <ul class="pagination" id="myFriendGroupPaginationDIV">
+                            <li>aa</li>
+                        </ul>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

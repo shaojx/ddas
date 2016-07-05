@@ -28,16 +28,6 @@ $(function() {
 		getMyFriendData(userFriendCondition);
 	});
 
-	/**
-	 *左侧好友点击事件
-	 *@return
-	 *@Author liuchen6
-	 *@Date 2016/7/4 15:17
-	 *@since JDK1.7
-	 */
-	$("#myFriend").click(function () {
-		$("#content_iframe").attr("src", "/userFriend/myFriend");
-	});
 
 	/**
 	 *查询好友按钮点击事件
@@ -52,37 +42,6 @@ $(function() {
 	});
 
 	/**
-	 * 同意添加好友
-	 *@Author liuchen6
-	 *@Date 2016/7/4 15:20
-	 *@since JDK1.7
-	 */
-	function allowAddFriend(){
-		$.ajax({
-			url:path+"/userFriend/save",
-			type:"POST",
-			userFriend:{
-				"friendId":"100",
-				"groupId":"1",
-			},
-			dataType:"json",
-			success:function(){
-				alert("Success!");
-			}
-		})
-	}
-
-	/**
-	 * 同意添加好友的点击事件
-	 *@Author liuchen6
-	 *@Date 2016/7/4 15:21
-	 *@since JDK1.7
-	 */
-	$("#allowAdd").click(function () {
-		allowAddFriend();
-	});
-
-	/**
 	 * 我的好友申请列表
 	 *@Author liuchen6
 	 *@Date 2016/7/4 15:43
@@ -92,7 +51,7 @@ $(function() {
 		userFriendCondition = {
 			pageNo:1,
 			friendNameCondition:"",
-			status:CONST_APPLY_FRIEND,
+			status:CONST_APPLY_FRIEND
 		};//查询条件初始化
 		getMyFriendApplyData(userFriendCondition);
 	});
@@ -107,6 +66,7 @@ $(function() {
 	 */
 	$("#saveMyFriendGroup").click(function () {
 		var userFriendGroupName = $("#userFriendGroupName").val();
+		var userFriendGroupId = $("#userFriendGroupId").val();
 		if(userFriendGroupName == "") {
 			alert("好友分组名称不能为空");
 			return;
@@ -116,11 +76,14 @@ $(function() {
 			type:"POST",
 			data:{
 				"groupName":userFriendGroupName,
+				"groupId":userFriendGroupId,
+				"useProperty":CONST_USE_PROPERTY_FRIEND,
 			},
 			dataType:"json",
 			success:function(){
 				$("#closeAddGroupModel").click();
 				alert("success!");
+				$("#myFriendGroupTab").click(); //重新加载用户分组的数据
 			}
 		})
 	})
@@ -139,7 +102,22 @@ $(function() {
 			useProperty:CONST_USE_PROPERTY_FRIEND,
 		};//查询条件初始化
 		getMyFriendGroupData(friendGroupCondition);
-		
+	});
+
+	/**
+	 * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
+	 *@Author liuchen6
+	 *@Date 2016/7/5 15:28
+	 *@since JDK1.7
+	 */
+	$('#createMyFriendGroupDialog').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget);// Button that triggered the modal
+		var groupName = button.data('groupname'); // Extract info from data-* attributes
+		var groupId = button.data('groupid'); // Extract info from data-* attributes
+		var modal = $(this);
+		modal.find('#userFriendGroupName').val(groupName);
+		modal.find('#userFriendGroupId').val(groupId);
+
 	})
 });
 
@@ -155,8 +133,8 @@ function getMyFriendGroupData(condition){
 			type:"POST",
 			data:{
 				"currentPage":condition.pageNo,
-				"pageSize":4,
-				"useProperty":condition.useProperty,
+				"pageSize":8,
+				"useProperty":condition.useProperty
 			},
 			dataType:"json",
 			success:function(data){
@@ -191,7 +169,7 @@ function initMyFriendGroupPagination(pageData) {
 			} else {
 				var friendGroupCondition = {
 					pageNo:1,
-					useProperty:CONST_USE_PROPERTY_FRIEND,
+					useProperty:CONST_USE_PROPERTY_FRIEND
 				};//查询条件初始化
 				getMyFriendGroupData(friendGroupCondition);//重新拉取数据
 			}
@@ -201,60 +179,43 @@ function initMyFriendGroupPagination(pageData) {
 }
 
 /**
- * 初始化分页条
- * @param pageData
- */
-function initMyFriendGroupPagination(pageData) {
-	var pageIndex=pageData.currentPage;
-	var totalPages=pageData.totalPages;
-	var options = {
-		alignment:"center",//居中显示
-		currentPage: pageIndex,//当前页数
-		totalPages: totalPages,//总页数 注意不是总条数
-		bootstrapMajorVersion:3,
-		onPageChanged: function(event,oldPage,newPage){
-			if (oldPage==newPage) {
-				return ;
-			} else {
-				userFriendCondition.pageNo = newPage;
-				userFriendCondition.friendNameCondition = $("#searchName").val().trim();
-				userFriendCondition.status = CONST_FRIEND;
-				getMyFriendData(userFriendCondition); //重新拉取数据
-			}
-		}
-	}
-	$("#myFriendPaginationDIV").bootstrapPaginator(options);
-}
-/**
  * 初始化我的好友的数据
  * @param data
  */
 function initMyFriendGroupData(data) {
-	var myFriendDivTemplete = '<div class="panel panel-default width350 pull-left">' +
-		'<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">' +
-		'<div class="inline-block center" style="height: 50px;">' +
-		'<div style="width: 270px;">' +
-		'<span class="text-muted inline-block" style="margin-top: 5px;">${friendName}</span>' +
-		'<span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
-		'<span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
-		'</div>' +
-		'<div class="width250" style="margin-top: 10px;">' +
-		'<select class="form-control width80 input-sm">' +
-		'<option>China</option>' +
-		'<option>U.S.A</option>' +
-		'<option>TaiWan</option>' +
-		'<option>HuoXing</option>' +
-		'<option>Star</option>' +
-		'</select>' +
-		'</div>' +
-		'</div>' +
-		'</div>';
+	var myFriendGroupDivTemplete = '<tr>'+
+		'<th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>'+
+		'<td>groupNameValue</td>'+
+		'<td>groupTimeValue</td>'+
+		'<td><a href="javascript:void(0)" data-toggle="modal" data-backdrop="" data-groupid="groupIdValue" data-groupname="groupNameValue" autocomplete="off" data-target="#createMyFriendGroupDialog">编辑</a> | <a href="javascript:void(0)" data-groupid="groupIdValue" name="deleteFriendGroup">删除</a></td>'+
+		'</tr>';
 	var list = data.dataList;
 	for (var index in list) {
 		var _data = list[index];
-		var _replace = myFriendDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName);
-		$("#myFriendContentDiv").append(_replace);
+		var _replace = myFriendGroupDivTemplete.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime);
+		$("#myFriendGroupContentDiv").append(_replace);
 	}
+
+	/**
+	 *Group的A标签删除点击事件
+	 *@Author liuchen6
+	 *@Date 2016/7/5 15:38
+	 *@since JDK1.7
+	 */
+	$("a[name='deleteFriendGroup']").click(function () {
+		var userFriendGroupId = $(this).attr("data-groupid");
+		$.ajax({
+			url:path+"/userGroup/delete",
+			type:"POST",
+			data:{
+				"groupId":userFriendGroupId
+			},
+			dataType:"json",
+			success:function(){
+				$("#myFriendGroupTab").click(); //重新加载用户分组的数据
+			}
+		})
+	})
 }
 
 /**
@@ -415,7 +376,7 @@ function initMyFriendApplyData(data) {
 		'<a href="javascript:void(0)">拒绝</a>'+
 		'</span>'+
 		'<span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">'+
-		'<a href="javascript:void(0)" id="allowAdd" name="allowAdd">同意</a>'+
+		'<a href="javascript:void(0)" name="allowAdd">同意</a>'+
 		'</span>'+
 		'</div>'+
 		'<div class="width250 clear-both">'+
@@ -435,4 +396,34 @@ function initMyFriendApplyData(data) {
 		var _replace = myFriendApplyDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName);
 		$("#myFriendApplyContentDiv").append(_replace);
 	}
+	/**
+	 * 同意添加好友的点击事件
+	 *@Author liuchen6
+	 *@Date 2016/7/4 15:21
+	 *@since JDK1.7
+	 */
+	$("a[name='allowAdd']").click(function () {
+		allowAddFriend();
+	});
+}
+
+/**
+ * 同意添加好友
+ *@Author liuchen6
+ *@Date 2016/7/4 15:20
+ *@since JDK1.7
+ */
+function allowAddFriend(){
+	$.ajax({
+		url:path+"/userFriend/save",
+		type:"POST",
+		userFriend:{
+			"friendId":"100",
+			"groupId":"1",
+		},
+		dataType:"json",
+		success:function(){
+			alert("Success!");
+		}
+	})
 }

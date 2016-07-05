@@ -22,7 +22,7 @@
         var path = "<%=path%>";
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
-    <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
+  <%--  <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>--%>
 </head>
 <body>
 <!-- Navigation -->
