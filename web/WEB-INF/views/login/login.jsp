@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="<%=path%>/common/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <link href="<%=path%>/business/login/login.css" rel="stylesheet">
     <script src="<%=path%>/common/jquery/jquery.js"></script>

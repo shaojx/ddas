@@ -41,21 +41,22 @@
           class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="zh_CN"/>
     </bean>
+
+
     <mvc:interceptors>
-        <bean id="localeChangeInterceptor"
-              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+
+       <mvc:interceptor>
+           <mvc:mapping path="/**"/>
+           <mvc:exclude-mapping path="/common/**"/>
+           <mvc:exclude-mapping path="/business/**"/>
+           <mvc:exclude-mapping path="/login/gotoLogin"/>
+           <bean id="loginInterceptor" class="com.ddas.common.interceptor.LoginRequiredInterceptor"/>
+       </mvc:interceptor>
+
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="language"/>
         </bean>
-        <!--登录拦截-->
-        <mvc:interceptor>
-            <mvc:mapping path="/*"/>
-            <mvc:exclude-mapping path="/css/**"/>
-            <mvc:exclude-mapping path="/fonts/**"/>
-            <mvc:exclude-mapping path="/js/**"/>
-            <mvc:exclude-mapping path="*.js"/>
-            <mvc:exclude-mapping path="/images/**"/>
-            <bean id="loginInterceptor" class="com.ddas.common.interceptor.LoginRequiredInterceptor"/>
-        </mvc:interceptor>
+
     </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -66,6 +67,9 @@
 
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+     <!--   <mvc:interceptors>
+            <bean class="com.ddas.common.interceptor.LoginRequiredInterceptor"/>
+        </mvc:interceptors>-->
         <property name="messageConverters">
             <util:list id="beanList">
                 <ref bean="stringHttpMessageConverter"/>

@@ -30,30 +30,33 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
 
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse response,
 			Object handler ) throws Exception {
-       /* ReloadablePropertiesUtil reloadablePropertiesUtil=ReloadablePropertiesUtil.getInstance("resources/config.properties");
+      /*  ReloadablePropertiesUtil reloadablePropertiesUtil=ReloadablePropertiesUtil.getInstance("resources/config.properties");
         String excludeURLs = reloadablePropertiesUtil.getPropertyByKey("excludeURLs");
         String requestURL=req.getRequestURL().toString();
         String[] segs = StringUtil.split(excludeURLs, ",");
-        boolean isMatch=false;
+        String matchUrl=null;
         for(String url:segs){
-            if(url.endsWith(requestURL)){
-                isMatch=true;
+            if(requestURL.endsWith(url)){
+                matchUrl=requestURL;
+                break;
             }
         }*/
-       // if(!isMatch){//如果这个请求的URL不在excludeURLs中，则拦截
+        System.out.println(req.getRequestURL().toString());
+      /* if(matchUrl==null){//如果这个请求的URL不在excludeURLs中，则拦截*/
             //用户登录判断
             HttpSession session = req.getSession(true);
             UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
             if(userInfo==null){
                 try {
-                 //   req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);
-                    response.sendRedirect("/WEB-INF/views/login/login.jsp");
+                   // req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);
+                    response.sendRedirect(req.getContextPath()+"/login/gotoLogin");
                 }  catch (IOException e) {
                     e.printStackTrace();
                 }
                 return false;
             }
-       // }
+       /*    return true;
+        }*/
         return true;
 	}
 

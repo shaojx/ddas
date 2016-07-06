@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * ClassName:	LoginController
  * Function: 	todo ADD FUNCTION	
@@ -34,7 +36,9 @@ public class LoginController {
 
     @RequestMapping("/in")
     @ResponseBody
-    public String login( @RequestBody UserInfo userInfo){
+    public String login(@RequestBody UserInfo userInfo, HttpServletRequest request){
+        // TODO: 2016/7/6  用户登录操作
+        request.getSession(true).setAttribute("userInfo",new UserInfo());
         return "";
     }
 }
