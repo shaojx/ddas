@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginRequiredInterceptor implements HandlerInterceptor{
 	
 	
-	public void afterCompletion(HttpServletRequest arg0,
-			HttpServletResponse arg1, Object arg2, Exception arg3)
+	public void afterCompletion(HttpServletRequest request,
+			HttpServletResponse reponse, Object arg2, Exception arg3)
 			throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+	public void postHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2, ModelAndView arg3) throws Exception {
-		// TODO Auto-generated method stub
-		
+
+		// TODO: 2016/7/6
 	}
 
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse rpo,
