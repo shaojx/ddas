@@ -63,5 +63,4 @@ public class UserGroupController {
         userGroupService.deleteUserGroup(userGroup);
         return userGroup;
     }
-
 }

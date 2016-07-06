@@ -89,7 +89,6 @@ public class UserFriendService {
         }else{
             UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
             UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
-            userFriend.setCreatedTime(currentDate);
             userFriend.setUpdatedTime(currentDate);
             criteria.andUfIdEqualTo(userFriend.getUfId());
             userFriendMapper.updateByExampleSelective(userFriend, userFriendCriteria);

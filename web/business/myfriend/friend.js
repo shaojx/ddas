@@ -9,6 +9,7 @@ var userFriendCondition = {
 	friendNameCondition:"",
 	status:"1",
 };//查询条件初始化
+var userFriendGroupData;
 
 $(function() {
 	/**
@@ -119,6 +120,31 @@ $(function() {
 		modal.find('#userFriendGroupId').val(groupId);
 
 	})
+
+	function loadUserFriendGroupData() {
+		$.ajax({
+			url:path+"/userGroup/queryRecordsByPage",
+			type:"POST",
+			data:{
+				"currentPage":1,
+				"pageSize":1000,
+				"useProperty":CONST_USE_PROPERTY_FRIEND
+			},
+			dataType:"json",
+			success:function(data){
+				var list = data.dataList;
+				userFriendGroupData = [];
+				for (var index in list) {
+					var _data = list[index];
+					userFriendGroupData[_data.groupId] = {
+						"groupId":_data.groupId,
+						"groupName":_data.groupName
+					};
+				}
+			}
+		})
+	}
+	loadUserFriendGroupData();
 });
 
 /**
@@ -179,7 +205,7 @@ function initMyFriendGroupPagination(pageData) {
 }
 
 /**
- * 初始化我的好友的数据
+ * 初始化我的好友分组的数据
  * @param data
  */
 function initMyFriendGroupData(data) {
@@ -195,6 +221,8 @@ function initMyFriendGroupData(data) {
 		var _replace = myFriendGroupDivTemplete.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime);
 		$("#myFriendGroupContentDiv").append(_replace);
 	}
+
+
 
 	/**
 	 *Group的A标签删除点击事件
@@ -287,12 +315,7 @@ function initMyFriendData(data) {
 		'<span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
 		'</div>' +
 		'<div class="width250" style="margin-top: 10px;">' +
-		'<select class="form-control width80 input-sm">' +
-		'<option>China</option>' +
-		'<option>U.S.A</option>' +
-		'<option>TaiWan</option>' +
-		'<option>HuoXing</option>' +
-		'<option>Star</option>' +
+		'<select id="${ufId}" class="selectpicker form-control width80 input-sm">' +
 		'</select>' +
 		'</div>' +
 		'</div>' +
@@ -300,8 +323,32 @@ function initMyFriendData(data) {
 	var list = data.dataList;
 	for (var index in list) {
 		var _data = list[index];
-		var _replace = myFriendDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName);
+		var _replace = myFriendDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName).replace("${ufId}", _data.ufId);
 		$("#myFriendContentDiv").append(_replace);
+		for(var obj in userFriendGroupData) {
+			var option = "<option data-groupId=obj>"+userFriendGroupData[obj].groupName+"</option>";
+			if(obj == _data.groupId) {
+				var option = "<option selected>"+userFriendGroupData[obj].groupName+"</option>";
+			}
+			$("#"+ _data.ufId).prepend(option);
+		}
+		$("#"+ _data.ufId).change(function () {
+			var groupId = $(this).children('option:selected').attr("data-groupId");
+			var ufId = $(this).attr("id");
+			$.ajax({//保存好友信息，主要针对好友分组的改变
+				url:path+"/userFriend/save",
+				type:"POST",
+				data:{
+					"ufId":ufId,
+					"groupId":groupId
+				},
+				dataType:"json",
+				success:function(){
+					alert("Success!");
+				}
+			})
+			alert(groupId);
+		})
 	}
 }
 
@@ -380,12 +427,7 @@ function initMyFriendApplyData(data) {
 		'</span>'+
 		'</div>'+
 		'<div class="width250 clear-both">'+
-		'<select class="form-control width80 input-sm pull-left" style="margin-top: 10px;">'+
-		'<option>China</option>'+
-		'<option>U.S.A</option>'+
-		'<option>TaiWan</option>'+
-		'<option>HuoXing</option>'+
-		'<option>Star</option>'+
+		'<select id="ufIdValue" class="form-control width80 input-sm pull-left" style="margin-top: 10px;">'+
 		'</select>'+
 		'</div>'+
 		'</div>'+
@@ -395,6 +437,30 @@ function initMyFriendApplyData(data) {
 		var _data = list[index];
 		var _replace = myFriendApplyDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName).replace(/ufIdValue/g, _data.ufId);
 		$("#myFriendApplyContentDiv").append(_replace);
+		for(var obj in userFriendGroupData) {
+			var option = "<option data-groupId=obj>"+userFriendGroupData[obj].groupName+"</option>";
+			if(obj == _data.groupId) {
+				var option = "<option selected>"+userFriendGroupData[obj].groupName+"</option>";
+			}
+			$("#"+ _data.ufId).prepend(option);
+		}
+		$("#"+ _data.ufId).change(function () {
+			var groupId = $(this).children('option:selected').attr("data-groupId");
+			var ufId = $(this).attr("id");
+			$.ajax({//保存好友信息，主要针对好友分组的改变
+				url:path+"/userFriend/save",
+				type:"POST",
+				data:{
+					"ufId":ufId,
+					"groupId":groupId
+				},
+				dataType:"json",
+				success:function(){
+					alert("Success!");
+				}
+			})
+			alert(groupId);
+		})
 	}
 	/**
 	 * 同意添加好友的点击事件
@@ -439,14 +505,4 @@ function initMyFriendApplyData(data) {
 			}
 		})
 	});
-}
-
-/**
- * 同意添加好友
- *@Author liuchen6
- *@Date 2016/7/4 15:20
- *@since JDK1.7
- */
-function allowAddFriend(object){
-
 }
