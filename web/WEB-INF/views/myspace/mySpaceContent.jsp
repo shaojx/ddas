@@ -439,10 +439,10 @@
                             </span></label>
                             <span class="inline-block width280" style="margin-left: 5px;">
                                 <select id="logType" class="form-control">
-                                    <option value="1">1</option>
+<%--                                    <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
-                                    <option value="4">4</option>
+                                    <option value="4">4</option>--%>
                                 </select>
                             </span>
                             </div>

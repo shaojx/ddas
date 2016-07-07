@@ -2,10 +2,17 @@
  * 我的空间 业务JS
  */
 var CONST_USE_PROPERTY_BLOG = "3";//使用属性(1是好友分组，2是相册分组，3是日志分组)
+var userBlogGroupData;//日志分组
 $(function () {
 
     //创建日志
     /*$("#createMyLog").modal("show");*/
+    /**
+     * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
+     */
+    $('#createMyLogDialog').on('show.bs.modal', function (event) {
+        loadUserBlogGroup();
+    })
 
     //添加分类
     $("#addTypeHref").click(function () {
@@ -33,7 +40,7 @@ $(function () {
             },
             dataType:"json",
             success:function(){
-                $("#closeAddGroupModel").click();
+                loadUserBlogGroupData(true);
                 alert("Saving success!");
             }
         })
@@ -49,6 +56,7 @@ $(function () {
       //点击'日志'tab页，默认选中‘我的日志’tab页，
         //加载 我的日志 数据
         getMyLogData(1);
+        loadUserBlogGroupData();
     });
 
     //保存我的日志按钮点击事件
@@ -80,6 +88,43 @@ $(function () {
         })
     })
 });
+
+//加载日志分组option
+function loadUserBlogGroup() {
+    $("#logType").empty();//清空日志分组
+    for(var obj in userBlogGroupData) {
+        var option = "<option data-groupId=obj>" + userBlogGroupData[obj].groupName + "</option>";
+        $("#logType").prepend(option);//添加日志分组option
+    }
+}
+
+//加载用户日志分组到JS中
+function loadUserBlogGroupData(isReloadSelectOption) {
+    $.ajax({
+        url:path+"/userGroup/queryRecordsByPage",
+        type:"POST",
+        data:{
+            "currentPage":1,
+            "pageSize":1000,
+            "useProperty":CONST_USE_PROPERTY_BLOG
+        },
+        dataType:"json",
+        success:function(data){
+            var list = data.dataList;
+            userBlogGroupData = [];
+            for (var index in list) {
+                var _data = list[index];
+                userBlogGroupData[_data.groupId] = {
+                    "groupId":_data.groupId,
+                    "groupName":_data.groupName
+                };
+            }
+            if(isReloadSelectOption) {//如果要重新加载Select option
+                loadUserBlogGroup();
+            }
+        }
+    })
+}
 
 /**
  *页面初始化时，选中对应的tab页

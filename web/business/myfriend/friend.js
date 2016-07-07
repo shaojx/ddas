@@ -9,7 +9,7 @@ var userFriendCondition = {
 	friendNameCondition:"",
 	status:"1",
 };//查询条件初始化
-var userFriendGroupData;
+var userFriendGroupData; //好友分组
 
 $(function() {
 	/**
