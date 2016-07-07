@@ -19,24 +19,26 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+    <script type="text/javascript" src="<%=path%>/common/md5/md5.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/login/login.js"></script>
 </head>
 <body>
 <div class="container">
     <section class="loginBox row-fluid">
         <form class="form-horizontal margin-left-10px" style="margin-top: 25px;">
             <DIV class="form-group">
-                <input type="text" class="form-control width300" name="username" placeholder="用户名"/>
+                <input type="text" class="form-control width300" name="username" placeholder="用户名" id="userName"/>
             </DIV>
             <DIV class="form-group">
-                <input type="text" class="form-control width300" name="password" placeholder="密码"/>
+                <input type="text" class="form-control width300" name="password" placeholder="密码" id="password"/>
             </DIV>
             <DIV class="form-group">
                 <div class="row">
                     <label class="col-md-5">
-                        <input type="checkbox" class="control-label" name="rememberme" style="vertical-align: middle;"/>
+                        <input type="checkbox" class="control-label" name="rememberme" style="vertical-align: middle;" id="remeberme"/>
                         <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
                       </label>
-                    <input type="button" value=" 登录 " class="btn btn-primary col-md-offset-2">
+                    <input type="button" value=" 登录 " class="btn btn-primary col-md-offset-2" id="loginBtn">
                 </div>
 
             </DIV>

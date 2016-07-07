@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.login.control;
 
+import com.ddas.common.Msg;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,9 +37,12 @@ public class LoginController {
 
     @RequestMapping("/in")
     @ResponseBody
-    public String login(@RequestBody UserInfo userInfo, HttpServletRequest request){
+    public Msg login(UserInfo userInfo, HttpServletRequest request){
         // TODO: 2016/7/6  用户登录操作
         request.getSession(true).setAttribute("userInfo",new UserInfo());
-        return "";
+        Msg msg=new Msg();
+        msg.setMsg("success");
+        msg.setSuccessful(true);
+        return msg;
     }
 }
