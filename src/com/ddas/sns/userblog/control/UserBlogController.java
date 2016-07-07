@@ -8,11 +8,15 @@
  */
 package com.ddas.sns.userblog.control;
 
+import com.ddas.common.page.Page;
+import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.service.UserBlogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.annotation.Resource;
 
 /**
@@ -30,4 +34,17 @@ public class UserBlogController {
 
     @Resource
     private UserBlogService userBlogService;
+
+    @RequestMapping("/queryRecordsByPage")
+    @ResponseBody
+    public Page queryRecordsByPage(int currentPage, int pageSize){
+        return userBlogService.queryRecordsByPage(currentPage,pageSize);
+    }
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public UserBlog queryRecordsByPage(UserBlog userBlog){
+        userBlogService.save(userBlog);
+        return userBlog;
+    }
 }

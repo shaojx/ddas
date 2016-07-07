@@ -1,6 +1,7 @@
 /**
  * 我的空间 业务JS
  */
+var CONST_USE_PROPERTY_BLOG = "3";//使用属性(1是好友分组，2是相册分组，3是日志分组)
 $(function () {
 
     //创建日志
@@ -18,7 +19,24 @@ $(function () {
     });
     //保存----日志分类
     $("#addTypeSaveBtn").click(function () {
-        alert("Saving.....");
+        var groupName = $("#addTypeInput").val();
+        if(groupName == "") {
+            alert("分组名称不能为空");
+            return;
+        }
+        $.ajax({
+            url:path+"/userGroup/save",
+            type:"POST",
+            data:{
+                "groupName":groupName,
+                "useProperty":CONST_USE_PROPERTY_BLOG
+            },
+            dataType:"json",
+            success:function(){
+                $("#closeAddGroupModel").click();
+                alert("Saving success!");
+            }
+        })
     });
 
     //点击"我的日志 "tab页
@@ -32,6 +50,35 @@ $(function () {
         //加载 我的日志 数据
         getMyLogData(1);
     });
+
+    //保存我的日志按钮点击事件
+    $("#saveMyBlogBtn").click(function () {
+        var logTitle = $("#logTitle").val();
+        var logType = "1";
+        var logTags = "heart";
+        var logPrivilege = "0";
+        var logContent = $("#logContent").val();;
+        if(logTitle == "" || logContent == "") {
+            alert("日志标题和内容不能为空");
+            return;
+        }
+        $.ajax({
+            url:path+"/userBlog/save",
+            type:"POST",
+            data:{
+                "groupId":logType,
+                "blogTitle":logTitle,
+                "blogContent":logContent,
+                "blogPrivilege":logPrivilege,
+                "blogTags":logTags
+            },
+            dataType:"json",
+            success:function(){
+                $("#closeCreateBlogModelBtn").click();
+                alert("success!");
+            }
+        })
+    })
 });
 
 /**
@@ -55,7 +102,7 @@ function getMyLogData(pageNo){
     loader.start();
     if(pageNo){
         $.ajax({
-            url:path+"/myLog/queryRecodsByPage",
+            url:path+"/userBlog/queryRecordsByPage",
             type:"POST",
             data:{
                 "currentPage":pageNo,
@@ -114,8 +161,8 @@ function initMyLogData(data){
     var list=data.dataList;
     for(var index in list){
         var _data=list[index];
-        var _replace=myLogDivTemplete.replace("${myLogTitle}",_data.myLogTitle).replace("${myLogContent}",_data.myLogContent)
-            .replace("${myLogTags}",_data.myLogTags).replace("${myLogPrivilege}",_data.myLogPrivs);
+        var _replace=myLogDivTemplete.replace("${myLogTitle}",_data.blogTitle).replace("${myLogContent}",_data.blogContent)
+            .replace("${myLogTags}",_data.blogTags).replace("${myLogPrivilege}",_data.blogPrivilege);
         $("#myLogContentDiv").append(_replace);
     }
 }

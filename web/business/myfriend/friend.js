@@ -14,10 +14,6 @@ var userFriendGroupData;
 $(function() {
 	/**
 	 *我的朋友点击事件
-	 *@return
-	 *@Author liuchen6
-	 *@Date 2016/7/4 15:16
-	 *@since JDK1.7
 	 */
 	$("#myFriendTab").click(function () {
 		userFriendCondition = {
@@ -32,9 +28,6 @@ $(function() {
 
 	/**
 	 *查询好友按钮点击事件
-	 *@Author liuchen6
-	 *@Date 2016/7/4 15:20
-	 *@since JDK1.7
 	 */
 	$("#searchFriend").click(function () {
 		userFriendCondition.pageNo = 1;
@@ -44,9 +37,6 @@ $(function() {
 
 	/**
 	 * 我的好友申请列表
-	 *@Author liuchen6
-	 *@Date 2016/7/4 15:43
-	 *@since JDK1.7
 	 */
 	$("#myFriendApplyTab").click(function () {
 		userFriendCondition = {
@@ -59,11 +49,6 @@ $(function() {
 
 	/**
 	 * 点击保存好友分组的事件
-	 *@param
-	 *@return
-	 *@Author liuchen6
-	 *@Date 2016/7/5 9:28
-	 *@since JDK1.7
 	 */
 	$("#saveMyFriendGroup").click(function () {
 		var userFriendGroupName = $("#userFriendGroupName").val();
@@ -91,11 +76,6 @@ $(function() {
 
 	/**
 	 * 管理好友分组的Tab的点击事件
-	 *@param
-	 *@return
-	 *@Author liuchen6
-	 *@Date 2016/7/5 9:29
-	 *@since JDK1.7
 	 */
 	$("#myFriendGroupTab").click(function () {
 		var friendGroupCondition = {
@@ -103,13 +83,11 @@ $(function() {
 			useProperty:CONST_USE_PROPERTY_FRIEND,
 		};//查询条件初始化
 		getMyFriendGroupData(friendGroupCondition);
+		loadUserFriendGroupData();
 	});
 
 	/**
 	 * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
-	 *@Author liuchen6
-	 *@Date 2016/7/5 15:28
-	 *@since JDK1.7
 	 */
 	$('#createMyFriendGroupDialog').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget);// Button that triggered the modal

@@ -493,8 +493,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
-                    <button type="button" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                    <button type="button" id="closeCreateBlogModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" id="saveMyBlogBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
         </div>
