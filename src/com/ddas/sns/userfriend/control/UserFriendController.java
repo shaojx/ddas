@@ -118,7 +118,7 @@ public class UserFriendController {
     public Page getFriendList(){
         Page page = new Page();
         try {
-            page = userFriendService.queryUserFriendBlogBypage(1, 1);
+            page = userFriendService.queryUserFriendBlogBypage(1, 2);
         }catch (Exception e){
             LOGGER.error(e.getMessage(),e);
         }
