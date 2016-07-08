@@ -15,6 +15,10 @@
 .width175{
     width: 175px;
 }
+
+.width185{
+    width: 185px;
+}
 .width200 {
     width: 200px;
 }
@@ -64,6 +68,13 @@
 }
 .margin-left-10px{
     margin-left:10px;
+}
+.margin-left-20px{
+    margin-left: 20px;
+}
+
+.margin-left-30px{
+    margin-left: 30px;
 }
 .margin-top-10px{
     margin-top: 10px;

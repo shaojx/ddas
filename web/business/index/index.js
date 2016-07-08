@@ -4,17 +4,15 @@ $(function () {
     $("#myPhoto").click(function(){
         $("#content_iframe").attr("src",path+"/userPhoto/gotoIndex");
     });
-
-
-    /**
-     *左侧好友点击事件
-     *@return
-     *@Author liuchen6
-     *@Date 2016/7/4 15:17
-     *@since JDK1.7
-     */
+    
+    // 左侧好友点击事件
     $("#myFriend").click(function () {
-        $("#content_iframe").attr("src", "/userFriend/myFriend");
+        $("#content_iframe").attr("src", path+"/userFriend/myFriend");
+    });
+    
+    //左侧 升级会员 点击事件 
+    $("#levelVip").click(function () {
+       $("#content_iframe").attr("src",path+"/vip/gotoVip"); 
     });
 
 });

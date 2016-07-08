@@ -24,9 +24,6 @@
     <%--引入业务JS --%>
     <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
     <style type="text/css">
-        div.row{
-            margin-left: 0;
-        }
         body,html{
             overflow: hidden !important;
             height:100%;
