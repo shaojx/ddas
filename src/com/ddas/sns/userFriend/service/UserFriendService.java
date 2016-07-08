@@ -14,10 +14,13 @@ import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.mapper.UserFriendMapper;
 import com.ddas.sns.userfriend.domain.UserFriendCriteria;
+import com.ddas.sns.userfriendblog.dto.UserFriendBlogDto;
+import com.ddas.sns.userfriendblog.mapper.UserFriendBlogMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * ClassName:	UserInfoService
@@ -31,6 +34,9 @@ import javax.annotation.Resource;
 public class UserFriendService {
     @Resource
     private UserFriendMapper userFriendMapper;
+
+    @Resource
+    private UserFriendBlogMapper userFriendBlogMapper;
 
     /**
      * 分页查找userFriend
@@ -112,5 +118,16 @@ public class UserFriendService {
         userFriendMapper.deleteByExample(userFriendCriteria);
 
         return true;
+    }
+
+    public Page queryUserFriendBlogBypage(int currentPage, int pageSize) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        int count = userFriendBlogMapper.getCount(page);
+        System.out.println(count);
+        List<UserFriendBlogDto> list = userFriendBlogMapper.queryByPage(page);
+        page.setDataList(userFriendBlogMapper.queryByPage(page));
+        return page;
     }
 }
