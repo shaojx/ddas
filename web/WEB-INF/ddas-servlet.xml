@@ -49,8 +49,12 @@
            <mvc:mapping path="/**"/>
            <mvc:exclude-mapping path="/common/**"/>
            <mvc:exclude-mapping path="/business/**"/>
+           <!--登录限制-->
            <mvc:exclude-mapping path="/login/gotoLogin"/>
            <mvc:exclude-mapping path="/login/in"/>
+           <!--注册限制-->
+           <mvc:exclude-mapping path="/login/gotoRegister"/>
+           <mvc:exclude-mapping path="/login/register"/>
            <bean id="loginInterceptor" class="com.ddas.common.interceptor.LoginRequiredInterceptor"/>
        </mvc:interceptor>
 

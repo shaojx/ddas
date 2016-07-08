@@ -27,21 +27,25 @@
     <section class="loginBox row-fluid">
         <form class="form-horizontal margin-left-10px" style="margin-top: 25px;">
             <DIV class="form-group">
-                <input type="text" class="form-control width300" name="username" placeholder="用户名" id="userName"/>
+                <input type="text" class="form-control width300 center-block" name="username" placeholder="用户名" id="userName"/>
             </DIV>
             <DIV class="form-group">
-                <input type="text" class="form-control width300" name="password" placeholder="密码" id="password"/>
+                <input type="text" class="form-control width300 center-block" name="password" placeholder="密码" id="password"/>
             </DIV>
             <DIV class="form-group">
                 <div class="row">
-                    <label class="col-md-5">
-                        <input type="checkbox" class="control-label" name="rememberme" style="vertical-align: middle;" id="remeberme"/>
-                        <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
-                      </label>
-                    <input type="button" value=" 登录 " class="btn btn-primary col-md-offset-2" id="loginBtn">
+                 <div class="center-block width300">
+                     <label>
+                         <input type="checkbox" name="rememberme" style="vertical-align: middle;" id="remeberme"/>
+                         <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
+                     </label>
+                 </div>
                 </div>
                 <div class="row">
-                    <span class="col-lg-offset-6 col-md-2">没有帐号?<a href="javascript:void(0);">注 册</a></span>
+                    <input type="button" value=" 登录 " class="btn btn-primary form-control width300 center-block" id="loginBtn">
+                </div>
+                <div class="row">
+                    <span class="col-md-offset-4 col-md-4">没有帐号?<a href="javascript:void(0);" id="registerBtn">注 册</a></span>
                 </div>
 
             </DIV>

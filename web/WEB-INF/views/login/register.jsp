@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link href="<%=path%>/common/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
-    <link href="<%=path%>/business/login/login.css" rel="stylesheet">
+    <link href="<%=path%>/business/login/register.css" rel="stylesheet">
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -25,26 +25,26 @@
 <body>
 <div class="container-fluid">
     <section class="loginBox row-fluid">
-        <form class="form-horizontal margin-left-10px" style="margin-top: 25px;">
+        <form class="form-horizontal" style="margin-left: 20%;">
             <DIV class="form-group">
+                <label class="control-label">用户名</label>
                 <input type="text" class="form-control width300" name="username" placeholder="用户名" id="userName"/>
             </DIV>
             <DIV class="form-group">
+                <label class="control-label">密 码</label>
                 <input type="text" class="form-control width300" name="password" placeholder="密码" id="password"/>
             </DIV>
             <DIV class="form-group">
-                <div class="row">
-                    <label class="col-md-5">
-                        <input type="checkbox" class="control-label" name="rememberme" style="vertical-align: middle;"
-                               id="remeberme"/>
-                        <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
-                    </label>
-                    <input type="button" value=" 登录 " class="btn btn-primary col-md-offset-2" id="loginBtn">
-                </div>
-                <div class="row">
-                    <span class="col-lg-offset-6 col-md-2">没有帐号?<a href="javascript:void(0);">注 册</a></span>
-                </div>
+                <label class="control-label">确认密码</label>
+                <input type="text" class="form-control width300" name="password" placeholder="重复密码" id="repeatPwd"/>
             </DIV>
+            <DIV class="form-group">
+                <label class="control-label">邮 箱</label>
+                <input type="text" class="form-control width300" name="password" placeholder="邮箱地址" id="email"/>
+            </DIV>
+            <div class="row">
+                <input type="button" value=" 注册 " class="btn btn-primary form-control width300 margin-top-10px" id="registerBtn">
+            </div>
         </form>
     </section>
 </div>

@@ -1,4 +1,5 @@
 $(function () {
+    //登录 
    $("#loginBtn").click(function () {
        $.ajax({
            url:path+"/login/in",
@@ -16,4 +17,8 @@ $(function () {
            }
        })
    });
+    //注册
+    $("#registerBtn").click(function () {
+       window.top.location.href=path+"/login/gotoRegister" 
+    });
 });
