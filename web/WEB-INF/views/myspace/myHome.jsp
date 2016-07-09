@@ -75,7 +75,7 @@
 
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
-                    <a href="#"><img src="/common/images/golds_img.jpg">充值中心</a>
+                    <a href="javascript:void (0);" id="payCenter"><img src="/common/images/golds_img.jpg">充值中心</a>
                 </li>
                 <li>
                     <a href="javascript:void (0);" id="levelVip"><img src="/common/images/n_left_shengji.jpg">升级会员</a>
