@@ -14,5 +14,10 @@ $(function () {
     $("#levelVip").click(function () {
        $("#content_iframe").attr("src",path+"/vip/gotoVip"); 
     });
+    
+    //左侧 充值中心  点击事件 
+    $("#payCenter").click(function () {
+       $("#content_iframe").attr("src",path+"/payfor/gotoIndex"); 
+    });
 
 });

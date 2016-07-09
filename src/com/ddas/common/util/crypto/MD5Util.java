@@ -56,7 +56,7 @@ public abstract class MD5Util {
     }
 
     public static void main(String[] args) {
-        String hash = MD5Util.hash("1234");
+        String hash = MD5Util.hash("12345");
         System.out.println(hash);
         System.out.println("827ccb0eea8a706c4c34a16891f84e7b".equals(hash));
     }
