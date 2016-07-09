@@ -30,6 +30,10 @@
             width:100%;
         }
     </style>
+
+    <link type="text/css" href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css"/>
+    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="container">
@@ -351,7 +355,12 @@
                                 <div id="panel-element-112" class="panel-collapse in">
                                     <div class="panel-body">
                                         朋友的日志标题是这里
-                                        <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                                        <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">
+                                            标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)
+                                            <span class="pull-right">
+                                                <a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" >评论</a>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -492,6 +501,31 @@
                 <div class="modal-footer">
                     <button type="button" id="closeCreateBlogModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
                     <button type="button" id="saveMyBlogBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<%--日志评论--%>
+    <div class="modal fade" id="commentFriendBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">评论</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal margin-left-20px " id="commentForm">
+                        <div class="form-group">
+                           <label for="logContent" class="control-label">评论内容</label>
+                           <textarea rows="5" name="commentContent" id="commentContent" class="form-control" style="width: 90%;"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeCommentBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
         </div>

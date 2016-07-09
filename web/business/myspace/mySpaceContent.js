@@ -87,6 +87,39 @@ $(function () {
             }
         })
     })
+    
+    //创建 日志 评论的Validator
+    $("#commentForm").bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            commentContent: {
+                validators: {
+                    notEmpty: true
+                }
+            }
+        }
+    });
+    
+    //点击评论弹出框的"保存"按钮
+    $("#saveCommentBtn").click(
+        function () {
+            var bv=$("#commentForm").data("bootstrapValidator").validate();
+            if(!bv.isValid()){
+                
+            }else{//必填 
+                
+            }
+        }
+    );
+
+    $('#commentFriendBlog').on('hide.bs.modal', function (event) {
+       $("#commentForm").data("bootstrapValidator").resetForm(true);//还原状态
+    })
+    
 });
 
 //加载日志分组option

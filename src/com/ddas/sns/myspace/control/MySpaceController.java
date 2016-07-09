@@ -8,9 +8,12 @@
  */
 package com.ddas.sns.myspace.control;
 
+import com.ddas.sns.common.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	MySpaceController
@@ -22,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/myspace")
-public class MySpaceController {
+public class MySpaceController extends BaseController {
     /**
      *
      *@param
@@ -37,8 +40,17 @@ public class MySpaceController {
         return modelAndView;
     }
 
+    /**
+     *获取 我的空间 首页的iframe内容
+     * @param request
+     *@return org.springframework.web.servlet.ModelAndView
+     *@author shaojx
+     *@date 2016/7/9 21:23
+     *@version 1.0
+     *@since 1.6
+     */
     @RequestMapping("/getMyspceContent")
-    public String getMyspceContent(){
-        return "myspace/mySpaceContent";
+    public ModelAndView getMyspceContent(HttpServletRequest request){
+      return withLocal(request,"myspace/mySpaceContent");
     }
 }
