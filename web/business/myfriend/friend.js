@@ -25,7 +25,6 @@ $(function() {
 		getMyFriendData(userFriendCondition);
 	});
 
-
 	/**
 	 *查询好友按钮点击事件
 	 */
@@ -96,7 +95,6 @@ $(function() {
 		var modal = $(this);
 		modal.find('#userFriendGroupName').val(groupName);
 		modal.find('#userFriendGroupId').val(groupId);
-
 	})
 
 	function loadUserFriendGroupData() {
@@ -199,8 +197,6 @@ function initMyFriendGroupData(data) {
 		var _replace = myFriendGroupDivTemplete.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime);
 		$("#myFriendGroupContentDiv").append(_replace);
 	}
-
-
 
 	/**
 	 *Group的A标签删除点击事件

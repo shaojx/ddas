@@ -1,6 +1,7 @@
 package com.ddas.common.page;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName:	Page
@@ -21,6 +22,8 @@ public class Page {
     private int totalCount;
     /**当前分页的数据*/
     private List<?> dataList;
+    /**分页的一些查询条件*/
+    private Map<String, Object> condition;
 
     public int getPageSize() {
         return pageSize;
@@ -76,5 +79,13 @@ public class Page {
      */
     public int getPageStart(){
         return (currentPage-1)*pageSize;
+    }
+
+    public Map<String, Object> getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Map<String, Object> condition) {
+        this.condition = condition;
     }
 }

@@ -113,12 +113,12 @@ public class UserFriendController {
         return userFriend;
     }
 
-    @RequestMapping(value = "/queryByPage", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/queryFriendBlogByPage", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Page getFriendList(){
+    public Page getFriendsBlogList(int currentPage, int pageSize){
         Page page = new Page();
         try {
-            page = userFriendService.queryUserFriendBlogBypage(1, 2);
+            page = userFriendService.queryUserFriendBlogByPage(currentPage, pageSize);
         }catch (Exception e){
             LOGGER.error(e.getMessage(),e);
         }

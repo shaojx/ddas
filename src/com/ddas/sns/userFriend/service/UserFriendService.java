@@ -16,11 +16,14 @@ import com.ddas.sns.userfriend.mapper.UserFriendMapper;
 import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriendblog.dto.UserFriendBlogDto;
 import com.ddas.sns.userfriendblog.mapper.UserFriendBlogMapper;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName:	UserInfoService
@@ -120,13 +123,18 @@ public class UserFriendService {
         return true;
     }
 
-    public Page queryUserFriendBlogBypage(int currentPage, int pageSize) {
+    public Page queryUserFriendBlogByPage(int currentPage, int pageSize) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
-        int count = userFriendBlogMapper.getCount(page);
-        System.out.println(count);
-        List<UserFriendBlogDto> list = userFriendBlogMapper.queryByPage(page);
+        Map<String, Object> condition = new HashMap();
+        // TODO: 获取当前登陆的用户
+        condition.put("userId", "1");
+        condition.put("start", page.getPageStart());
+        condition.put("end", page.getPageStart() + pageSize);
+        condition.put("privilege", "3");//2,表示所有人可见,3表示该日志是好友可见
+        page.setCondition(condition);
+        page.setTotalCount(userFriendBlogMapper.getCount(page));
         page.setDataList(userFriendBlogMapper.queryByPage(page));
         return page;
     }

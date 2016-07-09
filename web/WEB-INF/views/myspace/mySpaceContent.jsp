@@ -313,12 +313,12 @@
             <div class="tab-pane " id="panel-tabs3">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <div class="tabbable" style="width: 500px" id="tabs-295323">
+                        <div class="tabbable" id="tabs-295323">
                             <ul class="nav nav-tabs">
                                 <li class="active" id="myLogTab">
                                     <a href="#panel-324017" data-toggle="tab">我的日志</a>
                                 </li>
-                                <li>
+                                <li id="friendsLogTab">
                                     <a href="#panel-8940" data-toggle="tab">朋友的日志</a>
                                 </li>
                             </ul>
@@ -337,24 +337,16 @@
                             </div>
 
                             <div id="myLogContentDiv">
-
                             </div>
                                 <%--我的日志分页--%>
                             <ul id="myLogPagnationDiv"></ul>
                         </div>
                         <%--朋友日志  start--%>
                         <div class="tab-pane" id="panel-8940">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">日志分类之我的日志</a>
-                                </div>
-                                <div id="panel-element-112" class="panel-collapse in">
-                                    <div class="panel-body">
-                                        朋友的日志标题是这里
-                                        <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
-                                    </div>
-                                </div>
+                            <div id="myFriendsLogContentDiv">
                             </div>
+                            <%--我的日志分页--%>
+                            <ul id="myFriendsLogPagnationDiv"></ul>
                         </div>
                     </div>
                 </div>

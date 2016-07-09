@@ -14,9 +14,19 @@
     <result column="ub_updated_time" property="updatedTime" jdbcType="VARCHAR" />
   </resultMap>
 
+  <sql id="Base_Column_List">
+      uf.user_id AS uf_user_id,friend_id,friend_name,ub.group_id AS ub_group_id,blog_title,blog_content,blog_tags,ub.created_time AS ub_created_time,ub.updated_time AS ub_updated_time
+  </sql>
 
   <select id="queryByPage" parameterType="com.ddas.common.page.Page" resultMap="UserFriendBlogMap">
-      SELECT uf.user_id AS uf_user_id,friend_id,friend_name,ub.group_id AS ub_group_id,blog_title,blog_content,blog_tags,ub.created_time AS ub_created_time,ub.updated_time AS ub_updated_time FROM user_friend uf INNER JOIN user_blog ub ON uf.friend_id = ub.user_id AND uf.user_id = "1" ORDER BY ub.created_time DESC LIMIT 0,2;
+      SELECT
+        <include refid="Base_Column_List" />
+      FROM user_friend uf
+      INNER JOIN user_blog ub
+      ON uf.friend_id = ub.user_id
+      AND uf.user_id = ${condition.userId}
+      ORDER BY ub.created_time
+      DESC LIMIT ${condition.start},${condition.end};
   </select>
   <select id="getCount" parameterType="com.ddas.common.page.Page" resultType="java.lang.Integer">
     SELECT count(*) FROM user_friend uf INNER JOIN user_blog ub ON uf.friend_id = ub.user_id AND uf.user_id = '1';

@@ -18,13 +18,14 @@
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script type="text/javascript" src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet">
+    <%--分页的JS--%>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
-
+    <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <%--引入自定义样式--%>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
-    <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <style type="text/css">
         html,body{
             overflow: hidden!important;
@@ -34,7 +35,7 @@
 <body>
 <div class="container">
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#myPhoto">我的相册</a></li>
+        <li class="active"><a data-toggle="tab" id="photoGroupTab" href="#myPhoto">我的相册</a></li>
         <li><a data-toggle="tab" href="#myFriendPhoto">好友相册</a></li>
     </ul>
     <div class="tab-content">
@@ -42,27 +43,13 @@
             <%--新建相册与上传照片--%>
             <div class="row margin-top-10px">
                 <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn">上传照片</button>
-                <button type="button" class="btn btn-info pull-right margin-right-10px">新建相册</button>
+                <button type="button" class="btn btn-info pull-right margin-right-10px" data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" autocomplete="off" id="addPhotoGroup">新建相册</button>
             </div>
-            <div class="panel panel-default" style="margin-top:10px;">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="photo pull-left">
-                            <img src="<%=path%>/common/images/album_logo.jpg" class="img"/>
-                        </div>
-                        <%--相册信息--%>
-                        <div id="photoInfoDiv" class="pull-left">
-                            <span class="center-block">My</span>
-                            <span class="center-block">标签：</span>
-                            <span class="center-block">照片数量：1</span>
-                            <span class="center-block">更新于：2016-06-26 13:39:10</span>
-                            <span class="center-block">创建于：2016-06-26 13:38:45</span>
-                            <span class="center-block"><a href="javascript:void(0);">编辑相册</a>  <a
-                                    href="javascript:void(0);">删除相册</a></span>
-                        </div>
-                    </div>
-                </div>
+            <div id="myPhotoGroupContentDiv">
             </div>
+            <!--分页控件-->
+            <ul class="pagination" id="myPhotoGroupPaginationDIV">
+            </ul>
         </div>
         <div id="myFriendPhoto" class="tab-pane fade">
             <div class="panel panel-default" style="margin-top:10px;">
@@ -98,6 +85,67 @@
                             <span class="center-block">创建于：2016-06-26 13:38:45</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--创建相册分组弹出框 --%>
+    <div class="modal fade" id="createMyPhotoGroupDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建相册</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="photoGroupName" class="col-sm-2 control-label "><span class="inline-block width110">
+                                    相册名称
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="photoGroupName" placeholder="相册名称">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="photoGroupDescription" class="col-sm-2 control-label float-left"><span class="inline-block width110">
+                                    相册描述
+                                </span></label>
+                                <div class="float-left" style="margin-left: 10px;">
+                                    <textarea rows="5" id="photoGroupDescription" class="width280"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="photoGroupTags" class="col-sm-2 control-label "><span class="inline-block width110">
+                                    相册标签
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="photoGroupTags" placeholder="相册标签">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="privilege" class="col-sm-2 control-label"><span class="inline-block width110">
+                                     <spring:message code="logPrivilege" text="权 限"/>
+                                 </span></label>
+                                 <span class="inline-block width280" style="margin-left: 5px;">
+                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeCreatePhotoGroupModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" id="savePhotoGroupBtn" name="savePhotoGroupBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
         </div>
