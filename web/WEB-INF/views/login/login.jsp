@@ -21,58 +21,46 @@
     </script>
     <script type="text/javascript" src="<%=path%>/common/md5/md5.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/login/login.js"></script>
+
+    <link type="text/css" href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css"/>
+    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        #errorP{
+            font-size: 13px;
+            color: red;
+            height:25px;
+            line-height: 25px;
+            /*margin-left: 25%;*/
+            MARGIN-RIGHT: auto;
+            MARGIN-LEFT: auto;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <section class="loginBox row-fluid">
-        <form class="form-horizontal margin-left-10px" style="margin-top: 25px;">
-            <DIV class="form-group">
-                <input type="text" class="form-control width300 center-block" name="username" placeholder="用户名" id="userName"/>
+        <div class="center-block" style="text-align:center;" id="errorP">
+        </div>
+        <form class="form-horizontal" style="margin-top: 10px;margin-left: 25px;" id="myForm">
+            <DIV class="form-group width350">
+                <input type="text" class="form-control center-block" name="username" placeholder="用户名" id="userName" required/>
             </DIV>
-            <DIV class="form-group">
-                <input type="text" class="form-control width300 center-block" name="password" placeholder="密码" id="password"/>
+            <DIV class="form-group width350">
+                <input type="password" class="form-control center-block" name="password" placeholder="密码" id="password" required/>
             </DIV>
-            <DIV class="form-group">
-                <div class="row">
-                 <div class="center-block width300">
-                     <label>
-                         <input type="checkbox" name="rememberme" style="vertical-align: middle;" id="remeberme"/>
-                         <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
-                     </label>
-                 </div>
-                </div>
-                <div class="row">
-                    <input type="button" value=" 登录 " class="btn btn-primary form-control width300 center-block" id="loginBtn">
-                </div>
-                <div class="row">
-                    <span class="col-md-offset-4 col-md-4">没有帐号?<a href="javascript:void(0);" id="registerBtn">注 册</a></span>
-                </div>
-
+            <DIV class="form-group width350">
+                <input type="checkbox" name="rememberme" style="vertical-align: middle;" id="remeberme"/>
+                <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
             </DIV>
-        </form>
-       <%-- <div class="tabbable" id="tabs-634549">
-         <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#panel-60560" data-toggle="tab">帐号登录</a>
-                </li>
-                <li class="active">
-                    <a href="#panel-549981" data-toggle="tab">二维码登录</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane" id="panel-60560">
-                    <DIV><input type="text" name="username" placeholder="用户名"/></DIV>
-                    <DIV>
-                        <input type="text" name="password" placeholder="密码"/>
-                    </DIV>
-                    <DIV class="span6"><label><input type="checkbox" name="rememberme" />下次自动登录</label></DIV>
-                    <DIV class="span1"><input type="button" value=" 登录 " class="btn btn-primary"></DIV>
-                </div>
-                <div class="tab-pane active" id="panel-549981">
-
+            <div class="form-group width350">
+                <input type="button" value=" 登录 " class="btn btn-primary form-control  center-block" id="loginBtn">
+                <div class="row">
+                    <span class="col-md-offset-4 col-md-4 margin-top-10px">没有帐号?<a href="javascript:void(0);" id="registerBtn">注 册</a></span>
                 </div>
             </div>
-        </div>--%>
+        </form>
     </section>
 </div>
 </body>
