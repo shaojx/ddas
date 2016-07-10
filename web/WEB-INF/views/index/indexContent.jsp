@@ -14,7 +14,7 @@
     <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-    <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
+   <%-- <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
