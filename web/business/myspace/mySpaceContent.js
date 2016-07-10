@@ -3,6 +3,8 @@
  */
 var CONST_USE_PROPERTY_BLOG = "3";//使用属性(1是好友分组，2是相册分组，3是日志分组)
 var userBlogGroupData;//日志分组
+
+var clickedFriendBlogCommentId=null;//保存点击"评论"的id(朋友的日志 )
 $(function () {
 
     //创建日志
@@ -108,21 +110,65 @@ $(function () {
             }
         }
     });
-    
+
+
+    var saveCommentBtnOldText=$("#saveCommentBtn").text();
     //点击评论弹出框的"保存"按钮
-    $("#saveCommentBtn").click(
-        function () {
+    $("#saveCommentBtn").click(function () {
             var bv=$("#commentForm").data("bootstrapValidator").validate();
-            if(!bv.isValid()){
-                
-            }else{//必填 
-                
+            if (bv.isValid()) {//必填
+                if(clickedFriendBlogCommentId){
+                    var oldText=$(this).text();
+                    var btn=$(this);
+                    btn.text(btn.data("loading-text")).attr("disabled","disabled");
+                    $.ajax({
+                        url:path+"/blogComment/saveFriendComment",
+                        data:{
+                            "comment":$("#commentContent").val(),
+                            "blogId":clickedFriendBlogCommentId,
+                        },
+                        type:"POST",
+                        dataType:"json",
+                        success:function (data) {
+                            if(data){
+                                if(data.msg=="success"){
+                                    $.confirm({
+                                        title:"",
+                                        content:mySpaceContent.saveSuccess,
+                                       autoClose: 'confirm|1000',
+                                        cancelButton:false,
+                                        container:"#commentFriendBlog",
+                                        confirm:function(){
+                                            $("#closeCommentBtn").click();//关闭评论区
+                                        }
+                                    });
+                                 //   var jconfirmBoxOldMarginTop=$(".jconfirm-box").css("margin-top");
+                                  //  $(".jconfirm-box").css({"margin-top":"100px!important"});
+                                    //更新 评论数
+                                    var oldCount=parseInt($("#friendCommentCount_"+clickedFriendBlogCommentId).text());
+                                    $("#friendCommentCount_"+clickedFriendBlogCommentId).text(oldCount+1);
+                                }else{
+                                    $.confirm({
+                                        title:"",
+                                        content:data.msg,
+                                        cancelButton:false
+                                    });
+                                }
+                                btn.text(oldText).removeAttr("disabled");
+                            }
+                        }
+                    });
+                }
             }
+           
         }
     );
 
     $('#commentFriendBlog').on('hide.bs.modal', function (event) {
-       $("#commentForm").data("bootstrapValidator").resetForm(true);//还原状态
+        $("#commentContent").val("");//清空内容
+        $("#commentForm").data("bootstrapValidator").resetForm(true);//还原状态
+        //重置保存按钮中的状态 
+        $("#saveCommentBtn").text(saveCommentBtnOldText).removeAttr("disabled");
     })
     
 });
@@ -316,9 +362,9 @@ function initMyFriendsLogData(data){
         '<div id="panel-element-113" class="panel-collapse in">'+
         '<div class="panel-body">'+
         "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;评论(<span id="friendCommentCount_${blogId}">0</span>) | 阅读(0)'+
         '<span class="pull-right">'+
-        '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" >评论</a>'+
+        '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" data-blog-id="${blogId}" id="commentFriendA_${blogId}">评论</a>'+
         '</span>'+
         '</div>'+
         '</div>'+
@@ -328,7 +374,46 @@ function initMyFriendsLogData(data){
     for(var index in list){
         var _data=list[index];
         var _replace=myFriendsLogDivTemplete.replace("${myLogTitle}",_data.blogTitle).replace("${myLogContent}",_data.blogContent)
-            .replace("${myLogTags}",_data.blogTags);
+            .replace("${myLogTags}",_data.blogTags).replace(/\$\{blogId\}/g,_data.ubId);
         $("#myFriendsLogContentDiv").append(_replace);
+
+        addCommentListener("#commentFriendA_"+_data.ubId);//添加监听事件
+        fetchCommentCount(_data.ubId);//获取评论数
     }
+}
+
+/**
+ * 为朋友的日志 "评论" 添加监听事件
+ * @param commentId
+ */
+function  addCommentListener(commentId) {
+    $(commentId).click(
+        function () {
+            var blogId=$(this).data("blog-id");
+            clickedFriendBlogCommentId=blogId;
+        }
+    );
+}
+
+/**
+ * 根据 blogId来获取评论总数
+ * @param blogId
+ */
+function fetchCommentCount(blogId) {
+    if (!blogId) {
+        return;
+    }
+    $.ajax({
+        url: path + "/blogComment/fetchCommentCountById",
+        data: {
+            "blogId": blogId
+        },
+        dataType: "json",
+        type: "POST",
+        success: function (data) {
+            if (data && data.msg) {
+                $("#friendCommentCount_" + blogId).text(data.msg);
+            }
+        }
+    })
 }

@@ -12,10 +12,11 @@
     <result column="blog_tags" property="blogTags" jdbcType="VARCHAR" />
     <result column="ub_created_time" property="createdTime" jdbcType="VARCHAR" />
     <result column="ub_updated_time" property="updatedTime" jdbcType="VARCHAR" />
+    <result column="ub_id" property="ubId" jdbcType="VARCHAR"></result>
   </resultMap>
 
   <sql id="Base_Column_List">
-      uf.user_id AS uf_user_id,friend_id,friend_name,ub.group_id AS ub_group_id,blog_title,blog_content,blog_tags,ub.created_time AS ub_created_time,ub.updated_time AS ub_updated_time
+      uf.user_id AS uf_user_id,friend_id,friend_name,ub.ub_id,ub.group_id AS ub_group_id,blog_title,blog_content,blog_tags,ub.created_time AS ub_created_time,ub.updated_time AS ub_updated_time
   </sql>
 
   <select id="queryByPage" parameterType="com.ddas.common.page.Page" resultMap="UserFriendBlogMap">
