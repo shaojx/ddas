@@ -1,6 +1,9 @@
 package com.ddas.sns.common;
 
+import com.ddas.sns.userinfo.domain.UserInfo;
 import org.codehaus.janino.Mod;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.WebUtils;
@@ -68,6 +71,36 @@ public class BaseController {
         ModelAndView modelAndView=containLocal(request);
         modelAndView.setViewName(viewName);
         return modelAndView;
+    }
+
+
+    /**
+     *从session获取当前登录的用户信息
+     * @param request
+     *@return com.ddas.sns.userinfo.domain.UserInfo
+     *@author shaojx
+     *@date 2016/7/10 11:19
+     *@version 1.0
+     *@since 1.6
+     */
+    public UserInfo getLoginUser(HttpServletRequest request){
+        return (UserInfo) request.getSession(true).getAttribute("userInfo");
+    }
+
+    /**
+     *使用SpringMVC的ThreadLocal中获取当前的请求,从而从session中获取UserInfo信息
+     * @param
+     *@return com.ddas.sns.userinfo.domain.UserInfo
+     *@author shaojx
+     *@date 2016/7/10 11:31
+     *@version 1.0
+     *@since 1.6
+     */
+    public UserInfo getLoginUserAutoBySpringMVC(){
+        HttpServletRequest curRequest =
+                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+                        .getRequest();
+        return getLoginUser(curRequest);
     }
 
 }

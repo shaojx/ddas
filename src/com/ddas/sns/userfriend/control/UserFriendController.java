@@ -9,6 +9,7 @@
 package com.ddas.sns.userfriend.control;
 
 import com.ddas.common.page.Page;
+import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.service.UserFriendService;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	FriendsControl
@@ -31,7 +33,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/userFriend")
-public class UserFriendController {
+public class UserFriendController extends BaseController {
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserFriendController.class);
 
     @Resource
@@ -115,10 +117,10 @@ public class UserFriendController {
 
     @RequestMapping(value = "/queryFriendBlogByPage", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Page getFriendsBlogList(int currentPage, int pageSize){
+    public Page getFriendsBlogList(int currentPage, int pageSize, HttpServletRequest request){
         Page page = new Page();
         try {
-            page = userFriendService.queryUserFriendBlogByPage(currentPage, pageSize);
+            page = userFriendService.queryUserFriendBlogByPage(currentPage, pageSize,getLoginUser(request));
         }catch (Exception e){
             LOGGER.error(e.getMessage(),e);
         }
