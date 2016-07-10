@@ -46,7 +46,6 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
             //用户登录判断
             HttpSession session = req.getSession(true);
             UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
-			userInfo = new UserInfo();
             if(userInfo==null){
                 try {
                    // req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);

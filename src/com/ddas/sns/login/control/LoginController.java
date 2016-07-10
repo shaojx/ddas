@@ -69,7 +69,7 @@ public class LoginController {
             userInfo.setUserPwd(userPwd);
             UserInfo userInfoFromDb=userInfoService.loginInProxy(userInfo);
             if(userInfoFromDb!=null){
-                modelAndView.setViewName("index/index");//直接跳转到首页
+                modelAndView.setViewName("redirect:/index/gotoIndex");//直接跳转到首页
                 request.getSession(true).setAttribute("userInfo",userInfoFromDb);//设置用户到session中
             }
         }else{
