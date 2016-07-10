@@ -12,6 +12,7 @@ import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.service.UserFriendService;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

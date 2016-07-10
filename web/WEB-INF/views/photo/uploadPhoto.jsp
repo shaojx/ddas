@@ -28,7 +28,7 @@
     </script>
 
     <%--引入自定义JS--%>
-    <%--<script type="text/javascript" src="<%=path%>/business/photo/uploadPhoto.js"></script>--%>
+    <script type="text/javascript" src="<%=path%>/business/photo/uploadPhoto.js"></script>
     <style type="text/css">
         /*取消bootstrap row margin-left:-15px; margin-right:-15px;*/
         div.row {

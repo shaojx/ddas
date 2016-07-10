@@ -172,7 +172,6 @@
                     <div class="col-md-12">
                         <!--分页控件-->
                         <ul class="pagination" id="myFriendGroupPaginationDIV">
-                            <li>aa</li>
                         </ul>
                     </div>
                 </div>
