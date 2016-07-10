@@ -316,7 +316,11 @@ function initMyFriendsLogData(data){
         '<div id="panel-element-113" class="panel-collapse in">'+
         '<div class="panel-body">'+
         "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)'+
+        '<span class="pull-right">'+
+        '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" >评论</a>'+
+        '</span>'+
+        '</div>'+
         '</div>'+
         '</div>'+
         '</div>';

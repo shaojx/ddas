@@ -38,7 +38,14 @@ public class UserBlogController {
     @RequestMapping("/queryRecordsByPage")
     @ResponseBody
     public Page queryRecordsByPage(int currentPage, int pageSize){
-        return userBlogService.queryRecordsByPage(currentPage,pageSize);
+        Page page = null;
+        try{
+            page = userBlogService.queryRecordsByPage(currentPage,pageSize);
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return page;
     }
 
     @RequestMapping("/save")
