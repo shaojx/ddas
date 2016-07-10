@@ -31,9 +31,14 @@
         }
     </style>
 
-    <link type="text/css" href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css"/>
+    <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
+
+    <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -512,7 +517,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="closeCommentBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
-                    <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                    <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" data-loading-text="<spring:message code="saving" text="保存中..."/>"  class="btn btn-primary"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ $(function () {
         }
 
        $.ajax({
-           url:path+"/login/in?remeberme="+!!$("#remeberme").attr("checked"),
+           url:path+"/login/in?remeberme="+$("#remeberme").is(':checked'),
            data:JSON.stringify({
                "userName":$("#userName").val(),
                "userPwd":md5($("#password").val())

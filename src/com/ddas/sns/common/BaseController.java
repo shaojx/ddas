@@ -1,5 +1,6 @@
 package com.ddas.sns.common;
 
+import com.ddas.common.util.springutil.SpringContextUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import org.codehaus.janino.Mod;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -101,6 +102,39 @@ public class BaseController {
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                         .getRequest();
         return getLoginUser(curRequest);
+    }
+
+    /**
+     *从i18n.properties中获取相应的国际化的值
+     * @param key property key
+     *@return java.lang.String property value
+     *@author shaojx
+     *@date 2016/7/10 13:47
+     *@version 1.0
+     *@since 1.6
+     */
+    public String getMsgByKeyViaLocal(String key){
+        if(key==null||"".equals(key)){
+            return "";
+        }
+        return SpringContextUtil.getMsgByKey(key,new Locale(getLocal(getCurrentRequest())));
+    }
+
+
+    /**
+     *获取当前的请求 绑定到ThreadLocal
+     * @param
+     *@return javax.servlet.http.HttpServletRequest
+     *@author shaojx
+     *@date 2016/7/10 13:46
+     *@version 1.0
+     *@since 1.6
+     */
+    public HttpServletRequest getCurrentRequest(){
+        HttpServletRequest curRequest =
+                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+                        .getRequest();
+        return curRequest;
     }
 
 }

@@ -51,7 +51,7 @@
                 <input type="password" class="form-control center-block" name="password" placeholder="密码" id="password" required/>
             </DIV>
             <DIV class="form-group width350">
-                <input type="checkbox" name="rememberme" style="vertical-align: middle;" id="remeberme"/>
+                <input type="checkbox" style="vertical-align: middle;" id="remeberme" checked="checked"/>
                 <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
             </DIV>
             <div class="form-group width350">
