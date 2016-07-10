@@ -71,11 +71,13 @@
         allowedFileTypes: ['image'],
         allowedFileExtensions:["png","jpeg","jpg","bmp","gif"],
         maxFileSize:3*1024,//上传限制3M
-        uploadExtraData:{}
+        uploadExtraData:{
+            "photoGroupId":"123"
+        }
     });
 
     $('#myfiles').on('filebatchuploadsuccess', function(event, file, previewId, index, reader) {
-      // alert("DDDDDDDDDDDDDD")
+      alert("DDDDDDDDDDDDDD");
     });
 </script>
 </html>

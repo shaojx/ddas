@@ -36,7 +36,7 @@
 <div class="container">
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" id="photoGroupTab" href="#myPhoto">我的相册</a></li>
-        <li><a data-toggle="tab" href="#myFriendPhoto">好友相册</a></li>
+        <li><a data-toggle="tab" href="#myFriendPhoto" id="friendPhotoGroupTab">好友相册</a></li>
     </ul>
     <div class="tab-content">
         <div id="myPhoto" class="tab-pane fade in active">
@@ -52,41 +52,11 @@
             </ul>
         </div>
         <div id="myFriendPhoto" class="tab-pane fade">
-            <div class="panel panel-default" style="margin-top:10px;">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="photo pull-left">
-                            <img src="<%=path%>/common/images/album_logo.jpg" class="img"/>
-                        </div>
-                        <%--相册信息--%>
-                        <div id="photoInfoDiv" class="pull-left">
-                            <span class="center-block">My</span>
-                            <span class="center-block">标签：</span>
-                            <span class="center-block">照片数量：1</span>
-                            <span class="center-block">更新于：2016-06-26 13:39:10</span>
-                            <span class="center-block">创建于：2016-06-26 13:38:45</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="friendPhotoGroupContentDiv">
             </div>
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="photo pull-left">
-                            <img src="<%=path%>/common/images/album_logo.jpg" class="img"/>
-                        </div>
-                        <%--相册信息--%>
-                        <div id="photoInfoDiv" class="pull-left">
-                            <span class="center-block">My</span>
-                            <span class="center-block">标签：</span>
-                            <span class="center-block">照片数量：1</span>
-                            <span class="center-block">更新于：2016-06-26 13:39:10</span>
-                            <span class="center-block">创建于：2016-06-26 13:38:45</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!--分页控件-->
+            <ul class="pagination" id="friendPhotoGroupPaginationDIV">
+            </ul>
         </div>
     </div>
 

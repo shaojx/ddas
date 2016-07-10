@@ -12,9 +12,12 @@ import com.ddas.common.page.Page;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.string.StringUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.userfriend.domain.UserFriend;
+import com.ddas.sns.userfriendphotogroup.mapper.UserFriendPhotoGroupMapper;
 import com.ddas.sns.usergroup.domain.UserGroup;
 import com.ddas.sns.usergroup.domain.UserGroupCriteria;
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userphoto.domain.UserPhotoCriteria;
 import com.ddas.sns.userphotogroup.domain.UserPhotoGroup;
 import com.ddas.sns.userphotogroup.domain.UserPhotoGroupCriteria;
@@ -23,6 +26,8 @@ import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName:	UserGroupService
@@ -36,6 +41,9 @@ import javax.annotation.Resource;
 public class UserPhotoGroupService {
     @Resource
     private UserPhotoGroupMapper userPhotoGroupMapper;
+
+    @Resource
+    private UserFriendPhotoGroupMapper userFriendPhotoGroupMapper;
 
     /**
      *@param userPhotoGroup
@@ -66,10 +74,9 @@ public class UserPhotoGroupService {
     }
 
     /**
-     * 分页查询用户分组，使用属性(1是好友分组，2是相册分组，3是日志分组)
+     * 分页查询用户分组，使用属性(1是好友分组，2是日志分组)
      *@param currentPage
      *@param pageSize
-     *@param useProperty
      *@return com.ddas.common.page.Page
      *@Author liuchen6
      *@Date 2016/7/5 10:53
@@ -98,6 +105,29 @@ public class UserPhotoGroupService {
         UserGroupCriteria.Criteria criteria = userGroupCriteria.createCriteria();
         criteria.andGroupIdEqualTo(userGroup.getGroupId());
         //userGroupMapper.deleteByExample(userGroupCriteria);
+    }
+
+    /**
+     * 分页查询用户分组，使用属性(1是好友分组，2是日志分组)
+     *@param currentPage
+     *@param pageSize
+     *@return com.ddas.common.page.Page
+     *@Author liuchen6
+     *@Date 2016/7/5 10:53
+     *@since JDK1.7
+     */
+    public Page queryFriendPhotoGroupRecordsByPage(int currentPage, int pageSize, UserInfo userInfo) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        Map<String, Object> condition = new HashMap();
+        condition.put("userId", userInfo.getUserId());
+        condition.put("start", page.getPageStart());
+        condition.put("end", page.getPageStart() + pageSize);
+        page.setCondition(condition);
+        page.setTotalCount(userFriendPhotoGroupMapper.getCount(page));
+        page.setDataList(userFriendPhotoGroupMapper.queryByPage(page));
+        return page;
     }
 
 }

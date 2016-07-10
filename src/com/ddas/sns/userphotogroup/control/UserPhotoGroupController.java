@@ -9,6 +9,7 @@
 package com.ddas.sns.userphotogroup.control;
 
 import com.ddas.common.page.Page;
+import com.ddas.sns.common.BaseController;
 import com.ddas.sns.usergroup.domain.UserGroup;
 import com.ddas.sns.usergroup.service.UserPhotoGroupService;
 import com.ddas.sns.userphotogroup.domain.UserPhotoGroup;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	FriendsControl
@@ -31,7 +33,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/userPhotoGroup")
-public class UserPhotoGroupController {
+public class UserPhotoGroupController extends BaseController{
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserPhotoGroupController.class);
 
     @Resource
@@ -63,5 +65,17 @@ public class UserPhotoGroupController {
     public UserGroup deleteUserGroup(UserGroup userGroup){
         userPhotoGroupService.deleteUserGroup(userGroup);
         return userGroup;
+    }
+
+    @RequestMapping(value = "/queryFriendPhotoGroupRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public Page getFriendPhotoGroupList(int currentPage, int pageSize, HttpServletRequest request){
+        Page page = new Page();
+        try {
+            page = userPhotoGroupService.queryFriendPhotoGroupRecordsByPage(currentPage, pageSize, getLoginUser(request));
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+        return page;
     }
 }

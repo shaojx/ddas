@@ -1,9 +1,13 @@
 package com.ddas.sns.userphoto.control;
 
 import com.ddas.common.Msg;
+import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.file.FileUploadUtil;
 import com.ddas.common.util.springutil.SpringContextUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.common.BaseController;
+import com.ddas.sns.userphoto.domain.UserPhoto;
+import com.ddas.sns.userphoto.service.UserPhotoService;
 import com.jcraft.jsch.Session;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -25,7 +30,10 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/fileUpload")
-public class FileUploadController {
+public class FileUploadController extends BaseController{
+    @Resource
+    private UserPhotoService userPhotoService;
+
 	@RequestMapping(value="/fileUpload", method= RequestMethod.POST)
     @ResponseBody
 	public Map<String,String> upload(@RequestParam MultipartFile[] myfiles, HttpServletRequest request, HttpServletResponse response) throws IOException, URISyntaxException {
@@ -48,14 +56,24 @@ public class FileUploadController {
                 try {
                     fileName=myfile.getOriginalFilename();
                     //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中
-                    String realPath = request.getServletContext().getRealPath("/WEB-INF/upload");
+                    String realPath = request.getServletContext().getRealPath("/upload/");
                     //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
                     int indexOfDot=myfile.getOriginalFilename().lastIndexOf(".");
                     String fileType="";
                     if(indexOfDot>-1){
                          fileType=fileName.substring(indexOfDot);
                     }
-                    FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, UUIDUtil.createUUID16()+fileType));
+                    String newFileName = UUIDUtil.createUUID16()+fileType;
+                    FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, newFileName));
+
+                    String photoGroupId = request.getParameter("photoGroupId");
+                    //如果存在PhotoGroup
+                    if(StringUtil.isNotEmpty(photoGroupId)) {
+                        UserPhoto userPhoto = new UserPhoto();
+                        userPhoto.setPhotoUrl("/upload/" + newFileName);
+                        userPhoto.setGroupId(photoGroupId);
+                        userPhotoService.save(userPhoto);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     Locale locale= (Locale) request.getSession(true).getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);

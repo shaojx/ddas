@@ -8,7 +8,11 @@
  */
 package com.ddas.sns.userphoto.service;
 
+import com.ddas.common.util.StringUtil;
+import com.ddas.common.util.date.DateUtil;
+import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
+import com.ddas.sns.userphoto.domain.UserPhoto;
 import com.ddas.sns.userphoto.mapper.UserPhotoMapper;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +30,13 @@ import javax.annotation.Resource;
 public class UserPhotoService {
     @Resource
     private UserPhotoMapper userPhotoMapper;
+
+    public void save(UserPhoto userPhoto) {
+        String currentDateTime = DateUtil.getCurrentDateString();
+        userPhoto.setUpId(UUIDUtil.createUUID16());
+        userPhoto.setCreatedTime(currentDateTime);
+        userPhoto.setUpdatedTime(currentDateTime);
+        userPhotoMapper.insertSelective(userPhoto);
+    }
 
 }

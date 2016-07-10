@@ -49,6 +49,7 @@
            <mvc:mapping path="/**"/>
            <mvc:exclude-mapping path="/common/**"/>
            <mvc:exclude-mapping path="/business/**"/>
+           <mvc:exclude-mapping path="/upload/**"/>
            <!--登录限制-->
            <mvc:exclude-mapping path="/login/gotoLogin"/>
            <mvc:exclude-mapping path="/login/in"/>

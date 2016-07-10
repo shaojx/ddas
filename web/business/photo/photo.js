@@ -1,6 +1,10 @@
 var userPhotoGroupCondition = {
     pageNo:1,
-};//查询条件初始化
+};//查询我的相册条件初始化
+
+var userFriendPhotoGroupCondition = {
+    pageNo:1,
+};//查询好友相册条件初始化
 $(function () {
     //点击"上传照片" 跳转页面
     $("#addPhotoBtn").click(function () {
@@ -52,6 +56,13 @@ $(function () {
             pageNo:1
         };//查询条件初始化
         getMyPhotoGroupData(userPhotoGroupCondition);
+    })
+
+    $("#friendPhotoGroupTab").click(function () {
+        userFriendPhotoGroupCondition = {
+            pageNo:1
+        };//查询条件初始化
+        getFriendPhotoGroupData(userPhotoGroupCondition);
     })
 });
 
@@ -161,5 +172,90 @@ function initMyPhotoGroupPagination(pageData) {
         }
     }
     $("#myPhotoGroupPaginationDIV").bootstrapPaginator(options);
+}
+
+/**
+ * 获取好友相册数据
+ * @param pageNo 分页
+ */
+function getFriendPhotoGroupData(condition){
+    $("#friendPhotoGroupContentDiv").html("");//清空数据
+    if(condition.pageNo){
+        $.ajax({
+            url:path+"/userPhotoGroup/queryFriendPhotoGroupRecordsByPage",
+            type:"POST",
+            data:{
+                "currentPage":condition.pageNo,
+                "pageSize":4
+            },
+            dataType:"json",
+            success:function(data){
+                if(data.dataList.length < 1) {
+                    $("#friendPhotoGroupPaginationDIV").html("");//清空页码
+                    return; //如果没有查询到数据，就不分页
+                }
+                if(condition.pageNo==1){//如果是第一页，则初始化分页
+                    initFriendPhotoGroupPagination(data);
+                }
+                initFriendPhotoGroupData(data);
+            }
+        })
+    }
+}
+
+/**
+ * 初始化好友相册分组的数据
+ * @param data
+ */
+function initFriendPhotoGroupData(data) {
+    var friendPhotoGroupDivTemplete = '<div class="panel panel-default" style="margin-top:10px;">'+
+        '<div class="panel-body">'+
+        '<div class="row">'+
+        '<div class="photo pull-left">'+
+        '<img src="${basePath}/common/images/album_logo.jpg" class="img"/>'+
+        '</div>'+
+        '<div id="photoInfoDiv" class="pull-left">'+
+        '<span class="center-block">groupNameValue</span>'+
+        '<span class="center-block">标签：</span>'+
+        '<span class="center-block">照片数量：2</span>'+
+        '<span class="center-block">更新于：${updated_time}</span>'+
+        '<span class="center-block">创建于：${created_time}</span>'+
+        '</div>'+
+        '</div>'+
+        '</div>'+
+        '</div>';
+    var list = data.dataList;
+    for (var index in list) {
+        var _data = list[index];
+        var _replace = friendPhotoGroupDivTemplete.replace("${basePath}", path).replace(/groupNameValue/g, _data.groupName).replace("${updated_time}", _data.updatedTime).replace("${created_time}", _data.createdTime).replace(/groupIdValue/g, _data.groupId);
+        $("#friendPhotoGroupContentDiv").append(_replace);
+    }
+
+}
+
+/**
+ * 初始化分页条
+ * @param pageData
+ */
+function initFriendPhotoGroupPagination(pageData) {
+    var pageIndex=pageData.currentPage;
+    var totalPages=pageData.totalPages;
+    var options = {
+        alignment:"center",//居中显示
+        currentPage: pageIndex,//当前页数
+        totalPages: totalPages,//总页数 注意不是总条数
+        bootstrapMajorVersion:3,
+        onPageChanged: function(event,oldPage,newPage){
+            if (oldPage==newPage) {
+                return ;
+            } else {
+                var photoGroupCondition = {
+                    pageNo:1,
+                };//查询条件初始化
+                getFriendPhotoGroupData(photoGroupCondition);//重新拉取数据
+            }
+        }
+    }
+    $("#friendPhotoGroupPaginationDIV").bootstrapPaginator(options);
 }
 
