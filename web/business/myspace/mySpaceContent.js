@@ -362,7 +362,8 @@ function initMyFriendsLogData(data){
         '<div id="panel-element-113" class="panel-collapse in">'+
         '<div class="panel-body">'+
         "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;评论(<span id="friendCommentCount_${blogId}">0</span>) | 阅读(0)'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;' +
+        '<a href="javascript:void(0);" id="friendCommentedA_${blogId}">评论(<span id="friendCommentCount_${blogId}">0</span>)</a> | 阅读(0)'+
         '<span class="pull-right">'+
         '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" data-blog-id="${blogId}" id="commentFriendA_${blogId}">评论</a>'+
         '</span>'+
@@ -378,7 +379,21 @@ function initMyFriendsLogData(data){
         $("#myFriendsLogContentDiv").append(_replace);
 
         addCommentListener("#commentFriendA_"+_data.ubId);//添加监听事件
+        addCommentDetailListener("#friendCommentedA_"+_data.ubId,_data.ubId);//添加 "评论" 事件 跳转到详情
         fetchCommentCount(_data.ubId);//获取评论数
+    }
+}
+
+/**
+ * 点击 "评论(0)"跳转到 详情页
+ * @param commentDetailId
+ */
+function addCommentDetailListener(commentDetailId,blogId) {
+    if (commentDetailId){
+        $(commentDetailId).click(function () {
+            $("#content_iframe",window.top.document)[0].contentWindow.location.href=path+"/blogComment/gotoCommentDetail?blogId="+blogId;
+            }
+        );
     }
 }
 

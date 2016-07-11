@@ -1,11 +1,16 @@
 package com.ddas.sns.blogcomment.control;
 
 import com.ddas.common.Msg;
+import com.ddas.common.page.Page;
 import com.ddas.sns.blogcomment.service.BlogCommentService;
 import com.ddas.sns.common.BaseController;
+import com.ddas.sns.userblog.service.UserBlogService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
@@ -21,8 +26,12 @@ import javax.annotation.Resource;
 @RequestMapping("/blogComment")
 public class BlogCommentController extends BaseController {
 
+    private static  final Logger LOGGER= LoggerFactory.getLogger(BlogCommentController.class);
     @Resource
     private BlogCommentService blogCommentService;
+
+    @Resource
+    private UserBlogService userBlogService;
 
 
     /**
@@ -70,4 +79,22 @@ public class BlogCommentController extends BaseController {
         return msg;
     }
 
+
+    public Page fetchAllCommentByPage(int currentPage,int pageSize,String blogId){
+
+        return  null;
+    }
+
+    @RequestMapping("/gotoCommentDetail")
+    public ModelAndView gotoCommentDetail(String blogId){
+        if(blogId!=null&&!"".equals(blogId)){
+            ModelAndView modelAndView=new ModelAndView("blogcomment/blogCommentDetail");
+            modelAndView.addObject("blogId",blogId);
+            modelAndView.addObject("blog",userBlogService.findById(blogId));
+            return  modelAndView;
+        }else{
+            LOGGER.error("blogId is empty!", new IllegalArgumentException());
+            return null;
+        }
+    }
 }

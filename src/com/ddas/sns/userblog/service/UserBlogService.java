@@ -14,9 +14,12 @@ import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.domain.UserBlogCriteria;
 import com.ddas.sns.userblog.mapper.UserBlogMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * ClassName:	UserGroupService
@@ -28,6 +31,7 @@ import javax.annotation.Resource;
  */
 @Service
 public class UserBlogService {
+    private static final Logger LOGGER= LoggerFactory.getLogger(UserBlogService.class);
     @Resource
     private UserBlogMapper userBlogMapper;
 
@@ -62,6 +66,31 @@ public class UserBlogService {
         userBlog.setUbId(UUIDUtil.createUUID16());
         userBlog.setCreatedTime(currentTmeString);
         userBlogMapper.insertSelective(userBlog);
+    }
+
+    /**
+     *根据blogID来获取相应的UserBlog信息,如果没有找到或者找到的数量大于1，则返回null
+     *@param blogId UserBlog id
+     *@Author shaojunxiang
+     *@Date 2016/7/11 19:22
+     *@return com.ddas.sns.userblog.domain.UserBlog
+     *@since JDK1.6
+     */
+    public UserBlog findById(String blogId){
+        if(blogId==null||"".equals(blogId)){
+            return null;
+        }
+        UserBlogCriteria criteria=new UserBlogCriteria();
+        criteria.createCriteria().andUbIdEqualTo(blogId);
+        List<UserBlog> list=userBlogMapper.selectByExample(criteria);
+        if(list.size()>0){
+            if(list.size()>1){
+                LOGGER.error("find UserBlog by id count >1",new IllegalStateException());
+                return null;
+            }
+            return list.get(0);
+        }
+        return null;
     }
 
 }
