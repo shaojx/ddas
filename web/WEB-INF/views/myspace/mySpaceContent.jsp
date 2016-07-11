@@ -14,6 +14,7 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--分页--%>
@@ -67,7 +68,7 @@
                 <a href="#panel-tabs6" data-toggle="tab">群组</a>
             </li>
             <li>
-                <a href="#panel-tabs7" data-toggle="tab">留言板</a>
+                <a href="#panel-tabs7" id="messageTab" data-toggle="tab">留言板</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -390,8 +391,13 @@
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                         Mariki的留言板
+                        <div style="margin-left:85%;">
+                            <button type="button" id="createMessage" class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMessageDialog">
+                                留言
+                            </button>
+                        </div>
                     </div>
-                    <ul class="list-group">
+                    <ul class="list-group" id="myMessageContentDiv">
                         <li class="list-group-item">
                             <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">留言时间：2016-06-26-14:40:52</div></div>
                             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
@@ -405,6 +411,8 @@
                             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
                         </li>
                     </ul>
+                    <%--我的留言分页--%>
+                    <ul id="myMessagePagnationDiv"></ul>
                 </div>
             </div>
         </div>
@@ -493,6 +501,36 @@
                 <div class="modal-footer">
                     <button type="button" id="closeCreateBlogModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
                     <button type="button" id="saveMyBlogBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--留言弹出框 --%>
+    <div class="modal fade" id="createMessageDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="messageModalLabel">我要留言</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logContent" class="col-sm-2 control-label float-left"><span class="inline-block width110">
+                                    留言内容
+                                </span></label>
+                                <div class="float-left" style="margin-left: 5px;">
+                                    <textarea rows="5" id="messageContent" class="width280"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeCreateMessageModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" id="saveMessageBtn" name="saveMyMessageBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
         </div>

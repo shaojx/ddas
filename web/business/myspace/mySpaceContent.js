@@ -66,6 +66,11 @@ $(function () {
         getMyFriendsLogData(1);
     });
 
+    //点击留言tab页
+    $("#messageTab").click(function(){
+        getMyMessageData(1);
+    });
+
     //保存我的日志按钮点击事件
     $("#saveMyBlogBtn").click(function () {
         var logTitle = $("#logTitle").val();
@@ -94,6 +99,27 @@ $(function () {
             }
         })
     })
+
+    $("#saveMessageBtn").click(function (){
+        var messageContent = $("#messageContent").val();
+        if(messageContent == "") {
+            alert("留言内容不能为空");
+            return;
+        }
+        $.ajax({
+            url:path+"/userMessage/save",
+            type:"POST",
+            data:{
+                "messageContent":messageContent,
+                "messageTo":"1"
+            },
+            dataType:"json",
+            success:function(){
+                $("#closeCreateMessageModelBtn").click();
+                alert("success!");
+            }
+        })
+    })
     
     //创建 日志 评论的Validator
     $("#commentForm").bootstrapValidator({
@@ -110,7 +136,6 @@ $(function () {
             }
         }
     });
-
 
     var saveCommentBtnOldText=$("#saveCommentBtn").text();
     //点击评论弹出框的"保存"按钮
@@ -431,4 +456,76 @@ function fetchCommentCount(blogId) {
             }
         }
     })
+}
+
+/**
+ * 获取当前页的数据
+ * @param pageNo 分页
+ */
+function getMyMessageData(pageNo){
+    $("#myMessageContentDiv").html("");//清空数据
+    var loader=SLLib.loader({
+        ele:"#panel-324017",
+        spinner:"spinner2",
+        height:"500px"
+    });
+    loader.start();
+    if(pageNo){
+        $.ajax({
+            url:path+"/userMessage/queryRecordsByPage",
+            type:"POST",
+            data:{
+                "currentPage":pageNo,
+                "pageSize":4,
+                "userId":"1"
+            },
+            dataType:"json",
+            success:function(data){
+                loader.stop();
+
+                if(pageNo==1){//如果是第一页，则初始化分页
+                    initMyMessagePagnation(data);
+                }
+                initMyMessageData(data);
+            }
+        })
+    }
+}
+/**
+ * 初始化分页条
+ * @param pageData
+ */
+function initMyMessagePagnation(pageData) {
+    var pageIndex=pageData.currentPage;
+    var totalPages=pageData.totalPages;
+    var options = {
+        alignment:"center",//居中显示
+        currentPage: pageIndex,//当前页数
+        totalPages: totalPages,//总页数 注意不是总条数
+        bootstrapMajorVersion:3,
+        onPageChanged: function(event,oldPage,newPage){
+            if (oldPage==newPage) {
+                return ;
+            } else {
+                getMyMessageData(newPage);//重新拉取数据
+            }
+        }
+    }
+    $("#myMessagePagnationDiv").bootstrapPaginator(options);
+}
+/**
+ * 初始化我的日志的数据
+ * @param data
+ */
+function initMyMessageData(data){
+    var myMessageDivTemplete='<li class="list-group-item">'+
+        '<div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">留言时间：${created_time}</div></div>'+
+        '<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">${messageContent}</div>'+
+        '</li>';
+    var list=data.dataList;
+    for(var index in list){
+        var _data=list[index];
+        var _replace=myMessageDivTemplete.replace("${created_time}",_data.createdTime).replace("${messageContent}",_data.messageContent);
+        $("#myMessageContentDiv").append(_replace);
+    }
 }
