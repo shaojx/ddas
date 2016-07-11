@@ -79,12 +79,24 @@ public class BlogCommentController extends BaseController {
         return msg;
     }
 
-
+    /**
+     * 分页获取日志评论的内容
+     * @param currentPage 当前页
+     * @param pageSize 每页的数目
+     * @param blogId 评论的日志id
+     * @return
+     */
+    @RequestMapping("/fetchAllCommentByPage")
+    @ResponseBody
     public Page fetchAllCommentByPage(int currentPage,int pageSize,String blogId){
-
-        return  null;
+        return blogCommentService.fetchAllCommentByPage(currentPage,pageSize,blogId);
     }
 
+    /**
+     * 跳转到日志评论详情页
+     * @param blogId
+     * @return
+     */
     @RequestMapping("/gotoCommentDetail")
     public ModelAndView gotoCommentDetail(String blogId){
         if(blogId!=null&&!"".equals(blogId)){

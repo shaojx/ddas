@@ -10,12 +10,14 @@ function getComment(pageNo) {
     var blogId=$("#blogId").val();
     if (blogId){
         $.ajax({
-            url:path+"/blogcomment/fetchAllCommentByPage",
+            url:path+"/blogComment/fetchAllCommentByPage",
             data:{
                 "currentPage":pageNo,
                 "pageSize":4,
                 "blogId":blogId
             },
+            dataType:"json",
+            type:"POST",
             success:function (data) {
                 if(pageNo==1){//如果是第一页，则初始化分页
                     initCommentDetailPagnation(data);
@@ -42,33 +44,31 @@ function initCommentDetailPagnation(pageData) {
             if (oldPage==newPage) {
                 return ;
             } else {
-                getMyLogData(newPage);//重新拉取数据
+                getComment(newPage);//重新拉取数据
             }
         }
     }
-    $("#myLogPagnationDiv").bootstrapPaginator(options);
+    $("#commentPagnationDiv").bootstrapPaginator(options);
 }
 /**
  * 初始化我的日志的数据
  * @param data
  */
 function initCommentDetail(data){
-    var myLogDivTemplete=' <div class="panel panel-default">'+
-        ' <div class="panel-heading">'+
-        '  <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">${myLogTitle}</a>'+
-        '  </div>'+
-        '<div id="panel-element-113" class="panel-collapse in">'+
-        '<div class="panel-body">'+
-        "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;权限：${myLogPrivilege}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>';
-    var list=data.dataList;
-    for(var index in list){
-        var _data=list[index];
-        var _replace=myLogDivTemplete.replace("${myLogTitle}",_data.blogTitle).replace("${myLogContent}",_data.blogContent)
-            .replace("${myLogTags}",_data.blogTags).replace("${myLogPrivilege}",_data.blogPrivilege);
-        $("#myLogContentDiv").append(_replace);
+    var templete = '<div class="row">' +
+        '<div class="panel panel-default">' +
+        ' <div class="panel-body">' +
+        '     ${commentContent}' +
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">' +
+        '评论者:${commentUser} 评论时间:${commentTime}' +
+        '</div>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>';
+    for(var index in data.dataList){
+        var _object=data.dataList[index];
+        var _replacer=templete.replace("${commentContent}",_object.commentContent).replace("${commentTime}",_object.commentTime)
+            .replace("${commentUser}",_object.userInfo.userName);
+        $("#commentContentDiv").append(_replacer);
     }
 }

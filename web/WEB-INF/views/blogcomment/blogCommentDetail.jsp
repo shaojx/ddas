@@ -44,16 +44,16 @@
 </div>
 
 <%--评论区--%>
-<p class="bg-info" style="height: 30px; line-height: 30px;padding-right: 0!important;padding-left: 0!important;">评论区</p>
+<p class="bg-info" style="height: 30px; line-height: 30px;padding-right: 0!important;padding-left: 0!important;">评论列表</p>
 <div class="container-fluid">
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">Panel heading without title</div>
-            <div class="panel-body">
-                Panel content
-            </div>
-        </div>
+
+    <%--放置评论内容的div--%>
+    <div id="commentContentDiv">
+
     </div>
+
+    <%--我的日志分页--%>
+    <ul id="commentPagnationDiv"></ul>
 </div>
 
 <input type="hidden" id="blogId" value="${blogId}">
