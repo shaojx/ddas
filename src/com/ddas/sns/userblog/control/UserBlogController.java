@@ -50,7 +50,7 @@ public class UserBlogController {
 
     @RequestMapping("/save")
     @ResponseBody
-    public UserBlog queryRecordsByPage(UserBlog userBlog){
+    public UserBlog save(UserBlog userBlog){
         userBlogService.save(userBlog);
         return userBlog;
     }
