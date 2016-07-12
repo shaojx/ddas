@@ -104,7 +104,7 @@ function initMyPhotoGroupData(data) {
         '<div class="panel-body">'+
         '<div class="row">'+
         '<div class="photo pull-left">'+
-        '<img src="${basePath}/common/images/album_logo.jpg" class="img"/>'+
+        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
         '<span class="center-block">groupNameValue</span>'+
@@ -121,8 +121,16 @@ function initMyPhotoGroupData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = myPhotoGroupDivTemplete.replace("${basePath}", path).replace(/groupNameValue/g, _data.groupName).replace("${updated_time}", _data.updatedTime).replace("${created_time}", _data.createdTime).replace(/groupIdValue/g, _data.groupId).replace(/groupDescriptionValue/g, _data.description);
+        var _replace = myPhotoGroupDivTemplete.replace("${basePath}", path)
+            .replace(/groupNameValue/g, _data.groupName)
+            .replace("${updated_time}", _data.updatedTime)
+            .replace("${created_time}", _data.createdTime)
+            .replace(/groupIdValue/g, _data.groupId)
+            .replace(/groupDescriptionValue/g, _data.description).replace("${upId}",_data.groupId);
         $("#myPhotoGroupContentDiv").append(_replace);
+
+        //添加监听事件
+        addClickMyLogoListener(_data.groupId);
     }
 
     /**
@@ -145,6 +153,19 @@ function initMyPhotoGroupData(data) {
      }
      })
      })*/
+}
+
+
+/**
+ * 点击我的相册的封面跳转到详情页
+ * @param photoId
+ */
+function  addClickMyLogoListener(groupId) {
+    if(groupId){
+        $("#myPhoto_logo_"+groupId).click(function () {
+            $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?photoId="+groupId);
+        });
+    }
 }
 
 /**
@@ -212,7 +233,7 @@ function initFriendPhotoGroupData(data) {
         '<div class="panel-body">'+
         '<div class="row">'+
         '<div class="photo pull-left">'+
-        '<img src="${basePath}/common/images/album_logo.jpg" class="img"/>'+
+        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="friendPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
         '<span class="center-block">groupNameValue</span>'+
@@ -227,10 +248,25 @@ function initFriendPhotoGroupData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = friendPhotoGroupDivTemplete.replace("${basePath}", path).replace(/groupNameValue/g, _data.groupName).replace("${updated_time}", _data.updatedTime).replace("${created_time}", _data.createdTime).replace(/groupIdValue/g, _data.groupId);
+        var _replace = friendPhotoGroupDivTemplete.replace("${basePath}", path)
+            .replace(/groupNameValue/g, _data.groupName)
+            .replace("${updated_time}", _data.updatedTime)
+            .replace("${created_time}", _data.createdTime)
+            .replace(/groupIdValue/g, _data.groupId).replace("${upId}}",_data.groupId);
         $("#friendPhotoGroupContentDiv").append(_replace);
+
+        //添加监听事件 
+        addClickFriendLogoListener(_data.groupId);
     }
 
+}
+
+function  addClickFriendLogoListener(groupId) {
+    if(groupId){
+        $("#friendPhoto_logo_"+groupId).click(function () {
+           $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?photoId="+groupId);
+        });
+    }
 }
 
 /**

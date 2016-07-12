@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
 
 /**
@@ -53,5 +55,18 @@ public class UserPhotoController {
     @RequestMapping("/gotoUploadPhotoIndex")
     public String gotoUploadPhotoIndex(){
         return "photo/uploadPhoto";
+    }
+
+    /**
+     * 跳转到相册的详情页
+     * @param photoId
+     * @return
+     */
+    @RequestMapping("/photoDetail")
+    public ModelAndView gotoPhotoDetail(String groupId){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("photo/photoDetail");
+        modelAndView.addObject("groupId",groupId);
+        return modelAndView;
     }
 }
