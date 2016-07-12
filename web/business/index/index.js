@@ -20,4 +20,9 @@ $(function () {
        $("#content_iframe").attr("src",path+"/payfor/gotoIndex"); 
     });
 
+    //左侧 邮箱  点击事件
+    $("#emailBox").click(function () {
+        $("#content_iframe").attr("src",path+"/email/gotoIndex");
+    });
+
 });

@@ -81,7 +81,7 @@
                     <a href="javascript:void (0);" id="levelVip"><img src="/common/images/n_left_shengji.jpg">升级会员</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/mail.gif">邮箱(0)</a>
+                    <a href="javascript:void (0);" id="emailBox"><img src="/common/images/mail.gif">邮箱(0)</a>
                 </li>
                 <li>
                     <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>

@@ -1,7 +1,7 @@
 /**
  * 我的空间 业务JS
  */
-var CONST_USE_PROPERTY_BLOG = "3";//使用属性(1是好友分组，2是相册分组，3是日志分组)
+var CONST_USE_PROPERTY_BLOG = "2";//使用属性(1是好友分组，2是相册分组，3是日志分组)
 var userBlogGroupData;//日志分组
 
 var clickedFriendBlogCommentId=null;//保存点击"评论"的id(朋友的日志 )
