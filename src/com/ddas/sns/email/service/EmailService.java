@@ -11,9 +11,12 @@ package com.ddas.sns.email.service;
 import com.ddas.common.page.Page;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.email.domain.UserEmail;
+import com.ddas.sns.email.mapper.UserEmailMapper;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.domain.UserBlogCriteria;
 import com.ddas.sns.userblog.mapper.UserBlogMapper;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -32,5 +35,17 @@ import java.util.List;
 @Service
 public class EmailService {
     private static final Logger LOGGER= LoggerFactory.getLogger(EmailService.class);
+
+    @Resource
+    private UserEmailMapper userEmailMapper;
+
+    public void save(UserEmail userEmail, UserInfo userInfo){
+        userEmail.setUeId(UUIDUtil.createUUID16());
+        userEmail.setEmailSender(userInfo.getUserId());
+        String currentDataString = DateUtil.getCurrentDateString();
+        userEmail.setCreatedTime(currentDataString);
+        userEmail.setUpdatedTime(currentDataString);
+        userEmailMapper.insertSelective(userEmail);
+    }
 
 }

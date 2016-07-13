@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `user_email`;
 CREATE TABLE `user_email` (
   `ue_id` varchar(64) DEFAULT NULL COMMENT '主键,邮件ID',
   `email_sender` varchar(64) DEFAULT NULL COMMENT '邮件发送者ID',
-  `email_reveiver` varchar(64) DEFAULT NULL COMMENT '邮件接收者ID',
+  `email_receiver` varchar(64) DEFAULT NULL COMMENT '邮件接收者ID',
   `email_title` varchar(512) DEFAULT NULL COMMENT '邮件标题',
   `email_content` varchar(1024) DEFAULT NULL COMMENT '邮件内容',
   `created_time` varchar(32) DEFAULT NULL COMMENT '创建时间',
