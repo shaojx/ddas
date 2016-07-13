@@ -8,9 +8,10 @@
  */
 package com.ddas.sns.email.control;
 
-import com.ddas.common.page.Page;
-import com.ddas.sns.userblog.domain.UserBlog;
-import com.ddas.sns.userblog.service.UserBlogService;
+import com.ddas.sns.common.BaseController;
+import com.ddas.sns.email.domain.UserEmail;
+import com.ddas.sns.email.service.EmailService;
+import com.sun.javafx.collections.annotations.ReturnsUnmodifiableCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	EmailController
@@ -29,8 +31,11 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/email")
-public class EmailController {
+public class EmailController extends BaseController{
     private static  final Logger LOGGER= LoggerFactory.getLogger(EmailController.class);
+
+    @Resource
+    private EmailService emailService;
 
     /**
      *升级会员页面
@@ -43,6 +48,17 @@ public class EmailController {
     @RequestMapping("/gotoIndex")
     public String gotoEmail(){
         return "email/index";
+    }
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public UserEmail save(UserEmail userEmail, HttpServletRequest request){
+        try {
+            emailService.save(userEmail, getLoginUser(request));
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+        return userEmail;
     }
 
 }

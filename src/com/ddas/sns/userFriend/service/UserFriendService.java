@@ -9,6 +9,7 @@
 package com.ddas.sns.userfriend.service;
 
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userfriend.domain.UserFriend;
@@ -61,7 +62,9 @@ public class UserFriendService {
         userFriendCriteria.setLimitStart(page.getPageStart());
         userFriendCriteria.setLimitEnd(pageSize);
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
-        criteria.andFriendNameLikeInsensitive("%" + friendNameCondition + "%");
+        if(StringUtil.isNotEmpty(friendNameCondition)) {
+            criteria.andFriendNameLikeInsensitive("%" + friendNameCondition + "%");
+        }
         if ("1".equals(status)) {
             criteria.andStatusNotEqualTo("0");
         } else if("0".equals(status)) {

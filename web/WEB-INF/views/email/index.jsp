@@ -19,6 +19,7 @@
         var path = "<%=path%>";
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
 <%--    <style type="text/css">
        .panel-body input[type="radio"] {
             margin-left: 40%;
@@ -86,14 +87,13 @@
                             <span class="inline-block width120">好友名字</span>
                         </label>
                         <div class="col-sm-4">
-                            <select class="form-control width120 pull-left">
+                            <select id="friendList" class="form-control width120 pull-left">
                                 <option>add</option>
                                 <option>aa</option>
-                                <option>aaa</option>
                             </select>
                         </div>
                         <div class="pull-right margin-right-15px">
-                            <button class="btn-info">提交</button>
+                            <button class="btn-info" id="sendEmailBtn">提交</button>
                         </div>
                     </div>
                 </form>
