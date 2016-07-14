@@ -53,7 +53,7 @@ function getMyFriendData(condition){
                     var _data = list[index];
                     var option = '<option id="${friendIdVal}">${friendNameVal}</option>';
                     var _replace = option.replace("${friendIdVal}", _data.friendId).replace("${friendNameVal}", _data.friendName);
-                    $("#friendList").prepend(_replace);
+                    $("#friendList").append(_replace);
                 }
             }
         })

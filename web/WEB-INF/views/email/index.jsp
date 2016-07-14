@@ -20,85 +20,58 @@
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
     <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
-<%--    <style type="text/css">
-       .panel-body input[type="radio"] {
-            margin-left: 40%;
-        }
-        .innerDiv{
-            height: 90px;
-            width: 206px;
-        }
+   <style type="text/css">
         html,body{
             overflow: hidden;
         }
-    </style>--%>
+    </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#SendEmailBox" data-toggle="tab">发件箱</a></li>
-            <li role="presentation"><a href="#ReceiveEmailBox" data-toggle="tab">收件箱</a></li>
-            <li role="presentation"><a href="#CreateEmail" data-toggle="tab">新建邮件</a></li>
+            <li class="active"><a href="#SendEmailBox" data-toggle="tab">发件箱</a></li>
+            <li ><a href="#ReceiveEmailBox" data-toggle="tab">收件箱</a></li>
+            <li ><a href="#CreateEmail" data-toggle="tab">新建邮件</a></li>
         </ul>
     </div>
 
     <div class="row">
-        <div class="tab-content">
+        <div class="tab-content margin-top-10px">
             <div role="tabpanel" class="tab-pane active" id="SendEmailBox">
-                <%--面板--%>
-                <div class="panel panel-default" style="height: 250px;">
                     <form class="form-horizontal" role="form">
                         <div class="panel panel-default ">
-                            <img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                            <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
-                            <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
-                        </div>
-                        <div class="panel panel-default ">
-                            <img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                            <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
-                            <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
+                            <img src="/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                            <span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">
+                                你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！
+                        </span>
+                            <div class="margin-left-10px"><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
                         </div>
                     </form>
-                </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane clear-both" id="ReceiveEmailBox">
+            <div role="tabpanel" class="tab-pane" id="ReceiveEmailBox">
                 <form class="form-horizontal" role="form">
                     <div class="panel panel-default ">
-                        <img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
-                        <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
-                    </div>
-                    <div class="panel panel-default ">
-                        <img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
-                        <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
+                        <img src="/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
+                        <span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">
+                                你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！
+                        </span>
+                        <div class="margin-left-10px"><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
                     </div>
                 </form>
             </div>
 
-            <div role="tabpanel" class="tab-pane clear-both" id="CreateEmail">
+            <div role="tabpanel" class="tab-pane" id="CreateEmail">
                 <textarea rows="5" id="emailContent" style="margin: 0px; height: 448px; width: 746px;"></textarea>
-
-                <form class="form-horizontal margin-top-10px"  role="form">
-                    <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-1 control-label pull-left">
-                            <span class="inline-block width120">好友名字</span>
-                        </label>
-                        <div class="col-sm-4">
-                            <select id="friendList" class="form-control width120 pull-left">
-                                <option>add</option>
-                                <option>aa</option>
-                            </select>
-                        </div>
-                        <div class="pull-right margin-right-15px">
-                            <button class="btn-info" id="sendEmailBtn">提交</button>
-                        </div>
-                    </div>
-                </form>
-
-
+                <div class="row margin-top-10px">
+                    <label class="control-label pull-left margin-left-20px">
+                        <span class="inline-block" style="height: 30px;line-height: 30px;">好友名字</span>
+                    </label>
+                    <select id="friendList" class="form-control width120 pull-left margin-left-10px">
+                    </select>
+                    <button class="btn btn-info pull-right margin-right-15px" type="button" id="sendEmailBtn">保存</button>
+                </div>
             </div>
 
         </div>
