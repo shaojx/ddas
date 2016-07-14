@@ -13,8 +13,8 @@ import java.util.List;
 public class PaymentUsePaypalTest {
 
 
-    public static final String clientID = "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS";
-    public static final String clientSecret = "EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL";
+    public static final String clientID = "AdXFF0sPxNMYjNltGOGlwfbBvqFrsql7fOBv-_5ww0V4izpmmgzrCArQGblGhYoGX_IB2LrkpBavEs7c";
+    public static final String clientSecret = "EMef1NW1OGzzHn-86cjxfXTEecNTEc3dklDRVQ9TwWKNUM1SnqzgfSjaNoACkaurSWsl355GVAEza-QD";
 
     public static void main(String[] args) {
         try {
@@ -49,8 +49,8 @@ public class PaymentUsePaypalTest {
             futurePayment.setIntent("sale");
             futurePayment.setPayer(payer);
             RedirectUrls redirectUrls = new RedirectUrls();
-            redirectUrls.setCancelUrl("www.baidu.com");
-            redirectUrls.setReturnUrl("www.baidu.com");
+            redirectUrls.setCancelUrl("http://localhost:8080/login/gotoLogin?userid=111");
+            redirectUrls.setReturnUrl("http://localhost:8080/login/gotoLogin");
             futurePayment.setRedirectUrls(redirectUrls);
             futurePayment.setTransactions(transactions);
 
