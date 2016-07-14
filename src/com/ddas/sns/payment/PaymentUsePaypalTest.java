@@ -1,0 +1,66 @@
+package com.ddas.sns.payment;
+
+import com.paypal.api.openidconnect.Tokeninfo;
+import com.paypal.api.payments.*;
+import com.paypal.base.rest.APIContext;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Administrator on 2016/7/14.
+ */
+public class PaymentUsePaypalTest {
+
+
+    public static final String clientID = "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS";
+    public static final String clientSecret = "EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL";
+
+    public static void main(String[] args) {
+        try {
+            // Authorization Code and Co-relationID retrieved from Mobile SDK.
+            String authorizationCode = "C101.Rya9US0s60jg-hOTMNFRTjDfbePYv3W_YjDJ49BVI6YJY80HvjL1C6apK8h3IIas.ZWOGll_Ju62T9SXRSRFHZVwZESK";
+            String correlationId = "123456123";
+
+            APIContext context = new APIContext(clientID, clientSecret, "sandbox");
+
+            // Fetch the long lived refresh token from authorization code.
+            //String refreshToken = FuturePayment.fetchRefreshToken(context, authorizationCode);
+            // Store the refresh token in long term storage for future use.
+
+            // Set the refresh token to context to make future payments of
+            // pre-consented customer.
+            //context.setRefreshToken(refreshToken);
+
+            // Create Payment Object
+            Payer payer = new Payer();
+            payer.setPaymentMethod("paypal");
+            Amount amount = new Amount();
+            amount.setTotal("1.17");
+            amount.setCurrency("USD");
+            Transaction transaction = new Transaction();
+            transaction.setAmount(amount);
+            transaction.setDescription("This is the payment tranasction description.");
+            List<Transaction> transactions = new ArrayList<Transaction>();
+            transactions.add(transaction);
+
+            FuturePayment futurePayment = new FuturePayment();
+           // futurePayment.setIntent("authorize");
+            futurePayment.setIntent("sale");
+            futurePayment.setPayer(payer);
+            RedirectUrls redirectUrls = new RedirectUrls();
+            redirectUrls.setCancelUrl("www.baidu.com");
+            redirectUrls.setReturnUrl("www.baidu.com");
+            futurePayment.setRedirectUrls(redirectUrls);
+            futurePayment.setTransactions(transactions);
+
+            Payment createdPayment = futurePayment.create(context, correlationId);
+            System.out.println(createdPayment.toString()+"````"+createdPayment.getLinks().get(1).getHref());
+            System.out.println("付款Redirect的URL是这里"+createdPayment.getLinks().get(1).getHref());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(Payment.getLastRequest());
+            System.out.println(Payment.getLastResponse());
+        }
+    }
+}
