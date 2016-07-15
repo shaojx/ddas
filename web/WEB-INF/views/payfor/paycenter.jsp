@@ -18,7 +18,8 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
-
+    <%--引入业务的JS--%>
+    <script src="<%=path%>/business/paycenter/payCenter.js"></script>
     <style type="text/css">
         .divRow{
             margin-top: 20px;
@@ -76,17 +77,17 @@
 
                 <div class="clear-both divRow">
                     <label class="width120">其他数值:</label>
-                    <input type="text"><span>(1金币=1美元)</span>
+                    <input type="text" id="mount"><span>(1金币=1美元)</span>
                 </div>
 
                 <div class="clear-both divRow">
                     <label class="width120">支付方式:</label>
-                    <span>嵌入页面</span>
+                    <span><input type="radio" name="payMethod" value="1"><img class="width200" src="/common/images/papy.jpg"></span>
                 </div>
 
                 <div class="row divRow">
                     <div style="margin-left: 40%;">
-                        <button class="btn btn-info" type="button">立即升级</button>
+                        <button class="btn btn-info" type="button" id="payBtn">立即充值</button>
                     </div>
                 </div>
             </div>

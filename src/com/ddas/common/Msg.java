@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @date 2016/7/3 21:37
  * @since JDK 1.6
  */
-public class Msg{
+public class Msg implements Serializable{
     /**通用信息*/
     private String msg;
     /**成功消息**/

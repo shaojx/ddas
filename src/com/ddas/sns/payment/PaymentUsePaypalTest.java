@@ -19,8 +19,8 @@ public class PaymentUsePaypalTest {
     public static void main(String[] args) {
         try {
             // Authorization Code and Co-relationID retrieved from Mobile SDK.
-            String authorizationCode = "C101.Rya9US0s60jg-hOTMNFRTjDfbePYv3W_YjDJ49BVI6YJY80HvjL1C6apK8h3IIas.ZWOGll_Ju62T9SXRSRFHZVwZESK";
-            String correlationId = "123456123";
+            //String authorizationCode = "C101.Rya9US0s60jg-hOTMNFRTjDfbePYv3W_YjDJ49BVI6YJY80HvjL1C6apK8h3IIas.ZWOGll_Ju62T9SXRSRFHZVwZESK";
+            //String correlationId = "123456123";
 
             APIContext context = new APIContext(clientID, clientSecret, "sandbox");
 
@@ -49,12 +49,12 @@ public class PaymentUsePaypalTest {
             futurePayment.setIntent("sale");
             futurePayment.setPayer(payer);
             RedirectUrls redirectUrls = new RedirectUrls();
-            redirectUrls.setCancelUrl("http://localhost:8080/login/gotoLogin?userid=111");
-            redirectUrls.setReturnUrl("http://localhost:8080/login/gotoLogin");
+            redirectUrls.setCancelUrl("http://localhost:8080/payfor/callBack?userid=111");
+            redirectUrls.setReturnUrl("http://localhost:8080/payfor/paypalProcess?userid=11");
             futurePayment.setRedirectUrls(redirectUrls);
             futurePayment.setTransactions(transactions);
 
-            Payment createdPayment = futurePayment.create(context, correlationId);
+            Payment createdPayment = futurePayment.create(context);
             System.out.println(createdPayment.toString()+"````"+createdPayment.getLinks().get(1).getHref());
             System.out.println("付款Redirect的URL是这里"+createdPayment.getLinks().get(1).getHref());
         } catch (Exception e) {
