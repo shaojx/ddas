@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.userinfo.service;
 
+import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
@@ -51,5 +52,40 @@ public class UserInfoService {
             return userInfos.get(0);
         }
         return null;
+    }
+
+    /**
+     *保存用户信息
+     * @param userInfo 用户信息
+     *@return boolean {false}保存失败 {true}保存成功
+     *@author shaojx
+     *@date 2016/7/16 12:15
+     *@version 1.0
+     *@since 1.6
+     */
+    public boolean save(UserInfo userInfo) {
+        if(userInfo==null||userInfo.getUserName()==null||userInfo.getUserPwd()==null){
+            return false;
+        }
+        userInfo.setUserId(UUIDUtil.createUUID16());//id
+        userInfoMapper.insertSelective(userInfo);
+        return true;
+    }
+
+    /**
+     *根据用户名来查找对应的名字是否被注册
+     * @param userName 用户名
+     *@return boolean {true}没有被注册,{false}被注册
+     *@author shaojx
+     *@date 2016/7/16 13:08
+     *@version 1.0
+     *@since 1.6
+     */
+    public boolean findUserByName(String userName) {
+        UserInfoCriteria userInfoCriteria=new UserInfoCriteria();
+        UserInfoCriteria.Criteria criteria = userInfoCriteria.createCriteria();
+        criteria.andUserNameEqualTo(userName);
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoCriteria);
+        return userInfos.size() <= 0;
     }
 }

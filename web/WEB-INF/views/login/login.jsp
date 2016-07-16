@@ -54,7 +54,7 @@
                 <input type="checkbox" style="vertical-align: middle;" id="remeberme" checked="checked"/>
                 <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
             </DIV>
-            <div class="form-group width350">
+            <div class="form-group width350" style="margin-bottom: 20px;">
                 <input type="button" value=" 登录 " class="btn btn-primary form-control  center-block" id="loginBtn">
                 <div class="row">
                     <span class="col-md-offset-4 col-md-4 margin-top-10px">没有帐号?<a href="javascript:void(0);" id="registerBtn">注 册</a></span>

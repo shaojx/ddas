@@ -19,30 +19,54 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+    <%--验证JS--%>
+    <link type="text/css" href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css"/>
+    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
+
     <script type="text/javascript" src="<%=path%>/common/md5/md5.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/login/register.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/login/language/${local}.js"></script>
+
+    <%--弹出窗--%>
+    <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+    <style type="text/css">
+        #errorP{
+            font-size: 13px;
+            color: red;
+            height:25px;
+            line-height: 25px;
+            /*margin-left: 25%;*/
+            MARGIN-RIGHT: auto;
+            MARGIN-LEFT: auto;
+        }
+    </style>
+
 </head>
 <body>
 <div class="container-fluid">
     <section class="loginBox row-fluid">
-        <form class="form-horizontal" style="margin-left: 20%;">
-            <DIV class="form-group">
+        <div class="center-block" style="text-align:center;" id="errorP">
+        </div>
+        <form class="form-horizontal" style="margin-left: 20%;" id="myForm">
+            <DIV class="form-group width300">
                 <label class="control-label">用户名</label>
-                <input type="text" class="form-control width300" name="username" placeholder="用户名" id="userName"/>
+                <input type="text" class="form-control " name="username" placeholder="用户名" id="userName"/>
             </DIV>
-            <DIV class="form-group">
+            <DIV class="form-group width300">
                 <label class="control-label">密 码</label>
-                <input type="text" class="form-control width300" name="password" placeholder="密码" id="password"/>
+                <input type="password" class="form-control" name="password" placeholder="密码" id="password"/>
             </DIV>
-            <DIV class="form-group">
+            <DIV class="form-group width300">
                 <label class="control-label">确认密码</label>
-                <input type="text" class="form-control width300" name="password" placeholder="重复密码" id="repeatPwd"/>
+                <input type="password" class="form-control" name="repeatPwd" placeholder="重复密码" id="repeatPwd"/>
             </DIV>
-            <DIV class="form-group">
+            <DIV class="form-group width300">
                 <label class="control-label">邮 箱</label>
-                <input type="text" class="form-control width300" name="password" placeholder="邮箱地址" id="email"/>
+                <input type="text" class="form-control" name="email" placeholder="邮箱地址" id="email"/>
             </DIV>
-            <div class="row">
+            <div class="row" style="margin-bottom: 20px;">
                 <input type="button" value=" 注册 " class="btn btn-primary form-control width300 margin-top-10px" id="registerBtn">
             </div>
         </form>
