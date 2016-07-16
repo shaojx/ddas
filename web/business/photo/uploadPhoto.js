@@ -6,6 +6,14 @@ $(function () {
         pageNo:1
     };//查询条件初始化
     getMyPhotoGroupData(userPhotoGroupCondition);
+
+  /*  //监听select change事件
+    $("#photoGroup").change(function () {
+        var val=$(this).val();
+        uploadConfig.uploadExtraData={
+            "photoGroupId":val
+        }
+    })*/
 });
 
 /**
@@ -40,7 +48,7 @@ function initMyPhotoGroupOptionData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var option = "<option data-groupId="+_data.groupId+">"+_data.groupName+"</option>";
+        var option = "<option data-groupId="+_data.groupId+" value="+_data.groupId+">"+_data.groupName+"</option>";
         photoGroupSelect.prepend(option);
     }
 }

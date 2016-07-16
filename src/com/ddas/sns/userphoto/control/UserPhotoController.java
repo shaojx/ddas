@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.userphoto.control;
 
+import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userphoto.service.UserPhotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	FriendsControl
@@ -27,7 +29,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/userPhoto")
-public class UserPhotoController {
+public class UserPhotoController extends BaseController{
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserPhotoController.class);
 
     @Resource
@@ -53,8 +55,9 @@ public class UserPhotoController {
      *@since JDK1.6
      */
     @RequestMapping("/gotoUploadPhotoIndex")
-    public String gotoUploadPhotoIndex(){
-        return "photo/uploadPhoto";
+    public ModelAndView gotoUploadPhotoIndex(HttpServletRequest request){
+        ModelAndView modelAndView = withLocal(request,"photo/uploadPhoto");
+        return modelAndView;
     }
 
     /**

@@ -43,7 +43,8 @@ public class FileUploadController extends BaseController{
         Map<String,String> map=new HashMap<String,String>();
         String fileName="";
 		for(MultipartFile myfile : myfiles){
-			if(myfile.isEmpty()){
+		 //  fileName=myfile.getOriginalFilename();
+			if(myfile.isEmpty()/*||fileName.equals("QQ图片20150803124740.jpg")*/){
                 Locale locale= (Locale) request.getSession(true).getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
 				//System.out.println("文件未上传");
                 map.put("error", SpringContextUtil.getMsgByKey("fileupload.error.isEmpty",locale));
