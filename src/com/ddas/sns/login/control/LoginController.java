@@ -164,4 +164,10 @@ public class LoginController extends BaseController {
         result.put("valid", resigertied);
         return result;
     }
+
+    @RequestMapping("/resetpwd")
+    public String resetPwd(){
+        // TODO: 2016/7/17
+        return "";
+    }
 }

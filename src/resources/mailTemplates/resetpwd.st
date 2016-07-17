@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>OSF密码重置</title>
+	<title>密码重置</title>
 	<style type="text/css">
 	body{
 		font-family: '微软雅黑','Helvetica Neue',sans-serif;
@@ -44,7 +44,7 @@
 					密码重置
 				</div>
 				<div>
-					<p>点击如下链接，重置您的OSF账户密码:</p>
+					<p>点击如下链接，重置您的账户密码:</p>
 					<a href="$href$">$link$</a>
 				</div>
 				<p>

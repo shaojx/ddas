@@ -100,20 +100,25 @@
         <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut"/>
     </aop:config>
 	
-	
-	<!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+
+    <!--邮件-->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.aliyun.com" />
 		<property name="username" value="${mail.from}" />
 		<property name="password" value="${mail.password}" />
 		<property name="javaMailProperties">
-	        &lt;!&ndash; additional properties specific to JavaMail &ndash;&gt;
+	        <!-- additional properties specific to JavaMail -->
 			<props>
                 <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.timeout">25000</prop>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
             </props>
 
 	    </property>
-	</bean>-->
+	</bean>
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:maxUploadSize="500000" />
 
