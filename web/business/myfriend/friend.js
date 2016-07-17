@@ -97,31 +97,77 @@ $(function() {
 		modal.find('#userFriendGroupId').val(groupId);
 	})
 
-	function loadUserFriendGroupData() {
+
+	/**
+	 * 当添发送邮件的时候，传数据到Model框里面去
+	 */
+	$('#createEmailDialog').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget);// Button that triggered the modal
+		var friendId = button.data('friendid'); // Extract info from data-* attributes
+		var modal = $(this);
+		modal.find('#friendId').val(friendId);
+		modal.find('#emailContent').val("");
+		modal.find('#friendList').children('#'+ friendId).attr("selected", true)
+	})
+
+
+	$("#sendEmailBtn").click(function () {
+		var emailContent = $("#emailContent").val();
+		var emailReceiver = $("#friendList").children('option:selected').attr("id");
 		$.ajax({
-			url:path+"/userGroup/queryRecordsByPage",
+			url:path+"/email/save",
 			type:"POST",
 			data:{
-				"currentPage":1,
-				"pageSize":1000,
-				"useProperty":CONST_USE_PROPERTY_FRIEND
+				"emailContent":emailContent,
+				"emailReceiver":emailReceiver
 			},
 			dataType:"json",
-			success:function(data){
-				var list = data.dataList;
-				userFriendGroupData = [];
-				for (var index in list) {
-					var _data = list[index];
-					userFriendGroupData[_data.groupId] = {
-						"groupId":_data.groupId,
-						"groupName":_data.groupName
-					};
-				}
+			success:function(){
+				$("#closeModel").click();
+				$.confirm({
+					title:"",
+					content:"Email send success!",
+					//autoClose: 'confirm|2000',
+					cancelButton:false
+				});
 			}
 		})
-	}
+	})
+
+	//加载好友分组
 	loadUserFriendGroupData();
+	//提前加载所有好友的List，主要用在email选择好友
+	loadMyAllFriendList();
 });
+
+
+function loadUserFriendGroupData() {
+	$.ajax({
+		url:path+"/userGroup/queryRecordsByPage",
+		type:"POST",
+		data:{
+			"currentPage":1,
+			"pageSize":1000,
+			"useProperty":CONST_USE_PROPERTY_FRIEND
+		},
+		dataType:"json",
+		success:function(data){
+			var list = data.dataList;
+			userFriendGroupData = [];
+			for (var index in list) {
+				var _data = list[index];
+				userFriendGroupData[_data.groupId] = {
+					"groupId":_data.groupId,
+					"groupName":_data.groupName
+				};
+			}
+
+			//初始化好友分组完成,继续初始化我的好友列表
+			//进到好友页面默认点击我的好友
+			$("#myFriendTab").click();
+		}
+	})
+}
 
 /**
  * 获取我的好友当前页的数据
@@ -226,6 +272,12 @@ function initMyFriendGroupData(data) {
  */
 function getMyFriendData(condition){
 	$("#myFriendContentDiv").html("");//清空数据
+	var loader=SLLib.loader({
+		ele:"#panel-myFriend",
+		spinner:"spinner2",
+		height:"500px"
+	});
+	loader.start();
 	if(condition.pageNo){
 		$.ajax({
 			url:path+"/userFriend/queryRecordsByPage",
@@ -238,6 +290,7 @@ function getMyFriendData(condition){
 			},
 			dataType:"json",
 			success:function(data){
+				loader.stop();
 				if(data.dataList.length < 1) {
 					$("#myFriendPaginationDIV").html("");//清空页码
 					return; //如果没有查询到数据，就不分页
@@ -285,11 +338,11 @@ function initMyFriendData(data) {
 		'<div class="inline-block center" style="height: 50px;">' +
 		'<div style="width: 270px;">' +
 		'<span class="text-muted inline-block" style="margin-top: 5px;">${friendName}</span>' +
-		'<span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
-		'<span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;"></span>' +
+		'<span class="glyphicon glyphicon-remove pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;" data-ufid="ufIdVal"></span>' +
+		'<span class="glyphicon glyphicon-envelope pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;color: #d9d9d1;" data-friendid="friendIdVal" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createEmailDialog"></span>' +
 		'</div>' +
 		'<div class="width250" style="margin-top: 10px;">' +
-		'<select id="${ufId}" class="selectpicker form-control width80 input-sm">' +
+		'<select id="ufIdVal" class="selectpicker form-control width80 input-sm">' +
 		'</select>' +
 		'</div>' +
 		'</div>' +
@@ -297,10 +350,10 @@ function initMyFriendData(data) {
 	var list = data.dataList;
 	for (var index in list) {
 		var _data = list[index];
-		var _replace = myFriendDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName).replace("${ufId}", _data.ufId);
+		var _replace = myFriendDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName).replace(/ufIdVal/g, _data.ufId).replace(/friendIdVal/g, _data.friendId);
 		$("#myFriendContentDiv").append(_replace);
 		for(var obj in userFriendGroupData) {
-			var option = "<option data-groupId=obj>"+userFriendGroupData[obj].groupName+"</option>";
+			var option = "<option data-groupId="+obj+">"+userFriendGroupData[obj].groupName+"</option>";
 			if(obj == _data.groupId) {
 				var option = "<option selected>"+userFriendGroupData[obj].groupName+"</option>";
 			}
@@ -318,12 +371,50 @@ function initMyFriendData(data) {
 				},
 				dataType:"json",
 				success:function(){
-					alert("Success!");
+					alert("Change Group Success!");
 				}
 			})
-			alert(groupId);
 		})
 	}
+
+	//删除好友按钮点击事件
+	$(".glyphicon-remove").click(function () {
+		var ufid = $(this).attr("data-ufid");
+		$.confirm({
+			content:"确定要删除好友么？",
+			confirm:function () {
+				deleteUserFriend(ufid);
+			},
+			cancel:function () {
+
+			}
+		});
+	})
+}
+
+function deleteUserFriend(ufId) {
+	if(ufId){
+		$.ajax({
+			url:path+"/userFriend/delete",
+			type:"POST",
+			data:{
+				"ufId":ufId,
+			},
+			dataType:"json",
+			success:function(data){
+				$.confirm({
+					title:"",
+					content:"删除好友成功",
+					autoClose: 'confirm|2000',
+					cancelButton:false
+				});
+				//刷新页面
+				$("#myFriendTab").click();
+			}
+
+		})
+	}
+	
 }
 
 /**
@@ -453,7 +544,12 @@ function initMyFriendApplyData(data) {
 			},
 			dataType:"json",
 			success:function(){
-				alert("Success!");
+				$.confirm({
+					title:"",
+					content:"添加好友成功!",
+					autoClose: 'confirm|2000',
+					cancelButton:false
+				});
 				$("#myFriendApplyTab").click();
 			}
 		})
@@ -479,4 +575,44 @@ function initMyFriendApplyData(data) {
 			}
 		})
 	});
+}
+
+function loadMyAllFriendList() {
+	var userAllFriendCondition = {
+		pageNo:1,
+		friendNameCondition:"",
+		status:CONST_FRIEND,
+	};//查询条件初始化
+
+	getAllMyFriendData(userAllFriendCondition);//取到好友列表
+}
+
+/**
+ * 获取我的好友当前页的数据
+ * @param pageNo 分页
+ */
+function getAllMyFriendData(condition){
+	if(condition.pageNo){
+		$.ajax({
+			url:path+"/userFriend/queryRecordsByPage",
+			type:"POST",
+			data:{
+				"currentPage":condition.pageNo,
+				"pageSize":1000,
+				"friendNameCondition":condition.friendNameCondition,
+				"status":condition.status,
+			},
+			dataType:"json",
+			success:function(data){
+				var list = data.dataList;
+				$("#friendList").empty();
+				for (var index in list) {
+					var _data = list[index];
+					var option = '<option id="${friendIdVal}">${friendNameVal}</option>';
+					var _replace = option.replace("${friendIdVal}", _data.friendId).replace("${friendNameVal}", _data.friendName);
+					$("#friendList").append(_replace);
+				}
+			}
+		})
+	}
 }

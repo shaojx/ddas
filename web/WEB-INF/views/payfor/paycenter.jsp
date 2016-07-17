@@ -15,6 +15,7 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>

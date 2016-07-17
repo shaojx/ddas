@@ -8,8 +8,15 @@ $(function () {
         var mount = $("#mount").val();
         alert(payMethod);
         alert(mount);
+        //等待中
+        var loader=SLLib.loader({
+            ele:"#payCenter",
+            spinner:"spinner2",
+            //height:"110px"
+        });
+        loader.start();
         //"1"使用paypal支付
-        $.ajax({//保存好友信息，主要针对好友分组的改变
+/*        $.ajax({//保存好友信息，主要针对好友分组的改变
             url:path+"/payfor/payPalRedirect",
             type:"POST",
             data:{
@@ -19,11 +26,12 @@ $(function () {
             },
             dataType:"json",
             success:function(msg){
+                loader.stop();
                 var redirectUrl = msg.msg;
                 alert(redirectUrl);
                 window.open(redirectUrl);
             }
-        })
+        })*/
 
     })
 

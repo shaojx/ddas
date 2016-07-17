@@ -14,7 +14,7 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.js" type="text/javascript"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--分页--%>

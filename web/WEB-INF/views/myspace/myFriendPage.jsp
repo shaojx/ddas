@@ -19,10 +19,13 @@
     <link href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet"/>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
@@ -48,7 +51,7 @@
     <div class="tabbable" id="tabs-my-friend">
         <ul class="nav nav-tabs">
             <li class="active" id="myFriendTab">
-                <a href="#panel-tabs0" data-toggle="tab">好友列表</a>
+                <a href="#panel-myFriend" data-toggle="tab">好友列表</a>
             </li>
             <li id="myFriendApplyTab">
                 <a href="#panel-tabs1" data-toggle="tab">好友申请</a>
@@ -62,7 +65,7 @@
         </ul>
         <div class="tab-content">
             <%--我的好友列表--%>
-            <div class="tab-pane active" id="panel-tabs0">
+            <div class="tab-pane active" id="panel-myFriend">
                 <form class="form-horizontal" role="form">
                     <div class="col-md-6 form-group pull-left" style="margin-top: 10px;">
                         <select class="form-control width80 input-sm">
@@ -93,6 +96,36 @@
                         </ul>
                     </div>
                 </div>
+                <%--创建邮件弹出框 --%>
+
+                <div class="modal fade" id="createEmailDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <input type="hidden" id="friendId">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabeTitle">新建邮件</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div role="tabpanel" class="tab-pane active" id="CreateEmail">
+                                    <textarea rows="5" id="emailContent" style="margin: 0px; height: 300px; width: 700px;"></textarea>
+                                    <div class="row margin-top-10px">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <label class="control-label pull-left margin-left-20px">
+                                    <span class="inline-block" style="height: 30px;line-height: 30px;">好友名字</span>
+                                </label>
+                                <select id="friendList" class="form-control width120 pull-left margin-left-10px"><option id="1">zhangsan</option><option id="3">Lily</option><option id="4">LilyA</option><option id="5">zhangsan3</option><option id="6">Lily5</option><option id="7">LilyA4</option><option id="8">zhangsan2</option><option id="9">Lily2</option><option id="10">Lily1</option><option id="2">zhangsanmamamammam</option><option id="4">LilyA</option><option id="2">zhangsan</option><option id="3">Lily</option></select>
+                                <button type="button" class="btn btn-default" id="closeModel" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id="sendEmailBtn">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <%--好友申请--%>
             <div class="tab-pane " id="panel-tabs1" align="center">

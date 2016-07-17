@@ -84,7 +84,7 @@ public class UserFriendController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("photo/photo");
         return modelAndView;
-    }
+}
 
     /**
      * 新建或者更新好友

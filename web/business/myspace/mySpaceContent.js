@@ -121,8 +121,8 @@ $(function () {
         })
     })
     
-    //创建 日志 评论的Validator
-    $("#commentForm").bootstrapValidator({
+    //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
+/*    $("#commentForm").bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -135,7 +135,7 @@ $(function () {
                 }
             }
         }
-    });
+    });*/
 
     var saveCommentBtnOldText=$("#saveCommentBtn").text();
     //点击评论弹出框的"保存"按钮
