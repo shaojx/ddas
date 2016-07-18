@@ -153,7 +153,7 @@ public class LoginController extends BaseController {
 
     /**
      * 判断用户名是否被注册
-     * @param userName
+     * @param username
      * @return
      */
     @RequestMapping("/identifyUserName")
