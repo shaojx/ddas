@@ -4,10 +4,12 @@
 var CONST_FRIEND = "1";
 var CONST_APPLY_FRIEND = "0";
 var CONST_USE_PROPERTY_FRIEND = "1";
+var CONST_FRIEND_GROUP_ALL = "all";
 var userFriendCondition = {
 	pageNo:1,
 	friendNameCondition:"",
 	status:"1",
+	userFriendGroupCondition:CONST_FRIEND_GROUP_ALL
 };//查询条件初始化
 var userFriendGroupData; //好友分组
 
@@ -20,9 +22,14 @@ $(function() {
 			pageNo:1,
 			friendNameCondition:"",
 			status:CONST_FRIEND,
+			userFriendGroupCondition:CONST_FRIEND_GROUP_ALL
 		};//查询条件初始化
 		$("#searchName").val("");
+		
+
 		getMyFriendData(userFriendCondition);
+		//加载搜索条件中的Group
+		loadGroupSearchCondition();
 	});
 
 	/**
@@ -31,6 +38,7 @@ $(function() {
 	$("#searchFriend").click(function () {
 		userFriendCondition.pageNo = 1;
 		userFriendCondition.friendNameCondition = $("#searchName").val().trim();
+		userFriendCondition.userFriendGroupCondition = $("#friendGroupCondition").children('option:selected').attr("data-groupId")
 		getMyFriendData(userFriendCondition);
 	});
 
@@ -53,7 +61,12 @@ $(function() {
 		var userFriendGroupName = $("#userFriendGroupName").val();
 		var userFriendGroupId = $("#userFriendGroupId").val();
 		if(userFriendGroupName == "") {
-			alert("好友分组名称不能为空");
+			$.confirm({
+				title:"",
+				content:"分组名称不能为空！",
+				autoClose: 'confirm|2000',
+				cancelButton:false
+			});
 			return;
 		}
 		$.ajax({
@@ -67,7 +80,12 @@ $(function() {
 			dataType:"json",
 			success:function(){
 				$("#closeAddGroupModel").click();
-				alert("success!");
+				$.confirm({
+					title:"",
+					content:"创建好友分组成功！",
+					autoClose: 'confirm|2000',
+					cancelButton:false
+				});
 				$("#myFriendGroupTab").click(); //重新加载用户分组的数据
 			}
 		})
@@ -127,7 +145,7 @@ $(function() {
 				$.confirm({
 					title:"",
 					content:"Email send success!",
-					//autoClose: 'confirm|2000',
+					autoClose: 'confirm|2000',
 					cancelButton:false
 				});
 			}
@@ -139,6 +157,19 @@ $(function() {
 	//提前加载所有好友的List，主要用在email选择好友
 	loadMyAllFriendList();
 });
+
+//加载搜索条件中的好友分组信息
+function loadGroupSearchCondition() {
+	$("#friendGroupCondition").empty();
+	var optionAll = '<option selected data-groupId= "all">全部</option>';
+
+	for(var obj in userFriendGroupData) {
+		var option = "<option data-groupId="+obj+">"+userFriendGroupData[obj].groupName+"</option>";
+		$("#friendGroupCondition").prepend(option);
+	}
+	$("#friendGroupCondition").prepend(optionAll);
+	
+}
 
 
 function loadUserFriendGroupData() {
@@ -287,6 +318,7 @@ function getMyFriendData(condition){
 				"pageSize":4,
 				"friendNameCondition":condition.friendNameCondition,
 				"status":condition.status,
+				"userFriendGroupCondition":condition.userFriendGroupCondition
 			},
 			dataType:"json",
 			success:function(data){
@@ -321,6 +353,7 @@ function initMyFriendPagination(pageData) {
 			} else {
 				userFriendCondition.pageNo = newPage;
 				userFriendCondition.friendNameCondition = $("#searchName").val().trim();
+				userFriendCondition.userFriendGroupCondition = $("#friendGroupCondition").children('option:selected').attr("data-groupId")
 				userFriendCondition.status = CONST_FRIEND;
 				getMyFriendData(userFriendCondition); //重新拉取数据
 			}
@@ -371,7 +404,12 @@ function initMyFriendData(data) {
 				},
 				dataType:"json",
 				success:function(){
-					alert("Change Group Success!");
+					$.confirm({
+						title:"",
+						content:"修改好友分组成功",
+						autoClose: 'confirm|2000',
+						cancelButton:false
+					});
 				}
 			})
 		})
@@ -386,7 +424,6 @@ function initMyFriendData(data) {
 				deleteUserFriend(ufid);
 			},
 			cancel:function () {
-
 			}
 		});
 	})
@@ -503,7 +540,7 @@ function initMyFriendApplyData(data) {
 		var _replace = myFriendApplyDivTemplete.replace("${basePath}", path).replace("${friendName}", _data.friendName).replace(/ufIdValue/g, _data.ufId);
 		$("#myFriendApplyContentDiv").append(_replace);
 		for(var obj in userFriendGroupData) {
-			var option = "<option data-groupId=obj>"+userFriendGroupData[obj].groupName+"</option>";
+			var option = "<option data-groupId="+obj+">"+userFriendGroupData[obj].groupName+"</option>";
 			if(obj == _data.groupId) {
 				var option = "<option selected>"+userFriendGroupData[obj].groupName+"</option>";
 			}
@@ -521,10 +558,14 @@ function initMyFriendApplyData(data) {
 				},
 				dataType:"json",
 				success:function(){
-					alert("Success!");
+					$.confirm({
+						title:"",
+						content:"修改好友分组成功",
+						autoClose: 'confirm|2000',
+						cancelButton:false
+					});
 				}
 			})
-			alert(groupId);
 		})
 	}
 	/**
@@ -562,18 +603,31 @@ function initMyFriendApplyData(data) {
 	 */
 	$("a[name='refuseAdd']").click(function () {
 		var ufId = $(this).attr("data-ufId");
-		$.ajax({
-			url:path+"/userFriend/delete",
-			type:"POST",
-			data:{
-				"ufId":ufId
+		$.confirm({
+			content:"确定拒绝添加该好友么？",
+			confirm:function () {
+				//删除该条添加好友的信息
+				$.ajax({
+					url:path+"/userFriend/delete",
+					type:"POST",
+					data:{
+						"ufId":ufId
+					},
+					dataType:"json",
+					success:function(){
+						$.confirm({
+							title:"",
+							content:"已拒绝！",
+							autoClose: 'confirm|2000',
+							cancelButton:false
+						});
+						$("#myFriendApplyTab").click();
+					}
+				})
 			},
-			dataType:"json",
-			success:function(){
-				alert("Success!");
-				$("#myFriendApplyTab").click();
+			cancel:function () {
 			}
-		})
+		});
 	});
 }
 

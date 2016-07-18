@@ -153,7 +153,7 @@
         </div>
 
           <%--iframe start--%>
-          <iframe id="content_iframe" src="<%=path%>/index/indexContent" style="width: 800px;height:900px;overflow: hidden;border: 0;">
+          <iframe id="content_iframe" src="<%=path%>/index/indexContent" style="width: 100%;height:900px;overflow: hidden;border: 0;">
           </iframe>
           <%--iframe end--%>
         </div>

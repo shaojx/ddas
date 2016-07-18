@@ -53,7 +53,7 @@ public class UserFriendService {
      *@return com.ddas.common.page.Page
      *@since JDK1.6
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize, String friendNameCondition, String status) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, String friendNameCondition, String status, String userFriendGroupCondition) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -64,6 +64,9 @@ public class UserFriendService {
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
         if(StringUtil.isNotEmpty(friendNameCondition)) {
             criteria.andFriendNameLikeInsensitive("%" + friendNameCondition + "%");
+        }
+        if(StringUtil.isNotEmpty(userFriendGroupCondition) && !"all".equals(userFriendGroupCondition)) {
+            criteria.andGroupIdEqualTo(userFriendGroupCondition);
         }
         if ("1".equals(status)) {
             criteria.andStatusNotEqualTo("0");

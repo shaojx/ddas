@@ -68,7 +68,7 @@
             <div class="tab-pane active" id="panel-myFriend">
                 <form class="form-horizontal" role="form">
                     <div class="col-md-6 form-group pull-left" style="margin-top: 10px;">
-                        <select class="form-control width80 input-sm">
+                        <select id="friendGroupCondition" class="form-control width80 input-sm">
                             <option>China</option>
                             <option>U.S.A</option>
                             <option>TaiWan</option>
@@ -155,10 +155,21 @@
                             <div class="modal-header">
                                 <input type="hidden" id="userFriendGroupId">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">新建好友分组</h4>
+                                <h4 class="modal-title" id="myModalLabel">管理好友分组</h4>
                             </div>
                             <div class="modal-body">
-                                <input class="col-md-2 form-control width250" id="userFriendGroupName" placeholder="好友类别">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-md-10">
+                                            <label for="userFriendGroupName" class="col-sm-2 control-label "><span class="inline-block width110">
+                                                 分组名称
+                                            </span></label>
+                                            <span class="inline-block width280" style="margin-left: 5px;">
+                                                <input class="col-md-2 form-control width250" id="userFriendGroupName" placeholder="好友类别">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" id="closeAddGroupModel" data-dismiss="modal">关闭</button>
