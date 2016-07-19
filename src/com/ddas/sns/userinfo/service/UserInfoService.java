@@ -8,10 +8,14 @@
  */
 package com.ddas.sns.userinfo.service;
 
+import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -87,5 +91,23 @@ public class UserInfoService {
         criteria.andUserNameEqualTo(userName);
         List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoCriteria);
         return userInfos.size() <= 0;
+    }
+
+    public Page queryUserListExcludeMe(int currentPage, int pageSize, UserInfo userInfo) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        UserInfoCriteria userInfoCriteria = new UserInfoCriteria();
+        userInfoCriteria.setOrderByClause("updated_time");
+        userInfoCriteria.setLimitStart(page.getPageStart());
+        userInfoCriteria.setLimitEnd(pageSize);
+        UserInfoCriteria.Criteria criteria = userInfoCriteria.createCriteria();
+        criteria.andUserIdNotEqualTo(userInfo.getUserId());
+        if(currentPage==1){//如果是当前第一页，则要求总数
+            page.setTotalCount(userInfoMapper.countByExample(userInfoCriteria));
+        }
+        page.setDataList(userInfoMapper.selectByExample(userInfoCriteria));
+        // TODO: 2016/7/19 此处要去掉用户列表的密码信息
+        return page;
     }
 }

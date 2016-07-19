@@ -64,7 +64,7 @@ public class UserFriendController extends BaseController {
      *@return org.springframework.web.servlet.ModelAndView
      *@since JDK1.6
      */
-    @RequestMapping(value = "myFriend", method = {RequestMethod.GET})
+    @RequestMapping(value = "/myFriend", method = {RequestMethod.GET})
     public ModelAndView goToMyFriendPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("myspace/myFriendPage");
@@ -78,7 +78,7 @@ public class UserFriendController extends BaseController {
      *@return org.springframework.web.servlet.ModelAndView
      *@since JDK1.6
      */
-    @RequestMapping(value = "photo", method = {RequestMethod.GET})
+    @RequestMapping(value = "/photo", method = {RequestMethod.GET})
     public ModelAndView goToPhotoPage() {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -94,10 +94,10 @@ public class UserFriendController extends BaseController {
      *@return com.ddas.sns.userfriend.domain.UserFriend
      *@since JDK1.6
      */
-    @RequestMapping(value = "save", method = {RequestMethod.POST})
+    @RequestMapping(value = "/save", method = {RequestMethod.POST})
     @ResponseBody
-    public UserFriend saveUserFriend(UserFriend userFriend){
-        userFriendService.saveUserFriend(userFriend);
+    public UserFriend saveUserFriend(UserFriend userFriend, HttpServletRequest httpServletRequest){
+        userFriendService.saveUserFriend(userFriend, getLoginUser(httpServletRequest));
         return userFriend;
     }
 
@@ -109,7 +109,7 @@ public class UserFriendController extends BaseController {
      *@return com.ddas.sns.userfriend.domain.UserFriend
      *@since JDK1.6
      */
-    @RequestMapping(value = "delete", method = {RequestMethod.POST})
+    @RequestMapping(value = "/delete", method = {RequestMethod.POST})
     @ResponseBody
     public UserFriend deleteUserFriend(UserFriend userFriend){
         userFriendService.deleteUserFriend(userFriend);

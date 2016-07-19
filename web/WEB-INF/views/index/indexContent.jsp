@@ -14,8 +14,16 @@
     <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-   <%-- <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
+    <%-- <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+    <script type="text/javascript">
+        var path = "<%=path%>";
+    </script>
+    <%--分页的JS--%>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/index/indexContent.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
         div.row{
@@ -46,48 +54,60 @@
             </ul>
             <div class="tab-content" id="tab-content">
                 <div class="tab-pane active" id="panel-tabs1">
-                    <div class="col-xs-3 col-md-3">
-                        <div class="imageDiv">
-                            <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                            <p>
-                                Name <a class="btn" href="#">加好友</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xs-3 col-md-3">
+                    <div id="userListContentDiv">
+                        <div class="col-xs-3 col-md-3">
                             <div class="imageDiv">
                                 <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
                                 <p>
                                     Name <a class="btn" href="#">加好友</a>
                                 </p>
                             </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                                <div class="imageDiv">
+                                    <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
+                                    <p>
+                                        Name <a class="btn" href="#">加好友</a>
+                                    </p>
+                                </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="imageDiv">
+                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
+                                <p>
+                                    Name <a class="btn" href="#">加好友</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="imageDiv">
+                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
+                                <p>
+                                    Name <a class="btn" href="#">加好友</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="imageDiv">
+                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
+                                <p>
+                                    Name <a class="btn" href="#">加好友</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="imageDiv">
+                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
+                                <p>
+                                    Name <a class="btn" href="#">加好友</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-
                     <div class="row clearfix" style="clear: both;">
                         <div class="col-md-12">
                             <!--分页控件-->
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#">Prev</a>
-                                </li>
-                                <li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
-                                </li>
-                                <li>
-                                    <a href="#">Next</a>
-                                </li>
+                            <ul class="pagination" id="userListPaginationDIV">
                             </ul>
                         </div>
                     </div>

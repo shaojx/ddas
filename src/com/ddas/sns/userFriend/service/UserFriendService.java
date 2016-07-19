@@ -18,6 +18,8 @@ import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userfriendblog.dto.UserFriendBlogDto;
 import com.ddas.sns.userfriendblog.mapper.UserFriendBlogMapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.userinfo.domain.UserInfoCriteria;
+import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,9 @@ import java.util.Map;
 public class UserFriendService {
     @Resource
     private UserFriendMapper userFriendMapper;
+
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
     @Resource
     private UserFriendBlogMapper userFriendBlogMapper;
@@ -86,21 +91,20 @@ public class UserFriendService {
      *@Author liuchen6
      *@Date 2016/7/1 15:00
      *@param userFriend
+     *@param userInfo
      *@return com.ddas.sns.userfriend.domain.UserFriend
      *@since JDK1.6
      */
-    public UserFriend saveUserFriend(UserFriend userFriend) {
+    public UserFriend saveUserFriend(UserFriend userFriend, UserInfo userInfo) {
         String currentDate = DateUtil.getCurrentDateString();
         if (StringUtils.isEmpty(userFriend.getUfId())) {
-            //********暂时写死测试
-            // TODO: 2016/7/5
-            userFriend.setUserId("1");
-            UUIDUtil.createUUID16();
+            userFriend.setUserId(userInfo.getUserId());
             userFriend.setUfId(UUIDUtil.createUUID16());
-            userFriend.setFriendName("Tomorrow");
+            UserInfo userInfoInDb = userInfoMapper.selectByPrimaryKey(userFriend.getFriendId());
+            userFriend.setFriendName(userInfoInDb.getUserName());
             userFriend.setCreatedTime(currentDate);
             userFriend.setUpdatedTime(currentDate);
-            //********暂时写死测试
+            userFriend.setStatus("0");
             userFriendMapper.insertSelective(userFriend);
         }else{
             UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
