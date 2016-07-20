@@ -8,7 +8,9 @@
  */
 package com.ddas.sns.userfriend.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriend.service.UserFriendService;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * ClassName:	FriendsControl
@@ -96,9 +99,23 @@ public class UserFriendController extends BaseController {
      */
     @RequestMapping(value = "/save", method = {RequestMethod.POST})
     @ResponseBody
-    public UserFriend saveUserFriend(UserFriend userFriend, HttpServletRequest httpServletRequest){
-        userFriendService.saveUserFriend(userFriend, getLoginUser(httpServletRequest));
-        return userFriend;
+    public Msg saveUserFriend(UserFriend userFriend, HttpServletRequest httpServletRequest){
+        Msg msg = new Msg();
+        if(StringUtil.isEmpty(userFriend.getStatus()) || !"1".equals(userFriend.getStatus())) {
+            List<UserFriend> list = userFriendService.findUserFriendByUserIdAndFriendId(getLoginUser(httpServletRequest).getUserId(), userFriend.getFriendId()  );
+            if(list != null && list.size() > 0) {
+                msg.setMsg("你已经添加过该好友了！");
+                msg.setSuccessful(true);
+                return msg;
+            }
+        }
+        boolean saveSuccess = userFriendService.saveUserFriend(userFriend, getLoginUser(httpServletRequest));
+        msg.setSuccessful(saveSuccess);
+        if(saveSuccess) {
+            msg.setMsg("添加好友成功！");
+        }
+
+        return msg;
     }
 
     /**

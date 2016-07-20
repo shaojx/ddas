@@ -10,6 +10,7 @@ package com.ddas.sns.userinfo.service;
 
 import com.ddas.common.page.Page;
 import com.ddas.common.util.StringUtil;
+import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userinfo.domain.UserInfo;
@@ -71,7 +72,10 @@ public class UserInfoService {
         if(userInfo==null||userInfo.getUserName()==null||userInfo.getUserPwd()==null){
             return false;
         }
+        String currentDateTime = DateUtil.getCurrentDateString();
         userInfo.setUserId(UUIDUtil.createUUID16());//id
+        userInfo.setCreatedTime(currentDateTime);
+        userInfo.setUpdatedTime(currentDateTime);
         userInfoMapper.insertSelective(userInfo);
         return true;
     }
