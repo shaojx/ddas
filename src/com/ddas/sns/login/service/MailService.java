@@ -18,7 +18,14 @@ import org.springframework.stereotype.Service;
 
 @Service("mailService")
 public class MailService {
-	
+
+    public static String IMG_BASE_URL;
+    public static String MAIL_FROM;
+    public static String ACTIVATE_CONTEXT;
+    public static String RESETPWD_CONTEXT;
+
+    public static StringTemplateGroup templateGroup;
+
 	static{
 		String classpath = MailService.class.getClassLoader().getResource("").getPath();
 		 
@@ -41,26 +48,20 @@ public class MailService {
 			MAIL_FROM = prop.getProperty("mail.from");
 			
 			templateGroup = new StringTemplateGroup("mailTemplates", classpath + "/resources/mailTemplates");
+			templateGroup.setFileCharEncoding("UTF-8");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static String IMG_BASE_URL;
-	public static String MAIL_FROM;
-	public static String ACTIVATE_CONTEXT;
-	public static String RESETPWD_CONTEXT;
-	
-	public static StringTemplateGroup templateGroup;
-	
+
     @Autowired
     private JavaMailSenderImpl mailSender;
     
     private void sendMail(String to, String subject, String body) {
     	MimeMessage mail = mailSender.createMimeMessage();	
     	try {
-    		MimeMessageHelper helper = new MimeMessageHelper(mail, true, "utf-8");
+    		MimeMessageHelper helper = new MimeMessageHelper(mail, true, "UTF-8");
 			helper.setFrom(MAIL_FROM);
 			helper.setTo(to);
 			helper.setSubject(subject);

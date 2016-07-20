@@ -26,6 +26,10 @@
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
 
+    <%--弹出窗--%>
+    <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+
     <style type="text/css">
         #errorP{
             font-size: 13px;
@@ -83,7 +87,7 @@
                             <input type="text" id="emailReset" name="emailReset" class="form-control" style="width: 90%;" placeholder="邮箱" disabled="disabled"/>
                         </div>
                         <div class="row displayNone" id="tipDiv">
-                            <p class="bg-info" style="font-size:13px;font-family: 'Microsoft YaHei', sans-serif;height: 30px;line-height: 30px;">
+                            <p class="bg-info" style="font-size:13px;font-family: 'Microsoft YaHei', sans-serif;height: 30px;line-height: 30px; width: 90%;">
                                 重置密码链接已发送，请注意查收!若没有收到邮件，请30s后重试!
                             </p>
                         </div>

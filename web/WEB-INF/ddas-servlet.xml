@@ -58,6 +58,7 @@
            <mvc:exclude-mapping path="/login/register"/>
            <mvc:exclude-mapping path="/login/identifyUserName"/>
            <mvc:exclude-mapping path="/login/resetpwd"/>
+           <mvc:exclude-mapping path="/login/fetchEmailByUserName"/>
            <bean id="loginInterceptor" class="com.ddas.common.interceptor.LoginRequiredInterceptor"/>
        </mvc:interceptor>
 

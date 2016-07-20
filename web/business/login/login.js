@@ -1,3 +1,10 @@
+var totalCount=30;//30s倒计时
+var countDownTimer=null;//倒计时的timer
+var restBtnOldText=null;//保存 重置按钮的text
+
+
+var delay = 1500;//1.5s delay
+var timer = null;
 $(function () {
     createResetFormValidator();
 
@@ -69,39 +76,116 @@ $(function () {
 
     $("#resetPwdDialog").on("hide.bs.modal",function () {
        $("#tipDiv").hide();
+        $("#resetPwdBtn").removeAttr("disabled");
+        resetBtnStatusAndClearTimer();
     });
 
     $("#resetPwdBtn").click(function () {
         var bv=$('#resetFrom').data("bootstrapValidator").validate();
         if(bv.isValid()){
             $("#tipDiv").show();
+            $(this).attr("disabled","disabled");
+            createCountdownTimer();
+
+            //send email
+            sendEmail();
         }else{
         }
     });
 
-    var lastKeyupTime=null;
-    var delay=2000;//3s delay
-    var timer=null;
     $("#userNameReset").keyup(function () {
-        if(lastKeyupTime){
-          /*  var time=new Date().getTime();
-           if(time-lastKeyupTime>=delay){
-               //get email
-               alert("fetch")
-           }*/
-         if(!timer){
-             timer=setTimeout(function () {
-                 alert("fetch")
-                 timer=null;
-                 lastKeyupTime=null;
-             },delay);
-         }
-        }else{
-            lastKeyupTime=new Date().getTime();
+        if (timer) {
+            clearTimeout(timer);
         }
+        timer = setTimeout(function () {
+            fetchEmailByUserName($("#userNameReset").val());
+        }, delay);
     });
 
+     restBtnOldText=$("#resetPwdBtn").text();//save
 });
+
+function sendEmail() {
+    $.ajax({
+        url:path+"/login/resetpwd",
+        data:{
+            "userName":$("#userNameReset").val(),
+            "email":$("#emailReset").val()
+        },
+        dataType:"json",
+        type:"post",
+        success:function (data) {
+            if (data&&data.successful==true){
+                $.confirm({
+                    title:"",
+                    content:data.msg,
+                    autoClose: 'confirm|3000',
+                    cancelButton:false,
+                    confirm:function(){
+                       // window.top.location.href=path+"/login/gotoLogin";
+                    }
+                });
+            }else{
+                if(data&&data.msg){//发送失败
+                    $.confirm({
+                        title:"",
+                        content:data.msg,
+                     //   autoClose: 'confirm|3000',
+                        cancelButton:false,
+                        confirm:function(){
+                        }
+                    });
+                }
+            }
+        }
+    })
+}
+
+/**
+ * 创建定时器
+ */
+function createCountdownTimer() {
+    var tempCount=totalCount;
+    countDownTimer=setInterval(function () {
+        $("#resetPwdBtn").text(restBtnOldText+"("+tempCount+")");
+        tempCount--;
+        if(tempCount<0){
+           resetBtnStatusAndClearTimer();
+        }
+    },1000)
+}
+/**
+ * 还原 重置按钮 的文本信息以及相应的样式
+ */
+function resetBtnStatusAndClearTimer() {
+    if(countDownTimer){
+        clearInterval(countDownTimer);
+        $("#resetPwdBtn").text(restBtnOldText);
+        $("#resetPwdBtn").removeAttr("disabled");
+    }
+}
+
+/**
+ * 根据用户名查找对应的注册邮箱
+ * @param userName
+ */
+function  fetchEmailByUserName(userName) {
+    if(userName){
+        $.ajax({
+            url:path+"/login/fetchEmailByUserName",
+            data:{
+                "userName":userName
+            },
+            dataType:"json",
+            type:"POST",
+            success:function (data) {
+                if(data&&data.msg){
+                    $("#emailReset").val(data.msg);
+                }
+            }
+        })
+    }
+}
 
 
 function createResetFormValidator(){

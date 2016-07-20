@@ -9,10 +9,13 @@
 package com.ddas.sns.login.control;
 
 import com.ddas.common.Msg;
+import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.springutil.SpringContextUtil;
 import com.ddas.sns.common.BaseController;
+import com.ddas.sns.login.service.MailService;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.service.UserInfoService;
+import com.ddas.sns.util.DESCoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +48,8 @@ public class LoginController extends BaseController {
 
     @Resource
     private UserInfoService userInfoService;
+    @Resource
+    private MailService mailService;
 
     @RequestMapping("/gotoLogin")
     public ModelAndView gotoLogin(HttpServletRequest request) {
@@ -166,8 +171,44 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping("/resetpwd")
-    public String resetPwd(){
-        // TODO: 2016/7/17
-        return "";
+    @ResponseBody
+    public Msg resetPwd(String userName,String email,HttpServletRequest request){
+       Msg msg=new Msg();
+        //先确认用户名与邮箱是否匹配
+        UserInfo userInfo = userInfoService.fetchUserInfoByUserName(userName);
+        if(userInfo==null||email==null||!email.equals(userInfo.getUserEmail())){//不匹配
+            msg.setSuccessful(false);
+            msg.setMsg(SpringContextUtil.getMsgByKey("login.resetPwd.eamilError", getLocal(getCurrentRequest())));
+            return msg;
+        }
+        //发送邮件
+        //1.加密
+      //  String encodedUserName = DESCoder.getEncodedStr(userInfo.getUserName());
+      //  String encodedUserEmail = DESCoder.getEncodedStr(userInfo.getUserEmail());
+        String encodedUserId = DESCoder.getEncodedStr(userInfo.getUserId());
+        mailService.sendResetPwdEmail(userInfo.getUserEmail(),encodedUserId);
+        msg.setSuccessful(true);
+        return msg;
+    }
+
+    /**
+     * 根据用户名来查找对应的注册用户信息
+     * @param userName 用户名
+     * @return
+     */
+    @RequestMapping("/fetchEmailByUserName")
+    @ResponseBody
+    public Msg fetchEmailByUserName(String userName){
+        if(StringUtil.isEmpty(userName)){
+            return new Msg();
+        }
+        UserInfo userInfo= userInfoService.fetchUserInfoByUserName(userName);
+        if(userInfo!=null){
+            Msg msg=new Msg();
+            msg.setMsg(userInfo.getUserEmail());
+            msg.setSuccessful(true);
+            return msg;
+        }
+        return new Msg();
     }
 }

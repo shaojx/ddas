@@ -36,6 +36,9 @@
 <body>
 	<div class="container">
 		<div class="segment">
+			<div class="logo">
+            	<img src="$img_base_url$logo_for_mail.png">
+            </div>
 			<div class="content">
 				<div class="header">
 					密码重置
