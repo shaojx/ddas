@@ -21,6 +21,7 @@ import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import com.sun.xml.internal.bind.v2.TODO;
+import com.sun.xml.internal.messaging.saaj.soap.impl.CDATAImpl;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -95,7 +96,7 @@ public class UserFriendService {
      *@return com.ddas.sns.userfriend.domain.UserFriend
      *@since JDK1.6
      */
-    public UserFriend saveUserFriend(UserFriend userFriend, UserInfo userInfo) {
+    public boolean saveUserFriend(UserFriend userFriend, UserInfo userInfo) {
         String currentDate = DateUtil.getCurrentDateString();
         if (StringUtils.isEmpty(userFriend.getUfId())) {
             userFriend.setUserId(userInfo.getUserId());
@@ -114,7 +115,7 @@ public class UserFriendService {
             userFriendMapper.updateByExampleSelective(userFriend, userFriendCriteria);
         }
 
-        return userFriend;
+        return true;
     }
 
     /**
@@ -147,5 +148,15 @@ public class UserFriendService {
         page.setTotalCount(userFriendBlogMapper.getCount(page));
         page.setDataList(userFriendBlogMapper.queryByPage(page));
         return page;
+    }
+
+    public List<UserFriend> findUserFriendByUserIdAndFriendId(String userId, String friendId) {
+        UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
+        UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        criteria.andFriendIdEqualTo(friendId);
+        List<UserFriend> list = userFriendMapper.selectByExample(userFriendCriteria);
+
+        return list;
     }
 }

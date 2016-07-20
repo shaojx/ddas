@@ -25,7 +25,7 @@ function getUserListExcludeMeData(pageNo){
             type:"POST",
             data:{
                 "currentPage":pageNo,
-                "pageSize":16
+                "pageSize":12
             },
             dataType:"json",
             success:function(data){
@@ -58,7 +58,7 @@ function initUserListPagination(pageData) {
             if (oldPage==newPage) {
                 return ;
             } else {
-                getUserListExcludeMeData(pageData.currentPage);//重新拉取数据
+                getUserListExcludeMeData(newPage);//重新拉取数据
             }
         }
     }
@@ -72,7 +72,7 @@ function initUserListPagination(pageData) {
 function initUserListData(data) {
     var userListDivTemplete = '<div class="col-xs-3 col-md-3">'+
         '<div class="imageDiv">'+
-        '<img alt="140x140" src="${basePath}/common/images/140x140.jpg" class="img-thumbnail"/>'+
+        '<img alt="140x140" src="${basePath}/common/images/people140x140.jpg" class="img-thumbnail"/>'+
         '<p>'+
         '${userNameVal} <a class="btn" href="javascript:void(0)" id="${userId}_addBtn">加好友</a>'+
         '</p>'+
@@ -97,16 +97,18 @@ function addAddBtnClickListener(addUserBtnId, friendId){
                     url:path+"/userFriend/save",
                     type:"POST",
                     data:{
-                        "friendId":friendId
+                        "friendId":friendId,
                     },
                     dataType:"json",
                     success:function(data){
-                        $.confirm({
-                            title:"",
-                            content:"添加好友成功",
-                            cancelButton:false,
-                            autoClose: 'confirm|1000'
-                        })
+                        if(data.successful){
+                            $.confirm({
+                                title:"",
+                                content:data.msg,
+                                cancelButton:false,
+                                autoClose: 'confirm|1000'
+                            });
+                        }
                     }
                 })
             },

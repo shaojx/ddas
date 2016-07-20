@@ -63,6 +63,13 @@
                 <input type="password" class="form-control" name="repeatPwd" placeholder="重复密码" id="repeatPwd"/>
             </DIV>
             <DIV class="form-group width300">
+                <label class="control-label">性别</label>
+                <select id="sex" class="form-control">
+                    <option id="male">男</option>
+                    <option id="female">女</option>
+                </select>
+            </DIV>
+            <DIV class="form-group width300">
                 <label class="control-label">邮 箱</label>
                 <input type="text" class="form-control" name="email" placeholder="邮箱地址" id="email"/>
             </DIV>
