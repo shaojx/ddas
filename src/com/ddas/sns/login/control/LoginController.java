@@ -192,6 +192,24 @@ public class LoginController extends BaseController {
     }
 
     /**
+     * 跳转到重置密码的页面
+     * @param reuqest    请求
+     * @param encodedKey 加密的用户id
+     * @param email      用户的邮箱
+     * @return org.springframework.web.servlet.ModelAndView
+     * @author shaojx
+     * @date 2016/7/22 22:21
+     * @version 1.0
+     * @since 1.6
+     */
+    @RequestMapping("/gotoResetPwdPage")
+    public ModelAndView gotoResetPwdPage(HttpServletRequest reuqest,@RequestParam("key") String encodedKey,String email){
+        ModelAndView modelAndView = containLocal(reuqest);
+        modelAndView.setViewName("login/resetPwdPage");
+        return modelAndView;
+    }
+
+    /**
      * 根据用户名来查找对应的注册用户信息
      * @param userName 用户名
      * @return

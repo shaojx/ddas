@@ -59,6 +59,10 @@
     margin:0 auto;
 }
 
+.all-center{
+    margin:auto auto !important;
+}
+
 .text-span{
     height:30px;
     line-height:30px;

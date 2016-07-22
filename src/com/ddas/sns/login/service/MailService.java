@@ -43,7 +43,7 @@ public class MailService {
 			RESETPWD_CONTEXT = "http://"+prop.getProperty("domain.name")
 								+(prop.getProperty("domain.port")==null?null:":"+prop.getProperty("domain.port"))
 								+(prop.getProperty("context")==null?"":prop.getProperty("context"))+
-								"/login/resetpwd";
+								"/login/gotoResetPwdPage";
 			
 			MAIL_FROM = prop.getProperty("mail.from");
 			

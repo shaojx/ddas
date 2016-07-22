@@ -64,6 +64,9 @@ $(function () {
         };//查询条件初始化
         getFriendPhotoGroupData(userPhotoGroupCondition);
     })
+
+    //点击  我的相册的tab页
+    $("#photoGroupTab").click();
 });
 
 /**
