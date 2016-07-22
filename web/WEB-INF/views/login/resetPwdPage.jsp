@@ -25,6 +25,12 @@
     <%--引入业务JS--%>
     <script type="text/javascript" src="<%=path%>/business/login/resetpwd.js"></script>
     <script type="text/javascript" src="<%=path%>/business/login/language/${local}.js"></script>
+
+    <%--弹出窗--%>
+    <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+
+    <script type="text/javascript" src="<%=path%>/common/md5/md5.min.js"></script>
     <style type="text/css">
         #container{
             position: absolute;
@@ -39,15 +45,16 @@
         <form class="form-horizontal width350 center" id="myForm">
             <div class="form-group ">
                 <label class="control-label">密 码</label>
-                <input type="text" class="form-control" placeholder="密码" id="password" name="password">
+                <input type="password" class="form-control" placeholder="密码" id="password" name="password">
             </div>
             <div class="form-group">
                 <label class="control-label">确认密码</label>
-                <input type="text" class="form-control" placeholder="确认密码" id="repeatPwd" name="repeatPwd">
+                <input type="password" class="form-control" placeholder="确认密码" id="repeatPwd" name="repeatPwd">
             </div>
             <div class="form-group ">
                 <button type="button" class="btn btn-primary col-lg-12" id="resetBtn">确 定</button>
             </div>
+            <input type="hidden" value="${encodedKey}" id="encodedKey">
         </form>
     </div>
 </div>

@@ -10,17 +10,15 @@ $(function () {
         if(!bv.isValid()){
             return ;
         }
-        alert("TODO");//todo
-      /*  $.ajax({
-            url:path+"/login/register?repeatPwd"+md5($("#repeatPwd").val()),
-            data:JSON.stringify({
-                "userName":$("#userName").val(),
-                "userPwd":md5($("#password").val()),
-                "userEmail":$("#email").val()
-            }),
+        $.ajax({
+            url:path+"/login/doResetPwd",
+            data:{
+                "resetPwd":md5($("#password").val()),
+                "repeatPwd":md5($("#repeatPwd").val()),
+                "encodedKey":$("#encodedKey").val()
+            },
             dataType:"json",
             type:"POST",
-            contentType:"application/json",
             success:function (data) {
                 if (data&&data.successful==true){
                     $.confirm({
@@ -38,7 +36,7 @@ $(function () {
                     }
                 }
             }
-        })*/
+        })
     });
 });
 

@@ -47,6 +47,7 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
             HttpSession session = req.getSession(true);
             UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
             if(userInfo==null){
+                System.out.println("userinfo is null");
                 try {
                    // req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);
                     response.getWriter().write("<script type='text/javascript'>window.top.location.href='"+req.getContextPath()+"/login/gotoLogin"+"';</script>");

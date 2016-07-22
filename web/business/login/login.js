@@ -68,7 +68,7 @@ $(function () {
         var userName=$("#userName").val();
        $("#userNameReset").val(userName);
         if(userName){//如果有值 ，先去获取相应的用户的邮箱
-
+            fetchEmailByUserName($("#userNameReset").val());
         }else{
             //等待输入
         }

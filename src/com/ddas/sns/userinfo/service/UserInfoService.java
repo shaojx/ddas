@@ -133,4 +133,22 @@ public class UserInfoService {
         }
         return null;
     }
+
+    /**
+     *更新用户的密码
+     * @param userId 用户id
+     * @param resetPwd 重置的密码
+     *@return int 更新的记录数
+     *@author shaojx
+     *@date 2016/7/22 23:24
+     *@version 1.0
+     *@since 1.6
+     */
+    public int resetPwd(String userId, String resetPwd) {
+        UserInfo record=new UserInfo();
+        record.setUserId(userId);
+        record.setUserPwd(resetPwd);
+        int count = userInfoMapper.updateByPrimaryKeySelective(record);
+        return count;
+    }
 }

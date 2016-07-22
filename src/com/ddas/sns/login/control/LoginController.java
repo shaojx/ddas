@@ -16,6 +16,8 @@ import com.ddas.sns.login.service.MailService;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.service.UserInfoService;
 import com.ddas.sns.util.DESCoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +48,7 @@ import java.util.Observable;
 @RequestMapping("/login")
 public class LoginController extends BaseController {
 
+    private static final Logger LOGGER= LoggerFactory.getLogger(LoginController.class);
     @Resource
     private UserInfoService userInfoService;
     @Resource
@@ -206,7 +209,37 @@ public class LoginController extends BaseController {
     public ModelAndView gotoResetPwdPage(HttpServletRequest reuqest,@RequestParam("key") String encodedKey,String email){
         ModelAndView modelAndView = containLocal(reuqest);
         modelAndView.setViewName("login/resetPwdPage");
+        modelAndView.addObject("encodedKey",encodedKey);
         return modelAndView;
+    }
+
+    /**
+     *重置用户的密码
+     * @param resetPwd 重置的密码
+     * @param repeatPwd 重置密码的repeat
+     * @param encodedKey 加密的用户的id
+     *@return com.ddas.common.Msg
+     *@author shaojx
+     *@date 2016/7/22 23:26
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/doResetPwd")
+    @ResponseBody
+    public Msg doRestPwd(String resetPwd,String repeatPwd,String encodedKey){
+        Msg msg=new Msg();
+        String userId=DESCoder.getDecodedStr(encodedKey);//decode user key (id)
+        if(StringUtil.isEmpty(userId)){
+            msg.setSuccessful(false);
+            msg.setMsg("login.resetPwd.error");
+            LOGGER.error("用户id为空,重置失败!",new IllegalArgumentException());
+        }
+        int count = userInfoService.resetPwd(userId, resetPwd);
+        if(count==1){
+            msg.setSuccessful(true);
+            msg.setMsg(getMsgByKeyViaLocal("login.resetPwd.success"));
+        }
+        return msg;
     }
 
     /**
