@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <%
     String path=request.getContextPath();
@@ -18,6 +19,8 @@
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+    <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
@@ -43,7 +46,7 @@
                     <a href="#panel-tabs1" data-toggle="tab">用户列表</a>
                 </li>
                 <li>
-                    <a href="#panel-tabs2" data-toggle="tab">日志</a>
+                    <a href="#panel-tabs2" data-toggle="tab" id="logTab">日志</a>
                 </li>
                 <li>
                     <a href="#panel-tabs3" data-toggle="tab">相册</a>
@@ -113,66 +116,44 @@
                     </div>
                 </div>
 
+                <%--日志 start--%>
                 <div class="tab-pane " id="panel-tabs2">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <div class="tabbable" style="width: 500px" id="tabs-295323">
+                            <div class="tabbable" id="tabs-295323">
                                 <ul class="nav nav-tabs">
-                                    <li class="active">
+                                    <li class="active" id="myLogTab">
                                         <a href="#panel-324017" data-toggle="tab">我的日志</a>
                                     </li>
-                                    <li>
+                                    <li id="friendsLogTab">
                                         <a href="#panel-8940" data-toggle="tab">朋友的日志</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="panel-324017">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153"
-                                           href="#panel-element-115285">日志分类之我的日志</a>
-                                    </div>
-                                    <div id="panel-element-113" class="panel-collapse in">
-                                        <div class="panel-body">
-                                            我的日志标题是这里
-                                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">
-                                                标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)
-                                            </div>
-                                        </div>
+                            <%--我的日志 start--%>
+                            <div class="tab-pane active" id="panel-324017" style="height: 100%;">
+                                <%--创建日志 --%>
+                                <div class="row" style="margin-top: 5px;margin-bottom: 3px;">
+                                    <div  style="margin-left:85%;">
+                                        <button type="button" id="createMyLog"  class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
+                                            <spring:message code="createLog" text="新建日志"/>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153"
-                                           href="#panel-element-115285">日志分类之我的什么鬼</a>
-                                    </div>
-                                    <div id="panel-element-116" class="panel-collapse in">
-                                        <div class="panel-body">
-                                            我的日志标题是这里吗？是的
-                                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">
-                                                标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                <div id="myLogContentDiv">
                                 </div>
+                                <%--我的日志分页--%>
+                                <ul id="myLogPagnationDiv"></ul>
                             </div>
+                            <%--朋友日志  start--%>
                             <div class="tab-pane" id="panel-8940">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153"
-                                           href="#panel-element-115285">日志分类之我的日志</a>
-                                    </div>
-                                    <div id="panel-element-112" class="panel-collapse in">
-                                        <div class="panel-body">
-                                            朋友的日志标题是这里
-                                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">
-                                                标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div id="myFriendsLogContentDiv">
                                 </div>
+                                <%--我的日志分页--%>
+                                <ul id="myFriendsLogPagnationDiv"></ul>
                             </div>
                         </div>
                     </div>
