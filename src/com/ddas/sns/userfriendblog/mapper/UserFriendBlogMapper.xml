@@ -25,7 +25,7 @@
       FROM user_friend uf
       INNER JOIN user_blog ub
       ON uf.friend_id = ub.user_id
-      AND uf.user_id = ${condition.userId}
+      AND uf.user_id = #{condition.userId}
       ORDER BY ub.created_time
       DESC LIMIT ${condition.start},${condition.end};
   </select>
