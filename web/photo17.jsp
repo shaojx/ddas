@@ -71,9 +71,9 @@
 			opacity: .1;
 		}
 	</style>
-	<script src="<%=path%>/common/jquery/jquery.js"></script>
+	<script src="<%=path%>/common/jquery/jquery1.7.min.js"></script>
 	<%--<script type='text/javascript' src="<%=path%>/common/js/jquery/jquery.min.js"></script>--%>
-	<%--<script type='text/javascript' src="<%=path%>/common/jquery/jquery.mobile.customized.min.js"></script>--%>
+<%--	<script type='text/javascript' src="<%=path%>/common/jquery/jquery.mobile.customized.min.js"></script>--%>
 	<script type='text/javascript' src="<%=path%>/common/jquery/jquery.easing.1.3.js"></script>
 	<script type='text/javascript' src="<%=path%>/common/camera/camera.js"></script>
 	<script>
@@ -93,7 +93,7 @@
 </head>
 <body>
 <div class="fluid_container">
-	<div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+	<div id="camera_wrap_4">
 		<div data-thumb="<%=path%>/common/images/thumbs/bridge.jpg" data-src="/common/images/photo/bridge.jpg">
 		</div>
 		<div data-thumb="<%=path%>/common/images/thumbs/leaf.jpg" data-src="/common/images/photo/leaf.jpg">
