@@ -36,6 +36,9 @@
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
 
+    <%--datatime picker--%>
+    <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
@@ -183,8 +186,13 @@
                             <span class="inline-block width120">出生日期</span>
                         </label>
                         <div class="col-sm-5">
-                            <div class="input-group date form_date width300 pull-left" data-date="1993-09-16T05:25:07Z" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <%--    <div class="input-append date  form_datetime width300 pull-left" data-date="2013-02-21" id="datetimepicker">
                                 <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="add-on"><i class="icon-remove"></i></span>
+                                <span class="add-on"><i class="icon-calendar"></i></span>
+                            </div>--%>
+                           <div  id="datetimepicker" class="input-group date form_date width300 pull-left" data-date="1993-09-16" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                <input class="form-control" size="16" type="text" value="" readonly value="2012-04-19">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                             <input type="hidden" id="dtp_input2" value="" /><br/>
