@@ -22,7 +22,7 @@
       FROM user_friend uf
       INNER JOIN user_photo_group upg
       ON uf.friend_id = upg.user_id
-      AND uf.user_id = ${condition.userId}
+      AND uf.user_id = #{condition.userId}
       ORDER BY upg.updated_time
       DESC LIMIT ${condition.start},${condition.end};
   </select>
@@ -31,6 +31,6 @@
     FROM user_friend uf
     INNER JOIN user_photo_group upg
     ON uf.friend_id = upg.user_id
-    AND uf.user_id = ${condition.userId}
+    AND uf.user_id = #{condition.userId}
   </select>
 </mapper>
