@@ -18,6 +18,7 @@
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
+        var loginUserId = "<%=request.getAttribute("loginUserId")%>"
     </script>
     <%--引入业务的JS--%>
     <script src="<%=path%>/business/paycenter/payCenter.js"></script>
@@ -48,30 +49,29 @@
                 <%--选择充值对象--%>
                 <div class="clear-both divRow">
                     <label class="width120">充值对象:</label>
-                    <input type="radio" name="toWho" style="">
+                    <input type="radio" id="toMe" name="toWho" value="${loginUserId}" checked="checked" style="">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">充给自己</span>
-                    <input type="radio" name="toWho" style="margin-left: 20px; ">
+                    <input type="radio" id="toFriend" name="toWho" value="" style="margin-left: 20px; ">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">充给好友</span>
-                    <select id="myFriends" class="margin-left-10px displayNone">
-                        <option>1</option>
+                    <select id="friendList" class="margin-left-10px displayNone">
                     </select>
                 </div>
 
                 <%--充值金额--%>
                 <div class="clear-both divRow">
                     <label class="width120">选择充值金额:</label>
-                    <input type="radio" name="payValueChoose" style="">
+                    <input type="radio" name="payValueChoose" checked="checked" value="100" style="">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">100<span class="glyphicon glyphicon-usd"></span></span>
-                    <input type="radio" name="payValueChoose" style="margin-left: 20px; ">
+                    <input type="radio" name="payValueChoose" value="200" style="margin-left: 20px; ">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">200<span class="glyphicon glyphicon-usd"></span></span>
-                    <input type="radio" name="payValueChoose" style="margin-left: 20px; ">
+                    <input type="radio" name="payValueChoose" value="500" style="margin-left: 20px; ">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">500<span class="glyphicon glyphicon-usd"></span></span>
-                    <input type="radio" name="payValueChoose" style="margin-left: 20px; ">
+                    <input type="radio" name="payValueChoose" value="1000" style="margin-left: 20px; ">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">1000<span class="glyphicon glyphicon-usd"></span></span>
                 </div>
@@ -83,7 +83,7 @@
 
                 <div class="clear-both divRow">
                     <label class="width120">支付方式:</label>
-                    <span><input type="radio" name="payMethod" value="1"><img class="width200" src="/common/images/papy.jpg"></span>
+                    <span><input type="radio" name="payMethod" checked="checked" value="1"><img class="width200" src="/common/images/papy.jpg"></span>
                 </div>
 
                 <div class="row divRow">

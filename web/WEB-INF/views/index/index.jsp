@@ -16,6 +16,8 @@
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <%--引入自定义样式--%>
     <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <script type="text/javascript">
@@ -163,7 +165,7 @@
                   <!-- sidebar-widget -->
                   <div class="sidebar-widget">
                       <h3 class="sidebar-title">Recommend</h3>
-                      <div class="widget-container">
+                      <div class="widget-container" id="recommendContentDiv">
                           <article class="widget-post">
                               <div class="post-image">
                                   <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>

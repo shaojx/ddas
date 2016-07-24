@@ -85,7 +85,7 @@ public class UserFriendController extends BaseController {
     public ModelAndView goToPhotoPage() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("photo/photo");
+        modelAndView.setViewName("photo/photo1");
         return modelAndView;
 }
 

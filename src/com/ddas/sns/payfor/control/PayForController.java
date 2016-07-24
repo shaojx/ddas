@@ -1,7 +1,9 @@
 package com.ddas.sns.payfor.control;
 
 import com.ddas.common.Msg;
+import com.ddas.sns.common.BaseController;
 import com.ddas.sns.payfor.service.PayService;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PaymentExecution;
 import com.paypal.base.rest.APIContext;
@@ -17,6 +19,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	PayForController
@@ -28,7 +31,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/payfor")
-public class PayForController {
+public class PayForController extends BaseController{
     private static  final Logger LOGGER= LoggerFactory.getLogger(PayForController.class);
     private static final String clientID = "AdXFF0sPxNMYjNltGOGlwfbBvqFrsql7fOBv-_5ww0V4izpmmgzrCArQGblGhYoGX_IB2LrkpBavEs7c";
     private static final String clientSecret = "EMef1NW1OGzzHn-86cjxfXTEecNTEc3dklDRVQ9TwWKNUM1SnqzgfSjaNoACkaurSWsl355GVAEza-QD";
@@ -44,8 +47,11 @@ public class PayForController {
      *@since 1.6
      */
     @RequestMapping("/gotoIndex")
-    public String gotoIndex(){
-        return "payfor/paycenter";
+    public ModelAndView gotoIndex(HttpServletRequest httpServletRequest){
+        UserInfo loginUser = getLoginUser(httpServletRequest);
+        ModelAndView mav = new ModelAndView("payfor/paycenter");
+        mav.addObject("loginUserId", loginUser.getUserId());
+        return mav;
     }
 
     /**

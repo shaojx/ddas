@@ -166,7 +166,7 @@ function initMyPhotoGroupData(data) {
 function  addClickMyLogoListener(groupId) {
     if(groupId){
         $("#myPhoto_logo_"+groupId).click(function () {
-            $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?photoId="+groupId);
+            $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?groupId="+groupId);
         });
     }
 }
@@ -267,7 +267,7 @@ function initFriendPhotoGroupData(data) {
 function  addClickFriendLogoListener(groupId) {
     if(groupId){
         $("#friendPhoto_logo_"+groupId).click(function () {
-           $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?photoId="+groupId);
+           $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?groupId="+groupId);
         });
     }
 }

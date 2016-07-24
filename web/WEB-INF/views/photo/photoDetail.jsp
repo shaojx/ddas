@@ -2,6 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
     String path=request.getContextPath();
+    String groupId=(String)request.getAttribute("groupId");
 %>
 <html>
 <head>
@@ -17,15 +18,20 @@
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script type="text/javascript" src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet">
+    <%--图片轮播--%>
+    <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <script src="<%=path%>/common/layer/js/layer.min.js"></script>
+
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
+        var groupId = "<%=groupId%>";
     </script>
 
     <script type="text/javascript" src="<%=path%>/business/photo/photoDetail.js"></script>
-
     <style type="text/css">
         .row img{
             margin-left: 25px;
@@ -39,15 +45,15 @@
 <body>
 <p class="bg-info" style="height: 30px;line-height: 30px;">照片详情</p>
 <div class="container-fluid">
-    <div class="row">
-        <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
+    <div class="row" id="photoDiv">
+        <img src="<%=path%>/common/images/140x140.jpg" alt="140x140" class="img-rounded">
         <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
         <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
         <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
         <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
     </div>
     <%--分页插件--%>
-    <ul id="pagnation"></ul>
+    <ul class="pagination" id="photoPaginationDiv"></ul>
 </div>
 
 <%--设置封面的div--%>
@@ -56,6 +62,14 @@
     <span class="inline-block">设置为封面</span>
 </div>
 
+<%--<div id="imgs" class="imgs">
+    <img src="<%=path%>/common/images/layer/1.jpg" layer-pname="站长素材 - 1">
+    <img src="<%=path%>/common/images/layer/2.jpg" layer-pname="站长素材 - 2">
+    <img src="<%=path%>/common/images/layer/3.jpg" layer-pname="站长素材 - 3">
+    <img src="<%=path%>/common/images/layer/4.jpg" layer-pname="站长素材 - 4">
+</div>--%>
+<script>
+</script>
 <input type="hidden" value="${groupId}" id="groupId"/>
 </body>
 </html>

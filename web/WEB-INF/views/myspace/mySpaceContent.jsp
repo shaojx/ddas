@@ -17,6 +17,8 @@
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.js" type="text/javascript"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/datePickerLocales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <%--分页--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">

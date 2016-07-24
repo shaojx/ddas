@@ -8,12 +8,14 @@
  */
 package com.ddas.sns.userphoto.control;
 
+import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userphoto.service.UserPhotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -62,7 +64,7 @@ public class UserPhotoController extends BaseController{
 
     /**
      * 跳转到相册的详情页
-     * @param photoId
+     * @param groupId
      * @return
      */
     @RequestMapping("/photoDetail")
@@ -71,5 +73,18 @@ public class UserPhotoController extends BaseController{
         modelAndView.setViewName("photo/photoDetail");
         modelAndView.addObject("groupId",groupId);
         return modelAndView;
+    }
+
+    @RequestMapping("/queryRecordsByPage")
+    @ResponseBody
+    public Page queryRecordsByPage(int currentPage, int pageSize, String groupId){
+        Page page = null;
+        try{
+            page = userPhotoService.queryRecordsByPage(currentPage, pageSize, groupId);
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return page;
     }
 }
