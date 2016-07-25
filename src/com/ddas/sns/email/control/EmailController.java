@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.email.control;
 
+import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.email.domain.UserEmail;
 import com.ddas.sns.email.service.EmailService;
@@ -16,7 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,8 +49,10 @@ public class EmailController extends BaseController{
      *@since 1.6
      */
     @RequestMapping("/gotoIndex")
-    public String gotoEmail(){
-        return "email/index";
+    public ModelAndView gotoEmail(HttpServletRequest httpServletRequest){
+        ModelAndView mav = new ModelAndView("email/index");
+        mav.addObject("currentLoginUserId", getLoginUser(httpServletRequest).getUserId());
+        return mav;
     }
 
     @RequestMapping("/save")
@@ -59,6 +64,12 @@ public class EmailController extends BaseController{
             LOGGER.error(e.getMessage(), e);
         }
         return userEmail;
+    }
+
+    @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public Page getGroupList(int currentPage, int pageSize, String emailReceiver, String emailSender, HttpServletRequest httpServletRequest){
+        return emailService.queryRecordsByPage(currentPage, pageSize, emailReceiver, emailSender, getLoginUser(httpServletRequest));
     }
 
 }

@@ -9,9 +9,11 @@
 package com.ddas.sns.email.service;
 
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.email.domain.UserEmail;
+import com.ddas.sns.email.domain.UserEmailCriteria;
 import com.ddas.sns.email.mapper.UserEmailMapper;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.domain.UserBlogCriteria;
@@ -46,6 +48,27 @@ public class EmailService {
         userEmail.setCreatedTime(currentDataString);
         userEmail.setUpdatedTime(currentDataString);
         userEmailMapper.insertSelective(userEmail);
+    }
+
+    public Page queryRecordsByPage(int currentPage, int pageSize, String emailReceiver, String emailSender, UserInfo loginUser){
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        UserEmailCriteria userEmailCriteria = new UserEmailCriteria();
+        userEmailCriteria.setOrderByClause("created_time");
+        userEmailCriteria.setLimitStart(page.getPageStart());
+        userEmailCriteria.setLimitEnd(pageSize);
+        UserEmailCriteria.Criteria criteria = userEmailCriteria.createCriteria();
+        if(StringUtil.isNotEmpty(emailSender)) {//如果emailSender不为空，那么就查询LoginUser发送的邮件
+            criteria.andEmailSenderEqualTo(loginUser.getUserId());
+        }else if(StringUtil.isNotEmpty(emailReceiver)) {
+            criteria.andEmailReceiverEqualTo(loginUser.getUserId());
+        }
+        if(currentPage==1){//如果是当前第一页，则要求总数
+            page.setTotalCount(userEmailMapper.countByExample(userEmailCriteria));
+        }
+        page.setDataList(userEmailMapper.selectByExample(userEmailCriteria));
+        return page;
     }
 
 }
