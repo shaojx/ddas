@@ -15,8 +15,13 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
+    <%--分页--%>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
+        var currentLoginUserId = "<%=request.getAttribute("currentLoginUserId")%>"
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
     <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
@@ -30,7 +35,7 @@
 <div class="container-fluid">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#SendEmailBox" data-toggle="tab">发件箱</a></li>
+            <li class="active"><a href="#SendEmailBox" id="sendMailTab" data-toggle="tab">发件箱</a></li>
             <li ><a href="#ReceiveEmailBox" data-toggle="tab">收件箱</a></li>
             <li ><a href="#CreateEmail" data-toggle="tab">新建邮件</a></li>
         </ul>
@@ -39,15 +44,13 @@
     <div class="row">
         <div class="tab-content margin-top-10px">
             <div role="tabpanel" class="tab-pane active" id="SendEmailBox">
-                    <form class="form-horizontal" role="form">
-                        <div class="panel panel-default ">
-                            <img src="/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                            <span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">
-                                你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！
-                        </span>
-                            <div class="margin-left-10px"><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
-                        </div>
+                    <form id="sendEmailListDiv" class="form-horizontal" role="form">
                     </form>
+                <div class="col-md-12">
+                    <!--分页控件-->
+                    <ul class="pagination" id="emailSendPaginationDIV">
+                    </ul>
+                </div>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="ReceiveEmailBox">

@@ -14,16 +14,19 @@ import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.email.domain.UserEmail;
 import com.ddas.sns.email.domain.UserEmailCriteria;
+import com.ddas.sns.email.dto.UserEmailDto;
 import com.ddas.sns.email.mapper.UserEmailMapper;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.domain.UserBlogCriteria;
 import com.ddas.sns.userblog.mapper.UserBlogMapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +43,9 @@ public class EmailService {
 
     @Resource
     private UserEmailMapper userEmailMapper;
+
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
     public void save(UserEmail userEmail, UserInfo userInfo){
         userEmail.setUeId(UUIDUtil.createUUID16());
@@ -67,7 +73,27 @@ public class EmailService {
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userEmailMapper.countByExample(userEmailCriteria));
         }
-        page.setDataList(userEmailMapper.selectByExample(userEmailCriteria));
+        List<UserEmail> list = userEmailMapper.selectByExample(userEmailCriteria);
+        List<UserEmailDto> dataList = new ArrayList<UserEmailDto>();
+        for (UserEmail userEmail : list) {
+            UserEmailDto userEmailDto = new UserEmailDto();
+            userEmailDto.setUeId(userEmail.getUeId());
+            userEmailDto.setCreatedTime(userEmail.getCreatedTime());
+            userEmailDto.setEmailContent(userEmail.getEmailContent());
+            if(StringUtil.isNotEmpty(userEmail.getEmailSender())) {
+                UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userEmail.getEmailSender());
+                userEmailDto.setEmailSenderName(userInfo.getUserName());
+                userEmailDto.setEmailSender(userEmail.getEmailSender());
+            }
+            if(StringUtil.isNotEmpty(userEmail.getEmailReceiver())) {
+                UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userEmail.getEmailReceiver());
+                userEmailDto.setEmailReceiverName(userInfo.getUserName());
+                userEmailDto.setEmailReceiver(userEmail.getEmailReceiver());
+            }
+
+            dataList.add(userEmailDto);
+        }
+        page.setDataList(dataList);
         return page;
     }
 

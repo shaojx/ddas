@@ -136,14 +136,14 @@ function initEmailSendData(data) {
     var emailSendDivTemplete = '<div class="panel panel-default ">'+
         '<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
         '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">'+
-        '${emailContent}'+
+        'emailContentVal'+
         '</span>'+
         '<div class="margin-left-10px"><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}</div></div>'+
         '</div>';
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = emailSendDivTemplete.replace("${basePath}", path).replace("${emailReceiver}", _data.emailReceiver).replace(/ufIdVal/g, _data.ufId).replace("${createdTime}", _data.createdTime);
+        var _replace = emailSendDivTemplete.replace("${basePath}", path).replace("${emailReceiver}", _data.emailReceiverName).replace(/emailContentVal/g, _data.emailContent).replace("${createdTime}", _data.createdTime);
         $("#sendEmailListDiv").append(_replace);
     }
 }

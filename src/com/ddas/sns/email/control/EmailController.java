@@ -69,7 +69,13 @@ public class EmailController extends BaseController{
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Page getGroupList(int currentPage, int pageSize, String emailReceiver, String emailSender, HttpServletRequest httpServletRequest){
-        return emailService.queryRecordsByPage(currentPage, pageSize, emailReceiver, emailSender, getLoginUser(httpServletRequest));
+        Page page = new Page();
+        try{
+            page = emailService.queryRecordsByPage(currentPage, pageSize, emailReceiver, emailSender, getLoginUser(httpServletRequest));
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+        return page;
     }
 
 }
