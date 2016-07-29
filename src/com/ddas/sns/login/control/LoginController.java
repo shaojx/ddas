@@ -18,6 +18,7 @@ import com.ddas.sns.userinfo.service.UserInfoService;
 import com.ddas.sns.util.DESCoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -139,11 +140,48 @@ public class LoginController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 跳转到首页，清除session中的user信息
+     *
+     * @return java.lang.String
+     * @Author shaojunxiang
+     * @Date 2016/7/8 16:34
+     * @since JDK1.6
+     */
+    @RequestMapping("/out")
+    @ResponseBody
+    public Msg logOut(HttpServletRequest request) {
+        request.getSession(true).removeAttribute("userInfo");
+        Msg msg = new Msg();
+        msg.setSuccessful(true);
+
+        return msg;
+    }
+
+    /**
+     * 跳转到登录页面
+     *
+     * @return java.lang.String
+     * @Author shaojunxiang
+     * @Date 2016/7/8 16:34
+     * @since JDK1.6
+     */
+    @RequestMapping("/loginPage")
+    public ModelAndView gotoLoginPage(HttpServletRequest request) {
+        ModelAndView modelAndView = withLocal(request, "login/login");
+        return modelAndView;
+    }
 
     @RequestMapping("/register")
     @ResponseBody
     public Msg register(@RequestBody UserInfo userInfo, String repeatPwd, HttpServletRequest request) {
-        boolean save = userInfoService.save(userInfo);
+        boolean save = false;
+        try {
+            save = userInfoService.save(userInfo);
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+
         if (save) {
             Msg msg = new Msg();
             Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);

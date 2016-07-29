@@ -24,6 +24,28 @@ $(function () {
         $("#content_iframe").attr("src",path+"/email/gotoIndex");
     });
 
+    //退出  点击事件
+    $("#logoutBtn").click(function () {
+        $.confirm({
+            theme: 'black',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            title:false,
+            content: '确定要退出么？ <br>期待您下次再来!',
+            confirm: function(){
+                $.ajax({
+                    url:path+"/login/out",
+                    type:"POST",
+                    data:{},
+                    dataType:"json",
+                    success:function(){
+                        window.top.location.href=path+"/login/loginPage";//跳转登陆页
+                    }
+                })
+            }
+        })
+    });
+
     init();
 });
 

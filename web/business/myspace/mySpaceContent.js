@@ -7,14 +7,14 @@ var userBlogGroupData;//日志分组
 var clickedFriendBlogCommentId=null;//保存点击"评论"的id(朋友的日志 )
 $(function () {
 
-    //时间选择器
+/* 有Error   //时间选择器
     $(".form_date").datetimepicker({
         format: "yyyy-MM-dd",
         autoclose: true,
         todayBtn: true,
         startView: 2,
         minView: 2
-    });
+    });*/
     //创建日志
     /*$("#createMyLog").modal("show");*/
     /**

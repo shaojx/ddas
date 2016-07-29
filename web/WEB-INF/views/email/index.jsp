@@ -36,7 +36,7 @@
     <div class="row">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#SendEmailBox" id="sendMailTab" data-toggle="tab">发件箱</a></li>
-            <li ><a href="#ReceiveEmailBox" data-toggle="tab">收件箱</a></li>
+            <li ><a href="#ReceiveEmailBox" id="receiveMailTab" data-toggle="tab">收件箱</a></li>
             <li ><a href="#CreateEmail" data-toggle="tab">新建邮件</a></li>
         </ul>
     </div>
@@ -54,15 +54,13 @@
             </div>
 
             <div role="tabpanel" class="tab-pane" id="ReceiveEmailBox">
-                <form class="form-horizontal" role="form">
-                    <div class="panel panel-default ">
-                        <img src="/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">
-                        <span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">
-                                你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！你好a！
-                        </span>
-                        <div class="margin-left-10px"><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">时间：2016-06-26-14:40:52</div></div>
-                    </div>
+                <form id="receiveEmailListDiv" class="form-horizontal" role="form">
                 </form>
+                <div class="col-md-12">
+                    <!--分页控件-->
+                    <ul class="pagination" id="emailReceivePaginationDIV">
+                    </ul>
+                </div>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="CreateEmail">

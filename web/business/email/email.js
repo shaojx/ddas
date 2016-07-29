@@ -12,9 +12,17 @@ var sendEmailCondition = {
     pageNo:1,
     emailSender:currentLoginUserId
 }
+var receiveEmailCondition = {
+    pageNo:1,
+    emailReceiver:currentLoginUserId
+}
 $(function() {
     $("#sendMailTab").click(function () {
         getSendEmailData(sendEmailCondition);
+    })
+    
+    $("#receiveMailTab").click(function () {
+        getReceiveEmailData(receiveEmailCondition);
     })
 
     getMyFriendData(userFriendCondition);//取到好友列表
@@ -75,7 +83,7 @@ function getMyFriendData(condition){
 function getSendEmailData(condition){
     $("#sendEmailListDiv").html("");//清空数据
     var loader=SLLib.loader({
-        ele:"#sendMailTab",
+        ele:"#sendEmailListDiv",
         spinner:"spinner2",
         height:"500px"
     });
@@ -145,5 +153,84 @@ function initEmailSendData(data) {
         var _data = list[index];
         var _replace = emailSendDivTemplete.replace("${basePath}", path).replace("${emailReceiver}", _data.emailReceiverName).replace(/emailContentVal/g, _data.emailContent).replace("${createdTime}", _data.createdTime);
         $("#sendEmailListDiv").append(_replace);
+    }
+}
+
+/**
+ * 获取我的收到邮件的当前页的数据
+ * @param pageNo 分页
+ */
+function getReceiveEmailData(condition){
+    $("#receiveEmailListDiv").html("");//清空数据
+    var loader=SLLib.loader({
+        ele:"#receiveEmailListDiv",
+        spinner:"spinner2",
+        height:"500px"
+    });
+    loader.start();
+    if(condition.pageNo){
+        $.ajax({
+            url:path+"/email/queryRecordsByPage",
+            type:"POST",
+            data:{
+                "currentPage":condition.pageNo,
+                "pageSize":4,
+                "emailReceiver":condition.emailReceiver
+            },
+            dataType:"json",
+            success:function(data){
+                loader.stop();
+                if(data.dataList.length < 1) {
+                    $("#emailReceivePaginationDIV").html("");//清空页码
+                    return; //如果没有查询到数据，就不分页
+                }
+                if(condition.pageNo==1){//如果是第一页，则初始化分页
+                    initEmailReceivePagination(data);
+                }
+                initEmailReceiveData(data);
+            }
+        })
+    }
+}
+/**
+ * 初始化分页条
+ * @param pageData
+ */
+function initEmailReceivePagination(pageData) {
+    var pageIndex=pageData.currentPage;
+    var totalPages=pageData.totalPages;
+    var options = {
+        alignment:"center",//居中显示
+        currentPage: pageIndex,//当前页数
+        totalPages: totalPages,//总页数 注意不是总条数
+        bootstrapMajorVersion:3,
+        onPageChanged: function(event,oldPage,newPage){
+            if (oldPage==newPage) {
+                return ;
+            } else {
+                sendEmailCondition.pageNo = newPage;
+                getSendEmailData(sendEmailCondition); //重新拉取数据
+            }
+        }
+    }
+    $("#emailSendPaginationDIV").bootstrapPaginator(options);
+}
+/**
+ * 初始化我的好友的数据
+ * @param data
+ */
+function initEmailReceiveData(data) {
+    var emailReceiveDivTemplete = '<div class="panel panel-default ">'+
+        '<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
+        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">'+
+        'emailContentVal'+
+        '</span>'+
+        '<div class="margin-left-10px"><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}</div></div>'+
+        '</div>';
+    var list = data.dataList;
+    for (var index in list) {
+        var _data = list[index];
+        var _replace = emailReceiveDivTemplete.replace("${basePath}", path).replace("${emailReceiver}", _data.emailReceiverName).replace(/emailContentVal/g, _data.emailContent).replace("${createdTime}", _data.createdTime);
+        $("#receiveEmailListDiv").append(_replace);
     }
 }

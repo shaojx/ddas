@@ -30,7 +30,7 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
 
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse response,
 			Object handler ) throws Exception {
-      /*  ReloadablePropertiesUtil reloadablePropertiesUtil=ReloadablePropertiesUtil.getInstance("resources/config.properties");
+        ReloadablePropertiesUtil reloadablePropertiesUtil=ReloadablePropertiesUtil.getInstance("resources/config.properties");
         String excludeURLs = reloadablePropertiesUtil.getPropertyByKey("excludeURLs");
         String requestURL=req.getRequestURL().toString();
         String[] segs = StringUtil.split(excludeURLs, ",");
@@ -40,9 +40,9 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
                 matchUrl=requestURL;
                 break;
             }
-        }*/
+        }
         System.out.println(req.getRequestURL().toString());
-      /* if(matchUrl==null){//如果这个请求的URL不在excludeURLs中，则拦截*/
+       if(matchUrl==null){//如果这个请求的URL不在excludeURLs中，则拦截*/
             //用户登录判断
             HttpSession session = req.getSession(true);
             UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
@@ -56,8 +56,8 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
                 }
                 return false;
             }
-       /*    return true;
-        }*/
+           return true;
+        }
         return true;
 	}
 
