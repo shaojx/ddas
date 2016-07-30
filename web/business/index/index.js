@@ -133,3 +133,47 @@ function addRecommendAddBtnClickListener(addUserBtnId, friendId){
     })
 
 }
+
+/**
+ * 照片弹出
+ * @param groupId
+ */
+function showPhotos(groupId) {
+   if(groupId){
+       $.ajax(path+'/userPhoto/queryRecordsByPage',{
+           data:{
+               "groupId":groupId,
+               "currentPage":1,
+               "pageSize":10000
+           },
+           dataType:"json",
+           type:"post",
+           success:function(data){
+               parsing(data);
+           }
+       });
+   }
+
+   var parsing=function(data){
+       var parsedJson={
+           "title": "Photo",
+           "id": 99935,
+           "start": 0,
+           "data":[],
+       };
+       for(var index in data.dataList){
+           var _data=data.dataList[index];
+           parsedJson.data.push({
+               "alt": _data.photoDescription,
+               "pid": _data.upId,
+               "src": path+_data.photoUrl,
+               "thumb": path+_data.thumbnailurl
+           })
+       }
+       layer.photos({
+           area: '500px',
+           offset:($(window).height() - 500)/2+"px",
+           photos:parsedJson
+       });
+   }
+}

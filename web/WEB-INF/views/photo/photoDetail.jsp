@@ -22,7 +22,7 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet">
     <%--图片轮播--%>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
-    <script src="<%=path%>/common/layer/js/layer.min.js"></script>
+    <script src="<%=path%>/common/layer/js/layer.js"></script>
 
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
@@ -39,6 +39,12 @@
         }
         #txtDiv span{
             margin-top: 60px;
+        }
+
+        /*设置照片的大小 */
+        #photoDiv img{
+            height: 140px;
+            width: 140px;
         }
     </style>
 </head>

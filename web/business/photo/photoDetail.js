@@ -88,15 +88,29 @@ function initPhotoData(data) {
         var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl);
         $("#photoDiv").append(_replace);
     };
-    layer.use('extend/layer.ext.js', function(){
+
+    $("#photoDiv").find("img").dblclick(function(){
+       if(window.top.showPhotos){
+           window.top.showPhotos(groupId);
+       }
+    });
+
+ /*   layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+        layer.photos({
+            photos: '#photoDiv'
+        });
+    });*/
+
+    /* layer.use('extend/layer.ext.js', function(){
         //初始加载即调用，所以需放在ext回调里
         layer.ext = function(){
             layer.photosPage({
                 //html:'<div style="padding:20px;">这里传入自定义的html<p>相册支持左右方向键，支持Esc关闭</p><p>另外还可以通过异步返回json实现相册。更多用法详见官网。</p><p>'+ unescape("B5教程网www.bcty365.com") +'</p><p id="change"></p></div>',
                 title: '快捷模式-获取页面元素包含的所有图片',
                 //id: 100, //相册id，可选
-                parent:'#photoDiv'
+                //parent:'#photoDiv'
+                parent:window.top.document.body
             });
         };
-    });
+    });*/
 }
