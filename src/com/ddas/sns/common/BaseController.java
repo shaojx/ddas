@@ -3,6 +3,8 @@ package com.ddas.sns.common;
 import com.ddas.common.util.springutil.SpringContextUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import org.codehaus.janino.Mod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,7 +23,7 @@ import java.util.Locale;
  * @since JDK 1.6
  */
 public class BaseController {
-
+    private static  final Logger LOGGER= LoggerFactory.getLogger(BaseController.class);
 
     /**
      *返回当前的local对应的字符串
@@ -85,6 +87,7 @@ public class BaseController {
      *@since 1.6
      */
     public UserInfo getLoginUser(HttpServletRequest request){
+        LOGGER.error("CurrentLoginUserName:" + ((UserInfo) request.getSession(true).getAttribute("userInfo")).getUserName());
         return (UserInfo) request.getSession(true).getAttribute("userInfo");
     }
 

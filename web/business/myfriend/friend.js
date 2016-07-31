@@ -128,7 +128,7 @@ $(function() {
 		modal.find('#friendList').children('#'+ friendId).attr("selected", true)
 	})
 
-
+	//发送邮件的点击事件
 	$("#sendEmailBtn").click(function () {
 		var emailContent = $("#emailContent").val();
 		var emailReceiver = $("#friendList").children('option:selected').attr("id");
@@ -316,9 +316,9 @@ function getMyFriendData(condition){
 			data:{
 				"currentPage":condition.pageNo,
 				"pageSize":4,
-				"friendNameCondition":condition.friendNameCondition,
+				"friendName":condition.friendNameCondition,
 				"status":condition.status,
-				"userFriendGroupCondition":condition.userFriendGroupCondition
+				"groupId":condition.userFriendGroupCondition
 			},
 			dataType:"json",
 			success:function(data){
@@ -329,6 +329,8 @@ function getMyFriendData(condition){
 				}
 				if(condition.pageNo==1){//如果是第一页，则初始化分页
 					initMyFriendPagination(data);
+					//提前加载所有好友的List，主要用在email选择好友
+					loadMyAllFriendList();
 				}
 				initMyFriendData(data);
 			}
@@ -467,8 +469,8 @@ function getMyFriendApplyData(condition){
 			data:{
 				"currentPage":condition.pageNo,
 				"pageSize":4,
-				"friendNameCondition":condition.friendNameCondition,
-				"status":condition.status,
+				"friendName":condition.friendNameCondition,
+				"status":condition.status
 			},
 			dataType:"json",
 			success:function(data){
@@ -576,18 +578,17 @@ function initMyFriendApplyData(data) {
 	$("a[name='allowAdd']").click(function () {
 		var ufId = $(this).attr("data-ufId");
 		$.ajax({
-			url:path+"/userFriend/save",
+			url:path+"/userFriend/saveNewFriend",
 			type:"POST",
 			data:{
 				"ufId":ufId,
-				"groupId":"1",
-				"status":"1"
+				"groupId":"1"
 			},
 			dataType:"json",
-			success:function(){
+			success:function(data){
 				$.confirm({
 					title:"",
-					content:"添加好友成功!",
+					content:data.msg,
 					autoClose: 'confirm|2000',
 					cancelButton:false
 				});
@@ -634,7 +635,7 @@ function initMyFriendApplyData(data) {
 function loadMyAllFriendList() {
 	var userAllFriendCondition = {
 		pageNo:1,
-		friendNameCondition:"",
+		friendName:"",
 		status:CONST_FRIEND,
 	};//查询条件初始化
 
@@ -653,7 +654,7 @@ function getAllMyFriendData(condition){
 			data:{
 				"currentPage":condition.pageNo,
 				"pageSize":1000,
-				"friendNameCondition":condition.friendNameCondition,
+				"friendName":condition.friendNameCondition,
 				"status":condition.status,
 			},
 			dataType:"json",

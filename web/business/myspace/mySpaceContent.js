@@ -336,7 +336,7 @@ function initMyLogData(data){
 function getMyFriendsLogData(pageNo){
     $("#myFriendsLogContentDiv").html("");//清空数据
     var loader=SLLib.loader({
-        ele:"#panel-324017",
+        ele:"#myFriendsLogContentDiv",
         spinner:"spinner2",
         height:"500px"
     });
@@ -352,11 +352,12 @@ function getMyFriendsLogData(pageNo){
             dataType:"json",
             success:function(data){
                 loader.stop();
-
-                if(pageNo==1){//如果是第一页，则初始化分页
-                    initMyFriendsLogPagnation(data);
+                if(data.dataList && data.dataList.size() > 0) {
+                    if(pageNo==1){//如果是第一页，则初始化分页
+                        initMyFriendsLogPagnation(data);
+                    }
+                    initMyFriendsLogData(data);
                 }
-                initMyFriendsLogData(data);
             }
         })
     }

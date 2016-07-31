@@ -9,6 +9,7 @@
 package com.ddas.sns.usergroup.control;
 
 import com.ddas.common.page.Page;
+import com.ddas.sns.common.BaseController;
 import com.ddas.sns.usergroup.domain.UserGroup;
 import com.ddas.sns.usergroup.service.UserGroupService;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	FriendsControl
@@ -30,7 +32,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/userGroup")
-public class UserGroupController {
+public class UserGroupController extends BaseController{
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserGroupController.class);
 
     @Resource
@@ -53,8 +55,8 @@ public class UserGroupController {
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public Page getGroupList(int currentPage, int pageSize, String useProperty){
-        return userGroupService.queryRecordsByPage(currentPage, pageSize, useProperty);
+    public Page getGroupList(int currentPage, int pageSize, String useProperty, HttpServletRequest httpServletRequest){
+        return userGroupService.queryRecordsByPage(currentPage, pageSize, useProperty, getLoginUser(httpServletRequest));
     }
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})

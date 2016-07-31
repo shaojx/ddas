@@ -15,10 +15,13 @@ import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.usergroup.domain.UserGroup;
 import com.ddas.sns.usergroup.domain.UserGroupCriteria;
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ClassName:	UserGroupService
@@ -76,7 +79,7 @@ public class UserGroupService {
      *@Date 2016/7/5 10:53
      *@since JDK1.7
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize, String useProperty) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, String useProperty, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -86,7 +89,10 @@ public class UserGroupService {
         userGroupCriteria.setLimitEnd(pageSize);
         UserGroupCriteria.Criteria criteria = userGroupCriteria.createCriteria();
         criteria.andUsePropertyEqualTo(useProperty);
-
+        List<String> userIdCondition = new ArrayList<String>();
+        userIdCondition.add(userInfo.getUserId());
+        userIdCondition.add("1000");// 1000表示系统中针对Group，系统默认分组的角色ID
+        criteria.andUserIdIn(userIdCondition);
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userGroupMapper.countByExample(userGroupCriteria));
         }

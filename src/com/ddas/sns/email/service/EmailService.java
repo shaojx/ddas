@@ -47,16 +47,20 @@ public class EmailService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
+    //发送邮件
     public void save(UserEmail userEmail, UserInfo userInfo){
+        if(StringUtil.isNotEmpty(userEmail.getEmailReceiver())) {
+            userEmail.setEmailSender(userInfo.getUserId());
+            userEmail.setEmailReceiver(userEmail.getEmailReceiver());
+        }
         userEmail.setUeId(UUIDUtil.createUUID16());
-        userEmail.setEmailSender(userInfo.getUserId());
         String currentDataString = DateUtil.getCurrentDateString();
         userEmail.setCreatedTime(currentDataString);
         userEmail.setUpdatedTime(currentDataString);
         userEmailMapper.insertSelective(userEmail);
     }
 
-    public Page queryRecordsByPage(int currentPage, int pageSize, String emailReceiver, String emailSender, UserInfo loginUser){
+    public Page queryRecordsByPage(int currentPage, int pageSize, UserEmail userEmailObj, UserInfo loginUser){
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -65,9 +69,9 @@ public class EmailService {
         userEmailCriteria.setLimitStart(page.getPageStart());
         userEmailCriteria.setLimitEnd(pageSize);
         UserEmailCriteria.Criteria criteria = userEmailCriteria.createCriteria();
-        if(StringUtil.isNotEmpty(emailSender)) {//如果emailSender不为空，那么就查询LoginUser发送的邮件
+        if(StringUtil.isNotEmpty(userEmailObj.getEmailSender())) {//如果emailSender不为空，那么就查询LoginUser发送的邮件
             criteria.andEmailSenderEqualTo(loginUser.getUserId());
-        }else if(StringUtil.isNotEmpty(emailReceiver)) {
+        }else if(StringUtil.isNotEmpty(userEmailObj.getEmailReceiver())) {
             criteria.andEmailReceiverEqualTo(loginUser.getUserId());
         }
         if(currentPage==1){//如果是当前第一页，则要求总数

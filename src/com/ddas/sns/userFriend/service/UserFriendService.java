@@ -55,11 +55,12 @@ public class UserFriendService {
      *@Date 2016/7/1 15:00
      *@param currentPage
      *@param pageSize
-     *@param friendNameCondition
+     *@param userFriend
+     *@param userInfo
      *@return com.ddas.common.page.Page
      *@since JDK1.6
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize, String friendNameCondition, String status, String userFriendGroupCondition) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, UserFriend userFriend, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -68,17 +69,19 @@ public class UserFriendService {
         userFriendCriteria.setLimitStart(page.getPageStart());
         userFriendCriteria.setLimitEnd(pageSize);
         UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
-        if(StringUtil.isNotEmpty(friendNameCondition)) {
-            criteria.andFriendNameLikeInsensitive("%" + friendNameCondition + "%");
+        if(StringUtil.isNotEmpty(userFriend.getFriendName())) {
+            criteria.andFriendNameLikeInsensitive("%" + userFriend.getFriendName() + "%");
         }
-        if(StringUtil.isNotEmpty(userFriendGroupCondition) && !"all".equals(userFriendGroupCondition)) {
-            criteria.andGroupIdEqualTo(userFriendGroupCondition);
+        if(StringUtil.isNotEmpty(userFriend.getGroupId()) && !"all".equals(userFriend.getGroupId())) {
+            criteria.andGroupIdEqualTo(userFriend.getGroupId());
         }
-        if ("1".equals(status)) {
+        if ("1".equals(userFriend.getStatus())) {
             criteria.andStatusNotEqualTo("0");
-        } else if("0".equals(status)) {
+        } else if("0".equals(userFriend.getStatus())) {
             criteria.andStatusEqualTo("0");
         }
+
+        criteria.andUserIdEqualTo(userInfo.getUserId());
 
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userFriendMapper.countByExample(userFriendCriteria));
@@ -113,6 +116,42 @@ public class UserFriendService {
             userFriend.setUpdatedTime(currentDate);
             criteria.andUfIdEqualTo(userFriend.getUfId());
             userFriendMapper.updateByExampleSelective(userFriend, userFriendCriteria);
+        }
+
+        return true;
+    }
+
+    /**
+     * 同意好友添加
+     *@Author liuchen6
+     *@Date 2016/7/1 15:00
+     *@param userFriend
+     *@param userInfo
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
+    public boolean saveNewFriend(UserFriend userFriend, UserInfo userInfo) {
+        String currentDate = DateUtil.getCurrentDateString();
+        if(StringUtil.isNotEmpty(userFriend.getUfId())) {
+            UserFriendCriteria userFriendCriteria = new UserFriendCriteria();
+            UserFriendCriteria.Criteria criteria = userFriendCriteria.createCriteria();
+            userFriend.setUpdatedTime(currentDate);
+            userFriend.setStatus("1");
+            criteria.andUfIdEqualTo(userFriend.getUfId());
+            userFriendMapper.updateByExampleSelective(userFriend, userFriendCriteria);
+
+            //当接收好友申请保存完，同时互换好友信息，再存一份
+            UserFriend oldUserFriend = userFriendMapper.selectByPrimaryKey(userFriend.getUfId());
+            UserFriend newUserFriend = new UserFriend();
+            newUserFriend.setUfId(UUIDUtil.createUUID16());
+            newUserFriend.setCreatedTime(currentDate);
+            newUserFriend.setUpdatedTime(currentDate);
+            newUserFriend.setUserId(oldUserFriend.getFriendId());
+            newUserFriend.setFriendId(oldUserFriend.getUserId());
+            newUserFriend.setFriendName(userInfo.getUserName());
+            newUserFriend.setStatus("1");
+            newUserFriend.setGroupId("1");
+            userFriendMapper.insertSelective(newUserFriend);
         }
 
         return true;
@@ -158,5 +197,28 @@ public class UserFriendService {
         List<UserFriend> list = userFriendMapper.selectByExample(userFriendCriteria);
 
         return list;
+    }
+
+    /**
+     * 申请加好友
+     *@Author liuchen6
+     *@Date 2016/7/1 15:00
+     *@param userFriend
+     *@param userInfo
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
+    public boolean applyFriend(UserFriend userFriend, UserInfo userInfo) {
+        String currentDate = DateUtil.getCurrentDateString();
+        userFriend.setUfId(UUIDUtil.createUUID16());
+        userFriend.setGroupId("1");//1是默认分组
+        userFriend.setUpdatedTime(currentDate);
+        userFriend.setCreatedTime(currentDate);
+        userFriend.setFriendId(userInfo.getUserId());
+        userFriend.setFriendName(userInfo.getUserName());
+        userFriend.setStatus("0");
+        userFriendMapper.insertSelective(userFriend);
+
+        return true;
     }
 }

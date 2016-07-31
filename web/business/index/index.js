@@ -109,10 +109,10 @@ function addRecommendAddBtnClickListener(addUserBtnId, friendId){
             content:"确定发起好友添加申请？",
             confirm:function () {
                 $.ajax({
-                    url:path+"/userFriend/save",
+                    url:path+"/userFriend/applyFriend",
                     type:"POST",
                     data:{
-                        "friendId":friendId
+                        "userId":friendId
                     },
                     dataType:"json",
                     success:function(data){

@@ -47,7 +47,8 @@ public class UserFriendController extends BaseController {
      * 分页查找userFriendList
      *@param currentPage
      *@param pageSize
-     *@param friendNameCondition
+     *@param userFriend
+     *@param httpServletRequest
      *@return com.ddas.common.page.Page
      *@Author liuchen6
      *@Date 2016/7/1 14:51
@@ -55,8 +56,8 @@ public class UserFriendController extends BaseController {
      */
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Page getFriendList(int currentPage, int pageSize, String friendNameCondition, String status, String userFriendGroupCondition){
-        return userFriendService.queryRecordsByPage(currentPage, pageSize, friendNameCondition, status, userFriendGroupCondition);
+    public Page getFriendList(int currentPage, int pageSize, UserFriend userFriend, HttpServletRequest httpServletRequest){
+        return userFriendService.queryRecordsByPage(currentPage, pageSize, userFriend, getLoginUser(httpServletRequest));
     }
 
     /**
@@ -101,15 +102,64 @@ public class UserFriendController extends BaseController {
     @ResponseBody
     public Msg saveUserFriend(UserFriend userFriend, HttpServletRequest httpServletRequest){
         Msg msg = new Msg();
+        boolean saveSuccess = userFriendService.saveUserFriend(userFriend, getLoginUser(httpServletRequest));
+        msg.setSuccessful(saveSuccess);
+        if(saveSuccess) {
+            msg.setMsg("保存成功！");
+        }
+
+        return msg;
+    }
+
+    /**
+     * 同意添加好友
+     *@Author liuchen6
+     *@Date 2016/7/1 14:59
+     *@param userFriend
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
+    @RequestMapping(value = "/saveNewFriend", method = {RequestMethod.POST})
+    @ResponseBody
+    public Msg saveNewFriend(UserFriend userFriend, HttpServletRequest httpServletRequest){
+        Msg msg = new Msg();
+        boolean saveSuccess = false;
+        try {
+            saveSuccess = userFriendService.saveNewFriend(userFriend, getLoginUser(httpServletRequest));
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+        msg.setSuccessful(saveSuccess);
+        if(saveSuccess) {
+            msg.setMsg("添加好友成功！");
+        }else {
+            msg.setMsg("添加好友失败！");
+        }
+
+        return msg;
+    }
+
+    /**
+     * 申请添加好友
+     *@Author liuchen6
+     *@Date 2016/7/1 14:59
+     *@param userFriend
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
+    @RequestMapping(value = "/applyFriend", method = {RequestMethod.POST})
+    @ResponseBody
+    public Msg applyFriend(UserFriend userFriend, HttpServletRequest httpServletRequest){
+        Msg msg = new Msg();
         if(StringUtil.isEmpty(userFriend.getStatus()) || !"1".equals(userFriend.getStatus())) {
-            List<UserFriend> list = userFriendService.findUserFriendByUserIdAndFriendId(getLoginUser(httpServletRequest).getUserId(), userFriend.getFriendId()  );
+            List<UserFriend> list = userFriendService.findUserFriendByUserIdAndFriendId(userFriend.getUserId() ,getLoginUser(httpServletRequest).getUserId());
             if(list != null && list.size() > 0) {
                 msg.setMsg("你已经添加过该好友了！");
                 msg.setSuccessful(true);
                 return msg;
             }
         }
-        boolean saveSuccess = userFriendService.saveUserFriend(userFriend, getLoginUser(httpServletRequest));
+        boolean saveSuccess = userFriendService.applyFriend(userFriend, getLoginUser(httpServletRequest));
         msg.setSuccessful(saveSuccess);
         if(saveSuccess) {
             msg.setMsg("添加好友成功！");
