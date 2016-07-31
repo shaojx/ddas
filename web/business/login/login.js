@@ -29,31 +29,17 @@ $(function () {
     });
     //登录 
    $("#loginBtn").click(function () {
-       var bv=$('#myForm').data("bootstrapValidator").validate();
-        if(!bv.isValid()){
-            return ;
-        }
-
-       $.ajax({
-           url:path+"/login/in?remeberme="+$("#remeberme").is(':checked'),
-           data:JSON.stringify({
-               "userName":$("#userName").val(),
-               "userPwd":md5($("#password").val())
-           }),
-           dataType:"json",
-           type:"POST",
-           contentType:"application/json",
-           success:function (data) {
-               if (data&&data.msg==="success"){
-                   window.top.location.href=path+"/index/gotoIndex";//跳转到首页
-               }else{
-                   if(data&&data.msg){//登录失败
-                       $("#errorP").html("").html(data.msg);
-                   }
-               }
-           }
-       })
+      login();
    });
+
+    //回车登录(有bug 不开启)
+  /*  $(document).keyup(function(event){
+        var keyCode = event.keyCode ? event.keyCode
+            : event.which ? event.which : event.charCode;
+        if(keyCode==13){
+            $("#loginBtn").click();
+        }
+    });*/
     //注册
     $("#registerBtn").click(function () {
        window.top.location.href=path+"/login/gotoRegister" 
@@ -104,6 +90,36 @@ $(function () {
 
      restBtnOldText=$("#resetPwdBtn").text();//save
 });
+/**
+ * 登录
+ */
+function login(){
+    var bv=$('#myForm').data("bootstrapValidator").validate();
+    if(!bv.isValid()){
+        return ;
+    }
+    var btn=$("#loginBtn").button("loading");
+    $.ajax({
+        url:path+"/login/in?remeberme="+$("#remeberme").is(':checked'),
+        data:JSON.stringify({
+            "userName":$("#userName").val(),
+            "userPwd":md5($("#password").val())
+        }),
+        dataType:"json",
+        type:"POST",
+        contentType:"application/json",
+        success:function (data) {
+            btn.button('reset');//reset
+            if (data&&data.msg==="success"){
+                window.top.location.href=path+"/index/gotoIndex";//跳转到首页
+            }else{
+                if(data&&data.msg){//登录失败
+                    $("#errorP").html("").html(data.msg);
+                }
+            }
+        }
+    })
+}
 
 function sendEmail() {
     $.ajax({

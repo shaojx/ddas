@@ -59,7 +59,7 @@
                 <span class="inline-block" style="vertical-align: middle;">下次自动登录</span>
             </DIV>
             <div class="form-group width350" style="margin-bottom: 20px;">
-                <input type="button" value=" 登录 " class="btn btn-primary form-control  center-block" id="loginBtn">
+                <button type="button" data-loading-text="登录中..." class="btn btn-primary form-control  center-block" id="loginBtn"> 登录 </button>
                 <div class="row margin-top-10px">
                     <span ><a href="javascript:void(0);" id="forgetPwd" style="margin-left: 15px;"  data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#resetPwdDialog">忘记密码?</a></span>
                     <span class="col-md-offset-7 margin-top-10px">没有帐号?<a href="javascript:void(0);" id="registerBtn">注 册</a></span>
