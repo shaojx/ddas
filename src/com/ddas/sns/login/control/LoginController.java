@@ -101,7 +101,17 @@ public class LoginController extends BaseController {
     @RequestMapping("/in")
     @ResponseBody
     public Msg login(@RequestParam String remeberme, @RequestBody UserInfo userInfo, HttpServletRequest request, HttpServletResponse response) {
-        UserInfo userInfoFromDb = userInfoService.loginInProxy(userInfo);
+        UserInfo userInfoFromDb = null;
+        try {
+            userInfoFromDb = userInfoService.loginInProxy(userInfo);
+        } catch (Exception e) {
+            LOGGER.error("系统出现错误!",e);
+            Msg msg = new Msg();
+            msg.setSuccessful(false);
+            String msgByKey = SpringContextUtil.getMsgByKey("login.sysError", getLocal(request));
+            msg.setMsg(msgByKey);
+            return msg;
+        }
         boolean loginInResult = userInfoFromDb != null;
         if (loginInResult) {
             if (remeberme != null && remeberme.equals("true")) {//保存用户名到cookie
