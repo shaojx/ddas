@@ -37,9 +37,6 @@
             overflow: hidden !important;
         }
     </style>
-    <%--引入业务JS --%>
-    <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
-    <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <%--引入自定义样式--%>
     <link href="<%=path%>/business/common/css/friendList.css"/>
     <%--引入自定义JS--%>

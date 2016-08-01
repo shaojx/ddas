@@ -43,30 +43,25 @@ public class UserGroupService {
      *@Date 2016/7/4 19:22
      *@since JDK1.7
      */
-    public void saveUserGroup(String groupName, String groupId, String useProperty) {
-        UserGroup userGroup = new UserGroup();
+    public boolean saveUserGroup(UserGroup userGroup, UserInfo userInfo) {
         String currentDateString = DateUtil.getCurrentDateString();
-        userGroup.setGroupName(groupName);
-        // ***********写死测试
-        // TODO: 获取当前登陆用户的UserId
-        String userId = "1";
-        // ***********写死测试
+        String userId = userInfo.getUserId();
         userGroup.setUserId(userId);
-        userGroup.setUseProperty(useProperty);
         userGroup.setUpdatedTime(currentDateString);
-        if(StringUtil.isEmpty(groupId)) {
+        if(StringUtil.isEmpty(userGroup.getGroupId())) {
             userGroup.setGroupId(UUIDUtil.createUUID16());
             userGroup.setCreatedTime(currentDateString);
             userGroupMapper.insert(userGroup);
         }else {
-            userGroup.setGroupId(groupId);
             UserGroupCriteria userGroupCriteria = new UserGroupCriteria();
             UserGroupCriteria.Criteria criteria = userGroupCriteria.createCriteria();
             criteria.andUserIdEqualTo(userId);
-            criteria.andUsePropertyEqualTo(useProperty);
-            criteria.andGroupIdEqualTo(groupId);
+            criteria.andUsePropertyEqualTo(userGroup.getUseProperty());
+            criteria.andGroupIdEqualTo(userGroup.getGroupId());
             userGroupMapper.updateByExampleSelective(userGroup, userGroupCriteria);
         }
+
+        return true;
     }
 
     /**

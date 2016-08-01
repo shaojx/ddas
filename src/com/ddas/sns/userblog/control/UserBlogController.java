@@ -8,7 +8,9 @@
  */
 package com.ddas.sns.userblog.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
+import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.service.UserBlogService;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	FriendsControl
@@ -29,7 +32,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/userBlog")
-public class UserBlogController {
+public class UserBlogController extends BaseController{
     private static  final Logger LOGGER= LoggerFactory.getLogger(UserBlogController.class);
 
     @Resource
@@ -37,10 +40,10 @@ public class UserBlogController {
 
     @RequestMapping("/queryRecordsByPage")
     @ResponseBody
-    public Page queryRecordsByPage(int currentPage, int pageSize){
+    public Page queryRecordsByPage(int currentPage, int pageSize, HttpServletRequest httpServletRequest){
         Page page = null;
         try{
-            page = userBlogService.queryRecordsByPage(currentPage,pageSize);
+            page = userBlogService.queryRecordsByPage(currentPage, pageSize, getLoginUser(httpServletRequest));
         }catch(Exception e){
             LOGGER.error(e.getMessage(), e);
         }
@@ -50,8 +53,17 @@ public class UserBlogController {
 
     @RequestMapping("/save")
     @ResponseBody
-    public UserBlog save(UserBlog userBlog){
-        userBlogService.save(userBlog);
-        return userBlog;
+    public Msg save(UserBlog userBlog, HttpServletRequest httpServletRequest){
+        Msg msg = new Msg();
+        boolean success = false;
+        try{
+            success = userBlogService.save(userBlog, getLoginUser(httpServletRequest));
+            msg.setMsg("保存成功！");
+        }catch(Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            msg.setMsg("保存失败！");
+        }
+
+        return msg;
     }
 }

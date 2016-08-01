@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.usergroup.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.usergroup.domain.UserGroup;
@@ -48,9 +49,19 @@ public class UserGroupController extends BaseController{
      */
     @RequestMapping("/save")
     @ResponseBody
-    public UserGroup saveUserGroup(String groupName, String groupId, String useProperty) {
-        userGroupService.saveUserGroup(groupName, groupId, useProperty);
-        return new UserGroup();
+    public Msg saveUserGroup(UserGroup userGroup, HttpServletRequest httpServletRequest) {
+        Msg msg = new Msg();
+        boolean success = false;
+        try{
+            success = userGroupService.saveUserGroup(userGroup, getLoginUser(httpServletRequest));
+            msg.setMsg("保存分组成功!");
+        }catch (Exception e) {
+            msg.setMsg("保存分组失败!");
+            LOGGER.error(e.getMessage(), e);
+        }
+        msg.setSuccessful(success);
+
+        return msg;
     }
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})

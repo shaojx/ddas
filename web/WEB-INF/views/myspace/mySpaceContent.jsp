@@ -437,14 +437,14 @@
                     <h4 class="modal-title" id="myModalLabel"><spring:message code="newLog" text="新建日志"/></h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="blogForm">
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-md-10">
                                 <label for="logTitle" class="col-sm-2 control-label "><span class="inline-block width110">
                                     <spring:message code="logTitle" text="日志标题"/>
                                 </span></label>
                                 <span class="inline-block width280" style="margin-left: 5px;">
-                                    <input  class="form-control" id="logTitle" placeholder="<spring:message code="logTitle" text="日志标题"/>">
+                                    <input  class="form-control" id="logTitle" name="logTitle" placeholder="<spring:message code="logTitle" text="日志标题"/>">
                                 </span>
                             </div>
                         </div>
@@ -455,10 +455,6 @@
                             </span></label>
                             <span class="inline-block width280" style="margin-left: 5px;">
                                 <select id="logType" class="form-control">
-<%--                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>--%>
                                 </select>
                             </span>
                             </div>
@@ -491,8 +487,8 @@
                                      <spring:message code="logPrivilege" text="权 限"/>
                                  </span></label>
                                  <span class="inline-block width280" style="margin-left: 5px;">
-                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
-                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
+                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
                                 </span>
                             </div>
                         </div>
@@ -502,7 +498,7 @@
                                     <spring:message code="logContent" text="日志内容"/>
                                 </span></label>
                                 <div class="float-left" style="margin-left: 5px;">
-                                    <textarea rows="5" id="logContent" class="width280"></textarea>
+                                    <textarea rows="5" id="logContent" name="logContent" class="width280"></textarea>
                                 </div>
                             </div>
                         </div>

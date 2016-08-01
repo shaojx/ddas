@@ -24,6 +24,16 @@ $(function () {
         loadUserBlogGroup();
     })
 
+    /**
+     * 当关闭框的时候重置
+     */
+    $('#createMyLogDialog').on('hide.bs.modal', function (event) {
+        $("#logTitle").val("");
+        $("#logTags").val("");
+        $("#logContent").val("");;
+        $("#blogForm").data("bootstrapValidator").resetForm(true);//还原状态
+    })
+
     //添加分类
     $("#addTypeHref").click(function () {
         $(this).hide();
@@ -37,23 +47,19 @@ $(function () {
     //保存----日志分类
     $("#addTypeSaveBtn").click(function () {
         var groupName = $("#addTypeInput").val();
-        if(groupName == "") {
-            alert("分组名称不能为空");
-            return;
-        }
         $.ajax({
-            url:path+"/userGroup/save",
-            type:"POST",
-            data:{
-                "groupName":groupName,
-                "useProperty":CONST_USE_PROPERTY_BLOG
-            },
-            dataType:"json",
-            success:function(){
-                loadUserBlogGroupData(true);
-                alert("Saving success!");
-            }
-        })
+                url:path+"/userGroup/save",
+                type:"POST",
+                data:{
+                    "groupName":groupName,
+                    "useProperty":CONST_USE_PROPERTY_BLOG
+                },
+                dataType:"json",
+                success:function(){
+                    loadUserBlogGroupData(true);
+                    alert("Saving success!");
+                }
+            })
     });
 
     //点击"我的日志 "tab页
@@ -82,30 +88,35 @@ $(function () {
     //保存我的日志按钮点击事件
     $("#saveMyBlogBtn").click(function () {
         var logTitle = $("#logTitle").val();
-        var logType = "1";
-        var logTags = "heart";
-        var logPrivilege = "0";
+        var logType = $("#logType").children('option:selected').attr("data-groupid");
+        var logTags = $("#logTags").val();
+        var logPrivilege = $('input[name="privilege"]:checked ').val();
         var logContent = $("#logContent").val();;
-        if(logTitle == "" || logContent == "") {
-            alert("日志标题和内容不能为空");
-            return;
+        var bv=$("#blogForm").data("bootstrapValidator").validate();
+        if(bv.isValid()) {
+            $.ajax({
+                url:path+"/userBlog/save",
+                type:"POST",
+                data:{
+                    "groupId":logType,
+                    "blogTitle":logTitle,
+                    "blogContent":logContent,
+                    "blogPrivilege":logPrivilege,
+                    "blogTags":logTags
+                },
+                dataType:"json",
+                success:function(data){
+                    $("#closeCreateBlogModelBtn").click();
+                    $.confirm({
+                        title:"",
+                        content:data.msg,
+                        autoClose: 'confirm|1000',
+                        cancelButton:false
+                    });
+                }
+            })
         }
-        $.ajax({
-            url:path+"/userBlog/save",
-            type:"POST",
-            data:{
-                "groupId":logType,
-                "blogTitle":logTitle,
-                "blogContent":logContent,
-                "blogPrivilege":logPrivilege,
-                "blogTags":logTags
-            },
-            dataType:"json",
-            success:function(){
-                $("#closeCreateBlogModelBtn").click();
-                alert("success!");
-            }
-        })
+
     })
 
     $("#saveMessageBtn").click(function (){
@@ -127,10 +138,30 @@ $(function () {
                 alert("success!");
             }
         })
-    })
+    });
+
+    //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
+    $('#blogForm').bootstrapValidator({
+        feedbackIcons: {
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            logContent: {
+                validators: {
+                    notEmpty: true
+                }
+            },
+            logTitle: {
+                validators: {
+                    notEmpty: true
+                }
+            }
+        }
+     });
     
     //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
-/*    $("#commentForm").bootstrapValidator({
+    $("#commentForm").bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -143,7 +174,7 @@ $(function () {
                 }
             }
         }
-    });*/
+    });
 
     var saveCommentBtnOldText=$("#saveCommentBtn").text();
     //点击评论弹出框的"保存"按钮
@@ -210,8 +241,8 @@ $(function () {
 function loadUserBlogGroup() {
     $("#logType").empty();//清空日志分组
     for(var obj in userBlogGroupData) {
-        var option = "<option data-groupId=obj>" + userBlogGroupData[obj].groupName + "</option>";
-        $("#logType").prepend(option);//添加日志分组option
+        var option = "<option data-groupId="+obj+">" + userBlogGroupData[obj].groupName + "</option>";
+        $("#logType").append(option);//添加日志分组option
     }
 }
 
@@ -324,7 +355,12 @@ function initMyLogData(data){
     for(var index in list){
         var _data=list[index];
         var _replace=myLogDivTemplete.replace("${myLogTitle}",_data.blogTitle).replace("${myLogContent}",_data.blogContent)
-            .replace("${myLogTags}",_data.blogTags).replace("${myLogPrivilege}",_data.blogPrivilege);
+            .replace("${myLogTags}",_data.blogTags);
+        if(_data.blogPrivilege == "0") {
+            _replace = _replace.replace("${myLogPrivilege}","所有人可见");
+        }else if(_data.blogPrivilege == "1") {
+            _replace = _replace.replace("${myLogPrivilege}","仅自己可见");
+        }
         $("#myLogContentDiv").append(_replace);
     }
 }
@@ -352,11 +388,13 @@ function getMyFriendsLogData(pageNo){
             dataType:"json",
             success:function(data){
                 loader.stop();
-                if(data.dataList && data.dataList.size() > 0) {
+                if(data.dataList && data.dataList.length > 0) {
                     if(pageNo==1){//如果是第一页，则初始化分页
                         initMyFriendsLogPagnation(data);
                     }
                     initMyFriendsLogData(data);
+                }else{
+                    $("#myFriendsLogPagnationDiv").empty();
                 }
             }
         })

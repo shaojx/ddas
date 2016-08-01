@@ -14,6 +14,7 @@ import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.domain.UserBlogCriteria;
 import com.ddas.sns.userblog.mapper.UserBlogMapper;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class UserBlogService {
      *@Date 2016/7/7 18:04
      *@since JDK1.7
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -52,6 +53,8 @@ public class UserBlogService {
         userBlogCriteria.setOrderByClause("created_time");
         userBlogCriteria.setLimitStart(page.getPageStart());
         userBlogCriteria.setLimitEnd(pageSize);
+        UserBlogCriteria.Criteria criteria = userBlogCriteria.createCriteria();
+        criteria.andUserIdEqualTo(userInfo.getUserId());
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userBlogMapper.countByExample(userBlogCriteria));
         }
@@ -59,13 +62,14 @@ public class UserBlogService {
         return page;
     }
 
-    public void save(UserBlog userBlog) {
+    public boolean save(UserBlog userBlog, UserInfo userInfo) {
         String currentTmeString = DateUtil.getCurrentDateString();
-        // TODO: 2016/7/7 拿到login的用户Id
-        userBlog.setUserId("1");
+        userBlog.setUserId(userInfo.getUserId());
         userBlog.setUbId(UUIDUtil.createUUID16());
         userBlog.setCreatedTime(currentTmeString);
+        userBlog.setUpdatedTime(currentTmeString);
         userBlogMapper.insertSelective(userBlog);
+        return true;
     }
 
     /**

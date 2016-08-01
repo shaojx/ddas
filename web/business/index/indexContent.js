@@ -200,7 +200,7 @@ function loadUserBlogGroup() {
     $("#logType").empty();//清空日志分组
     for(var obj in userBlogGroupData) {
         var option = "<option data-groupId=obj>" + userBlogGroupData[obj].groupName + "</option>";
-        $("#logType").prepend(option);//添加日志分组option
+        $("#logType").append(option);//添加日志分组option
     }
 }
 

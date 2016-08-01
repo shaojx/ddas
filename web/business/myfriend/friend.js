@@ -162,13 +162,11 @@ $(function() {
 function loadGroupSearchCondition() {
 	$("#friendGroupCondition").empty();
 	var optionAll = '<option selected data-groupId= "all">全部</option>';
-
+	$("#friendGroupCondition").append(optionAll);
 	for(var obj in userFriendGroupData) {
 		var option = "<option data-groupId="+obj+">"+userFriendGroupData[obj].groupName+"</option>";
-		$("#friendGroupCondition").prepend(option);
+		$("#friendGroupCondition").append(option);
 	}
-	$("#friendGroupCondition").prepend(optionAll);
-	
 }
 
 

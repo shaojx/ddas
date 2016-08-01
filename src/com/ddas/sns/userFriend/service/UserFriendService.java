@@ -182,7 +182,7 @@ public class UserFriendService {
         condition.put("userId", userInfo.getUserId());
         condition.put("start", page.getPageStart());
         condition.put("end", page.getPageStart() + pageSize);
-        condition.put("privilege", "3");//2,表示所有人可见,3表示该日志是好友可见
+        condition.put("privilege", "0");//2,表示所有人可见,3表示该日志是好友可见
         page.setCondition(condition);
         page.setTotalCount(userFriendBlogMapper.getCount(page));
         page.setDataList(userFriendBlogMapper.queryByPage(page));
