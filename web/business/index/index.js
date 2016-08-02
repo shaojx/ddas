@@ -46,6 +46,16 @@ $(function () {
         })
     });
 
+    $("#myBlog").click(function () {
+        $("#content_iframe").attr("src",path+"/userBlog/gotoIndex");
+    });
+
+    $("#gift").click(function () {
+        $("#content_iframe").attr("src",path+"/gift/gotoIndex");
+    });
+
+
+
     init();
 });
 

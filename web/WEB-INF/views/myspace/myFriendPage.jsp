@@ -53,9 +53,9 @@
             <li id="myFriendApplyTab">
                 <a href="#panel-tabs1" data-toggle="tab">好友申请</a>
             </li>
-            <li>
+<%--            <li>
                 <a href="#panel-tabs2" data-toggle="tab">好友邀请</a>
-            </li>
+            </li>--%>
             <li id="myFriendGroupTab">
                 <a href="#panel-tabs3" data-toggle="tab">分组管理</a>
             </li>

@@ -35,9 +35,9 @@
         <li>
             <a href="#"><img src="/common/images/n_left_rizhi.jpg">日志</a>
         </li>
-        <li>
+<%--        <li>
             <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
-        </li>
+        </li>--%>
         <li>
             <a href="#"><img src="/common/images/n_left_mood.jpg">打招呼(3)</a>
         </li>

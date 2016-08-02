@@ -73,27 +73,27 @@
 
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
-                    <a href="#"><img src="/common/images/golds_img.jpg">充值中心</a>
+                    <a href="javascript:void (0);" id="payCenter"><img src="/common/images/golds_img.jpg">充值中心</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/n_left_shengji.jpg">升级会员</a>
+                    <a href="javascript:void (0);" id="levelVip"><img src="/common/images/n_left_shengji.jpg">升级会员</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/mail.gif">邮箱(0)</a>
+                    <a href="javascript:void (0);" id="emailBox"><img src="/common/images/mail.gif">邮箱(0)</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
+                    <a href="javascript:void (0);" id="gift" ><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/friends.gif">我的朋友</a>
+                    <a href="javascript:void(0)" id="myFriend"><img src="/common/images/friends.gif">我的朋友</a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" id="myPhoto"><img src="/common/images/album.png">相册</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/n_left_rizhi.jpg">日志</a>
+                    <a href="javascript:void(0);" id="myBlog"><img src="/common/images/n_left_rizhi.jpg">日志</a>
                 </li>
-                <li>
+<%--                <li>
                     <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
                 </li>
                 <li>
@@ -101,7 +101,7 @@
                 </li>
                 <li>
                     <a href="#"><img src="/common/images/n_left_game.jpg">游戏开发ing</a>
-                </li>
+                </li>--%>
 
             </ul>
         </div>

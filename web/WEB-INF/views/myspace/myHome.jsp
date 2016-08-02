@@ -96,17 +96,17 @@
                     <a href="javascript:void(0);" id="myPhoto"><img src="/common/images/album.png">相册</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/n_left_rizhi.jpg">日志</a>
+                    <a href="javascript:void(0);" id="myBlog"><img src="/common/images/n_left_rizhi.jpg">日志</a>
                 </li>
-                <li>
+<%--                <li>
                     <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
-                </li>
-                <li>
+                </li>--%>
+<%--                <li>
                     <a href="#"><img src="/common/images/n_left_mood.jpg">打招呼(3)</a>
                 </li>
                 <li>
                     <a href="#"><img src="/common/images/n_left_game.jpg">游戏开发ing</a>
-                </li>
+                </li>--%>
 
             </ul>
         </div>
