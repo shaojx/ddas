@@ -5,43 +5,55 @@
   Time: 21:35
   To change this template use File | Settings | File Templates.
 --%>
+<!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-        <%
+<%
     String path=request.getContextPath();
 %>
     <head>
         <title>Blog</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Bootstrap core CSS -->
-        <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
-        <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-        <%-- <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
+        <meta charset="UTF-8">
+        <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet"/>
+        <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
         <script src="<%=path%>/common/jquery/jquery.js"></script>
-        <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
-        <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+        <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.js" type="text/javascript"></script>
         <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
         <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
+        <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/datePickerLocales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+        <%--分页--%>
+        <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
         <script type="text/javascript">
             var path = "<%=path%>";
         </script>
-        <%--分页的JS--%>
-        <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+        <%--引入业务JS --%>
+        <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
         <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
-        <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
         <style type="text/css">
             body,html{
                 overflow: hidden !important;
+                height:100%;
+                width:100%;
             }
         </style>
-</head>
+
+        <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+        <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
+
+        <%--datatime picker--%>
+        <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+        <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+        <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
+    </head>
 <body>
     <%--日志 start--%>
     <div class="tab-pane " id="panel-tabs2">
@@ -85,5 +97,112 @@
         </div>
     </div>
 </div>
+    <%--创建日志弹出框 --%>
+    <div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><spring:message code="newLog" text="新建日志"/></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="blogForm">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logTitle" class="col-sm-2 control-label "><span class="inline-block width110">
+                                    <spring:message code="logTitle" text="日志标题"/>
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="logTitle" name="logTitle" placeholder="<spring:message code="logTitle" text="日志标题"/>">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10 float-left">
+                                <label for="logType" class="col-sm-2 control-label"><span class="inline-block width110">
+                                <spring:message code="logType" text="日志分类"/>
+                            </span></label>
+                            <span class="inline-block width280" style="margin-left: 5px;">
+                                <select id="logType" class="form-control">
+                                </select>
+                            </span>
+                            </div>
+                            <div style="height: 34px;line-height: 34px;" class="pull-left">
+                                <a href="javascript:void(0)" id="addTypeHref" class="center"><spring:message code="addLogType" text="添加分类"/></a>
+                            </div>
+                            <div class="width250 float-left displayNone" id="addTypeDiv">
+                                <input class="col-md-2 form-control width110 float-left" id="addTypeInput" placeholder="<spring:message code="typeName" text="分类名称"/>">
+                                <button type="button" class="btn btn-primary float-left margin-left-5px" id="addTypeSaveBtn">
+                                    <spring:message code="save" text="保存"/>
+                                </button>
+                                <button type="button" class="btn btn-default float-left margin-left-5px" id="addTypeCloseBtn">
+                                    <spring:message code="cancel" text="取消"/>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logTags" class="col-sm-2 control-label "><span class="inline-block width110">
+                                    <spring:message code="logTags" text="日志标签"/>
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="logTags" placeholder="<spring:message code="logTags" text="日志标签"/>">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="privilege" class="col-sm-2 control-label"><span class="inline-block width110">
+                                     <spring:message code="logPrivilege" text="权 限"/>
+                                 </span></label>
+                                 <span class="inline-block width280" style="margin-left: 5px;">
+                                 <span class="inline-block text-span"><input type="radio" id="privilege" checked="checked" name="privilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <label for="logContent" class="col-sm-2 control-label float-left"><span class="inline-block width110">
+                                    <spring:message code="logContent" text="日志内容"/>
+                                </span></label>
+                                <div class="float-left" style="margin-left: 5px;">
+                                    <textarea rows="5" id="logContent" name="logContent" class="width280"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeCreateBlogModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" id="saveMyBlogBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--日志评论--%>
+    <div class="modal fade" id="commentFriendBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">评论</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal margin-left-20px " id="commentForm">
+                        <div class="form-group">
+                            <label for="logContent" class="control-label">评论内容</label>
+                            <textarea rows="5" name="commentContent" id="commentContent" class="form-control" style="width: 90%;"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeCommentBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" data-loading-text="<spring:message code="saving" text="保存中..."/>"  class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

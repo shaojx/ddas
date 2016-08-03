@@ -87,4 +87,17 @@ public class UserPhotoController extends BaseController{
 
         return page;
     }
+
+    @RequestMapping("/getPhotoCount")
+    @ResponseBody
+    public int getPhotoCount(String photoGroupId, HttpServletRequest httpServletRequest){
+        int count = 0;
+        try{
+            count = userPhotoService.getPhotoCount(photoGroupId, getLoginUser(httpServletRequest));
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return count;
+    }
 }

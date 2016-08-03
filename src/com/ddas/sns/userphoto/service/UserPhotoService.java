@@ -13,9 +13,11 @@ import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userphoto.domain.UserPhoto;
 import com.ddas.sns.userphoto.domain.UserPhotoCriteria;
 import com.ddas.sns.userphoto.mapper.UserPhotoMapper;
+import com.paypal.api.openidconnect.Userinfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -65,6 +67,14 @@ public class UserPhotoService {
         }
         page.setDataList(userPhotoMapper.selectByExample(userPhotoCriteria));
         return page;
+    }
+
+    public int getPhotoCount(String photoGroupId, UserInfo userInfo){
+        UserPhotoCriteria userPhotoCriteria = new UserPhotoCriteria();
+        UserPhotoCriteria.Criteria criteria = userPhotoCriteria.createCriteria();
+        criteria.andGroupIdEqualTo(photoGroupId);
+        int count = userPhotoMapper.countByExample(userPhotoCriteria);
+        return count;
     }
 
 }

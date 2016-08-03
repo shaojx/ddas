@@ -44,6 +44,8 @@ $(function() {
             }
         })
     })
+
+    $("#sendMailTab").click();
 })
 
 /**

@@ -487,7 +487,7 @@
                                      <spring:message code="logPrivilege" text="权 限"/>
                                  </span></label>
                                  <span class="inline-block width280" style="margin-left: 5px;">
-                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
+                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" checked="checked" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
                                  <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
                                 </span>
                             </div>

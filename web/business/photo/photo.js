@@ -111,8 +111,8 @@ function initMyPhotoGroupData(data) {
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
         '<span class="center-block">groupNameValue</span>'+
-        '<span class="center-block">标签：</span>'+
-        '<span class="center-block">照片数量：2</span>'+
+        '<span class="center-block">描述：groupDescriptionValue</span>'+
+        '<span class="center-block">照片数量：${photoCount}</span>'+
         '<span class="center-block">更新于：${updated_time}</span>'+
         '<span class="center-block">创建于：${created_time}</span>'+
         '<span class="center-block"><a href="javascript:void(0);" data-toggle="modal" data-backdrop=""  autocomplete="off" data-target="#createMyPhotoGroupDialog" data-groupname="groupNameValue" data-groupid="groupIdValue" data-description="groupDescriptionValue" id="editPhotoGroup">编辑相册</a> &nbsp;'+
@@ -124,12 +124,16 @@ function initMyPhotoGroupData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
+        var count = getPhotoGroupCount(_data.groupId);
         var _replace = myPhotoGroupDivTemplete.replace("${basePath}", path)
             .replace(/groupNameValue/g, _data.groupName)
             .replace("${updated_time}", _data.updatedTime)
             .replace("${created_time}", _data.createdTime)
             .replace(/groupIdValue/g, _data.groupId)
-            .replace(/groupDescriptionValue/g, _data.description).replace("${upId}",_data.groupId);
+            .replace(/groupDescriptionValue/g, _data.description)
+            .replace("${upId}",_data.groupId)
+            .replace("${photoCount}", count);
+        alert(count);
         $("#myPhotoGroupContentDiv").append(_replace);
 
         //添加监听事件
@@ -296,5 +300,22 @@ function initFriendPhotoGroupPagination(pageData) {
         }
     }
     $("#friendPhotoGroupPaginationDIV").bootstrapPaginator(options);
+}
+
+function getPhotoGroupCount(groupId) {
+    $.ajax({
+        url:path+"/userPhoto/getPhotoCount",
+        type:"POST",
+        async:"false",
+        data:{
+            "photoGroupId":groupId
+        },
+        dataType:"json",
+        success:function(data){
+            return data;
+        }
+    })
+
+    return 0;
 }
 
