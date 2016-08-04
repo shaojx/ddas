@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<html>
+<!DOCTYPE html>
 <%
     String path=request.getContextPath();
 %>
@@ -23,6 +23,7 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+    <script type="text/javascript" src="<%=path%>/common/layer/js/layer.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
 </head>
 <body>

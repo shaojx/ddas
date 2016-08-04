@@ -4,6 +4,7 @@ import com.ddas.common.page.Page;
 import com.ddas.sns.userfriendphotogroup.dto.UserFriendPhotoGroupDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserFriendPhotoGroupMapper {
     /**
@@ -14,4 +15,6 @@ public interface UserFriendPhotoGroupMapper {
      */
     public int getCount(Page page);
     public List<UserFriendPhotoGroupDto> queryByPage(Page page);
+
+    List<Map<String,String>> queryPhotoFaceAndCount(String groupId);
 }

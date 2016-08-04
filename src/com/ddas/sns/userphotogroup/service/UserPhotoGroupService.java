@@ -26,7 +26,9 @@ import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,7 +84,7 @@ public class UserPhotoGroupService {
      *@Date 2016/7/5 10:53
      *@since JDK1.7
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize) {
+    public Page queryRecordsByPage(int currentPage, int pageSize,UserInfo loginUserInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -91,8 +93,7 @@ public class UserPhotoGroupService {
         userPhotoGroupCriteria.setLimitStart(page.getPageStart());
         userPhotoGroupCriteria.setLimitEnd(pageSize);
         UserPhotoGroupCriteria.Criteria criteria = userPhotoGroupCriteria.createCriteria();
-        // TODO: 2016/7/9 获取当前登陆的用户ID
-        criteria.andUserIdEqualTo("1");
+        criteria.andUserIdEqualTo(loginUserInfo.getUserId());
         if(currentPage == 1){//如果是当前第一页，则要求总数
             page.setTotalCount(userPhotoGroupMapper.countByExample(userPhotoGroupCriteria));
         }
@@ -130,4 +131,11 @@ public class UserPhotoGroupService {
         return page;
     }
 
+    public Map<String, String> queryPhotoFaceAndCount(String groupId) {
+        List<Map<String,String>>result= userFriendPhotoGroupMapper.queryPhotoFaceAndCount( groupId);
+        if(result!=null&&result.size()>0){
+            return result.get(0);
+        }
+        return new HashMap<String, String>();
+    }
 }

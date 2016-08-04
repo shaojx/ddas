@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName:	FriendsControl
@@ -56,8 +58,8 @@ public class UserPhotoGroupController extends BaseController{
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public Page getGroupList(int currentPage, int pageSize){
-        return userPhotoGroupService.queryRecordsByPage(currentPage, pageSize);
+    public Page getGroupList(int currentPage, int pageSize,HttpServletRequest request){
+        return userPhotoGroupService.queryRecordsByPage(currentPage, pageSize,getLoginUser(request));
     }
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
@@ -77,5 +79,22 @@ public class UserPhotoGroupController extends BaseController{
             LOGGER.error(e.getMessage(), e);
         }
         return page;
+    }
+
+    /**
+     *根据相册组的id来查询对应的相册封面以及相册的照片数量
+     * @param groupId 相册组的id
+     * @param request
+     *@return java.util.Map<java.lang.String,java.lang.String>
+     *@author shaojx
+     *@date 2016/8/4 23:28
+     *@version 1.0
+     *@since 1.6
+     */
+    @ResponseBody
+    @RequestMapping("/queryPhotoFaceAndCount")
+    public Map<String,String> queryPhotoFaceAndCount(String groupId, HttpServletRequest request){
+        Map<String,String> result=userPhotoGroupService.queryPhotoFaceAndCount(groupId);
+        return result;
     }
 }

@@ -47,7 +47,7 @@
     <section class="loginBox row-fluid">
         <div class="center-block" style="text-align:center;" id="errorP">
         </div>
-        <form class="form-horizontal" style="margin-top: 10px;margin-left: 25px;" id="myForm">
+        <form class="form-horizontal" style="margin-top: 10px;margin-left: 25px;" id="myForm" action="#">
             <DIV class="form-group width350">
                 <input type="text" class="form-control center-block" name="username" placeholder="用户名" id="userName" required/>
             </DIV>

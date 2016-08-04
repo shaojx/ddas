@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
-    String path=request.getContextPath();
-    String groupId=(String)request.getAttribute("groupId");
+    String path = request.getContextPath();
+    String groupId = (String) request.getAttribute("groupId");
 %>
 <html>
 <head>
@@ -33,18 +33,29 @@
 
     <script type="text/javascript" src="<%=path%>/business/photo/photoDetail.js"></script>
     <style type="text/css">
-        .row img{
+        /*.row img {
             margin-left: 25px;
             margin-top: 25px;
-        }
-        #txtDiv span{
+        }*/
+
+        #txtDiv span {
             margin-top: 60px;
         }
 
         /*设置照片的大小 */
-        #photoDiv img{
+        #photoDiv img {
             height: 140px;
             width: 140px;
+        }
+        .parentDiv{
+            margin-left: 25px;
+            margin-top: 25px;
+            height: 140px;
+            width: 140px;
+            float:left;
+        }
+        .txtDivSpan{
+            margin-top: 60px;
         }
     </style>
 </head>
@@ -52,30 +63,37 @@
 <p class="bg-info" style="height: 30px;line-height: 30px;">照片详情</p>
 <div class="container-fluid">
     <div class="row" id="photoDiv">
-        <img src="<%=path%>/common/images/140x140.jpg" alt="140x140" class="img-rounded">
-        <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
-        <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
-        <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
-        <img src="<%=path%>/common/images/140x140.jpg" alt="" class="img-rounded">
+        <div id="parent_0" class="parentDiv">
+            <img src="<%=path%>/common/images/140x140.jpg" alt="140x140" class="img-rounded">
+            <div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
+                 id="txtDiv_0">
+                <span class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_0">设置为封面</span>
+            </div>
+        </div>
+        <div id="parent_1" class="parentDiv">
+            <img src="<%=path%>/common/images/140x140.jpg" alt="140x140" class="img-rounded">
+            <div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
+                 id="txtDiv_1">
+                <span class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_1">设置为封面</span>
+            </div>
+        </div>
+        <div id="parent_2" class="parentDiv">
+            <img src="<%=path%>/common/images/140x140.jpg" alt="140x140" class="img-rounded">
+            <div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
+                 id="txtDiv_2">
+                <span class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_2">设置为封面</span>
+            </div>
+        </div>
     </div>
     <%--分页插件--%>
     <ul class="pagination" id="photoPaginationDiv"></ul>
 </div>
 
 <%--设置封面的div--%>
-<div style="width:140px;height: 140px;background:pink;text-align: center;position: absolute; left: -1000px;"
+<%--<div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
      id="txtDiv">
-    <span class="inline-block">设置为封面</span>
-</div>
-
-<%--<div id="imgs" class="imgs">
-    <img src="<%=path%>/common/images/layer/1.jpg" layer-pname="站长素材 - 1">
-    <img src="<%=path%>/common/images/layer/2.jpg" layer-pname="站长素材 - 2">
-    <img src="<%=path%>/common/images/layer/3.jpg" layer-pname="站长素材 - 3">
-    <img src="<%=path%>/common/images/layer/4.jpg" layer-pname="站长素材 - 4">
+    <span class="inline-block" style="cursor:hand;" id="txtDivSpan">设置为封面</span>
 </div>--%>
-<script>
-</script>
 <input type="hidden" value="${groupId}" id="groupId"/>
 </body>
 </html>

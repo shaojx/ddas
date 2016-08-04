@@ -33,4 +33,13 @@
     ON uf.friend_id = upg.user_id
     AND uf.user_id = #{condition.userId}
   </select>
+
+    <select id="queryPhotoFaceAndCount" resultType="java.util.Map" parameterType="string">
+      <![CDATA[
+        SELECT num,cover FROM (SELECT count(1) num,group_id
+        FROM user_photo WHERE group_id = #{groupId}
+        )a JOIN ( SELECT cover ,group_id FROM user_photo_group where group_id=#{groupId})
+         b ON a.group_id=b.group_id
+        ]]>
+    </select>
 </mapper>

@@ -6,6 +6,18 @@ var restBtnOldText=null;//保存 重置按钮的text
 var delay = 1500;//1.5s delay
 var timer = null;
 $(function () {
+    //禁止按回车提交
+    $(document).ready(function(){
+        $("input").each(
+            function(){
+                $(this).keypress( function(e) {
+                    var key = window.event ? e.keyCode : e.which;
+                    if(key.toString() == "13"){
+                        return false;
+                    }
+                });
+            });
+    });
     createResetFormValidator();
 
     $('#myForm').bootstrapValidator({
@@ -32,14 +44,15 @@ $(function () {
       login();
    });
 
+
     //回车登录(有bug 不开启)
-  /*  $(document).keyup(function(event){
+    $(document).keyup(function(event){
         var keyCode = event.keyCode ? event.keyCode
             : event.which ? event.which : event.charCode;
         if(keyCode==13){
             $("#loginBtn").click();
         }
-    });*/
+    });
     //注册
     $("#registerBtn").click(function () {
        window.top.location.href=path+"/login/gotoRegister" 
@@ -85,6 +98,7 @@ $(function () {
         }
         timer = setTimeout(function () {
             fetchEmailByUserName($("#userNameReset").val());
+            clearTimeout(timer);
         }, delay);
     });
 

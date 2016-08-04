@@ -1,20 +1,9 @@
+var currentIndex=-1000;//记录当前的鼠标位置
 /**
  * 照片详情
  */
 $(function () {
-    $(".row img").mouseover(function(event){
-        var position=$(this).position();
-        $("#txtDiv").css({
-            "left":position.left+25,
-            "top":position.top+25
-        }).mouseout(function () {
-            $("#txtDiv").css({
-                "left":-1000
-            });
-        });
-    });
-
-    getPhotoData(1);
+      getPhotoData(1);
 })
 
 /**
@@ -81,12 +70,20 @@ function initPhotoPagination(pageData) {
  * @param data
  */
 function initPhotoData(data) {
-    var photoDivTemplete = '<img src="${basePath}${imagePath}" alt="140x140" class="img-rounded">';
+    var photoDivTemplete=' <div id="parent_${index}" class="parentDiv">'
+        +' <img src="${basePath}${imagePath}" alt="140x140" class="img-rounded" data-index="${index}" id="image_${index}">'
+        +' <div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"'
+        +'  id="txtDiv_${index}">'
+        +' <span class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_${index}">设置为封面</span>'
+        +' </div>'
+        +'  </div>';
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl);
+        var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl)
+                                        .replace(/\$\{index\}/g,index);
         $("#photoDiv").append(_replace);
+         addMouseListener(index);
     };
 
     $("#photoDiv").find("img").dblclick(function(){
@@ -94,23 +91,33 @@ function initPhotoData(data) {
            window.top.showPhotos(groupId);
        }
     });
+}
 
- /*   layer.ready(function(){ //为了layer.ext.js加载完毕再执行
-        layer.photos({
-            photos: '#photoDiv'
-        });
-    });*/
-
-    /* layer.use('extend/layer.ext.js', function(){
-        //初始加载即调用，所以需放在ext回调里
-        layer.ext = function(){
-            layer.photosPage({
-                //html:'<div style="padding:20px;">这里传入自定义的html<p>相册支持左右方向键，支持Esc关闭</p><p>另外还可以通过异步返回json实现相册。更多用法详见官网。</p><p>'+ unescape("B5教程网www.bcty365.com") +'</p><p id="change"></p></div>',
-                title: '快捷模式-获取页面元素包含的所有图片',
-                //id: 100, //相册id，可选
-                //parent:'#photoDiv'
-                parent:window.top.document.body
-            });
-        };
-    });*/
+/**
+ * 添加"设置封面"鼠标事件
+ * @param index
+ */
+function addMouseListener(index) {
+    $("#parent_"+index).mouseenter(function () {
+        var position=$(this).position();
+        $(this).find("#txtDiv_"+index).css({
+            "left":position.left+25,
+            "top":position.top+25
+        })
+    }).mouseleave(function () {
+        $(this).find("#txtDiv_"+index).css({
+            "left":"-1000px"
+        })
+    });
+    //弹出相应的照片墙
+    $("#txtDiv_"+index).dblclick(function () {
+        if(window.top.showPhotos){
+            window.top.showPhotos(groupId);
+        }
+    });
+    //设置封面
+    $("#txtDivSpan_"+index).click(function () {
+        alert("设置封面");
+        //todo
+    })
 }

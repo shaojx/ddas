@@ -107,12 +107,12 @@ function initMyPhotoGroupData(data) {
         '<div class="panel-body">'+
         '<div class="row">'+
         '<div class="photo pull-left">'+
-        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
+        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}" style="width: 130px;height: 130px;"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
         '<span class="center-block">groupNameValue</span>'+
         '<span class="center-block">描述：groupDescriptionValue</span>'+
-        '<span class="center-block">照片数量：${photoCount}</span>'+
+        '<span class="center-block">照片数量：'+'<span  id="countSpan_${upId}">'+'${photoCount}</span></span>'+
         '<span class="center-block">更新于：${updated_time}</span>'+
         '<span class="center-block">创建于：${created_time}</span>'+
         '<span class="center-block"><a href="javascript:void(0);" data-toggle="modal" data-backdrop=""  autocomplete="off" data-target="#createMyPhotoGroupDialog" data-groupname="groupNameValue" data-groupid="groupIdValue" data-description="groupDescriptionValue" id="editPhotoGroup">编辑相册</a> &nbsp;'+
@@ -131,13 +131,39 @@ function initMyPhotoGroupData(data) {
             .replace("${created_time}", _data.createdTime)
             .replace(/groupIdValue/g, _data.groupId)
             .replace(/groupDescriptionValue/g, _data.description)
-            .replace("${upId}",_data.groupId)
+            .replace(/\$\{upId\}/g,_data.groupId)
             .replace("${photoCount}", count);
-        alert(count);
         $("#myPhotoGroupContentDiv").append(_replace);
-
+        //查询相册封面以及相应的照片数
+        queryPhotoFaceAndCount(_data.groupId,"countSpan_"+_data.groupId);
         //添加监听事件
         addClickMyLogoListener(_data.groupId);
+    }
+    /**
+     * 设置相册的封面以及相应的照片数量
+     * @param groupId 相册的id
+     * @param index count对应的span id
+     */
+    function queryPhotoFaceAndCount(groupId,index) {
+        if(groupId&&index){
+            $.ajax(path+"/userPhotoGroup/queryPhotoFaceAndCount",{
+                data:{
+                    "groupId":groupId
+                },
+                dataType:"json",
+                type:"POST",
+                success:function (data) {
+                    if(data){
+                      if(data.num){
+                          $("#"+index).html("").html(data.num);
+                      }
+                        if(data.cover){
+                            $("#myPhoto_logo_"+groupId).attr("src",path+data.cover);//设置封面
+                        }
+                    }
+                }
+            })
+        }
     }
 
     /**
