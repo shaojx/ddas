@@ -69,9 +69,8 @@ public class UserPhotoController extends BaseController{
      * @return
      */
     @RequestMapping("/photoDetail")
-    public ModelAndView gotoPhotoDetail(String groupId){
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("photo/photoDetail");
+    public ModelAndView gotoPhotoDetail(String groupId,HttpServletRequest request){
+        ModelAndView modelAndView = withLocal(request, "photo/photoDetail");
         modelAndView.addObject("groupId",groupId);
         return modelAndView;
     }
