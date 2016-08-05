@@ -23,15 +23,16 @@
     <%--图片轮播--%>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/layer/js/layer.js"></script>
-
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
         var groupId = "<%=groupId%>";
     </script>
-
     <script type="text/javascript" src="<%=path%>/business/photo/photoDetail.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <style type="text/css">
         /*.row img {
             margin-left: 25px;

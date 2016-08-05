@@ -266,4 +266,10 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <update id="userThisPhotoForFace">
+    <![CDATA[
+      update user_photo_group set cover=(select photo_url from user_photo where up_id=#{param1})
+      where group_id=#{param2}
+      ]]>
+  </update>
 </mapper>

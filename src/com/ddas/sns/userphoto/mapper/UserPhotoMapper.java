@@ -61,4 +61,6 @@ public interface UserPhotoMapper {
      * @mbggenerated Sun Jul 03 12:15:21 CST 2016
      */
     int updateByExample(@Param("record") UserPhoto record, @Param("example") UserPhotoCriteria example);
+
+    int userThisPhotoForFace(String upId, String groupId);
 }

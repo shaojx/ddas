@@ -77,4 +77,19 @@ public class UserPhotoService {
         return count;
     }
 
+    /**
+     *设置封面
+     * @param upId 照片的id
+     * @param groupId 相册的id
+     * @param loginUser 登录用户
+     *@return int 更新的数目
+     *@author shaojx
+     *@date 2016/8/5 23:01
+     *@version 1.0
+     *@since 1.6
+     */
+    public int userThisPhotoForFace(String upId, String groupId, UserInfo loginUser) {
+        int count = userPhotoMapper.userThisPhotoForFace(upId, groupId);
+        return count;
+    }
 }

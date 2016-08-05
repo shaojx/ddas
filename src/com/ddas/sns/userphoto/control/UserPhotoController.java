@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.userphoto.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userphoto.service.UserPhotoService;
@@ -99,5 +100,36 @@ public class UserPhotoController extends BaseController{
         }
 
         return count;
+    }
+
+    /**
+     *设置照片为封面
+     * @param upId 照片的id
+     * @param groupId 相册的id
+     * @param request 当前请求
+     *@return com.ddas.common.Msg 返回相应的Msg
+     *@author shaojx
+     *@date 2016/8/5 23:06
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/userThisPhotoForFace")
+    @ResponseBody
+    public Msg userThisPhotoForFace(String upId, String groupId, HttpServletRequest request){
+        Msg msg=new Msg();
+        try {
+            String msgByKeyViaLocal = getMsgByKeyViaLocal("usePhoto.success");
+            int updateCount = userPhotoService.userThisPhotoForFace(upId, groupId, getLoginUser(request));
+            if(updateCount>0){
+                msg.setSuccessful(true);
+                msg.setMsg(msgByKeyViaLocal);
+            }
+            return msg;
+        } catch (Exception e) {
+           LOGGER.error("设置封面出错!",e);
+            msg.setSuccessful(false);
+            msg.setMsg(getMsgByKeyViaLocal("usePhoto.error"));
+        }
+        return msg;
     }
 }

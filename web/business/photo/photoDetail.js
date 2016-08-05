@@ -74,7 +74,7 @@ function initPhotoData(data) {
         +' <img src="${basePath}${imagePath}" alt="140x140" class="img-rounded" data-index="${index}" id="image_${index}">'
         +' <div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"'
         +'  id="txtDiv_${index}">'
-        +' <span class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_${index}">设置为封面</span>'
+        +' <a class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_${index}">设置为封面</a>'
         +' </div>'
         +'  </div>';
     var list = data.dataList;
@@ -83,7 +83,7 @@ function initPhotoData(data) {
         var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl)
                                         .replace(/\$\{index\}/g,index);
         $("#photoDiv").append(_replace);
-         addMouseListener(index);
+         addMouseListener(index,_data.upId,groupId);
     };
 
     $("#photoDiv").find("img").dblclick(function(){
@@ -95,9 +95,11 @@ function initPhotoData(data) {
 
 /**
  * 添加"设置封面"鼠标事件
- * @param index
+ * @param index list对应的index 无意义
+ * @param upId 当前的照片的id
+ * @param groupId 相册的id
  */
-function addMouseListener(index) {
+function addMouseListener(index,upId,groupId) {
     $("#parent_"+index).mouseenter(function () {
         var position=$(this).position();
         $(this).find("#txtDiv_"+index).css({
@@ -117,7 +119,30 @@ function addMouseListener(index) {
     });
     //设置封面
     $("#txtDivSpan_"+index).click(function () {
-        alert("设置封面");
-        //todo
+       $.ajax(path+"/userPhoto/userThisPhotoForFace",{
+           data:{
+               "upId":upId,
+               "groupId":groupId
+           },
+           dataType:"json",
+           type:"POST",
+           success:function (data) {
+               if(data){
+                   if(data.successful){
+                       $.confirm({
+                           title:"",
+                           content:data.msg,
+                           autoClose: 'confirm|2000',
+                           cancelButton:false
+                       });
+                   }else{
+                       $.alert({
+                           title:"Error",
+                           content:data.msg
+                       })
+                   }
+               }
+           }
+       })
     })
 }
