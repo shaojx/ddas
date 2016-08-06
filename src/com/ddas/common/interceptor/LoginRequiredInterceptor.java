@@ -42,11 +42,12 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
             }
         }*/
         System.out.println(req.getRequestURL().toString());
+        String requestURL = req.getRequestURL().toString();
      //  if(matchUrl==null){//如果这个请求的URL不在excludeURLs中，则拦截*/
             //用户登录判断
             HttpSession session = req.getSession(true);
             UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
-            if(userInfo==null){
+            if(userInfo==null && requestURL.indexOf("goToLoginPage") < 0){
                 System.out.println("userinfo is null");
                 try {
                    // req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);

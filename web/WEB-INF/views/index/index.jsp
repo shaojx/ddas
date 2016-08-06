@@ -49,7 +49,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li id="logoutBtn"><a href="javascript:void(0)">退出</a></li>
         <li><a href="#"><i class="fa fa-reddit"></i></a></li>
       </ul>
 

@@ -76,7 +76,7 @@ public class LoginController extends BaseController {
                 remeberme = value;
             }
         }
-        if (userName != null && userPwd != null) {
+        if ((userName != null && userPwd != null)) {
             UserInfo userInfo = new UserInfo();
             userInfo.setUserName(userName);
             userInfo.setUserPwd(userPwd);
@@ -176,7 +176,7 @@ public class LoginController extends BaseController {
      * @Date 2016/7/8 16:34
      * @since JDK1.6
      */
-    @RequestMapping("/loginPage")
+    @RequestMapping("/goToLoginPage")
     public ModelAndView gotoLoginPage(HttpServletRequest request) {
         ModelAndView modelAndView = withLocal(request, "login/login");
         return modelAndView;

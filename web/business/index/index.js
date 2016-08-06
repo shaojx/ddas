@@ -39,7 +39,7 @@ $(function () {
                     data:{},
                     dataType:"json",
                     success:function(){
-                        window.top.location.href=path+"/login/loginPage";//跳转登陆页
+                        window.top.location.href=path+"/login/goToLoginPage";//跳转登陆页
                     }
                 })
             }

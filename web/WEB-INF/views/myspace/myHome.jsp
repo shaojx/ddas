@@ -17,6 +17,8 @@
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <%--引入自定义样式--%>
     <link href="<%=path%>/business/common/css/leftContent.css" rel="stylesheet"/>
     <script type="text/javascript">
@@ -50,7 +52,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                <li id="logoutBtn"><a href="javascript:void(0)">退出</a></li>
                 <li><a href="#"><i class="fa fa-reddit"></i></a></li>
             </ul>
         </div>
