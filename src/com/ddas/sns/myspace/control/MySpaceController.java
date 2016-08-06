@@ -51,6 +51,8 @@ public class MySpaceController extends BaseController {
      */
     @RequestMapping("/getMyspceContent")
     public ModelAndView getMyspceContent(HttpServletRequest request){
-      return withLocal(request,"myspace/mySpaceContent");
+        ModelAndView modelAndView= withLocal(request,"myspace/mySpaceContent");
+        modelAndView.addObject("userId",getLoginUser(request).getUserId());
+        return modelAndView;
     }
 }

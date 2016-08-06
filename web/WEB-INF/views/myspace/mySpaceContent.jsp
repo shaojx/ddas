@@ -21,30 +21,38 @@
     <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/datePickerLocales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <%--分页--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+    <%--文件上传JS--%>
+    <link href="<%=path%>/common/bootstrap-fileupload/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="<%=path%>/common/bootstrap-fileupload/js/fileinput.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/bootstrap-fileupload/js/fileinput_locale_${local}.js" type="text/javascript"></script>
+    <!--[if IE]>
+    <script src="<%=path%>/common/bootstrap-fileupload/js/html5shiv.min.js"></script>
+    <![endif]-->
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
     <%--引入业务JS --%>
     <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
-    <style type="text/css">
-        body,html{
-            overflow: hidden !important;
-            height:100%;
-            width:100%;
-        }
-    </style>
-
     <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
-
     <%--datatime picker--%>
     <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
-
+    <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
+    <style type="text/css">
+        body,html{
+            overflow: hidden !important;
+            height:100%;
+            width:100%;
+        }
+        .txtDivSpan{
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -148,14 +156,27 @@
             <div class="tab-pane " id="panel-tabs1" align="center">
                 <p class="bg-info text-info" style="height: 30px;line-height: 30px;">填写完整准确的个人资料，可以让更多的朋友找到您。</p>
                 <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">用户名</span></label>
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block">Mariki</span></label>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left "><span class="inline-block width120">性 别</span></label>
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block ">女</span></label>
-                    </div>
+                   <div>
+                      <div id="left"  style="float:left;width: 400px;">
+                          <div class="form-group">
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">用户名</span></label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block">Mariki</span></label>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left "><span class="inline-block width120">性 别</span></label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block ">女</span></label>
+                          </div>
+                      </div>
+                       <div id="right">
+                           <img id="headPhoto" src="<%=path%>/common/images/140x140.jpg" alt="120X120" class="img-rounded"
+                                style="width: 100px;height: 100px;">
+                            <div style="width:100px;height: 100px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
+                                id="txtDiv_0">
+                               <a class="inline-block txtDivSpan" style="cursor:pointer;" id="txtDivSpan_0" data-toggle="modal" data-target="#changeHeadPhoto"
+                                  data-backdrop="" >更换头像</a>
+                           </div>
+                       </div>
+                   </div>
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">身 高</span></label>
                         <div class="col-sm-4">
@@ -541,8 +562,6 @@
             </div>
         </div>
     </div>
-
-
 <%--日志评论--%>
     <div class="modal fade" id="commentFriendBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -566,6 +585,63 @@
             </div>
         </div>
     </div>
+    <%--更换头像--%>
+    <div class="modal fade" id="changeHeadPhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="changeHeadPhotoLabel">更换头像</h4>
+                </div>
+                <div class="modal-body">
+                   <form class="form-horizontal" id="headPhotoForm" style="height: 370px;">
+                       <div class="form-group" style="margin:5px 15px;">
+                           <input type="file" class="file" id="changeHeadPhotoInput" multiple name="headPhoto">
+                          <%-- <div id="errorBlock" class="help-block"></div>--%>
+                       </div>
+                   </form>
+                </div>
+                <div class="modal-footer" style="display: none;">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeHeadPhotoBtn">关闭</button>
+                    <button type="button" class="btn btn-primary" data-loading-text="保存中..." id="saveHeadPhotoBtn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<%--用户id--%>
+<input id="userId" name="userId" value="${userId}">
 </body>
 </html>
+<%--更换头像JS--%>
+<script type="text/javascript">
+  $(function () {
+      $("#changeHeadPhotoInput").fileinput({
+          "uploadUrl": path + "/userInfo/changeHeadPhoto",
+          'showPreview': true,
+          "allowedFileTypes": ['image'],
+          'allowedFileExtensions': ['jpg', 'png', 'gif'],
+          /*'elErrorContainer': '#errorBlock',*/
+          "maxFileCount": 1,
+          "maxFileSize": 3 * 1024,//上传限制3M
+          uploadExtraData: function () {
+              return {
+                  "userId": $("#userId").val()
+              }
+          }
+      });
+      $('#changeHeadPhotoInput').on('fileuploaded', function (event, data, previewId, index) {
+          $("#changeHeadPhotoInput").fileinput("clear");
+          $.confirm({
+              title: "",
+              content: uploadMsg.saveSuccess,
+              autoClose: 'confirm|1000',
+              cancelButton: false,
+              confirm:function () {
+                  $("#closeHeadPhotoBtn").click();
+              }
+          });
+          $("#headPhoto").attr("src",path+data.response.imagePath);
+      });
+  })
+</script>

@@ -2162,10 +2162,10 @@
      * Convert automatically file inputs with class 'file'
      * into a bootstrap fileinput control.
      */
-    $(document).ready(function () {
+   /* $(document).ready(function () {
         var $input = $('input.file[type=file]'), count = $input.attr('type') ? $input.length : 0;
         if (count > 0) {
             $input.fileinput();
         }
-    });
+    });*/
 })(window.jQuery);

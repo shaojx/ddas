@@ -13,23 +13,19 @@
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script type="text/javascript" src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet">
-
     <%--文件上传JS--%>
     <link rel="stylesheet" type="text/css" href="<%=path%>/common/bootstrap-fileupload/css/default.css">
     <link href="<%=path%>/common/bootstrap-fileupload/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="<%=path%>/common/bootstrap-fileupload/js/fileinput.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrap-fileupload/js/fileinput_locale_${local}.js" type="text/javascript"></script>
-
     <!--[if IE]>
         <script src="<%=path%>/common/bootstrap-fileupload/js/html5shiv.min.js"></script>
     <![endif]-->
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
-
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/photo/uploadPhoto.js"></script>
-
     <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
@@ -68,42 +64,43 @@
 </body>
 <script type="text/javascript">
     $(function () {
-        $(".file-drop-zone").height("55%");
-    });
-    $("#myfiles").fileinput({
-        uploadUrl:path+"/fileUpload/fileUpload",
-        maxFileCount:4,
-        allowedFileTypes: ['image'],
-        allowedFileExtensions:["png","jpeg","jpg","bmp","gif"],
-        maxFileSize:3*1024,//上传限制3M
-        uploadAsync:true,
-        uploadExtraData:function () {
-            return {
-                "photoGroupId":$("#photoGroup").val()
+        $("#myfiles").fileinput({
+            uploadUrl:path+"/fileUpload/fileUpload",
+            maxFileCount:4,
+            'showPreview': true,
+            allowedFileTypes: ['image'],
+            allowedFileExtensions:["png","jpeg","jpg","bmp","gif"],
+            maxFileSize:3*1024,//上传限制3M
+            uploadAsync:true,
+            uploadExtraData:function () {
+                return {
+                    "photoGroupId":$("#photoGroup").val()
+                }
             }
-        }
-    });
+        });
 
-    var allCount=0;
-    $('#myfiles').on('fileselect', function(event, numFiles, label) {
-       allCount=numFiles;
-    });
+        var allCount=0;
+        $('#myfiles').on('fileselect', function(event, numFiles, label) {
+            allCount=numFiles;
+        });
 
-    var currentCount=0;
-    $('#myfiles').on('fileuploaded', function(event, file, previewId, index, reader) {
-        currentCount++;
-        if(currentCount==allCount){
-            $.confirm({
-                title:"",
-                content:uploadMsg.saveSuccess,
-                autoClose: 'confirm|1000',
-                cancelButton:false
-            });
-            $("#myfiles").fileinput("clear");
-            currentCount=0;
-            //focus
-            $("#myfiles").focus();
-        }
+        var currentCount=0;
+        $('#myfiles').on('fileuploaded', function(event, file, previewId, index, reader) {
+            currentCount++;
+            if(currentCount==allCount){
+                $.confirm({
+                    title:"",
+                    content:uploadMsg.saveSuccess,
+                    autoClose: 'confirm|1000',
+                    cancelButton:false
+                });
+                $("#myfiles").fileinput("clear");
+                currentCount=0;
+                //focus
+                $("#myfiles").focus();
+            }
+        });
+        $(".file-drop-zone").height("55%");
     });
 </script>
 </html>

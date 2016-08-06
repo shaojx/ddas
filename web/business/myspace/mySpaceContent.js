@@ -5,6 +5,7 @@ var CONST_USE_PROPERTY_BLOG = "2";//使用属性(1是好友分组，2是相册�
 var userBlogGroupData;//日志分组
 
 var clickedFriendBlogCommentId=null;//保存点击"评论"的id(朋友的日志 )
+var saveCommentBtnOldText="";//保存评论按钮的文本
 $(function () {
 
 /* 有Error   //时间选择器
@@ -45,22 +46,7 @@ $(function () {
         $("#addTypeHref").show();
     });
     //保存----日志分类
-    $("#addTypeSaveBtn").click(function () {
-        var groupName = $("#addTypeInput").val();
-        $.ajax({
-                url:path+"/userGroup/save",
-                type:"POST",
-                data:{
-                    "groupName":groupName,
-                    "useProperty":CONST_USE_PROPERTY_BLOG
-                },
-                dataType:"json",
-                success:function(){
-                    loadUserBlogGroupData(true);
-                    alert("Saving success!");
-                }
-            })
-    });
+    $("#addTypeSaveBtn").click(saveLogType);
 
     //点击"我的日志 "tab页
     $("#myLogTab").click(function(){
@@ -86,7 +72,200 @@ $(function () {
     });
 
     //保存我的日志按钮点击事件
-    $("#saveMyBlogBtn").click(function () {
+    $("#saveMyBlogBtn").click(saveMyLog);
+
+    $("#saveMessageBtn").click(saveMessage);
+
+    //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
+    createBlogValidator();
+    
+    //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
+    createCommentValidator();
+
+    saveCommentBtnOldText=$("#saveCommentBtn").text();
+    //点击评论弹出框的"保存"按钮
+    $("#saveCommentBtn").click(saveComment);
+
+    $('#commentFriendBlog').on('hide.bs.modal', function (event) {
+        $("#commentContent").val("");//清空内容
+        $("#commentForm").data("bootstrapValidator").resetForm(true);//还原状态
+        //重置保存按钮中的状态 
+        $("#saveCommentBtn").text(saveCommentBtnOldText).removeAttr("disabled");
+    })
+    //我的头像鼠标事件
+    createHaedPhotoLisenter();
+    //保存我的头像的监听事件
+    createSaveHeadPhotoListener();
+});
+/**
+ * 保存头像的监听事件
+ */
+function createSaveHeadPhotoListener() {
+    $("#saveHeadPhotoBtn").click(function () {
+        var btn=$(this).button("loading");
+        $btn.button('reset');
+    });
+}
+/**
+ * 创建"我的头像" 一系列的监听事件
+ */
+function createHaedPhotoLisenter() {
+    $("#right").mouseenter(function () {
+        var div=$(this);
+        var position=div.find("#headPhoto").position();
+        $(this).find("#txtDiv_0").css({
+            "left":position.left,
+            "top":position.top
+        })
+    }).mouseleave(function () {
+        $(this).find("#txtDiv_0").css({
+            "left":"-1000px"
+        })
+    });
+
+  /*  $("#right").find("#txtDivSpan_0").click(function () {
+    });*/
+}
+
+/**
+ * 创建日志验证器
+ */
+function createBlogValidator() {
+    $('#blogForm').bootstrapValidator({
+        feedbackIcons: {
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            logContent: {
+                validators: {
+                    notEmpty: true
+                }
+            },
+            logTitle: {
+                validators: {
+                    notEmpty: true
+                }
+            }
+        }
+    });
+}
+/**
+ * 创建验证器(评论表单)
+ */
+function createCommentValidator() {
+    $("#commentForm").bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            commentContent: {
+                validators: {
+                    notEmpty: true
+                }
+            }
+        }
+    });
+}
+/**
+ * 保存日志
+ */
+function saveLogType() {
+    var groupName = $("#addTypeInput").val();
+    $.ajax({
+        url:path+"/userGroup/save",
+        type:"POST",
+        data:{
+            "groupName":groupName,
+            "useProperty":CONST_USE_PROPERTY_BLOG
+        },
+        dataType:"json",
+        success:function(){
+            loadUserBlogGroupData(true);
+            alert("Saving success!");
+        }
+    })
+}
+/**
+ * 保存评论
+ */
+function saveComment() {
+    var bv=$("#commentForm").data("bootstrapValidator").validate();
+    if (bv.isValid()) {//必填
+        if(clickedFriendBlogCommentId){
+            var oldText=$(this).text();
+            var btn=$(this);
+            btn.text(btn.data("loading-text")).attr("disabled","disabled");
+            $.ajax({
+                url:path+"/blogComment/saveFriendComment",
+                data:{
+                    "comment":$("#commentContent").val(),
+                    "blogId":clickedFriendBlogCommentId,
+                },
+                type:"POST",
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        if(data.msg=="success"){
+                            $.confirm({
+                                title:"",
+                                content:mySpaceContent.saveSuccess,
+                                autoClose: 'confirm|1000',
+                                cancelButton:false,
+                                container:"#commentFriendBlog",
+                                confirm:function(){
+                                    $("#closeCommentBtn").click();//关闭评论区
+                                }
+                            });
+                            //   var jconfirmBoxOldMarginTop=$(".jconfirm-box").css("margin-top");
+                            //  $(".jconfirm-box").css({"margin-top":"100px!important"});
+                            //更新 评论数
+                            var oldCount=parseInt($("#friendCommentCount_"+clickedFriendBlogCommentId).text());
+                            $("#friendCommentCount_"+clickedFriendBlogCommentId).text(oldCount+1);
+                        }else{
+                            $.confirm({
+                                title:"",
+                                content:data.msg,
+                                cancelButton:false
+                            });
+                        }
+                        btn.text(oldText).removeAttr("disabled");
+                    }
+                }
+            });
+        }
+    }
+}
+/**
+ * 保存留言
+ */
+function saveMessage() {
+        var messageContent = $("#messageContent").val();
+        if(messageContent == "") {
+            alert("留言内容不能为空");
+            return;
+        }
+        $.ajax({
+            url:path+"/userMessage/save",
+            type:"POST",
+            data:{
+                "messageContent":messageContent,
+                "messageTo":"1"
+            },
+            dataType:"json",
+            success:function(){
+                $("#closeCreateMessageModelBtn").click();
+                alert("success!");
+            }
+        })
+}
+
+/**
+ * 保存我的日志
+ */
+function saveMyLog(){
         var logTitle = $("#logTitle").val();
         var logType = $("#logType").children('option:selected').attr("data-groupid");
         var logTags = $("#logTags").val();
@@ -116,126 +295,7 @@ $(function () {
                 }
             })
         }
-
-    })
-
-    $("#saveMessageBtn").click(function (){
-        var messageContent = $("#messageContent").val();
-        if(messageContent == "") {
-            alert("留言内容不能为空");
-            return;
-        }
-        $.ajax({
-            url:path+"/userMessage/save",
-            type:"POST",
-            data:{
-                "messageContent":messageContent,
-                "messageTo":"1"
-            },
-            dataType:"json",
-            success:function(){
-                $("#closeCreateMessageModelBtn").click();
-                alert("success!");
-            }
-        })
-    });
-
-    //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
-    $('#blogForm').bootstrapValidator({
-        feedbackIcons: {
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            logContent: {
-                validators: {
-                    notEmpty: true
-                }
-            },
-            logTitle: {
-                validators: {
-                    notEmpty: true
-                }
-            }
-        }
-     });
-    
-    //创建 日志 评论的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
-    $("#commentForm").bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            commentContent: {
-                validators: {
-                    notEmpty: true
-                }
-            }
-        }
-    });
-
-    var saveCommentBtnOldText=$("#saveCommentBtn").text();
-    //点击评论弹出框的"保存"按钮
-    $("#saveCommentBtn").click(function () {
-            var bv=$("#commentForm").data("bootstrapValidator").validate();
-            if (bv.isValid()) {//必填
-                if(clickedFriendBlogCommentId){
-                    var oldText=$(this).text();
-                    var btn=$(this);
-                    btn.text(btn.data("loading-text")).attr("disabled","disabled");
-                    $.ajax({
-                        url:path+"/blogComment/saveFriendComment",
-                        data:{
-                            "comment":$("#commentContent").val(),
-                            "blogId":clickedFriendBlogCommentId,
-                        },
-                        type:"POST",
-                        dataType:"json",
-                        success:function (data) {
-                            if(data){
-                                if(data.msg=="success"){
-                                    $.confirm({
-                                        title:"",
-                                        content:mySpaceContent.saveSuccess,
-                                       autoClose: 'confirm|1000',
-                                        cancelButton:false,
-                                        container:"#commentFriendBlog",
-                                        confirm:function(){
-                                            $("#closeCommentBtn").click();//关闭评论区
-                                        }
-                                    });
-                                 //   var jconfirmBoxOldMarginTop=$(".jconfirm-box").css("margin-top");
-                                  //  $(".jconfirm-box").css({"margin-top":"100px!important"});
-                                    //更新 评论数
-                                    var oldCount=parseInt($("#friendCommentCount_"+clickedFriendBlogCommentId).text());
-                                    $("#friendCommentCount_"+clickedFriendBlogCommentId).text(oldCount+1);
-                                }else{
-                                    $.confirm({
-                                        title:"",
-                                        content:data.msg,
-                                        cancelButton:false
-                                    });
-                                }
-                                btn.text(oldText).removeAttr("disabled");
-                            }
-                        }
-                    });
-                }
-            }
-           
-        }
-    );
-
-    $('#commentFriendBlog').on('hide.bs.modal', function (event) {
-        $("#commentContent").val("");//清空内容
-        $("#commentForm").data("bootstrapValidator").resetForm(true);//还原状态
-        //重置保存按钮中的状态 
-        $("#saveCommentBtn").text(saveCommentBtnOldText).removeAttr("disabled");
-    })
-    
-});
+}
 
 //加载日志分组option
 function loadUserBlogGroup() {
