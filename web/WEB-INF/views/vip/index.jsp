@@ -58,8 +58,10 @@
                         <div class="panel-body width185 pull-left innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay a month $20.00</span>
-                                <span class=center-block" style="display: block;">
+                                    <span class="span-height30-center">20</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(1 month)</span>
+                                    <span class=center-block" style="display: block;">
                                     <input type="radio" name="vipType">
                                 </span>
                                 </div>
@@ -69,8 +71,10 @@
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay 3 month $50.00</span>
-                                <span class=center-block" style="display: block;">
+                                    <span class="span-height30-center">50</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(3 months)</span>
+                                    <span class=center-block" style="display: block;">
                                     <input type="radio" name="vipType">
                                 </span>
                                 </div>
@@ -80,8 +84,10 @@
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay 6 month $90.00</span>
-                                <span class=center-block" style="display: block;">
+                                    <span class="span-height30-center">90</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(6 months)</span>
+                                    <span class=center-block" style="display: block;">
                                     <input type="radio" name="vipType">
                                 </span>
                                 </div>
@@ -92,8 +98,10 @@
                         <div class="panel-body width185 pull-left innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay 12 month $150.00</span>
-                                     <span class=center-block" style="display: block;">
+                                    <span class="span-height30-center">150</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(12 months)</span>
+                                    <span class=center-block" style="display: block;">
                                          <input type="radio" name="vipType">
                                     </span>
                                 </div>
@@ -110,7 +118,9 @@
                         <div class="panel-body width185 pull-left innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay a month $99.00</span>
+                                    <span class="span-height30-center">99</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(1 month)</span>
                                 <span class=center-block" style="display: block;">
                                     <input type="radio" name="vipType">
                                 </span>
@@ -121,7 +131,9 @@
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay 3 month $269.00</span>
+                                    <span class="span-height30-center">269</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(3 months)</span>
                                 <span class=center-block" style="display: block;">
                                     <input type="radio" name="vipType">
                                 </span>
@@ -132,7 +144,9 @@
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay 6 month $489.00</span>
+                                    <span class="span-height30-center">489</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(6 months)</span>
                                 <span class=center-block" style="display: block;">
                                     <input type="radio" name="vipType">
                                 </span>
@@ -144,7 +158,9 @@
                         <div class="panel-body width185 pull-left innerDiv">
                             <div class="panel panel-default width185">
                                 <div class="panel-body">
-                                    <span style="display: block;">Pay 12 month $899.00</span>
+                                    <span class="span-height30-center">899</span>
+                                    <img src="<%=path%>/common/images/dollerX30.png" class="doller">
+                                    <span class="span-height30-center">(12 months)</span>
                                      <span class=center-block" style="display: block;">
                                          <input type="radio" name="vipType">
                                     </span>

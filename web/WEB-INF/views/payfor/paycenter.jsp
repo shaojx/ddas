@@ -64,16 +64,16 @@
                     <label class="width120">选择充值金额:</label>
                     <input type="radio" name="payValueChoose" checked="checked" value="100" style="">
                     <span class="inline-block"
-                          style="height: 30px;line-height: 30px;">100<span class="glyphicon glyphicon-usd"></span></span>
+                          style="height: 30px;line-height: 30px;">100</span><img src="<%=path%>/common/images/dollerX30.png" class="doller"></img>
                     <input type="radio" name="payValueChoose" value="200" style="margin-left: 20px; ">
                     <span class="inline-block"
-                          style="height: 30px;line-height: 30px;">200<span class="glyphicon glyphicon-usd"></span></span>
+                          style="height: 30px;line-height: 30px;">200</span><img src="<%=path%>/common/images/dollerX30.png" class="doller"></img>
                     <input type="radio" name="payValueChoose" value="500" style="margin-left: 20px; ">
                     <span class="inline-block"
-                          style="height: 30px;line-height: 30px;">500<span class="glyphicon glyphicon-usd"></span></span>
+                          style="height: 30px;line-height: 30px;">500</span><img src="<%=path%>/common/images/dollerX30.png" class="doller"></img>
                     <input type="radio" name="payValueChoose" value="1000" style="margin-left: 20px; ">
                     <span class="inline-block"
-                          style="height: 30px;line-height: 30px;">1000<span class="glyphicon glyphicon-usd"></span></span>
+                          style="height: 30px;line-height: 30px;">1000</span><img src="<%=path%>/common/images/dollerX30.png" class="doller"></img>
                 </div>
 
                 <div class="clear-both divRow">
