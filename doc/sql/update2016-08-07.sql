@@ -1,3 +1,6 @@
-/*å¢åŠ ç”¨æˆ·çš„å¤´åƒå­—æ®µ*/
-ALTER TABLE user_info ADD COLUMN head_photo_url VARCHAR(500);
+/*Ôö¼ÓÓÃ»§µÄÍ·Ïñ×Ö¶Î*/
+ALTER TABLE user_info ADD COLUMN head_photo_url VARCHAR(500) COMMENT 'ÓÃ»§Í·ÏñµÄurl';
+/*ÓÊ¼ş»Ø¸´Ôö¼Ó×Ö¶Î*/
+ALTER  TABLE user_email ADD COLUMN parent_email_id VARCHAR(64) COMMENT '»Ø¸´ÓÊ¼şµÄid';
+ALTER  TABLE user_email ADD COLUMN mother_email_id VARCHAR(64) COMMENT 'µ±ÓĞ¶à¼¶»Ø¸´Ê±£¬Õâ¸öid±íÊ¾×î³õµÄÓÊ¼şid';
 COMMIT ;
