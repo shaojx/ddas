@@ -170,4 +170,18 @@ public class UserInfoService {
         int updateByPrimaryKeySelective = userInfoMapper.updateByPrimaryKeySelective(userInfo);
         return updateByPrimaryKeySelective;
     }
+
+    /**
+     *根据用户的id来查询用户的信息
+     * @param userId 用户id
+     *@return com.ddas.sns.userinfo.domain.UserInfo
+     *@author shaojx
+     *@date 2016/8/7 0007 13:57
+     *@version 1.0
+     *@since 1.6
+     */
+    public UserInfo queryUserInfoByUserId(String userId){
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userId);
+        return userInfo;
+    }
 }
