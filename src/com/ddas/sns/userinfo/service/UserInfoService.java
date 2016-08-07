@@ -18,6 +18,7 @@ import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -150,5 +151,23 @@ public class UserInfoService {
         record.setUserPwd(resetPwd);
         int count = userInfoMapper.updateByPrimaryKeySelective(record);
         return count;
+    }
+
+    /**
+     *更新用户的头像
+     * @param userId 用户id
+     * @param headPhotoUrl 头像的url
+     *@return int 更新的数量(根据id来更新的数据，应该为1或者为0)
+     *@author shaojx
+     *@date 2016/8/7 0007 11:23
+     *@version 1.0
+     *@since 1.6
+     */
+    public int updateUserInfoHeadPhoto(String userId, String headPhotoUrl) {
+        UserInfo userInfo=new UserInfo();
+        userInfo.setUserId(userId);
+        userInfo.setHeadPhotoUrl(headPhotoUrl);
+        int updateByPrimaryKeySelective = userInfoMapper.updateByPrimaryKeySelective(userInfo);
+        return updateByPrimaryKeySelective;
     }
 }

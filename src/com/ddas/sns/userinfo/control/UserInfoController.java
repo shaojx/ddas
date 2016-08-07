@@ -99,7 +99,7 @@ public class UserInfoController extends BaseController {
                 fileName = headPhoto.getOriginalFilename();
                 //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中
                 String realPath = request.getServletContext().getRealPath("/upload/");
-                //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
+                //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉
                 int indexOfDot = headPhoto.getOriginalFilename().lastIndexOf(".");
                 String fileType = "";
                 if (indexOfDot > -1) {
@@ -107,13 +107,16 @@ public class UserInfoController extends BaseController {
                 }
                 String newFileName = UUIDUtil.createUUID16() + fileType;
                 FileUtils.copyInputStreamToFile(headPhoto.getInputStream(), new File(realPath, newFileName));
-                String photoGroupId = request.getParameter("userId");
+                String userId = request.getParameter("userId");
                 //如果存在PhotoGroup
-                if (StringUtil.isNotEmpty(photoGroupId)) {
-                    // TODO: 2016/8/6 0006
-                    result.put("imagePath","/upload/" + "a1212f7191485091.jpg");//设置照片的url
-                    msg.setSuccessful(true);
-                    msg.setMsg(getMsgByKeyViaLocal("fileupload.success"));
+                if (StringUtil.isNotEmpty(userId)) {
+                    String headPhotoUrl="/upload/" + newFileName;
+                    int updateUserInfoHeadPhoto = userInfoService.updateUserInfoHeadPhoto(userId, headPhotoUrl);
+                    if(updateUserInfoHeadPhoto==1){//表示更新了一条记录
+                        result.put("imagePath",headPhotoUrl);//设置照片的url
+                        msg.setSuccessful(true);
+                        msg.setMsg(getMsgByKeyViaLocal("fileupload.success"));
+                    }
                 }
             } catch (IOException e) {
                 LOGGER.error("修改头像失败!", e);
