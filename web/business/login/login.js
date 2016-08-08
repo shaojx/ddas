@@ -108,6 +108,7 @@ $(function () {
  * 登录
  */
 function login(){
+    $("#errorP").heml("");//清空错误的信息
     var bv=$('#myForm').data("bootstrapValidator").validate();
     if(!bv.isValid()){
         return ;
