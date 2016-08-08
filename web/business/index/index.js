@@ -1,3 +1,4 @@
+
 $(function () {
     //点击左侧导航"相册"
     $("#myPhoto").click(function(){
@@ -54,13 +55,11 @@ $(function () {
         $("#content_iframe").attr("src",path+"/gift/gotoIndex");
     });
 
-
-
     init();
 });
 
 function init(){
-    getRecommendUserListExcludeMeData(1);
+    getRecommendUserListExcludeMeData(1);//拿到首页的推荐用户的数据
 }
 
 /**
@@ -187,3 +186,4 @@ function showPhotos(groupId) {
        });
    }
 }
+

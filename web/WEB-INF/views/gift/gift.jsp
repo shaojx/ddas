@@ -34,6 +34,8 @@
                 overflow: hidden !important;
             }
         </style>
+        <link rel="stylesheet" href="<%=path%>/common/spinner/css/bootstrap-spinner.css">
+        <script type="text/javascript" src="<%=path%>/common/spinner/js/jquery.spinner.min.js"></script>
         <script src="<%=path%>/business/gift/gift.js"></script>
     </head>
 <body>
@@ -164,10 +166,33 @@
                                                             <label class="col-sm-2 control-label"><img src="/common/images/dollerX30.png" class="doller">10</label>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="inputEmail3" class="col-sm-2 control-label">数量</label>
-                                                            <div class="col-sm-2">
-                                                                <input type="email" class="form-control" id="inputEmail3" />
+                                                            <label class="col-sm-2">数量</label>
+                                                            <div class="input-group spinner col-sm-2 margin-left-10px" data-trigger="spinner" id="spinner">
+                                                                <input type="text" class="form-control" id="giftCount" name="giftCount" value="1" data-max="1000" data-min="1" data-step="1">
+                                                                <div class="input-group-addon">
+                                                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a>
+                                                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a>
+                                                                </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="myFriend" class="col-sm-2">好友：</label>
+                                                            <div class="col-sm-2">
+                                                                <select id="myFriend" class="form-control"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-offset-2 col-md-10">
+                                                                <label for="wordContent" class="col-sm-2 control-label float-left">
+                                                                    <span class="inline-block width110">好友赠言</span>
+                                                                </label>
+                                                                <div class="float-left" style="margin-left: 5px;">
+                                                                    <textarea rows="5" id="wordContent" name="wordContent" class="width280"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="button" class="btn btn-info pull-right margin-right-10px" id="sendGiftBtn" value="赠送" name="sendGiftBtn">
                                                         </div>
                                                     </form>
                                                 </div>

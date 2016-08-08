@@ -115,7 +115,7 @@
                                 <label class="control-label pull-left margin-left-20px">
                                     <span class="inline-block" style="height: 30px;line-height: 30px;">好友名字</span>
                                 </label>
-                                <select id="friendList" class="form-control width120 pull-left margin-left-10px"><option id="1">zhangsan</option><option id="3">Lily</option><option id="4">LilyA</option><option id="5">zhangsan3</option><option id="6">Lily5</option><option id="7">LilyA4</option><option id="8">zhangsan2</option><option id="9">Lily2</option><option id="10">Lily1</option><option id="2">zhangsanmamamammam</option><option id="4">LilyA</option><option id="2">zhangsan</option><option id="3">Lily</option></select>
+                                <select id="friendList" class="form-control width120 pull-left margin-left-10px"></select>
                                 <button type="button" class="btn btn-default" id="closeModel" data-dismiss="modal">关闭</button>
                                 <button type="button" class="btn btn-primary" id="sendEmailBtn">保存</button>
                             </div>

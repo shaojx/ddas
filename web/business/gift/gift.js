@@ -4,7 +4,8 @@ var staticGiftCondition = {
     contentListDiv:"#virtualGiftContentDiv",//列表展示的DIV
     paginationDiv:"#virtualGiftPaginationDIV",//分页条
     loaderDiv:"#panel-virtualGift"//等待转动圈所在的DIV
-}
+};
+var allFriendListData;//用于存放所有好友
 $(function() {
     $("#virtualGiftTab").click(function () {
         staticGiftCondition = {
@@ -28,6 +29,18 @@ $(function() {
         getGiftData(staticGiftCondition)
     });
 
+    /**
+     * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
+     */
+    $('#sendGiftDialog').on('show.bs.modal', function (event) {
+
+        for(var obj in allFriendListData) {//已缓存到js中的数据
+            $("#myFriend").empty();
+            var option = "<option data-friendId="+allFriendListData[obj].friendId+">"+allFriendListData[obj].friendName+"</option>";
+            $("#myFriend").append(option);
+        }
+    });
+
     //初始化页面调用
     init()
 });
@@ -36,7 +49,8 @@ $(function() {
  * 初始化页面加载的时候调用
  */
 function init() {
-    $("#virtualGiftTab").click()
+    $("#virtualGiftTab").click();
+    getMyAllFriendData();//取到所有的好友列表，方便后面使用
 }
 
 /**
@@ -97,8 +111,6 @@ function initStaticGiftPagination(pageData) {
         }
     };
     $(staticGiftCondition.paginationDiv).bootstrapPaginator(options);
-
-
 }
 /**
  * 初始化礼物列表数据
@@ -124,4 +136,28 @@ function initStaticGiftData(data) {
             .replace(/giftId/g, _data.giftId);
         $(staticGiftCondition.contentListDiv).append(_replace);
     }
+}
+
+function getMyAllFriendData() {
+    $.ajax({
+        url:path+"/userFriend/queryRecordsByPage",
+        type:"POST",
+        data:{
+            "currentPage":1,
+            "pageSize":1000,
+            "status":"1"//用户已添加好友
+        },
+        dataType:"json",
+        success:function(data){
+            var list = data.dataList;
+            allFriendListData = [];
+            for (var index in list) {
+                var _data = list[index];
+                allFriendListData[_data.ufId] = {
+                    "friendId":_data.friendId,
+                    "friendName":_data.friendName
+                };
+            }
+        }
+    })
 }

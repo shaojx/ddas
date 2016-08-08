@@ -5,7 +5,7 @@ var CONST_FRIEND = "1";//1代表已经添加的好友
 var userFriendCondition = {
     pageNo:1,
     friendNameCondition:"",
-    status:CONST_FRIEND,
+    status:CONST_FRIEND
 };//查询条件初始化
 
 var sendEmailCondition = {
@@ -61,7 +61,7 @@ function getMyFriendData(condition){
                 "currentPage":condition.pageNo,
                 "pageSize":1000,
                 "friendNameCondition":condition.friendNameCondition,
-                "status":condition.status,
+                "status":condition.status
             },
             dataType:"json",
             success:function(data){
