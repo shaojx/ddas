@@ -9,6 +9,8 @@
 package com.ddas.sns.myspace.control;
 
 import com.ddas.sns.common.BaseController;
+import com.ddas.sns.userinfo.service.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/myspace")
 public class MySpaceController extends BaseController {
+
+    @Autowired
+    private UserInfoService userInfoService;
     /**
      *
      *@param
@@ -52,7 +57,8 @@ public class MySpaceController extends BaseController {
     @RequestMapping("/getMyspceContent")
     public ModelAndView getMyspceContent(HttpServletRequest request){
         ModelAndView modelAndView= withLocal(request,"myspace/mySpaceContent");
-        modelAndView.addObject("userId",getLoginUser(request).getUserId());
+        //重新从数据库加载最新的数据
+        modelAndView.addObject("userInfo",userInfoService.queryUserInfoByUserId(getLoginUser(request).getUserId()));
         return modelAndView;
     }
 }

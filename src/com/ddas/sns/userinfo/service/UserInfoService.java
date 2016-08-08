@@ -73,6 +73,7 @@ public class UserInfoService {
 
     /**
      * 用户登录
+     *
      * @param userInfo 用户信息
      * @return boolean {false}登录失败,{true}登录成功
      * @author shaojx
@@ -211,5 +212,17 @@ public class UserInfoService {
         return updateByPrimaryKeySelective;
     }
 
-
+    /**
+     *根据用户的id来查询用户的信息
+     * @param userId 用户id
+     *@return com.ddas.sns.userinfo.domain.UserInfo
+     *@author shaojx
+     *@date 2016/8/7 0007 13:57
+     *@version 1.0
+     *@since 1.6
+     */
+    public UserInfo queryUserInfoByUserId(String userId){
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userId);
+        return userInfo;
+    }
 }

@@ -168,7 +168,7 @@
                           </div>
                       </div>
                        <div id="right">
-                           <img id="headPhoto" src="<%=path%>/common/images/140x140.jpg" alt="120X120" class="img-rounded"
+                           <img id="headPhoto" src="<%=path%>${userInfo.headPhotoUrl}" alt="120X120" class="img-rounded"
                                 style="width: 100px;height: 100px;">
                             <div style="width:100px;height: 100px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
                                 id="txtDiv_0">
@@ -610,12 +610,17 @@
     </div>
 </div>
 <%--用户id--%>
-<input id="userId" name="userId" value="${userId}">
+<input id="userId" name="userId" value="${userInfo.userId}">
 </body>
 </html>
 <%--更换头像JS--%>
 <script type="text/javascript">
   $(function () {
+      //加载头像失败 使用默认的图片
+      $("#headPhoto").error(function(){
+          $(this).attr("src",path+"/common/images/140x140.jpg");
+      });
+
       $("#changeHeadPhotoInput").fileinput({
           "uploadUrl": path + "/userInfo/changeHeadPhoto",
           'showPreview': true,
@@ -641,7 +646,7 @@
                   $("#closeHeadPhotoBtn").click();
               }
           });
-          $("#headPhoto").attr("src",path+data.response.imagePath);
+          $("#headPhoto").attr("src",path+data.response.imagePath+"?"+new Date().getTime());
       });
   })
 </script>

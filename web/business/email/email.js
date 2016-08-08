@@ -145,7 +145,7 @@ function initEmailSendPagination(pageData) {
 function initEmailSendData(data) {
     var emailSendDivTemplete = '<div class="panel panel-default ">'+
         '<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
-        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">'+
+        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
         '<div class="margin-left-10px"><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}</div></div>'+
@@ -210,12 +210,12 @@ function initEmailReceivePagination(pageData) {
             if (oldPage==newPage) {
                 return ;
             } else {
-                sendEmailCondition.pageNo = newPage;
-                getSendEmailData(sendEmailCondition); //重新拉取数据
+                receiveEmailCondition.pageNo = newPage;
+                getReceiveEmailData(receiveEmailCondition); //重新拉取数据
             }
         }
     }
-    $("#emailSendPaginationDIV").bootstrapPaginator(options);
+    $("#emailReceivePaginationDIV").bootstrapPaginator(options);
 }
 /**
  * 初始化我的好友的数据
@@ -224,10 +224,12 @@ function initEmailReceivePagination(pageData) {
 function initEmailReceiveData(data) {
     var emailReceiveDivTemplete = '<div class="panel panel-default ">'+
         '<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
-        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;">'+
+        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
-        '<div class="margin-left-10px"><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}</div></div>'+
+        '<div class="margin-left-10px"><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}' +
+        '<a href="javascript:void(0);" style="margin-right: 10px; margin-left: 20px;">回 复</a>' +
+        '<a href="javascript:void(0);">详 情</a></div></div>'+
         '</div>';
     var list = data.dataList;
     for (var index in list) {

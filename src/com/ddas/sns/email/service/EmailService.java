@@ -86,13 +86,17 @@ public class EmailService {
             userEmailDto.setEmailContent(userEmail.getEmailContent());
             if(StringUtil.isNotEmpty(userEmail.getEmailSender())) {
                 UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userEmail.getEmailSender());
-                userEmailDto.setEmailSenderName(userInfo.getUserName());
-                userEmailDto.setEmailSender(userEmail.getEmailSender());
+                if (userInfo != null) {
+                    userEmailDto.setEmailSenderName(userInfo.getUserName());
+                    userEmailDto.setEmailSender(userEmail.getEmailSender());
+                }
             }
             if(StringUtil.isNotEmpty(userEmail.getEmailReceiver())) {
                 UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userEmail.getEmailReceiver());
-                userEmailDto.setEmailReceiverName(userInfo.getUserName());
-                userEmailDto.setEmailReceiver(userEmail.getEmailReceiver());
+                if(userInfo!=null){
+                    userEmailDto.setEmailReceiverName(userInfo.getUserName());
+                    userEmailDto.setEmailReceiver(userEmail.getEmailReceiver());
+                }
             }
 
             dataList.add(userEmailDto);
