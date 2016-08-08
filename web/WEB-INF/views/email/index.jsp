@@ -77,6 +77,87 @@
 
         </div>
     </div>
+
+    <%--邮件详情的dialog--%>
+    <div class="modal fade" id="emailDetailDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="emailDetailLabel">邮件详情</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="headPhotoForm">
+                        <div>
+                            <textarea id="reciverTxtArea" rows="5" cols="97"></textarea>
+                        </div>
+                        <div class="margin-top-10px clear-both" >
+                           <button type="button" class="btn btn-info float-right" style="margin-bottom: 5px;">回复</button>
+                        </div>
+                    </form>
+                    <%--分页显示--%>
+                   <div id="contentDiv" class="clear-both">
+                       <div class="panel panel-default">
+                           <div class="panel-body">
+                               <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                           </div>
+                       </div>
+                       <div class="panel panel-default">
+                           <div class="panel-body">
+                               <p style="font-style: italic;font-size: 12px;">回复给XXX:</p>
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                           </div>
+                       </div>
+                       <div class="panel panel-default">
+                           <div class="panel-body">
+                               <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                           </div>
+                       </div>
+                       <div class="panel panel-default">
+                           <div class="panel-body">
+                               <p style="font-style: italic;font-size: 12px;">回复给XXX:</p>
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                           </div>
+                       </div>
+                       <div class="panel panel-default">
+                           <div class="panel-body">
+                               <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                               这里面是一些邮内容，回复自amdin
+                           </div>
+                       </div>
+                   </div>
+                    <%--分页Div--%>
+                    <div id="emailDetailPagnation"></div>
+                </div>
+                <div class="modal-footer" style="display: none;">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeHeadPhotoBtn">关闭</button>
+                    <button type="button" class="btn btn-primary" data-loading-text="保存中..." id="saveHeadPhotoBtn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

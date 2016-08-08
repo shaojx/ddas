@@ -229,7 +229,7 @@ function initEmailReceiveData(data) {
         '</span>'+
         '<div class="margin-left-10px"><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}' +
         '<a href="javascript:void(0);" style="margin-right: 10px; margin-left: 20px;">回 复</a>' +
-        '<a href="javascript:void(0);">详 情</a></div></div>'+
+        '<a href="javascript:void(0);" data-toggle="modal" data-target="#emailDetailDiv" data-backdrop="">详 情</a></div></div>'+
         '</div>';
     var list = data.dataList;
     for (var index in list) {
