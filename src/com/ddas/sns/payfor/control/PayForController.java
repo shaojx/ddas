@@ -1,9 +1,11 @@
 package com.ddas.sns.payfor.control;
 
 import com.ddas.common.Msg;
+import com.ddas.common.util.StringUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.payfor.service.PayService;
 import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.userinfo.service.UserInfoService;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PaymentExecution;
 import com.paypal.base.rest.APIContext;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.DecimalFormat;
 
 /**
  * ClassName:	PayForController
@@ -38,6 +41,9 @@ public class PayForController extends BaseController{
 
     @Resource
     private PayService payService;
+
+    @Resource
+    private UserInfoService userInfoService;
     /**
      *跳转到 充值中心 的首页
      *@return java.lang.String
@@ -84,7 +90,7 @@ public class PayForController extends BaseController{
 
     @RequestMapping("/paypalProcess")
     @ResponseBody
-    public Msg callBackForPaypal(String userId, String paymentId, String token, String PayerID){
+    public Msg callBackForPaypal(String userid, String paymentId, String token, String PayerID){
         APIContext context = new APIContext(clientID, clientSecret, "sandbox");
         Payment payment = new Payment();
         payment.setId(paymentId);
@@ -93,14 +99,20 @@ public class PayForController extends BaseController{
         Msg msg = new Msg();
         try{
             payment = payment.execute(context, paymentExecution);
+            if(("approved").equals(payment.getState())){
+                UserInfo userInfo = userInfoService.fetchUserInfoByUserId(userid);
+                String payAmount = payment.getTransactions().get(0).getAmount().getTotal();
+                Double userAmount = Double.valueOf(StringUtil.isEmpty(userInfo.getUserCoin()) ? "0.00" : userInfo.getUserCoin());
+                Double totalAmount = userAmount + Double.valueOf(payAmount);//将用户的剩余金额和此次支付成功的金额加起来
+                DecimalFormat df = new DecimalFormat("0.00");//保留两位小数，存到数据库
+                userInfo.setUserCoin(df.format(totalAmount));
+                userInfoService.saveUserInfo(userInfo);
+                msg.setMsg("支付成功！");
+            }else {
+                msg.setMsg("支付失败！");
+            }
         }catch(Exception e){
             LOGGER.error(e.getMessage(), e);
-            msg.setMsg("支付失败！");
-        }
-        if(("approved").equals(payment.getState())){
-            msg.setMsg("支付成功！");
-            // TODO: 2016/7/15 支付成功就修改用户的金币数量
-        }else {
             msg.setMsg("支付失败！");
         }
 

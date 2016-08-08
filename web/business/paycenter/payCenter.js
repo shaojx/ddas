@@ -31,23 +31,19 @@ $(function () {
         if(mount == "") {
             mount = $('input[name="payValueChoose"]:checked ').val();
         }
-        alert(payToId);
 
-        alert(payMethod);
-        alert(mount);
         //等待中
         var loader=SLLib.loader({
-            ele:"#payCenter",
             spinner:"spinner2",
-            //height:"110px"
+            height:"110px"
         });
-        //loader.start();
+        loader.start();
         //"1"使用paypal支付
-/*        $.ajax({//保存好友信息，主要针对好友分组的改变
+        $.ajax({//保存好友信息，主要针对好友分组的改变
             url:path+"/payfor/payPalRedirect",
             type:"POST",
             data:{
-                "userId":payToId,//写死，冲给自己
+                "userId":payToId,
                 "payMethod":payMethod,
                 "mount":mount
             },
@@ -58,7 +54,7 @@ $(function () {
                 alert(redirectUrl);
                 window.open(redirectUrl);
             }
-        })*/
+        })
 
     })
 

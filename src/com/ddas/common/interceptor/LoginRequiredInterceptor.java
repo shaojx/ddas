@@ -47,11 +47,11 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
             //用户登录判断
             HttpSession session = req.getSession(true);
             UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
-            if(userInfo==null && requestURL.indexOf("goToLoginPage") < 0){
+            if(userInfo==null && requestURL.indexOf("gotoLoginPage") < 0){
                 System.out.println("userinfo is null");
                 try {
                    // req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);
-                    response.getWriter().write("<script type='text/javascript'>window.top.location.href='"+req.getContextPath()+"/login/gotoLogin"+"';</script>");
+                    response.getWriter().write("<script type='text/javascript'>window.top.location.href='"+req.getContextPath()+"/login/gotoLoginPage"+"';</script>");
                 }  catch (IOException e) {
                     e.printStackTrace();
                 }

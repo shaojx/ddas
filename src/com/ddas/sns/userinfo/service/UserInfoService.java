@@ -17,6 +17,7 @@ import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import com.sun.xml.internal.bind.v2.TODO;
+import org.apache.http.impl.client.TunnelRefusedException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,10 +36,43 @@ import java.util.List;
 public class UserInfoService {
     @Resource
     private UserInfoMapper userInfoMapper;
+    /**
+     * 根据用户ID找到用户
+     * @author liuchen
+     * @date 2016/7/9 14:05
+     * @version 1.0
+     * @since 1.6
+     */
+    public UserInfo fetchUserInfoByUserId(String userId) {
+        return userInfoMapper.selectByPrimaryKey(userId);
+    }
+
+    /**
+     * 若用户ID为空，则新增，保存，若不为空，则直接保存
+     * @author liuchen
+     * @date 2016/7/9 14:05
+     * @version 1.0
+     * @since 1.6
+     */
+    public boolean saveUserInfo(UserInfo userInfo) {
+        if(userInfo == null) {
+            return false;
+        }
+        String currentDateTime = DateUtil.getCurrentDateString();
+        if(StringUtil.isEmpty(userInfo.getUserId())) {//用户ID为空，那么新增
+            userInfo.setUserId(UUIDUtil.createUUID16());
+            userInfo.setCreatedTime(currentDateTime);
+            userInfo.setUpdatedTime(currentDateTime);
+            userInfoMapper.insertSelective(userInfo);
+            return true;
+        }else {
+            userInfoMapper.updateByPrimaryKey(userInfo);
+            return true;
+        }
+    }
 
     /**
      * 用户登录
-     *
      * @param userInfo 用户信息
      * @return boolean {false}登录失败,{true}登录成功
      * @author shaojx
@@ -97,7 +131,13 @@ public class UserInfoService {
         List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoCriteria);
         return userInfos.size() <= 0;
     }
-
+    /**
+     *首页显示其他的用户列表
+     *@author shaojx
+     *@date 2016/7/16 13:08
+     *@version 1.0
+     *@since 1.6
+     */
     public Page queryUserListExcludeMe(int currentPage, int pageSize, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
@@ -170,4 +210,6 @@ public class UserInfoService {
         int updateByPrimaryKeySelective = userInfoMapper.updateByPrimaryKeySelective(userInfo);
         return updateByPrimaryKeySelective;
     }
+
+
 }

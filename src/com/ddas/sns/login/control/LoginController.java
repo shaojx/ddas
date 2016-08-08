@@ -97,7 +97,6 @@ public class LoginController extends BaseController {
         return modelAndView;
     }
 
-
     @RequestMapping("/in")
     @ResponseBody
     public Msg login(@RequestParam String remeberme, @RequestBody UserInfo userInfo, HttpServletRequest request, HttpServletResponse response) {
@@ -176,7 +175,7 @@ public class LoginController extends BaseController {
      * @Date 2016/7/8 16:34
      * @since JDK1.6
      */
-    @RequestMapping("/goToLoginPage")
+    @RequestMapping("/gotoLoginPage")
     public ModelAndView gotoLoginPage(HttpServletRequest request) {
         ModelAndView modelAndView = withLocal(request, "login/login");
         return modelAndView;

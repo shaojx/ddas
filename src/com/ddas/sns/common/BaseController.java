@@ -5,6 +5,7 @@ import com.ddas.sns.userinfo.domain.UserInfo;
 import org.codehaus.janino.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -138,6 +139,13 @@ public class BaseController {
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                         .getRequest();
         return curRequest;
+    }
+
+    /** 基于@ExceptionHandler异常处理 */
+    @ExceptionHandler
+    public void exceptionHandler(HttpServletRequest request, Exception e) {
+        // TODO: 2016/8/7 可以根据e的类型去转向不同的错误页面
+        LOGGER.error(e.getMessage(), e);
     }
 
 }
