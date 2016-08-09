@@ -207,7 +207,7 @@
                         </tr>
                         </tbody>
                     </table>
-            </div>
+                </div>
                 <%--分页--%>
                 <div class="row pull-left">
                     <div class="col-md-12">

@@ -153,10 +153,11 @@
                                         <div class="panel-body">
                                             <div class="row clearfix">
                                                 <div class="width350 float-left">
-                                                    <div class="thumbnail" id="giftId">
-                                                        <img src="/business/gift/images/watch1.jpg" alt="350x350">
+                                                    <input id="giftId" type="hidden"/>
+                                                    <div class="thumbnail">
+                                                        <img id="imageUrl" src="" alt="350x350">
                                                         <div class="caption" style="text-align: center">
-                                                            <h5>电子表</h5>
+                                                            <h5 id="giftName" name="giftName"></h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -181,7 +182,7 @@
                                                                 <select id="myFriend" class="form-control"></select>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <%--<div class="form-group">
                                                             <div class="col-sm-offset-2 col-md-10">
                                                                 <label for="wordContent" class="col-sm-2 control-label float-left">
                                                                     <span class="inline-block width110">好友赠言</span>
@@ -190,7 +191,7 @@
                                                                     <textarea rows="5" id="wordContent" name="wordContent" class="width280"></textarea>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div>--%>
                                                         <div class="form-group">
                                                             <input type="button" class="btn btn-info pull-right margin-right-10px" id="sendGiftBtn" value="赠送" name="sendGiftBtn">
                                                         </div>
@@ -207,6 +208,38 @@
             </div>
 
             <div class="tab-pane" id="panel-receive-gift">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="checkbox" name="types_checkbox"> </th>
+                            <th>分类名称</th>
+                            <th>创建时间</th>
+                            <th>操 作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myFriendGroupContentDiv">
+                        <tr>
+                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
+                            <td>默认分组</td>
+                            <td>2016-7-1 23:00:15</td>
+                            <td><span class="text-muted" style="font-style: italic;">默认分组不允许修改与删除!</span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
+                            <td>自定义分组1</td>
+                            <td>2016-7-1 23:00:15</td>
+                            <td><a href="javascript:void(0)" >编辑</a> | <a href="#">删除</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
+                            <td>自定义分组2</td>
+                            <td>2016-7-1 23:00:15</td>
+                            <td><a href="#">编辑</a> | <a href="#">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 <%--                <div id="myFriendsLogContentDiv">
                 </div>
                 <ul id="myFriendsLogPagnationDiv"></ul>--%>
