@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping("/friends")
 public class FriendsController {
-    private static  final Logger LOGGER= LoggerFactory.getLogger(FriendsController.class);
+    private static final Logger LOGGER= LoggerFactory.getLogger(FriendsController.class);
 
     @RequestMapping("/gotoIndex")
     public String gotoIndex(){

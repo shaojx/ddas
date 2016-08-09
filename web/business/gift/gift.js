@@ -33,7 +33,12 @@ $(function() {
      * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
      */
     $('#sendGiftDialog').on('show.bs.modal', function (event) {
-
+        var button = $(event.relatedTarget);// Button that triggered the modal
+        var giftId = button.data('giftid'); // Extract info from data-* attributes
+        var modal = $(this);
+        modal.find('#giftId').val(giftId);
+        var imageUrl = button.data('image');
+        modal.find('#imageUrl').attr("src", imageUrl);
         for(var obj in allFriendListData) {//已缓存到js中的数据
             $("#myFriend").empty();
             var option = "<option data-friendId="+allFriendListData[obj].friendId+">"+allFriendListData[obj].friendName+"</option>";
@@ -41,8 +46,13 @@ $(function() {
         }
     });
 
+    //赠送礼物的btn的点击事件
+    $("#sendGiftBtn").click(function () {
+        sendGiftToFriend();
+    });
+
     //初始化页面调用
-    init()
+    init();
 });
 
 /**
@@ -118,7 +128,7 @@ function initStaticGiftPagination(pageData) {
  */
 function initStaticGiftData(data) {
     var staticGiftDivTemplete = '<div class="col-xs-3 col-md-3 width175">'+
-        '<div class="thumbnail cursor-pointer" id="giftId" data-toggle="modal" data-backdrop="" data-target="#sendGiftDialog" autocomplete="off">'+
+        '<div class="thumbnail cursor-pointer" id="giftId" data-image="basePathgiftUrl" data-giftid="giftId" data-toggle="modal" data-backdrop="" data-target="#sendGiftDialog" autocomplete="off">'+
         '<img src="basePathgiftUrl" alt="140x140">'+
         '<div class="caption" style="text-align: center">'+
         '<h5>giftName</h5>'+
@@ -158,6 +168,30 @@ function getMyAllFriendData() {
                     "friendName":_data.friendName
                 };
             }
+        }
+    })
+}
+
+function sendGiftToFriend() {
+    var giftId = $("#giftId").val();
+    var friendId = $("#myFriend").children('option:selected').attr("data-friendid");
+    var giftCount = $("#giftCount").val();
+    $.ajax({
+        url:path+"/gift/sendGiftToFriend",
+        type:"POST",
+        data:{
+            "giftId":giftId,
+            "friendId":friendId,
+            "giftCount":giftCount
+        },
+        dataType:"json",
+        success:function(data){
+            $.confirm({
+                title:"",
+                content:data.msg,
+                autoClose: 'confirm|1000',
+                cancelButton:false
+            });
         }
     })
 }
