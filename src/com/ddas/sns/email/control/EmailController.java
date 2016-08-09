@@ -78,4 +78,11 @@ public class EmailController extends BaseController{
         return page;
     }
 
+    @RequestMapping("/fetchEmailDetailByEmailId")
+    @ResponseBody
+    public Page fetchEmailDetailByEmailId(String emailId,int pageNo,int pageSize,HttpServletRequest request){
+        Page page=emailService.fetchEmailDetailByEmailId(emailId,pageNo,pageSize,getLoginUser(request));
+        return page;
+    }
+
 }

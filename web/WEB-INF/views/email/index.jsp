@@ -25,6 +25,8 @@
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
     <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
+    <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
    <style type="text/css">
         html,body{
             overflow: hidden;
@@ -149,7 +151,7 @@
                        </div>
                    </div>
                     <%--分页Div--%>
-                    <div id="emailDetailPagnation"></div>
+                    <ul id="emailDetailPagnation"></ul>
                 </div>
                 <div class="modal-footer" style="display: none;">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="closeHeadPhotoBtn">关闭</button>

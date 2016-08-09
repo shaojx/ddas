@@ -19,6 +19,7 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+    <script type="text/javascript" src="<%=path%>/common/json2/json2.js"></script>
     <script type="text/javascript" src="<%=path%>/common/md5/md5.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/login/login.js"></script>
     <link type="text/css" href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css"/>
