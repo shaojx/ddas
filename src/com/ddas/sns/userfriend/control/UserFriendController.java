@@ -183,6 +183,13 @@ public class UserFriendController extends BaseController {
         return userFriend;
     }
 
+    /**
+     * 查询好友的Blog
+     *@Author liuchen6
+     *@Date 2016/7/1 14:59
+     *@return com.ddas.sns.userfriend.domain.UserFriend
+     *@since JDK1.6
+     */
     @RequestMapping(value = "/queryFriendBlogByPage", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Page getFriendsBlogList(int currentPage, int pageSize, HttpServletRequest request){

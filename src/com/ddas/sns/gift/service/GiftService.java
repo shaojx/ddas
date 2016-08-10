@@ -1,5 +1,6 @@
 package com.ddas.sns.gift.service;
 
+import com.ddas.common.page.Page;
 import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
@@ -8,12 +9,15 @@ import com.ddas.sns.gift.mapper.UserGiftMapper;
 import com.ddas.sns.staticgift.domain.StaticGift;
 import com.ddas.sns.staticgift.mapper.StaticGiftMapper;
 import com.ddas.sns.userfriend.domain.UserFriend;
+import com.ddas.sns.userfriendgift.mapper.UserFriendGiftMapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -31,7 +35,7 @@ public class GiftService {
     @Resource
     private StaticGiftMapper staticGiftMapper;
     @Resource
-    private UserInfoMapper userInfoMapper;
+    private UserFriendGiftMapper userFriendGiftMapper;
 
     public boolean sendGiftToFriend(String giftId, int count, String friendId, UserInfo userInfo) {
         UserGift userGift = new UserGift();
@@ -63,5 +67,23 @@ public class GiftService {
         userGiftMapper.insertSelective(userGift);
 
         return true;
+    }
+
+    public Page queryUserGiftByPage(Page page, String giftProperty, UserInfo userInfo) {
+        Map<String, Object> condition = new HashMap();
+        condition.put("start", page.getPageStart());
+        condition.put("end", page.getPageStart() + page.getPageSize());
+
+        if("2".equals(giftProperty)) {//我收到的礼物的前端查询属性为"2"
+            condition.put("giftReceiver", userInfo.getUserId());
+        } else if("3".equals(giftProperty)) {//我送出的礼物的前端查询属性为"3"
+            condition.put("giftSender", userInfo.getUserId());
+        }
+
+        page.setCondition(condition);
+        page.setTotalCount(userFriendGiftMapper.getCount(page));
+        page.setDataList(userFriendGiftMapper.queryByPage(page));
+
+        return page;
     }
 }

@@ -33,7 +33,7 @@ public class GiftController extends BaseController{
     private GiftService giftService;
 
     /**
-     * 跳转到我的好友界面
+     * 跳转到礼物界面
      *@Author liuchen6
      *@Date 2016/7/1 14:52
      *@param
@@ -73,6 +73,29 @@ public class GiftController extends BaseController{
         }
 
         return msg;
+    }
+
+    /**
+     * 送礼物给好友
+     *@Author liuchen6
+     *@Date 2016/7/1 14:52
+     *@param
+     *@return msg
+     *@since JDK1.6
+     */
+    @RequestMapping(value = "/queryRecordsByPage")
+    @ResponseBody
+    public Page queryUserGiftByPage(int currentPage, int pageSize, String giftProperty, HttpServletRequest request) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        try{
+            page = giftService.queryUserGiftByPage(page, giftProperty, getLoginUser(request));
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return page;
     }
 
 }

@@ -213,42 +213,40 @@
                         <thead>
                         <tr>
                             <th><input type="checkbox" class="checkbox" name="types_checkbox"> </th>
-                            <th>分类名称</th>
-                            <th>创建时间</th>
-                            <th>操 作</th>
+                            <th>礼物名</th>
+                            <th>图片</th>
+                            <th>礼物类型</th>
+                            <th>赠送人</th>
+                            <th>数量</th>
+                            <th>赠送时间</th>
                         </tr>
                         </thead>
-                        <tbody id="myFriendGroupContentDiv">
-                        <tr>
-                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
-                            <td>默认分组</td>
-                            <td>2016-7-1 23:00:15</td>
-                            <td><span class="text-muted" style="font-style: italic;">默认分组不允许修改与删除!</span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
-                            <td>自定义分组1</td>
-                            <td>2016-7-1 23:00:15</td>
-                            <td><a href="javascript:void(0)" >编辑</a> | <a href="#">删除</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
-                            <td>自定义分组2</td>
-                            <td>2016-7-1 23:00:15</td>
-                            <td><a href="#">编辑</a> | <a href="#">删除</a></td>
-                        </tr>
+                        <tbody id="receiveGiftContentDiv">
                         </tbody>
                     </table>
                 </div>
-<%--                <div id="myFriendsLogContentDiv">
-                </div>
-                <ul id="myFriendsLogPagnationDiv"></ul>--%>
+                <ul id="receiveGiftPaginationDiv"></ul>
             </div>
 
             <div class="tab-pane" id="panel-send-gift">
-<%--                <div id="myFriendsLogContentDiv">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="checkbox" name="types_checkbox"> </th>
+                            <th>礼物名</th>
+                            <th>图片</th>
+                            <th>礼物类型</th>
+                            <th>赠送对象</th>
+                            <th>数量</th>
+                            <th>赠送时间</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sendGiftContentDiv">
+                        </tbody>
+                    </table>
                 </div>
-                <ul id="myFriendsLogPagnationDiv"></ul>--%>
+                <ul id="sendGiftPaginationDiv"></ul>
             </div>
         </div>
     </div>

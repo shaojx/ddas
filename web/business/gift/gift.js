@@ -1,19 +1,21 @@
-var staticGiftCondition = {
+var staticGiftCondition = {//用来初始化分页条件
     pageNo:1,
     giftProperty:"0",//0表示虚拟的礼物，1表示真实的礼物
     contentListDiv:"#virtualGiftContentDiv",//列表展示的DIV
     paginationDiv:"#virtualGiftPaginationDIV",//分页条
-    loaderDiv:"#panel-virtualGift"//等待转动圈所在的DIV
+    loaderDiv:"#panel-virtualGift",//等待转动圈所在的DIV
+    postUrl:"/staticGift/queryRecordsByPage"//请求的url
 };
 var allFriendListData;//用于存放所有好友
 $(function() {
     $("#virtualGiftTab").click(function () {
         staticGiftCondition = {
             pageNo:1,
-            giftProperty:"0",//0表示虚拟的礼物，1表示真实的礼物
+            giftProperty:"0",//0表示虚拟的礼物，1表示真实的礼物，2表示我收到的礼物，3表示我送出的礼物
             contentListDiv:"#virtualGiftContentDiv",//列表展示的DIV
             paginationDiv:"#virtualGiftPaginationDiv",//分页条
-            loaderDiv:"#panel-virtualGift"//等待转动圈所在的DIV
+            loaderDiv:"#panel-virtualGift",//等待转动圈所在的DIV
+            postUrl:"/staticGift/queryRecordsByPage"//请求的url
         };
         getGiftData(staticGiftCondition)
     });
@@ -24,7 +26,8 @@ $(function() {
             giftProperty:"1",//0表示虚拟的礼物，1表示真实的礼物
             contentListDiv:"#trueGiftContentDiv",//列表展示的DIV
             paginationDiv:"#trueGiftPaginationDiv",//分页条
-            loaderDiv:"#panel-trueGift"//等待转动圈所在的DIV
+            loaderDiv:"#panel-trueGift",//等待转动圈所在的DIV
+            postUrl:"/staticGift/queryRecordsByPage"//请求的url
         };
         getGiftData(staticGiftCondition)
     });
@@ -50,6 +53,32 @@ $(function() {
     $("#sendGiftBtn").click(function () {
         sendGiftToFriend();
     });
+
+    //收到的礼物的tab的点击事件
+    $("#receiveGiftTab").click(function () {
+        staticGiftCondition = {//用来初始化分页条件
+            pageNo:1,
+            giftProperty:"2",//0表示虚拟的礼物，1表示真实的礼物，2表示我收到的礼物，3表示我送出的礼物
+            contentListDiv:"#receiveGiftContentDiv",//列表展示的DIV
+            paginationDiv:"#receiveGiftPaginationDiv",//分页条
+            loaderDiv:"#panel-receive-gift",//等待转动圈所在的DIV
+            postUrl:"/gift/queryRecordsByPage"//请求的url
+        };
+        getGiftData(staticGiftCondition);
+    })
+
+    //送出的礼物的tab的点击事件
+    $("#sendGiftTab").click(function () {
+        staticGiftCondition = {//用来初始化分页条件
+            pageNo:1,
+            giftProperty:"3",//0表示虚拟的礼物，1表示真实的礼物，2表示我收到的礼物，3表示我送出的礼物
+            contentListDiv:"#sendGiftContentDiv",//列表展示的DIV
+            paginationDiv:"#sendGiftPaginationDiv",//分页条
+            loaderDiv:"#panel-send-gift",//等待转动圈所在的DIV
+            postUrl:"/gift/queryRecordsByPage"//请求的url
+        };
+        getGiftData(staticGiftCondition);
+    })
 
     //初始化页面调用
     init();
@@ -77,7 +106,7 @@ function getGiftData(condition){
     loader.start();
     if(condition.pageNo){
         $.ajax({
-            url:path+"/staticGift/queryRecordsByPage",
+            url:path + condition.postUrl,
             type:"POST",
             data:{
                 "currentPage":condition.pageNo,
@@ -127,14 +156,38 @@ function initStaticGiftPagination(pageData) {
  * @param data
  */
 function initStaticGiftData(data) {
-    var staticGiftDivTemplete = '<div class="col-xs-3 col-md-3 width175">'+
-        '<div class="thumbnail cursor-pointer" id="giftId" data-image="basePathgiftUrl" data-giftid="giftId" data-toggle="modal" data-backdrop="" data-target="#sendGiftDialog" autocomplete="off">'+
-        '<img src="basePathgiftUrl" alt="140x140">'+
-        '<div class="caption" style="text-align: center">'+
-        '<h5>giftName</h5>'+
-        '</div>'+
-        '</div>'+
-        '</div>';
+    var staticGiftDivTemplete = "";
+    if(staticGiftCondition.giftProperty == "0" || staticGiftCondition.giftProperty == "1"){//如果是查询展示的礼物的List
+        staticGiftDivTemplete = '<div class="col-xs-3 col-md-3 width175">'+
+            '<div class="thumbnail cursor-pointer" id="giftId" data-image="basePathgiftUrl" data-giftid="giftId" data-toggle="modal" data-backdrop="" data-target="#sendGiftDialog" autocomplete="off">'+
+            '<img src="basePathgiftUrl" alt="140x140">'+
+            '<div class="caption" style="text-align: center">'+
+            '<h5>giftName</h5>'+
+            '</div>'+
+            '</div>'+
+            '</div>';
+    }else if(staticGiftCondition.giftProperty == "2") {//收到的礼物列表
+        staticGiftDivTemplete = '<tr>'+
+            '<th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>'+
+            '<td>giftName</td>'+
+            '<td><img style="width: 50px" src="giftUrl"></td>'+
+            '<td>giftProperty</td>'+
+            '<td>giftSender</td>'+
+            '<td>giftCount</td>'+
+            '<td>createdTime</td>'+
+            '</tr>';
+    }else if(staticGiftCondition.giftProperty == "3") {//送出的礼物列表
+        staticGiftDivTemplete = '<tr>'+
+            '<th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>'+
+            '<td>giftName</td>'+
+            '<td><img style="width: 50px" src="giftUrl"></td>'+
+            '<td>giftProperty</td>'+
+            '<td>giftReceiver</td>'+
+            '<td>giftCount</td>'+
+            '<td>createdTime</td>'+
+            '</tr>';
+    }
+
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
@@ -147,7 +200,7 @@ function initStaticGiftData(data) {
         $(staticGiftCondition.contentListDiv).append(_replace);
     }
 }
-
+//获得我的所有的好友列表
 function getMyAllFriendData() {
     $.ajax({
         url:path+"/userFriend/queryRecordsByPage",
@@ -171,7 +224,7 @@ function getMyAllFriendData() {
         }
     })
 }
-
+//送礼物给好友
 function sendGiftToFriend() {
     var giftId = $("#giftId").val();
     var friendId = $("#myFriend").children('option:selected').attr("data-friendid");
@@ -195,3 +248,4 @@ function sendGiftToFriend() {
         }
     })
 }
+
