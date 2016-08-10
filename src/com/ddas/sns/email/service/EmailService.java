@@ -52,7 +52,7 @@ public class EmailService {
     private UserInfoMapper userInfoMapper;
 
     //发送邮件
-    public void save(UserEmail userEmail, UserInfo userInfo){
+    public int save(UserEmail userEmail, UserInfo userInfo){
         if(StringUtil.isNotEmpty(userEmail.getEmailReceiver())) {
             userEmail.setEmailSender(userInfo.getUserId());
             userEmail.setEmailReceiver(userEmail.getEmailReceiver());
@@ -61,7 +61,8 @@ public class EmailService {
         String currentDataString = DateUtil.getCurrentDateString();
         userEmail.setCreatedTime(currentDataString);
         userEmail.setUpdatedTime(currentDataString);
-        userEmailMapper.insertSelective(userEmail);
+        int insertSelective = userEmailMapper.insertSelective(userEmail);
+        return insertSelective;
     }
 
     public Page queryRecordsByPage(int currentPage, int pageSize, UserEmail userEmailObj, UserInfo loginUser){
@@ -183,5 +184,38 @@ public class EmailService {
             userNameCache.put(userId,userName);
             userEmailDto.setOtherUserName(userName);
         }
+    }
+
+    /**
+     *回复邮件
+     * @param emailId 回复邮件的id
+     * @param senderId 当前回复邮件的发送者
+     * @param loginUser 当前登录用户
+     * @param  emailContent 邮件内容
+     *@return int 插入的数据量
+     *@author shaojx
+     *@date 2016/8/10 21:44
+     *@version 1.0
+     *@since 1.6
+     */
+    public int reply(String emailId, String senderId,String emailContent, UserInfo loginUser) {
+        UserEmail userEmail=new UserEmail();
+        UserEmail parentEmail = userEmailMapper.selectByPrimaryKey(emailId);//获取当前的邮件的信息
+        userEmail.setParentEmailId(emailId);//设置parentEamilId，这个id为当前邮件的id
+        String motherEmailId = parentEmail.getMotherEmailId();
+        if(motherEmailId==null||motherEmailId.trim().length()<=0){
+            userEmail.setMotherEmailId(parentEmail.getUeId());//当parentEmail的motherId为空时，设置回复邮件的motherid为当前邮件的id(为第一封回复邮件)
+        }else{
+            userEmail.setMotherEmailId(parentEmail.getMotherEmailId());//设置当前的回复邮件的motherid与上一封的motherid相同
+        }
+        userEmail.setUeId(UUIDUtil.createUUID16());
+        userEmail.setEmailSender(loginUser.getUserId());//设置邮件发送者的id为当前用户
+        userEmail.setEmailReceiver(senderId);//设置邮件接收者为上一封邮件的发送者
+        userEmail.setEmailContent(emailContent);
+        String currentDataString = DateUtil.getCurrentDateString();
+        userEmail.setCreatedTime(currentDataString);
+        userEmail.setUpdatedTime(currentDataString);
+        int insertSelective = userEmailMapper.insertSelective(userEmail);
+        return insertSelective;
     }
 }

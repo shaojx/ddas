@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.email.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.email.domain.UserEmail;
@@ -50,20 +51,26 @@ public class EmailController extends BaseController{
      */
     @RequestMapping("/gotoIndex")
     public ModelAndView gotoEmail(HttpServletRequest httpServletRequest){
-        ModelAndView mav = new ModelAndView("email/index");
+        ModelAndView mav = withLocal(httpServletRequest,"email/index");
         mav.addObject("currentLoginUserId", getLoginUser(httpServletRequest).getUserId());
         return mav;
     }
 
     @RequestMapping("/save")
     @ResponseBody
-    public UserEmail save(UserEmail userEmail, HttpServletRequest request){
+    public Msg save(UserEmail userEmail, HttpServletRequest request){
+        Msg msg=new Msg();
+        msg.setSuccessful(false);
         try {
-            emailService.save(userEmail, getLoginUser(request));
-        }catch (Exception e){
-            LOGGER.error(e.getMessage(), e);
+            int save = emailService.save(userEmail, getLoginUser(request));
+            if(save==1){
+                msg.setSuccessful(true);
+            }
+        } catch (Exception e) {
+            LOGGER.error("新建邮件或者回复邮件失败！",e);
+            msg.setSuccessful(false);
         }
-        return userEmail;
+        return msg;
     }
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
@@ -78,11 +85,52 @@ public class EmailController extends BaseController{
         return page;
     }
 
+    /**
+     *获取相应的回复列表
+     * @param emailId 邮件的id
+     * @param pageNo 当前的页码
+     * @param pageSize 每页的数据量
+     * @param request 当前请求
+     *@return com.ddas.common.page.Page
+     *@author shaojx
+     *@date 2016/8/10 21:35
+     *@version 1.0
+     *@since 1.6
+     */
     @RequestMapping("/fetchEmailDetailByEmailId")
     @ResponseBody
     public Page fetchEmailDetailByEmailId(String emailId,int pageNo,int pageSize,HttpServletRequest request){
         Page page=emailService.fetchEmailDetailByEmailId(emailId,pageNo,pageSize,getLoginUser(request));
         return page;
+    }
+
+    /**
+     *回复邮件
+     * @param emailId 回复邮件的id
+     * @param senderId 当前邮件的发送者
+     * @param request 当前请求
+     * @param emailContent 回复内容
+     *@return com.ddas.common.Msg
+     *@author shaojx
+     *@date 2016/8/10 21:47
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/reply")
+    @ResponseBody
+    public Msg reply(String emailId,String senderId,String emailContent,HttpServletRequest request){
+        Msg msg=new Msg();
+        msg.setSuccessful(false);
+        try {
+            int reply = emailService.reply(emailId, senderId,emailContent, getLoginUser(request));
+            if(reply==1){
+                msg.setSuccessful(true);
+            }
+        } catch (Exception e) {
+           LOGGER.error("回复邮件失败！",e);
+            msg.setSuccessful(false);
+        }
+        return msg;
     }
 
 }
