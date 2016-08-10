@@ -13,6 +13,7 @@
     <meta name="author" content="">
     <link href="<%=path%>/common/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
+    <script type="text/javascript" src="<%=path%>/business/common/language/${local}.js"></script>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
@@ -27,6 +28,8 @@
     <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
+    <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
    <style type="text/css">
         html,body{
             overflow: hidden;
@@ -39,7 +42,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="#SendEmailBox" id="sendMailTab" data-toggle="tab">发件箱</a></li>
             <li ><a href="#ReceiveEmailBox" id="receiveMailTab" data-toggle="tab">收件箱</a></li>
-            <li ><a href="#CreateEmail" data-toggle="tab">新建邮件</a></li>
+            <li ><a href="#CreateEmail" data-toggle="tab" id="createEmailTab">新建邮件</a></li>
         </ul>
     </div>
 
@@ -71,7 +74,7 @@
                     <label class="control-label pull-left margin-left-20px">
                         <span class="inline-block" style="height: 30px;line-height: 30px;">好友名字</span>
                     </label>
-                    <select id="friendList" class="form-control width120 pull-left margin-left-10px">
+                    <select id="friendList" class="form-control width120 pull-left margin-left-10px disabled">
                     </select>
                     <button class="btn btn-info pull-right margin-right-15px" type="button" id="sendEmailBtn">保存</button>
                 </div>
@@ -91,10 +94,10 @@
                 <div class="modal-body">
                     <form class="form-horizontal" id="headPhotoForm">
                         <div>
-                            <textarea id="reciverTxtArea" rows="5" cols="97"></textarea>
+                            <textarea id="replyTxtArea" rows="5" cols="97"></textarea>
                         </div>
                         <div class="margin-top-10px clear-both" >
-                           <button type="button" class="btn btn-info float-right" style="margin-bottom: 5px;">回复</button>
+                           <button type="button" class="btn btn-info float-right" style="margin-bottom: 5px;" id="replyBtn">回复</button>
                         </div>
                     </form>
                     <%--分页显示--%>
