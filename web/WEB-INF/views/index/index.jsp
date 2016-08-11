@@ -47,11 +47,16 @@
         <li><a href="about.html">充值</a></li>
         <li><a href="about.html">礼物</a></li>
       </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li id="logoutBtn"><a href="javascript:void(0)">退出</a></li>
-        <li><a href="#"><i class="fa fa-reddit"></i></a></li>
-      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="logoutBtn"><a href="javascript:void(0)">退出</a></li>
+            <li><a href="#"><i class="fa fa-reddit"></i></a></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" id="searchUserName" class="form-control" placeholder="搜索">
+            </div>
+            <button type="button" id="searchUserBtn" class="btn btn-default">搜索</button>
+        </form>
 
     </div>
     <!--/.nav-collapse -->

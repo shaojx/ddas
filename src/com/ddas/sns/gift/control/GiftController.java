@@ -70,13 +70,15 @@ public class GiftController extends BaseController{
         }
         if(success) {
             msg.setMsg("赠送礼物成功,好友马上就会收到你的礼物");
+        }else{
+            msg.setMsg("赠送礼物失败，余额不足，请充值");
         }
 
         return msg;
     }
 
     /**
-     * 送礼物给好友
+     * 查询我收到的，或者送出的礼物
      *@Author liuchen6
      *@Date 2016/7/1 14:52
      *@param

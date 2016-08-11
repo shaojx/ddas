@@ -23,7 +23,7 @@ $(function () {
      */
     $('#createMyLogDialog').on('show.bs.modal', function (event) {
         loadUserBlogGroup();
-    })
+    });
 
     /**
      * 当关闭框的时候重置

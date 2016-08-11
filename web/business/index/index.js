@@ -55,6 +55,9 @@ $(function () {
         $("#content_iframe").attr("src",path+"/gift/gotoIndex");
     });
 
+    $("#searchUserBtn").click(function () {
+        $("#content_iframe").attr("src",path+"/index/indexContent");
+    });
     init();
 });
 

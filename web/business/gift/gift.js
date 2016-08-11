@@ -42,8 +42,8 @@ $(function() {
         modal.find('#giftId').val(giftId);
         var imageUrl = button.data('image');
         modal.find('#imageUrl').attr("src", imageUrl);
+        $("#myFriend").empty();
         for(var obj in allFriendListData) {//已缓存到js中的数据
-            $("#myFriend").empty();
             var option = "<option data-friendId="+allFriendListData[obj].friendId+">"+allFriendListData[obj].friendName+"</option>";
             $("#myFriend").append(option);
         }
@@ -172,7 +172,7 @@ function initStaticGiftData(data) {
             '<td>giftName</td>'+
             '<td><img style="width: 50px" src="giftUrl"></td>'+
             '<td>giftProperty</td>'+
-            '<td>giftSender</td>'+
+            '<td>giftSenderName</td>'+
             '<td>giftCount</td>'+
             '<td>createdTime</td>'+
             '</tr>';
@@ -182,7 +182,7 @@ function initStaticGiftData(data) {
             '<td>giftName</td>'+
             '<td><img style="width: 50px" src="giftUrl"></td>'+
             '<td>giftProperty</td>'+
-            '<td>giftReceiver</td>'+
+            '<td>giftReceiverName</td>'+
             '<td>giftCount</td>'+
             '<td>createdTime</td>'+
             '</tr>';
@@ -196,7 +196,16 @@ function initStaticGiftData(data) {
             .replace(/giftName/g, _data.giftName)
             .replace(/giftPrice/g, _data.giftPrice)
             .replace(/giftUrl/g, _data.giftUrl)
-            .replace(/giftId/g, _data.giftId);
+            .replace(/giftId/g, _data.giftId)
+            .replace(/giftReceiverName/g, _data.giftReceiverName)
+            .replace(/giftSenderName/g, _data.giftSenderName)
+            .replace(/giftCount/g, _data.giftCount)
+            .replace(/createdTime/g, _data.createdTime);
+        if(_data.giftProperty == "0") {
+            _replace = _replace.replace(/giftProperty/g, "虚拟礼物")
+        }else if(_data.giftProperty == "1") {
+            _replace = _replace.replace(/giftProperty/g, "真实礼物")
+        }
         $(staticGiftCondition.contentListDiv).append(_replace);
     }
 }

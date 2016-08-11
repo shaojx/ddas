@@ -610,7 +610,7 @@
     </div>
 </div>
 <%--用户id--%>
-<input id="userId" name="userId" value="${userInfo.userId}">
+<input type="hidden" id="userId" name="userId" data-name="${userInfo.userName}" data-coin="${userInfo.userCoin}" value="${userInfo.userId}">
 </body>
 </html>
 <%--更换头像JS--%>
