@@ -68,8 +68,8 @@ public class UserInfoController extends BaseController {
      */
     @RequestMapping(value = "/queryUserListExcludeMe", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public Page getUserListExcludeMe(int currentPage, int pageSize, HttpServletRequest httpServletRequest) {
-        return userInfoService.queryUserListExcludeMe(currentPage, pageSize, getLoginUser(httpServletRequest));
+    public Page getUserListExcludeMe(int currentPage, int pageSize, String searchUserName, HttpServletRequest httpServletRequest) {
+        return userInfoService.queryUserListExcludeMe(currentPage, pageSize, searchUserName, getLoginUser(httpServletRequest));
     }
 
     /**

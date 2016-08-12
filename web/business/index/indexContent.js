@@ -246,13 +246,15 @@ function initIndexUserList() {
  */
 function getUserListExcludeMeData(pageNo){
     $("#userListContentDiv").html("");//清空数据
+    var searchUserName = $("#searchUserName", window.top.document).val();
     if(pageNo){
         $.ajax({
             url:path+"/userInfo/queryUserListExcludeMe",
             type:"POST",
             data:{
                 "currentPage":pageNo,
-                "pageSize":12
+                "pageSize":12,
+                "searchUserName":searchUserName
             },
             dataType:"json",
             success:function(data){
