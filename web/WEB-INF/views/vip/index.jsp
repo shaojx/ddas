@@ -62,7 +62,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(1 month)</span>
                                     <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType">
+                                    <input type="radio" name="vipType" value="1_20_1">
                                 </span>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(3 months)</span>
                                     <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType">
+                                    <input type="radio" name="vipType" value="1_50_3">
                                 </span>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(6 months)</span>
                                     <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType">
+                                    <input type="radio" name="vipType" value="1_90_6">
                                 </span>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(12 months)</span>
                                     <span class=center-block" style="display: block;">
-                                         <input type="radio" name="vipType">
+                                         <input type="radio" name="vipType" value="1_150_12" >
                                     </span>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(1 month)</span>
                                 <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType">
+                                    <input type="radio" name="vipType" value="2_99_1">
                                 </span>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(3 months)</span>
                                 <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType">
+                                    <input type="radio" name="vipType" value="2_269_3">
                                 </span>
                                 </div>
                             </div>
@@ -148,7 +148,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(6 months)</span>
                                 <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType">
+                                    <input type="radio" name="vipType" value="2_489_6">
                                 </span>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(12 months)</span>
                                      <span class=center-block" style="display: block;">
-                                         <input type="radio" name="vipType">
+                                         <input type="radio" name="vipType" value="2_899_12">
                                     </span>
                                 </div>
                             </div>

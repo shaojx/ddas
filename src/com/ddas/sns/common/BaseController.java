@@ -2,6 +2,7 @@ package com.ddas.sns.common;
 
 import com.ddas.common.util.springutil.SpringContextUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.vip.domain.UserVipInfo;
 import org.codehaus.janino.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,18 @@
 package com.ddas.sns.vip.control;
 
+import com.ddas.common.page.Page;
+import com.ddas.sns.common.BaseController;
+import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.vip.domain.VipPrivs;
+import com.ddas.sns.vip.service.VipService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * ClassName:	VipController
@@ -13,18 +24,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/vip")
-public class VipController {
+public class VipController extends BaseController {
+
+    @Autowired
+    private VipService vipService;
+    /**
+     * 升级会员页面
+     *
+     * @return java.lang.String 升级会员的页面
+     * @author shaojx
+     * @date 2016/7/8 21:45
+     * @version 1.0
+     * @since 1.6
+     */
+    @RequestMapping("/gotoVip")
+    public ModelAndView gotoVip(HttpServletRequest request) {
+        ModelAndView modelAndView = withLocal(request, "vip/index");
+        return modelAndView;
+    }
 
     /**
-     *升级会员页面
-     *@return java.lang.String 升级会员的页面
+     *根据用户的id来获取相应的用户所具有vip信息
+     * @param request 当前请求
+     *@return java.util.List<com.ddas.sns.vip.domain.VipPrivs>
      *@author shaojx
-     *@date 2016/7/8 21:45
+     *@date 2016/8/12 23:07
      *@version 1.0
      *@since 1.6
      */
-    @RequestMapping("/gotoVip")
-    public String gotoVip(){
-        return "vip/index";
+    @RequestMapping("/findVipPrivsByUserId")
+    @ResponseBody
+    public Page findVipPrivsByUserId(HttpServletRequest request){
+        Page page=new Page();
+        UserInfo loginUser = getLoginUser(request);
+        List<VipPrivs> vipPrivses = vipService.fetchVipPrivsByUserId(loginUser.getUserId());
+        //return vipPrivses;
+        page.setDataList(vipPrivses);
+        return  page;
     }
 }
