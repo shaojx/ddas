@@ -1,5 +1,6 @@
 package com.ddas.sns.vip.control;
 
+import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.vip.domain.VipPrivs;
@@ -53,9 +54,12 @@ public class VipController extends BaseController {
      */
     @RequestMapping("/findVipPrivsByUserId")
     @ResponseBody
-    public List<VipPrivs> findVipPrivsByUserId(HttpServletRequest request){
+    public Page findVipPrivsByUserId(HttpServletRequest request){
+        Page page=new Page();
         UserInfo loginUser = getLoginUser(request);
         List<VipPrivs> vipPrivses = vipService.fetchVipPrivsByUserId(loginUser.getUserId());
-        return vipPrivses;
+        //return vipPrivses;
+        page.setDataList(vipPrivses);
+        return  page;
     }
 }
