@@ -40,6 +40,12 @@
 .width400{
     width: 400px;
 }
+.height150{
+    height:150px;
+}
+.height120{
+    height:120px;
+}
 .inline-block {
     display: inline-block;
 }

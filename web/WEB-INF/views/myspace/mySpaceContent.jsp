@@ -65,21 +65,21 @@
             <li>
                 <a href="#panel-tabs1" data-toggle="tab">用户资料</a>
             </li>
-            <li>
+<%--            <li>
                 <a href="#panel-tabs2" data-toggle="tab">心情</a>
-            </li>
+            </li>--%>
             <li>
                 <a href="#panel-tabs3" data-toggle="tab" id="logTab">日志</a>
             </li>
             <li>
                 <a href="#panel-tabs4" data-toggle="tab">相册</a>
             </li>
-            <li>
+<%--            <li>
                 <a href="#panel-tabs5" data-toggle="tab">分享</a>
-            </li>
-            <li>
+            </li>--%>
+<%--            <li>
                 <a href="#panel-tabs6" data-toggle="tab">群组</a>
-            </li>
+            </li>--%>
             <li>
                 <a href="#panel-tabs7" id="messageTab" data-toggle="tab">留言板</a>
             </li>

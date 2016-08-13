@@ -9,6 +9,7 @@ import com.ddas.sns.vip.domain.VipPrivsCriteria;
 import com.ddas.sns.vip.mapper.UserVipInfoMapper;
 import com.ddas.sns.vip.mapper.VipPrivsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
  * @date 2016/8/12 22:19
  * @since JDK 1.6
  */
+@Service
 public class VipService extends BaseService {
     @Autowired
     private VipPrivsMapper vipPrivsMapper;

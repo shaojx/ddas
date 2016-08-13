@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
+    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
@@ -41,7 +42,7 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index"></spring:message> </a></li>
-        <li><a href="<%=path%>/myspace/gotoIndex">我的空间</a></li>
+        <li><a href="<%=path%>/myspace/gotoIndex"><spring:message code="mySpace"></spring:message></a></li>
         <li><a href="#contact">朋友圈</a></li>
         <li><a href="#contact">升级</a></li>
         <li><a href="about.html">充值</a></li>
@@ -72,9 +73,9 @@
         <%--left content--%>
         <div class="col-md-2">
             <div>
-                <img alt="140x140" src="/common/images/140x140.jpg" />
-                <div><a>Mariki</a></div>
-                <div class="yue"><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span>金币：</span><span style="color:#FF471F">0</span></div>
+                <img alt="120x120" class="img-rounded width120 height120" src="/upload/11bacf475a941473.jpg" />
+                <div><a style="font-size: larger">${userInfo.userName}</a></div>
+                <div><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span>金币：</span><span style="color:#FF471F">${userInfo.userCoin}</span></div>
             </div>
 
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
@@ -327,7 +328,8 @@
 </div><!-- /.container -->
 
 <footer class="footer">
-
+    <%--用户信息--%>
+    <input type="hidden" id="userId" name="userId" data-name="${userInfo.userName}" data-coin="${userInfo.userCoin}" data-head-url="${headPhotoUrl}" value="${userInfo.userId}">
 </footer>
 
 <!-- Bootstrap core JavaScript
