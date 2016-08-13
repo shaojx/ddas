@@ -17,6 +17,7 @@
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
     <%-- <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/login/language/${local}.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>

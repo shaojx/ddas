@@ -1,3 +1,4 @@
+
 /**
  * 项目名称:	OpenSource
  * 文件名称:	IndexController.java
@@ -8,8 +9,12 @@
  */
 package com.ddas.sns.index.control;
 
+import com.ddas.sns.common.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	IndexController
@@ -21,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/index")
-public class IndexController {
+public class IndexController extends BaseController{
     /**
      *获取 首页中的 iframe 内容
      *@param
@@ -31,8 +36,9 @@ public class IndexController {
      *@since JDK1.6
      */
     @RequestMapping("/indexContent")
-    public String getIndexContent(){
-        return "index/indexContent";
+    public ModelAndView getIndexContent(HttpServletRequest httpServletRequest){
+        ModelAndView mav = withLocal(httpServletRequest, "index/indexContent");
+        return mav;
     }
 
     /**
@@ -44,7 +50,9 @@ public class IndexController {
      *@since JDK1.6
      */
     @RequestMapping("/gotoIndex")
-    public String gotoIndex(){
-        return "index/index";
+    public ModelAndView gotoIndex(HttpServletRequest httpServletRequest){
+        ModelAndView mav = withLocal(httpServletRequest, "index/index");
+
+        return mav;
     }
 }

@@ -154,7 +154,7 @@ public class UserFriendController extends BaseController {
         if(StringUtil.isEmpty(userFriend.getStatus()) || !"1".equals(userFriend.getStatus())) {
             List<UserFriend> list = userFriendService.findUserFriendByUserIdAndFriendId(userFriend.getUserId() ,getLoginUser(httpServletRequest).getUserId());
             if(list != null && list.size() > 0) {
-                msg.setMsg("你已经添加过该好友了！");
+                msg.setMsg(getMsgByKeyViaLocal("index.confirmAddFriend.duplicate.error"));
                 msg.setSuccessful(true);
                 return msg;
             }

@@ -320,7 +320,7 @@ function initUserListData(data) {
 function addAddBtnClickListener(addUserBtnId, friendId){
     $(addUserBtnId).click(function () {
         $.confirm({
-            content:"确定发起好友添加申请？",
+            content:indexMsg.confirmAddFriend,
             confirm:function () {
                 $.ajax({
                     url:path+"/userFriend/applyFriend",

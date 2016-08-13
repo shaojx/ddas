@@ -17,6 +17,7 @@
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/login/language/${local}.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <%--引入自定义样式--%>
@@ -40,14 +41,19 @@
       </button>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
         <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index"></spring:message> </a></li>
         <li><a href="<%=path%>/myspace/gotoIndex"><spring:message code="mySpace"></spring:message></a></li>
         <li><a href="#contact">朋友圈</a></li>
         <li><a href="#contact">升级</a></li>
         <li><a href="about.html">充值</a></li>
         <li><a href="about.html">礼物</a></li>
-      </ul>
+        </ul>
+        <%--语言条--%>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="<%=path%>/index/gotoIndex?language=zh_CN">中 文</a></li>
+            <li><a href="<%=path%>/index/gotoIndex?language=en_US">英 文</a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
             <li id="logoutBtn"><a href="javascript:void(0)">退出</a></li>
             <li><a href="#"><i class="fa fa-reddit"></i></a></li>
@@ -58,6 +64,7 @@
             </div>
             <button type="button" id="searchUserBtn" class="btn btn-default">搜索</button>
         </form>
+
 
     </div>
     <!--/.nav-collapse -->
