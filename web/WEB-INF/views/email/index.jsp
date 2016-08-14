@@ -40,9 +40,9 @@
 <div class="container-fluid">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#SendEmailBox" id="sendMailTab" data-toggle="tab">发件箱</a></li>
-            <li ><a href="#ReceiveEmailBox" id="receiveMailTab" data-toggle="tab">收件箱</a></li>
-            <li ><a href="#CreateEmail" data-toggle="tab" id="createEmailTab">新建邮件</a></li>
+            <li class="active"><a href="#SendEmailBox" id="sendMailTab" data-toggle="tab"><spring:message code="outBox" text="发件箱"/></a></li>
+            <li ><a href="#ReceiveEmailBox" id="receiveMailTab" data-toggle="tab"><spring:message code="inBox" text="收件箱"/></a></li>
+            <li ><a href="#CreateEmail" data-toggle="tab" id="createEmailTab"><spring:message code="createEmail" text="新建邮件"/></a></li>
         </ul>
     </div>
 
@@ -72,11 +72,11 @@
                 <textarea rows="5" id="emailContent" style="margin: 0px; height: 448px; width: 746px;"></textarea>
                 <div class="row margin-top-10px">
                     <label class="control-label pull-left margin-left-20px">
-                        <span class="inline-block" style="height: 30px;line-height: 30px;">好友名字</span>
+                        <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>
                     </label>
                     <select id="friendList" class="form-control width120 pull-left margin-left-10px disabled">
                     </select>
-                    <button class="btn btn-info pull-right margin-right-15px" type="button" id="sendEmailBtn">保存</button>
+                    <button class="btn btn-info pull-right margin-right-15px" type="button" id="sendEmailBtn"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="emailDetailLabel">邮件详情</h4>
+                    <h4 class="modal-title" id="emailDetailLabel"><spring:message code="emailInfo" text="邮件详情"/></h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="headPhotoForm">
@@ -97,7 +97,7 @@
                             <textarea id="replyTxtArea" rows="5" cols="97"></textarea>
                         </div>
                         <div class="margin-top-10px clear-both" >
-                           <button type="button" class="btn btn-info float-right" style="margin-bottom: 5px;" id="replyBtn">回复</button>
+                           <button type="button" class="btn btn-info float-right" style="margin-bottom: 5px;" id="replyBtn"><spring:message code="reply" text="回复"/></button>
                         </div>
                     </form>
                     <%--分页显示--%>
@@ -157,8 +157,8 @@
                     <ul id="emailDetailPagnation"></ul>
                 </div>
                 <div class="modal-footer" style="display: none;">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeHeadPhotoBtn">关闭</button>
-                    <button type="button" class="btn btn-primary" data-loading-text="保存中..." id="saveHeadPhotoBtn">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeHeadPhotoBtn"><spring:message code="close" text="关闭"/></button>
+                    <button type="button" class="btn btn-primary" data-loading-text=<spring:message code="saving" text="保存中..."/> id="saveHeadPhotoBtn"><spring:message code="sendEmail" text="发送"/></button>
                 </div>
             </div>
         </div>

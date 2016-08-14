@@ -83,7 +83,7 @@ public class LoginController extends BaseController {
             UserInfo userInfoFromDb = userInfoService.loginInProxy(userInfo);
             if (userInfoFromDb != null) {
                 modelAndView.setViewName("redirect:/index/gotoIndex");//直接跳转到首页
-                request.getSession(true).setAttribute("userInfo", userInfoFromDb);//设置用户到session中
+                setLoginUserToSession(userInfoFromDb, request);//设置用户到session中
             }
         } else {
             //locale 只为了前端页面的 validator的国际化
@@ -121,7 +121,7 @@ public class LoginController extends BaseController {
                 response.addCookie(userPwdCookie);
                 response.addCookie(userRemermeCookie);
             }
-            request.getSession(true).setAttribute("userInfo", userInfoFromDb);
+            setLoginUserToSession(userInfoFromDb, request);
             Msg msg = new Msg();
             msg.setMsg("success");
             msg.setSuccessful(true);

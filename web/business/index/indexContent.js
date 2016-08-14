@@ -303,7 +303,7 @@ function initUserListData(data) {
         '<div class="imageDiv">'+
         '<img alt="140x140" src="${basePath}/common/images/people140x140.jpg" class="img-thumbnail"/>'+
         '<p>'+
-        '${userNameVal} <a class="btn" href="javascript:void(0)" id="${userId}_addBtn">加好友</a>'+
+        '${userNameVal} <a class="btn" href="javascript:void(0)" id="${userId}_addBtn">addFriendBtn</a>'+
         '</p>'+
         '</div>'+
         '</div>';
@@ -311,7 +311,9 @@ function initUserListData(data) {
     for (var index in list) {
         var _data = list[index];
         var _replace = userListDivTemplete.replace("${basePath}", path)
-            .replace("${userNameVal}", _data.userName).replace("${userId}", _data.userId)
+            .replace("${userNameVal}", _data.userName)
+            .replace("${userId}", _data.userId)
+            .replace(/addFriendBtn/g, indexMsg.addFriendBtn);
         $("#userListContentDiv").append(_replace);
         addAddBtnClickListener("#"+_data.userId+"_addBtn", _data.userId);
     }

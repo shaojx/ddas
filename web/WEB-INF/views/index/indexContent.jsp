@@ -44,69 +44,21 @@
         <div class="tabbable" id="tabs-262840">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#panel-tabs1" data-toggle="tab">用户列表</a>
+                    <a href="#panel-tabs1" data-toggle="tab"><spring:message code="userList" text="用户列表"/></a>
                 </li>
                 <li>
-                    <a href="#panel-tabs2" data-toggle="tab" id="logTab">日志</a>
+                    <a href="#panel-tabs2" data-toggle="tab" id="logTab"><spring:message code="blog" text="日志"/></a>
                 </li>
                 <li>
-                    <a href="#panel-tabs3" data-toggle="tab">相册</a>
+                    <a href="#panel-tabs3" data-toggle="tab"><spring:message code="album" text="相册"/></a>
                 </li>
-                <li>
+           <%--     <li>
                     <a href="#panel-tabs4" data-toggle="tab">分享</a>
-                </li>
+                </li>--%>
             </ul>
             <div class="tab-content" id="tab-content">
                 <div class="tab-pane active" id="panel-tabs1">
                     <div id="userListContentDiv">
-                        <div class="col-xs-3 col-md-3">
-                            <div class="imageDiv">
-                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                                <p>
-                                    Name <a class="btn" href="#">加好友</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-md-3">
-                                <div class="imageDiv">
-                                    <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                                    <p>
-                                        Name <a class="btn" href="#">加好友</a>
-                                    </p>
-                                </div>
-                        </div>
-                        <div class="col-xs-3 col-md-3">
-                            <div class="imageDiv">
-                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                                <p>
-                                    Name <a class="btn" href="#">加好友</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-md-3">
-                            <div class="imageDiv">
-                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                                <p>
-                                    Name <a class="btn" href="#">加好友</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-md-3">
-                            <div class="imageDiv">
-                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                                <p>
-                                    Name <a class="btn" href="#">加好友</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-md-3">
-                            <div class="imageDiv">
-                                <img alt="140x140" src="<%=path%>/common/images/140x140.jpg" class="img-thumbnail"/>
-                                <p>
-                                    Name <a class="btn" href="#">加好友</a>
-                                </p>
-                            </div>
-                        </div>
                     </div>
                     <div class="row clearfix" style="clear: both;">
                         <div class="col-md-12">
@@ -124,10 +76,10 @@
                             <div class="tabbable" id="tabs-295323">
                                 <ul class="nav nav-tabs">
                                     <li class="active" id="myLogTab">
-                                        <a href="#panel-324017" data-toggle="tab">我的日志</a>
+                                        <a href="#panel-324017" data-toggle="tab"><spring:message code="myBlog" text="我的日志"/></a>
                                     </li>
                                     <li id="friendsLogTab">
-                                        <a href="#panel-8940" data-toggle="tab">朋友的日志</a>
+                                        <a href="#panel-8940" data-toggle="tab"><spring:message code="friendBlog" text="朋友的日志"/></a>
                                     </li>
                                 </ul>
                             </div>

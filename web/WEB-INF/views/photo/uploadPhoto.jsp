@@ -1,4 +1,6 @@
+<!DOCTYPE html><html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
     String path = request.getContextPath();
 %>
@@ -39,12 +41,12 @@
 </head>
 <body>
 <div class="htmleaf-container">
-  <div class="row"><p class="bg-info text-info" style="height: 40px;line-height: 40px;margin-top: 5px;">上传照片</p></div>
+  <div class="row"><p class="bg-info text-info" style="height: 40px;line-height: 40px;margin-top: 5px;"><spring:message code="uploadPhoto" text="上传照片"/></p></div>
   <div class="container">
    <div class="row">
         <form class="form-horizontal" enctype="multipart/form-data">
               <div class="form-group">
-                  <label class="col-xs-2 col-md-2" name="photoGroupLabel" for="photoGroup" style="padding-left:0!important;">选择相册</label>
+                  <label class="col-xs-2 col-md-2" name="photoGroupLabel" for="photoGroup" style="padding-left:0!important;"><spring:message code="chooseAlbum" text="选择"/></label>
                   <select class="col-xs-4 col-md-6" id="photoGroup" name="photoGroup">
                      <%-- <option>默认分组</option>
                       <option>默认分组</option>
@@ -54,7 +56,7 @@
                   </select>
               </div>
             <div class="form-group">
-                <label class="control-label" name="upload">上传照片</label>
+                <label class="control-label" name="upload"><spring:message code="uploadPhoto" text="上传照片"/></label>
                 <input type="file" class="file" multiple id="myfiles" name="myfiles"/>
             </div>
         </form>

@@ -5,7 +5,7 @@
   Time: 21:35
   To change this template use File | Settings | File Templates.
 --%>
-<!doctype html>
+<!DOCTYPE html><html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
@@ -62,10 +62,10 @@
             <div class="tabbable" id="tabs-295323">
                 <ul class="nav nav-tabs">
                     <li class="active" id="myLogTab">
-                        <a href="#panel-324017" data-toggle="tab">我的日志</a>
+                        <a href="#panel-324017" data-toggle="tab"><spring:message code="myBlog" text="我的日志"/></a>
                     </li>
                     <li id="friendsLogTab">
-                        <a href="#panel-8940" data-toggle="tab">朋友的日志</a>
+                        <a href="#panel-8940" data-toggle="tab"><spring:message code="friendBlog" text="好友日志"/></a>
                     </li>
                 </ul>
             </div>
@@ -156,8 +156,8 @@
                                      <spring:message code="logPrivilege" text="权 限"/>
                                  </span></label>
                                  <span class="inline-block width280" style="margin-left: 5px;">
-                                 <span class="inline-block text-span"><input type="radio" id="privilege" checked="checked" name="privilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">全部人可见</span>
-                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span">仅自己可见</span>
+                                 <span class="inline-block text-span"><input type="radio" id="privilege" checked="checked" name="privilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
                                 </span>
                             </div>
                         </div>
@@ -187,19 +187,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">评论</h4>
+                    <h4 class="modal-title"><spring:message code="commentTitle" text="评论"/></h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal margin-left-20px " id="commentForm">
                         <div class="form-group">
-                            <label for="logContent" class="control-label">评论内容</label>
+                            <label for="logContent" class="control-label"><spring:message code="commentContent" text="评论内容"/></label>
                             <textarea rows="5" name="commentContent" id="commentContent" class="form-control" style="width: 90%;"></textarea>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="closeCommentBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
-                    <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" data-loading-text="<spring:message code="saving" text="保存中..."/>"  class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                    <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" data-loading-text=<spring:message code="saving" text="保存中..."/>  class="btn btn-primary"><spring:message code="save" text="保存"/></button>
                 </div>
             </div>
         </div>

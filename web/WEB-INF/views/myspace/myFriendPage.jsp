@@ -7,6 +7,7 @@
 --%>
 <!DOCTYPE html><html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <%
     String path=request.getContextPath();
@@ -48,16 +49,16 @@
     <div class="tabbable" id="tabs-my-friend">
         <ul class="nav nav-tabs">
             <li class="active" id="myFriendTab">
-                <a href="#panel-myFriend" data-toggle="tab">好友列表</a>
+                <a href="#panel-myFriend" data-toggle="tab"><spring:message code="friendsList" text="好友列表"/></a>
             </li>
             <li id="myFriendApplyTab">
-                <a href="#panel-tabs1" data-toggle="tab">好友申请</a>
+                <a href="#panel-tabs1" data-toggle="tab"><spring:message code="friendsApplication" text="好友申请"/></a>
             </li>
 <%--            <li>
                 <a href="#panel-tabs2" data-toggle="tab">好友邀请</a>
             </li>--%>
             <li id="myFriendGroupTab">
-                <a href="#panel-tabs3" data-toggle="tab">分组管理</a>
+                <a href="#panel-tabs3" data-toggle="tab"><spring:message code="groupManage" text="分组管理"/></a>
             </li>
         </ul>
         <div class="tab-content">
@@ -75,9 +76,9 @@
                     </div>
                     <div class="col-md-6  pull-left" style="margin-top: 10px;">
                         <div class="input-group width250" >
-                            <input type="text" id="searchName" class="form-control input-sm" placeholder="请输入搜索内容">
+                            <input type="text" id="searchName" class="form-control input-sm" placeholder=<spring:message code="search" text="搜索"/>>
                              <span class="input-group-btn">
-                                 <button class="btn btn-default input-sm" id="searchFriend" type="button">搜索</button>
+                                 <button class="btn btn-default input-sm" id="searchFriend" type="button"><spring:message code="search" text="搜索"/></button>
                              </span>
                         </div>
                     </div>
@@ -101,7 +102,7 @@
                             <div class="modal-header">
                                 <input type="hidden" id="friendId">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabeTitle">新建邮件</h4>
+                                <h4 class="modal-title" id="myModalLabeTitle"><spring:message code="createEmail" text="新建邮件"/></h4>
                             </div>
                             <div class="modal-body">
                                 <div role="tabpanel" class="tab-pane active" id="CreateEmail">
@@ -113,11 +114,11 @@
                             </div>
                             <div class="modal-footer">
                                 <label class="control-label pull-left margin-left-20px">
-                                    <span class="inline-block" style="height: 30px;line-height: 30px;">好友名字</span>
+                                    <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>
                                 </label>
                                 <select id="friendList" class="form-control width120 pull-left margin-left-10px"></select>
-                                <button type="button" class="btn btn-default" id="closeModel" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="sendEmailBtn">保存</button>
+                                <button type="button" class="btn btn-default" id="closeModel" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                                <button type="button" class="btn btn-primary" id="sendEmailBtn"><spring:message code="save" text="保存"/></button>
                             </div>
                         </div>
                     </div>
@@ -142,7 +143,7 @@
             </div>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="row">
-                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-groupname="" data-groupid="" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;" id="addGroup">添加分类</button>
+                    <button class="btn btn-group-sm btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-groupname="" data-groupid="" data-target="#createMyFriendGroupDialog" style="margin-right: 35px;margin-top: 5px;margin-bottom: 5px;" id="addGroup"><spring:message code="addGroup" text="添加分类"/></button>
                 </div>
 
                 <%--创建分组弹出框 --%>
@@ -152,25 +153,25 @@
                             <div class="modal-header">
                                 <input type="hidden" id="userFriendGroupId">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">管理好友分组</h4>
+                                <h4 class="modal-title" id="myModalLabel"><spring:message code="groupManage" text="管理好友分组"/></h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-md-10">
                                             <label for="userFriendGroupName" class="col-sm-2 control-label "><span class="inline-block width110">
-                                                 分组名称
+                                                 <spring:message code="groupName" text="分组名称"/>
                                             </span></label>
                                             <span class="inline-block width280" style="margin-left: 5px;">
-                                                <input class="col-md-2 form-control width250" id="userFriendGroupName" placeholder="好友类别">
+                                                <input class="col-md-2 form-control width250" id="userFriendGroupName" placeholder=<spring:message code="groupName" text="分组名称"/>>
                                             </span>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" id="closeAddGroupModel" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveMyFriendGroup">保存</button>
+                                <button type="button" class="btn btn-default" id="closeAddGroupModel" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                                <button type="button" class="btn btn-primary" id="saveMyFriendGroup"><spring:message code="save" text="保存"/></button>
                             </div>
                         </div>
                     </div>
@@ -181,30 +182,12 @@
                         <thead>
                         <tr>
                             <th><input type="checkbox" class="checkbox" name="types_checkbox"> </th>
-                            <th>分类名称</th>
-                            <th>创建时间</th>
-                            <th>操 作</th>
+                            <th><spring:message code="groupName" text="分类名称"/></th>
+                            <th><spring:message code="createdTime" text="创建时间"/></th>
+                            <th><spring:message code="action" text="操作"/></th>
                         </tr>
                         </thead>
                         <tbody id="myFriendGroupContentDiv">
-                        <tr>
-                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
-                            <td>默认分组</td>
-                            <td>2016-7-1 23:00:15</td>
-                            <td><span class="text-muted" style="font-style: italic;">默认分组不允许修改与删除!</span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
-                            <td>自定义分组1</td>
-                            <td>2016-7-1 23:00:15</td>
-                            <td><a href="javascript:void(0)" >编辑</a> | <a href="#">删除</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>
-                            <td>自定义分组2</td>
-                            <td>2016-7-1 23:00:15</td>
-                            <td><a href="#">编辑</a> | <a href="#">删除</a></td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>

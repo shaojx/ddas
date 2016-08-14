@@ -2,6 +2,7 @@ package com.ddas.sns.common;
 
 import com.ddas.common.util.springutil.SpringContextUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.userinfo.service.UserInfoService;
 import com.ddas.sns.vip.domain.UserVipInfo;
 import org.codehaus.janino.Mod;
 import org.slf4j.Logger;
@@ -91,6 +92,21 @@ public class BaseController {
     public UserInfo getLoginUser(HttpServletRequest request){
         LOGGER.error("CurrentLoginUserName:" + ((UserInfo) request.getSession(true).getAttribute("userInfo")).getUserName());
         return (UserInfo) request.getSession(true).getAttribute("userInfo");
+    }
+
+    /**
+     *把当前登陆的用户信息放到session，调用此方法会重置session中的用户信息，除掉如密码隐私信息
+     * 适用于当更新了用户的某些信息的时候重置session中的用户信息
+     * @param request
+     *@return com.ddas.sns.userinfo.domain.UserInfo
+     *@author shaojx
+     *@date 2016/7/10 11:19
+     *@version 1.0
+     *@since 1.6
+     */
+    public void setLoginUserToSession(UserInfo userInfo, HttpServletRequest request){
+        userInfo.setUserPwd("");
+        request.getSession(true).setAttribute("userInfo", userInfo);
     }
 
     /**

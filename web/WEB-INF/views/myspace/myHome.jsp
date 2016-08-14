@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
+    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
@@ -43,24 +44,24 @@
         </div>--%>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"/> </a></li>
-                <li><a href="<%=path%>/myspace/gotoIndex">我的空间</a></li>
-                <li><a href="#contact">朋友圈</a></li>
-                <li><a href="#contact">升级</a></li>
-                <li><a href="about.html">充值</a></li>
-                <li><a href="about.html">礼物</a></li>
+                <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"></spring:message> </a></li>
+                <li><a href="<%=path%>/myspace/gotoIndex"><spring:message code="mySpace" text="我的空间"></spring:message></a></li>
+                <li><a href="#contact"><spring:message code="friends" text="我的好友"></spring:message></a></li>
+                <li><a href="#contact"><spring:message code="upgrade" text="升级"></spring:message></a></li>
+                <li><a href="about.html"><spring:message code="recharge" text="充值"></spring:message></a></li>
+                <li><a href="about.html"><spring:message code="gift" text="礼物"></spring:message></a></li>
+            </ul>
+            <%--语言条--%>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<%=path%>/myspace/gotoIndex?language=zh_CN">中 文</a></li>
+                <li><a href="<%=path%>/myspace/gotoIndex?language=en_US">英 文</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li id="logoutBtn"><a href="javascript:void(0)">退出</a></li>
+                <li id="logoutBtn"><a href="javascript:void(0)"><spring:message code="logout" text="退出"></spring:message></a></li>
                 <li><a href="#"><i class="fa fa-reddit"></i></a></li>
             </ul>
         </div>
-    </div>
-    <%--语言条--%>
-    <div id="languageDiv" style="position: absolute;right: 10px;top:10px;">
-        <a href="<%=path%>/myspace/gotoIndex?language=zh_CN">中 文</a>|
-        <a href="<%=path%>/myspace/gotoIndex?language=en_US">英 文</a>
     </div>
 </nav>
 
@@ -72,33 +73,33 @@
             <div class="row">
             <%--left content--%>
             <div class="col-md-2">
-            <div>
-                <img alt="140x140" src="/common/images/140x140.jpg" />
-                <div><a>Mariki</a></div>
-                <div class="yue"><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span>金币：</span><span style="color:#FF471F">0</span></div>
-            </div>
+                <div>
+                    <img alt="120x120" class="img-rounded width120 height120" src=${userInfo.headPhotoUrl} />
+                    <div><a style="font-size: larger">${userInfo.userName}</a></div>
+                    <div><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span><spring:message code="gold" text="金币"></spring:message>：</span><span style="color:#FF471F">${userInfo.userCoin}</span></div>
+                </div>
 
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
-                    <a href="javascript:void (0);" id="payCenter"><img src="/common/images/golds_img.jpg">充值中心</a>
+                    <a href="javascript:void (0);" id="payCenter"><img src="/common/images/golds_img.jpg"><spring:message code="recharge" text="充值"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" id="levelVip"><img src="/common/images/n_left_shengji.jpg">升级会员</a>
+                    <a href="javascript:void (0);" id="levelVip"><img src="/common/images/n_left_shengji.jpg"><spring:message code="upgrade" text="升级"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" id="emailBox"><img src="/common/images/mail.gif">邮箱(0)</a>
+                    <a href="javascript:void (0);" id="emailBox"><img src="/common/images/mail.gif"><spring:message code="email" text="邮件"></spring:message>(0)</a>
                 </li>
                 <li>
-                    <a href="#"><img src="/common/images/n_left_gift.jpg">礼物(0)</a>
+                    <a href="javascript:void (0);" id="gift" ><img src="/common/images/n_left_gift.jpg"><spring:message code="gift" text="礼物"></spring:message>(0)</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="myFriend"><img src="/common/images/friends.gif">我的朋友</a>
+                    <a href="javascript:void(0)" id="myFriend"><img src="/common/images/friends.gif"><spring:message code="myFriend" text="我的好友"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" id="myPhoto"><img src="/common/images/album.png">相册</a>
+                    <a href="javascript:void(0);" id="myPhoto"><img src="/common/images/album.png"><spring:message code="album" text="相册"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" id="myBlog"><img src="/common/images/n_left_rizhi.jpg">日志</a>
+                    <a href="javascript:void(0);" id="myBlog"><img src="/common/images/n_left_rizhi.jpg"><spring:message code="blog" text=""></spring:message></a>
                 </li>
 <%--                <li>
                     <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>

@@ -112,10 +112,13 @@ public class UserInfoController extends BaseController {
                 if (StringUtil.isNotEmpty(userId)) {
                     String headPhotoUrl="/upload/" + newFileName;
                     int updateUserInfoHeadPhoto = userInfoService.updateUserInfoHeadPhoto(userId, headPhotoUrl);
+                    UserInfo userInfo = userInfoService.queryUserInfoByUserId(userId);
+                    setLoginUserToSession(userInfo, request);
                     if(updateUserInfoHeadPhoto==1){//表示更新了一条记录
                         result.put("imagePath",headPhotoUrl);//设置照片的url
                         msg.setSuccessful(true);
                         msg.setMsg(getMsgByKeyViaLocal("fileupload.success"));
+
                     }
                 }
             } catch (IOException e) {

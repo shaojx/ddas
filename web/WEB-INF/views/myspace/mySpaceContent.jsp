@@ -60,19 +60,19 @@
       <div class="tabbable" id="tabs-262840">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#panel-tabs0" data-toggle="tab">个人主页</a>
+                <a href="#panel-tabs0" data-toggle="tab"><spring:message code="mySpace" text="个人主页"></spring:message></a>
             </li>
             <li>
-                <a href="#panel-tabs1" data-toggle="tab">用户资料</a>
+                <a href="#panel-tabs1" data-toggle="tab"><spring:message code="myProfile" text="用户资料"></spring:message></a>
             </li>
 <%--            <li>
                 <a href="#panel-tabs2" data-toggle="tab">心情</a>
             </li>--%>
             <li>
-                <a href="#panel-tabs3" data-toggle="tab" id="logTab">日志</a>
+                <a href="#panel-tabs3" data-toggle="tab" id="logTab"><spring:message code="blog" text="日志"></spring:message></a>
             </li>
             <li>
-                <a href="#panel-tabs4" data-toggle="tab">相册</a>
+                <a href="#panel-tabs4" data-toggle="tab"><spring:message code="album" text="相册"></spring:message></a>
             </li>
 <%--            <li>
                 <a href="#panel-tabs5" data-toggle="tab">分享</a>
@@ -81,14 +81,14 @@
                 <a href="#panel-tabs6" data-toggle="tab">群组</a>
             </li>--%>
             <li>
-                <a href="#panel-tabs7" id="messageTab" data-toggle="tab">留言板</a>
+                <a href="#panel-tabs7" id="messageTab" data-toggle="tab"><spring:message code="messageBoard" text="留言板"></spring:message></a>
             </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="panel-tabs0">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1331">最近照片</a>
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1331"><spring:message code="latestPhotos" text="最近照片"></spring:message></a>
                     </div>
                     <div id="panel-element-1331" class="panel-collapse in">
                         <div class="panel-body">
@@ -131,7 +131,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1233">最新日志</a>
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1233"><spring:message code="latestBlog" text="最近日志"></spring:message></a>
                     </div>
                     <div id="panel-element-1233" class="panel-collapse in">
                         <div class="panel-body">
@@ -142,7 +142,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1152">最新留言</a>
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1152"><spring:message code="latestMessage" text="最近留言"></spring:message></a>
                     </div>
                     <div id="panel-element-1152" class="panel-collapse in">
                         <div class="panel-body">
@@ -154,16 +154,16 @@
             </div>
             <%--个人资料--%>
             <div class="tab-pane " id="panel-tabs1" align="center">
-                <p class="bg-info text-info" style="height: 30px;line-height: 30px;">填写完整准确的个人资料，可以让更多的朋友找到您。</p>
+                <p class="bg-info text-info" style="height: 30px;line-height: 30px;"><spring:message code="myProfileInfo" text="填写完整准确的个人资料，可以让更多的朋友找到您。"></spring:message></p>
                 <form class="form-horizontal" role="form">
                    <div>
                       <div id="left"  style="float:left;width: 400px;">
                           <div class="form-group">
-                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">用户名</span></label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="username" text="用户名"></spring:message></span></label>
                               <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block">Mariki</span></label>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left "><span class="inline-block width120">性 别</span></label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left "><span class="inline-block width120"><spring:message code="sex" text="性别"></spring:message></span></label>
                               <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block ">女</span></label>
                           </div>
                       </div>
@@ -173,26 +173,26 @@
                             <div style="width:100px;height: 100px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
                                 id="txtDiv_0">
                                <a class="inline-block txtDivSpan" style="cursor:pointer;" id="txtDivSpan_0" data-toggle="modal" data-target="#changeHeadPhoto"
-                                  data-backdrop="" >更换头像</a>
+                                  data-backdrop="" ><spring:message code="change" text="更换头像"></spring:message></a>
                            </div>
                        </div>
                    </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">身 高</span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="height" text="身高"></spring:message></span></label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control width300 pull-left" id="height" />
                         </div>
                         <label class="col-sm-1 control-label pull-left"><span class="inline-block" style="height: 34px;line-height: 34px;">CM</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">体 重</span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="weight" text="体重"></spring:message></span></label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control width300 pull-left" id="weight" />
                         </div>
                         <label class="col-sm-1 control-label pull-left"><span class="inline-block" style="height:34px;line-height: 34px;">KG</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">国家地区</span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="country" text="国家"></spring:message> </span></label>
                         <div class="col-sm-4">
                             <select class="form-control pull-left width300">
                                 <option>China</option>
@@ -206,7 +206,7 @@
 
                     <div class="form-group">
                         <label for="dtp_input2" class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120">出生日期</span>
+                            <span class="inline-block width120"><spring:message code="birthday" text="出生日期"></spring:message></span>
                         </label>
                         <div class="col-sm-5">
                         <%--    <div class="input-append date  form_datetime width300 pull-left" data-date="2013-02-21" id="datetimepicker">
@@ -222,18 +222,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
                             <span class="inline-block width120">宗 教</span>
                         </label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control width300 pull-left" id="religion" />
                         </div>
-                    </div>
+                    </div>--%>
 
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120">教 育</span>
+                            <span class="inline-block width120"><spring:message code="education" text="教育"></spring:message></span>
                         </label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control pull-left width300" id="education" />
@@ -242,7 +242,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120">交友宣言</span>
+                            <span class="inline-block width120"><spring:message code="description" text="交友宣言"></spring:message></span>
                         </label>
                         <div class="col-sm-5">
                             <textarea class="form-control width300 pull-left" id="declaration" rows="3"></textarea>
@@ -251,7 +251,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120">年收入</span>
+                            <span class="inline-block width120"><spring:message code="annualIncome" text="年收入"></spring:message></span>
                         </label>
                         <div class="col-sm-4">
                             <select class="form-control width300 pull-left">
@@ -262,7 +262,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
                             <span class="inline-block width120">婚恋状态</span>
                         </label>
@@ -274,10 +274,10 @@
                                 <option>恋爱</option>
                             </select>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="row">
                         <div class="col-xs-8 col-md-8">
-                            <button class="btn btn-info" type="button">保 存</button>
+                            <button class="btn btn-info" type="button"><spring:message code="save" text="保存"></spring:message></button>
                         </div>
                     </div>
                 </form>
@@ -286,7 +286,7 @@
             <div class="tab-pane " id="panel-tabs2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">最近照片</a>
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestPhotos" text="最近照片"></spring:message></a>
                     </div>
                     <div id="panel-element-115111" class="panel-collapse in">
                         <div class="panel-body">
@@ -329,7 +329,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">最新日志</a>
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestBlog" text="最新日志"></spring:message></a>
                     </div>
                     <div id="panel-element-115231" class="panel-collapse in">
                         <div class="panel-body">
@@ -340,7 +340,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285">最新留言</a>
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestMessage" text="最新留言"></spring:message></a>
                     </div>
                     <div id="panel-element-115232" class="panel-collapse in">
                         <div class="panel-body">
@@ -357,10 +357,10 @@
                         <div class="tabbable" id="tabs-295323">
                             <ul class="nav nav-tabs">
                                 <li class="active" id="myLogTab">
-                                    <a href="#panel-324017" data-toggle="tab">我的日志</a>
+                                    <a href="#panel-324017" data-toggle="tab"><spring:message code="myBlog" text="我的日志"></spring:message></a>
                                 </li>
                                 <li id="friendsLogTab">
-                                    <a href="#panel-8940" data-toggle="tab">朋友的日志</a>
+                                    <a href="#panel-8940" data-toggle="tab"><spring:message code="friendBlog" text="朋友的日志"></spring:message></a>
                                 </li>
                             </ul>
                         </div>
@@ -421,10 +421,10 @@
             <div class="tab-pane" id="panel-tabs7">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        Mariki的留言板
+                        Mariki <spring:message code="createLog" text="的留言板"/>
                         <div style="margin-left:85%;">
                             <button type="button" id="createMessage" class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMessageDialog">
-                                留言
+                                <spring:message code="leavingMessage" text="留言"/>
                             </button>
                         </div>
                     </div>

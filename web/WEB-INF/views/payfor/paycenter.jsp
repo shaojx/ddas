@@ -32,7 +32,7 @@
 <div class="container-fluid">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#payCenter" data-toggle="tab">充值</a></li>
+            <li role="presentation" class="active"><a href="#payCenter" data-toggle="tab"><spring:message code="recharge" text="充值"/></a></li>
         </ul>
     </div>
 
@@ -42,26 +42,26 @@
 
                 <p class="bg-info" style="height: 40px;">
                  <span style="height: 40px;line-height: 40px;" class="inline-block margin-left-5px">
-                    金币:0
+                    <spring:message code="gold" text="金币"/>:0
                 </span>
                 </p>
 
                 <%--选择充值对象--%>
                 <div class="clear-both divRow">
-                    <label class="width120">充值对象:</label>
+                    <label class="width120"><spring:message code="rechargeTo" text="充值对象"/>:</label>
                     <input type="radio" id="toMe" name="toWho" value="${loginUserId}" checked="checked" style="">
                     <span class="inline-block"
-                          style="height: 30px;line-height: 30px;">充给自己</span>
+                          style="height: 30px;line-height: 30px;"><spring:message code="myself" text="冲给自己"/></span>
                     <input type="radio" id="toFriend" name="toWho" value="" style="margin-left: 20px; ">
                     <span class="inline-block"
-                          style="height: 30px;line-height: 30px;">充给好友</span>
+                          style="height: 30px;line-height: 30px;"><spring:message code="chargeToFriend" text="冲给好友"/></span>
                     <select id="friendList" class="margin-left-10px displayNone">
                     </select>
                 </div>
 
                 <%--充值金额--%>
                 <div class="clear-both divRow">
-                    <label class="width120">选择充值金额:</label>
+                    <label class="width120"><spring:message code="amount" text="选择充值金额"/>:</label>
                     <input type="radio" name="payValueChoose" checked="checked" value="100" style="">
                     <span class="inline-block"
                           style="height: 30px;line-height: 30px;">100</span><img src="<%=path%>/common/images/dollerX30.png" class="doller"></img>
@@ -77,18 +77,18 @@
                 </div>
 
                 <div class="clear-both divRow">
-                    <label class="width120">其他数值:</label>
-                    <input type="text" id="mount"><span>(1金币=1美元)</span>
+                    <label class="width120"><spring:message code="otherAmount" text="其他金额"/>:</label>
+                    <input type="text" id="mount"><span>(1<spring:message code="gold" text="金币"/> = 1<spring:message code="dollar" text="美元"/>)</span>
                 </div>
 
                 <div class="clear-both divRow">
-                    <label class="width120">支付方式:</label>
+                    <label class="width120"><spring:message code="payMethod" text="支付方式"/>:</label>
                     <span><input type="radio" name="payMethod" checked="checked" value="1"><img class="width200" src="/common/images/papy.jpg"></span>
                 </div>
 
                 <div class="row divRow">
                     <div style="margin-left: 40%;">
-                        <button class="btn btn-info" type="button" id="payBtn">立即充值</button>
+                        <button class="btn btn-info" type="button" id="payBtn"><spring:message code="submitCharge" text="立即充值"/></button>
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@ public class MySpaceController extends BaseController {
     public ModelAndView getMyspceContent(HttpServletRequest request){
         ModelAndView modelAndView= withLocal(request,"myspace/mySpaceContent");
         //重新从数据库加载最新的数据
-        modelAndView.addObject("userInfo",userInfoService.queryUserInfoByUserId(getLoginUser(request).getUserId()));
+        //modelAndView.addObject("userInfo",userInfoService.queryUserInfoByUserId(getLoginUser(request).getUserId()));
         return modelAndView;
     }
 }

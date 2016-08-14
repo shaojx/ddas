@@ -36,8 +36,8 @@
 <div class="container-fluid">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#levelVip" data-toggle="tab">在线升级</a></li>
-            <li role="presentation"><a href="#vipDocument" data-toggle="tab">升级说明</a></li>
+            <li role="presentation" class="active"><a href="#levelVip" data-toggle="tab"><spring:message code="upGrade" text="在线升级"/></a></li>
+            <li role="presentation"><a href="#vipDocument" data-toggle="tab"><spring:message code="upGradeInstructions" text="升级说明"/></a></li>
         </ul>
     </div>
 
@@ -47,12 +47,12 @@
 
                 <p class="bg-info" style="height: 40px;">
                  <span style="height: 40px;line-height: 40px;" class="inline-block margin-left-5px">
-                    金币:0
+                    <spring:message code="gold" text="金币"/>:0
                 </span></p>
 
                 <%--面板--%>
                 <div class="panel panel-default" style="height: 250px;">
-                    <div class="panel-heading">高级会员</div>
+                    <div class="panel-heading"><spring:message code="seniorVip" text="高级会员"/></div>
 
                     <div class="clear-both">
                         <div class="panel-body width185 pull-left innerDiv">
@@ -172,18 +172,18 @@
 
                 <%--选择充值对象--%>
                 <div class="clear-both">
-                    <label class="width80">充值对象:</label>
+                    <label class="width80"><spring:message code="rechargeTo" text="充值对象"/>:</label>
                     <input type="radio" name="toWho" style="vertical-align: middle;">
-                    <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;">充给自己</span>
+                    <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;"><spring:message code="myself" text="冲给自己"/></span>
                     <input type="radio" name="toWho" style="margin-left: 20px; vertical-align: middle;">
-                    <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;">充给好友</span>
+                    <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;"><spring:message code="chargeToFriend" text="冲给好友"/></span>
                     <select id="myFriends" class="margin-left-10px displayNone">
                         <option>1</option>
                     </select>
                 </div>
                 <div class="row">
                     <div style="margin-left: 40%;">
-                        <button class="btn btn-info" type="button">立即升级</button>
+                        <button class="btn btn-info" type="button"><spring:message code="chargeVip" text="立即升级"/></button>
                     </div>
                 </div>
             </div>
