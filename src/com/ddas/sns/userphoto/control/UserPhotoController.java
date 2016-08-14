@@ -39,15 +39,16 @@ public class UserPhotoController extends BaseController{
     private UserPhotoService userPhotoService;
 
     /**
-     *跳转到首页
+     *跳转到"我的相册" 首页
      *@Author shaojunxiang
      *@Date 2016/7/5 16:40
      *@return java.lang.String
      *@since JDK1.6
      */
     @RequestMapping("/gotoIndex")
-    public String gotoIndex(){
-        return "photo/index";
+    public ModelAndView gotoIndex(HttpServletRequest request){
+        ModelAndView modelAndView=withLocal(request,"photo/index");
+        return modelAndView;
     }
 
     /**

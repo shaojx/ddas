@@ -12,6 +12,7 @@ import com.ddas.common.page.Page;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.string.StringUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.anotation.VipPrivilege;
 import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriendphotogroup.mapper.UserFriendPhotoGroupMapper;
 import com.ddas.sns.usergroup.domain.UserGroup;
@@ -54,12 +55,9 @@ public class UserPhotoGroupService {
      *@Date 2016/7/4 19:22
      *@since JDK1.7
      */
-    public void saveUserGroup(UserPhotoGroup userPhotoGroup) {
+    public void saveUserGroup(UserPhotoGroup userPhotoGroup,UserInfo loginUserInfo) {
         String currentDateString = DateUtil.getCurrentDateString();
-        // ***********写死测试
-        // TODO: 获取当前登陆用户的UserId
-        String userId = "1";
-        // ***********写死测试
+        String userId=loginUserInfo.getUserId();
         userPhotoGroup.setUserId(userId);
         userPhotoGroup.setUpdatedTime(currentDateString);
         if(StringUtil.isEmpty(userPhotoGroup.getGroupId())) {
@@ -117,6 +115,7 @@ public class UserPhotoGroupService {
      *@Date 2016/7/5 10:53
      *@since JDK1.7
      */
+    @VipPrivilege("photoCount")
     public Page queryFriendPhotoGroupRecordsByPage(int currentPage, int pageSize, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
