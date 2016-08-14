@@ -1,5 +1,6 @@
 package com.ddas.common.page;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,9 @@ public class Page {
     private List<?> dataList;
     /**分页的一些查询条件*/
     private Map<String, Object> condition;
+
+    /**一些额外的信息，包括一些提示充值vip的信息**/
+    private Map<String,Object> extra=new HashMap<String,Object>();
 
     public int getPageSize() {
         return pageSize;
@@ -87,5 +91,13 @@ public class Page {
 
     public void setCondition(Map<String, Object> condition) {
         this.condition = condition;
+    }
+
+    public Map<String, Object> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, Object> extra) {
+        this.extra = extra;
     }
 }

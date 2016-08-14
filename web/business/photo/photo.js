@@ -30,9 +30,19 @@ $(function () {
                 "privilege":privilege
             },
             dataType:"json",
-            success:function(){
-                $("#closeCreatePhotoGroupModelBtn").click();
-                alert("success!");
+            success:function(data){
+                if(data&&data.successful==true){
+                    $.confirm({
+                        title:"Tip",
+                        content:common.saveSuccess,
+                        autoClose: 'confirm|1000',
+                        cancelButton:false,
+                        container:"#createMyPhotoGroupDialog",
+                        confirm:function(){
+                            $("#closeCreatePhotoGroupModelBtn").click();
+                        }
+                    });
+                }
             }
         })
     })

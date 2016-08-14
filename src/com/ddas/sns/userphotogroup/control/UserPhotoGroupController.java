@@ -8,6 +8,7 @@
  */
 package com.ddas.sns.userphotogroup.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.usergroup.domain.UserGroup;
@@ -51,9 +52,16 @@ public class UserPhotoGroupController extends BaseController{
      */
     @RequestMapping("/save")
     @ResponseBody
-    public UserPhotoGroup saveUserGroup(UserPhotoGroup userPhotoGroup) {
-        userPhotoGroupService.saveUserGroup(userPhotoGroup);
-        return new UserPhotoGroup();
+    public Msg saveUserGroup(UserPhotoGroup userPhotoGroup, HttpServletRequest request) {
+        Msg msg=new Msg();
+        try {
+            userPhotoGroupService.saveUserGroup(userPhotoGroup,getLoginUser(request));
+            msg.setSuccessful(true);
+        } catch (Exception e) {
+           LOGGER.error("保存相册失败!",e);
+            msg.setSuccessful(false);
+        }
+        return msg;
     }
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})

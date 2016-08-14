@@ -12,6 +12,7 @@ import com.ddas.common.page.Page;
 import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
+import com.ddas.sns.anotation.VipPrivilege;
 import com.ddas.sns.usergroup.mapper.UserGroupMapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userphoto.domain.UserPhoto;
