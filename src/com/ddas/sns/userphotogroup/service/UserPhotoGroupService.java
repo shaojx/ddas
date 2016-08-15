@@ -147,4 +147,13 @@ public class UserPhotoGroupService {
         }
         return new HashMap<String, String>();
     }
+
+    public int updatePhotoGroup(UserPhotoGroup userPhotoGroup, UserInfo loginUser) {
+        UserPhotoGroupCriteria example = new UserPhotoGroupCriteria();
+        UserPhotoGroupCriteria.Criteria criteria = example.createCriteria();
+        criteria.andGroupIdEqualTo(userPhotoGroup.getGroupId());
+        userPhotoGroup.setUpdatedTime(DateUtil.getCurrentDateString());//update `update_time`
+        int updateByExampleSelective = userPhotoGroupMapper.updateByExampleSelective(userPhotoGroup, example);
+        return updateByExampleSelective;
+    }
 }

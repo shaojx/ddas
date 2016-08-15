@@ -2,7 +2,8 @@ var FRIEND_PHOTO=true;//记录是否为好友相册的照片详情(要屏蔽一�
 var userPhotoGroupCondition = {
     pageNo:1,
 };//查询我的相册条件初始化
-
+var currentOp="ADD";//当前的操作(点"保存"按钮时有用) ADD或者为EDIT
+var currentEditGroupId=null;//记录当前修改的相册的id
 var userFriendPhotoGroupCondition = {
     pageNo:1,
 };//查询好友相册条件初始化
@@ -14,39 +15,7 @@ $(function () {
 
     //保存我的相册分组按钮点击事件
     $("#savePhotoGroupBtn").click(function () {
-        var groupName = $("#photoGroupName").val();
-        //var photoGroupTags = $("#photoGroupTags").val();
-        var privilege = "1";
-        var description = $("#photoGroupDescription").val();;
-        if(groupName == "") {
-            alert("相册标题不能为空");
-            return;
-        }
-        $.ajax({
-            url:path+"/userPhotoGroup/save",
-            type:"POST",
-            data:{
-                "groupName":groupName,
-                "description":description,
-                "privilege":privilege
-            },
-            dataType:"json",
-            success:function(data){
-                if(data&&data.successful==true){
-                    $.confirm({
-                        title:"Tip",
-                        content:common.saveSuccess,
-                        autoClose: 'confirm|1000',
-                        cancelButton:false,
-                        container:"#createMyPhotoGroupDialog",
-                        confirm:function(){
-                            $("#closeCreatePhotoGroupModelBtn").click();
-                            $("#photoGroupTab").click();//重新加载数据
-                        }
-                    });
-                }
-            }
-        })
+        saveOrUpdatePhotoGroup();
     })
 
     /**
@@ -56,11 +25,23 @@ $(function () {
         var button = $(event.relatedTarget);// Button that triggered the modal
         var groupName = button.data('groupname'); // Extract info from data-* attributes
         var groupId = button.data('groupid'); // Extract info from data-* attributes
+        var tags=button.data("tags");
+        if(groupId){//如果groupId不为空，说明为修改
+            currentOp="EDIT";
+            currentEditGroupId=groupId;
+        }else{
+            currentOp="ADD";
+            currentEditGroupId=null;
+        }
         var description = button.data('description'); // Extract info from data-* attributes
+        var privis=button.data("privis");
+        if(privis){
+            $("input[name='privilege'][value='"+privis+"']").attr("checked","checked");//选中
+        }
         var modal = $(this);
-        modal.find('#photoGroupName').val(groupName);
-        modal.find('#photoGroupId').val(groupId);
-        modal.find('#photoGroupDescription').val(description);
+        modal.find('#photoGroupName').val("").val(groupName);
+        modal.find('#photoGroupDescription').val("").val(description);
+        modal.find('#photoGroupTags').val("").val(tags);
     })
 
     $("#photoGroupTab").click(function () {
@@ -81,12 +62,56 @@ $(function () {
     $("#photoGroupTab").click();
 });
 
+function saveOrUpdatePhotoGroup(){
+    var groupName = $("#photoGroupName").val();
+    var photoGroupTags = $("#photoGroupTags").val();
+    var privilege = $("input[name='privilege']:checked").val();//0--仅自己可见;1---分组可见 2----所有人可见
+    var description = $("#photoGroupDescription").val();
+    var data={
+        "groupName":groupName,
+        "description":description,
+        "privilege":privilege,
+        "tags":photoGroupTags
+    };
+    var url= path+"/userPhotoGroup/save";
+    if(currentOp=="EDIT"){//编辑
+        url=path+"/userPhotoGroup/update";
+        data["groupId"]=currentEditGroupId;//增加goupId
+    }
+    if(groupName == "") {
+        alert("相册标题不能为空");
+        return;
+    }
+    $.ajax({
+        url:url,
+        type:"POST",
+        data:data,
+        dataType:"json",
+        success:function(data){
+            if(data&&data.successful==true){
+                $.confirm({
+                    title:"Tip",
+                    content:currentOp=="ADD"?common.saveSuccess:common.updateSuccess,
+                    autoClose: 'confirm|1000',
+                    cancelButton:false,
+                    container:"#createMyPhotoGroupDialog",
+                    confirm:function(){
+                        $("#closeCreatePhotoGroupModelBtn").click();
+                        $("#photoGroupTab").click();//重新加载数据
+                    }
+                });
+            }
+        }
+    })
+}
+
 /**
  * 获取我的相册数据
  * @param pageNo 分页
  */
 function getMyPhotoGroupData(condition){
     $("#myPhotoGroupContentDiv").html("");//清空数据
+    $("#myPhotoGroupPaginationDIV").html("");//清空页码
     if(condition.pageNo){
         $.ajax({
             url:path+"/userPhotoGroup/queryRecordsByPage",
@@ -122,12 +147,16 @@ function initMyPhotoGroupData(data) {
         '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
-        '<span class="center-block">相册名:groupNameValue</span>'+
+        '<span class="center-block">相册名:groupNameValue  <span style="margin-left: 20px;">照片数量:</span>'+'<span id="countSpan_${upId}">'+'0</span></span>'+
         '<span class="center-block">描述：groupDescriptionValue</span>'+
-        '<span class="center-block">照片数量：'+'<span  id="countSpan_${upId}">'+'0</span></span>'+
+        '<span class="center-block">权限：${privis} <span style="margin-left: 20px;">标签:</span>groupTags</span>'+
         '<span class="center-block">更新于：${updated_time}</span>'+
         '<span class="center-block">创建于：${created_time}</span>'+
-        '<span class="center-block"><a href="javascript:void(0);" data-toggle="modal" data-backdrop=""  autocomplete="off" data-target="#createMyPhotoGroupDialog" data-groupname="groupNameValue" data-groupid="groupIdValue" data-description="groupDescriptionValue" id="editPhotoGroup">编辑相册</a> &nbsp;'+
+        '<span class="center-block"><a href="javascript:void(0);" data-toggle="modal" data-backdrop=""  ' +
+             'autocomplete="off" data-target="#createMyPhotoGroupDialog" ' +
+             'data-groupname="groupNameValue" data-tags="groupTags" ' +
+             'data-groupid="groupIdValue" data-description="groupDescriptionValue" data-privis="privisCode" ' +
+             'id="editPhotoGroup">编辑相册</a> &nbsp;'+
         '<a href="javascript:void(0);" id="deletePhotoGroup_${upId}">删除相册</a></span>'+
         '</div>'+
         '</div>'+
@@ -142,7 +171,10 @@ function initMyPhotoGroupData(data) {
             .replace("${created_time}", _data.createdTime)
             .replace(/groupIdValue/g, _data.groupId)
             .replace(/groupDescriptionValue/g, _data.description)
-            .replace(/\$\{upId\}/g,_data.groupId);
+            .replace(/\$\{upId\}/g,_data.groupId)
+            .replace("${privis}",getPrivis(_data.privilege))//权限code对应的中文
+            .replace("privisCode",_data.privilege)//权限的code
+            .replace(/groupTags/g,_data.tags);
         $("#myPhotoGroupContentDiv").append(_replace);
         //查询相册封面以及相应的照片数
         queryPhotoFaceAndCount(_data.groupId,"countSpan_"+_data.groupId);
@@ -150,6 +182,14 @@ function initMyPhotoGroupData(data) {
         addClickMyLogoListener(_data.groupId,!FRIEND_PHOTO);
         //添加删除相册的监听事件
         addDeletePhotoGroupListener(_data.groupId);
+    }
+}
+
+function getPrivis(code){
+    switch (code){
+        case "0":return '仅自己可见';
+        case '1':return '分组可见';
+        case '2':return '所有人可见';
     }
 }
 /**
@@ -225,6 +265,7 @@ function deletePhotoGroupById(groupId) {
                             $.alert({
                                 title:"Tip",
                                 content:common.deleteSuccess,
+                                autoClose: 'confirm|1000',
                                 confirm:function () {
                                     $("#photoGroupTab").click();//reload data
                                 }
@@ -233,6 +274,7 @@ function deletePhotoGroupById(groupId) {
                             $.alert({
                                 title:"Tip",
                                 content:common.deleteError,
+                                autoClose: 'confirm|1000',
                                 confirm:function () {
                                     $("#photoGroupTab").click();//reload data
                                 }

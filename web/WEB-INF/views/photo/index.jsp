@@ -46,7 +46,9 @@
             <%--新建相册与上传照片--%>
             <div class="row margin-top-10px">
                 <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn"><spring:message code="uploadPhoto" text="上传照片"/></button>
-                <button type="button" class="btn btn-info pull-right margin-right-10px" data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
+                <button type="button" class="btn btn-info pull-right margin-right-10px"
+                        data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" data-groupid=""
+                        autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
             </div>
             <div id="myPhotoGroupContentDiv">
             </div>
@@ -109,8 +111,12 @@
                                      <spring:message code="logPrivilege" text="权 限"/>
                                  </span></label>
                                  <span class="inline-block width280" style="margin-left: 5px;">
-                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
-                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
+                                 <span class="inline-block text-span">
+                                     <input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;" value="2" checked="checked">
+                                 </span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
+                                 <span class="inline-block text-span margin-left-10px">
+                                     <input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;" value="0">
+                                 </span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
                                 </span>
                             </div>
                         </div>
