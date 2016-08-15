@@ -15,8 +15,9 @@
     <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet">
-    <%-- <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
+    <%--<link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">--%>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script type="text/javascript" src="<%=path%>/business/login/language/${local}.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
@@ -25,10 +26,18 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+
+    <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+    <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/indexContent.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
+    <%--引入自定义样式--%>
+    <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
     <style type="text/css">
         div.row{
             margin-left: 0;
@@ -112,21 +121,92 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="panel-tabs3">
-
-                    <div class="media">
-                        <a href="#" class="pull-left"><img src="/common/images/140x140.jpg" alt=''
-                                                           class="img-thumbnail"/></a>
-                        <div class="media-body " style="padding-top: 10px">
-                            <h4 class="media-heading">
-                                <a>相册封面</a>
-                            </h4>
-                            <div>标签：</div>
-                            <div>照片数量：12</div>
-                            <div>更新于：2016-06-02 15:50:08</div>
-                            <div>创建于：2016-04-18 14:09:48</div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" id="photoGroupTab" href="#myPhoto"><spring:message code="myAlbum" text="我的相册"/></a></li>
+                        <li><a data-toggle="tab" href="#myFriendPhoto" id="friendPhotoGroupTab"><spring:message code="friendAlbum" text="好友相册"/></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="myPhoto" class="tab-pane fade in active">
+                            <%--新建相册与上传照片--%>
+                            <div class="row margin-top-10px">
+                                <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn"><spring:message code="uploadPhoto" text="上传照片"/></button>
+                                <button type="button" class="btn btn-info pull-right margin-right-10px" data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
+                            </div>
+                            <div id="myPhotoGroupContentDiv">
+                            </div>
+                            <!--分页控件-->
+                            <ul class="pagination" id="myPhotoGroupPaginationDIV">
+                            </ul>
+                        </div>
+                        <div id="myFriendPhoto" class="tab-pane fade">
+                            <div id="friendPhotoGroupContentDiv">
+                            </div>
+                            <!--分页控件-->
+                            <ul class="pagination" id="friendPhotoGroupPaginationDIV">
+                            </ul>
                         </div>
                     </div>
 
+                    <%--创建相册分组弹出框 --%>
+                    <div class="modal fade" id="createMyPhotoGroupDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"><spring:message code="createAlbum" text="新建相册"/></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-md-10">
+                                                <label for="photoGroupName" class="col-sm-2 control-label "><span class="inline-block width110">
+                                                    <spring:message code="albumName" text="相册名称"/>
+                                                </span></label>
+                                                <span class="inline-block width280" style="margin-left: 5px;">
+                                                    <input  class="form-control" id="photoGroupName" placeholder=<spring:message code="albumName" text="相册名称"/>>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-md-10">
+                                                <label for="photoGroupDescription" class="col-sm-2 control-label float-left"><span class="inline-block width110">
+                                                    <spring:message code="albumDescription" text="相册描述"/>
+                                                </span></label>
+                                                <div class="float-left" style="margin-left: 10px;">
+                                                    <textarea rows="5" id="photoGroupDescription" class="width280"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-md-10">
+                                                <label for="photoGroupTags" class="col-sm-2 control-label "><span class="inline-block width110">
+                                                    <spring:message code="albumTag" text="相册标签"/>
+                                                </span></label>
+                                                <span class="inline-block width280" style="margin-left: 5px;">
+                                                    <input  class="form-control" id="photoGroupTags" placeholder=<spring:message code="albumTag" text="相册标签"/>>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-md-10">
+                                                <label for="privilege" class="col-sm-2 control-label"><span class="inline-block width110">
+                                                    <spring:message code="logPrivilege" text="权 限"/>
+                                                </span></label>
+                                                 <span class="inline-block width280" style="margin-left: 5px;">
+                                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
+                                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="closeCreatePhotoGroupModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                                    <button type="button" id="savePhotoGroupBtn" name="savePhotoGroupBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane" id="panel-tabs4">
                     <p>
@@ -135,6 +215,113 @@
                 </div>
             </div>
         </div>
+</div>
+<%--创建日志弹出框 --%>
+<div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myLogDialogLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myLogDialogLabel"><spring:message code="newLog" text="新建日志"/></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="blogForm">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-md-10">
+                            <label for="logTitle" class="col-sm-2 control-label "><span class="inline-block width110">
+                                    <spring:message code="logTitle" text="日志标题"/>
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="logTitle" name="logTitle" placeholder="<spring:message code="logTitle" text="日志标题"/>">
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-md-10 float-left">
+                            <label for="logType" class="col-sm-2 control-label"><span class="inline-block width110">
+                                <spring:message code="logType" text="日志分类"/>
+                            </span></label>
+                            <span class="inline-block width280" style="margin-left: 5px;">
+                                <select id="logType" class="form-control">
+                                </select>
+                            </span>
+                        </div>
+                        <div style="height: 34px;line-height: 34px;" class="pull-left">
+                            <a href="javascript:void(0)" id="addTypeHref" class="center"><spring:message code="addLogType" text="添加分类"/></a>
+                        </div>
+                        <div class="width250 float-left displayNone" id="addTypeDiv">
+                            <input class="col-md-2 form-control width110 float-left" id="addTypeInput" placeholder="<spring:message code="typeName" text="分类名称"/>">
+                            <button type="button" class="btn btn-primary float-left margin-left-5px" id="addTypeSaveBtn">
+                                <spring:message code="save" text="保存"/>
+                            </button>
+                            <button type="button" class="btn btn-default float-left margin-left-5px" id="addTypeCloseBtn">
+                                <spring:message code="cancel" text="取消"/>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-md-10">
+                            <label for="logTags" class="col-sm-2 control-label "><span class="inline-block width110">
+                                    <spring:message code="logTags" text="日志标签"/>
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="logTags" placeholder="<spring:message code="logTags" text="日志标签"/>">
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-md-10">
+                            <label for="blogPrivilege" class="col-sm-2 control-label"><span class="inline-block width110">
+                                     <spring:message code="logPrivilege" text="权 限"/>
+                                 </span></label>
+                                 <span class="inline-block width280" style="margin-left: 5px;">
+                                 <span class="inline-block text-span"><input type="radio" id="blogPrivilege" checked="checked" name="blogPrivilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="blogPrivilege2" name="blogPrivilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-md-10">
+                            <label for="logContent" class="col-sm-2 control-label float-left"><span class="inline-block width110">
+                                    <spring:message code="logContent" text="日志内容"/>
+                                </span></label>
+                            <div class="float-left" style="margin-left: 5px;">
+                                <textarea rows="5" id="logContent" name="logContent" class="width280"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeCreateBlogModelBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                <button type="button" id="saveMyBlogBtn" name="saveMyBlogBtn" class="btn btn-primary"><spring:message code="save" text="保存"/></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--日志评论--%>
+<div class="modal fade" id="commentFriendBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><spring:message code="commentTitle" text="评论"/></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal margin-left-20px " id="commentForm">
+                    <div class="form-group">
+                        <label for="logContent" class="control-label"><spring:message code="commentContent" text="评论内容"/></label>
+                        <textarea rows="5" name="commentContent" id="commentContent" class="form-control" style="width: 90%;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeCommentBtn" class="btn btn-default" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                <button type="button" id="saveCommentBtn" name="saveMyBlogBtn" class="btn btn-primary" data-loading-text=<spring:message code="saving" text="保存中..."/>><spring:message code="save" text="保存"/></button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -32,9 +32,6 @@
         <script type="text/javascript">
             var path = "<%=path%>";
         </script>
-        <%--引入业务JS --%>
-        <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
-        <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
         <style type="text/css">
             body,html{
                 overflow: hidden !important;
@@ -53,6 +50,8 @@
         <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
         <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
         <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
+        <%--引入业务JS --%>
+        <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
     </head>
 <body>
     <%--日志 start--%>
@@ -98,12 +97,12 @@
     </div>
 </div>
     <%--创建日志弹出框 --%>
-    <div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="createMyLogDialog" tabindex="-1" role="dialog" aria-labelledby="myLogDialogLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel"><spring:message code="newLog" text="新建日志"/></h4>
+                    <h4 class="modal-title" id="myLogDialogLabel"><spring:message code="newLog" text="新建日志"/></h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="blogForm">
@@ -152,12 +151,12 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-md-10">
-                                <label for="privilege" class="col-sm-2 control-label"><span class="inline-block width110">
+                                <label for="blogPrivilege" class="col-sm-2 control-label"><span class="inline-block width110">
                                      <spring:message code="logPrivilege" text="权 限"/>
                                  </span></label>
                                  <span class="inline-block width280" style="margin-left: 5px;">
-                                 <span class="inline-block text-span"><input type="radio" id="privilege" checked="checked" name="privilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
-                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
+                                 <span class="inline-block text-span"><input type="radio" id="blogPrivilege" checked="checked" name="blogPrivilege" value="0" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
+                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="blogPrivilege2" name="blogPrivilege" value="1" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
                                 </span>
                             </div>
                         </div>
