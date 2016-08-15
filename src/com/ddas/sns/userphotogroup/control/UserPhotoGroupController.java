@@ -72,9 +72,18 @@ public class UserPhotoGroupController extends BaseController{
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public UserGroup deleteUserGroup(UserGroup userGroup){
-        userPhotoGroupService.deleteUserGroup(userGroup);
-        return userGroup;
+    public Msg deletePhotoGroup(String groupId){
+        Msg msg=new Msg();
+        msg.setSuccessful(false);
+        try {
+            int deleteCount = userPhotoGroupService.deletePhotoGroup(groupId);
+            if(deleteCount==1){
+                msg.setSuccessful(true);
+            }
+        } catch (Exception e) {
+            LOGGER.error("删除相册失败!",e);
+        }
+        return msg;
     }
 
     @RequestMapping(value = "/queryFriendPhotoGroupRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})

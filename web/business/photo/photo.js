@@ -1,3 +1,4 @@
+var FRIEND_PHOTO=true;//记录是否为好友相册的照片详情(要屏蔽一些功能)
 var userPhotoGroupCondition = {
     pageNo:1,
 };//查询我的相册条件初始化
@@ -40,6 +41,7 @@ $(function () {
                         container:"#createMyPhotoGroupDialog",
                         confirm:function(){
                             $("#closeCreatePhotoGroupModelBtn").click();
+                            $("#photoGroupTab").click();//重新加载数据
                         }
                     });
                 }
@@ -114,19 +116,19 @@ function getMyPhotoGroupData(condition){
  */
 function initMyPhotoGroupData(data) {
     var myPhotoGroupDivTemplete = '<div class="panel panel-default" style="margin-top:10px;">'+
-        '<div class="panel-body">'+
+        '<div class="panel-body" style="padding:0!important;">'+
         '<div class="row">'+
         '<div class="photo pull-left">'+
-        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}" style="width: 130px;height: 130px;"/>'+
+        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
-        '<span class="center-block">groupNameValue</span>'+
+        '<span class="center-block">相册名:groupNameValue</span>'+
         '<span class="center-block">描述：groupDescriptionValue</span>'+
-        '<span class="center-block">照片数量：'+'<span  id="countSpan_${upId}">'+'${photoCount}</span></span>'+
+        '<span class="center-block">照片数量：'+'<span  id="countSpan_${upId}">'+'0</span></span>'+
         '<span class="center-block">更新于：${updated_time}</span>'+
         '<span class="center-block">创建于：${created_time}</span>'+
         '<span class="center-block"><a href="javascript:void(0);" data-toggle="modal" data-backdrop=""  autocomplete="off" data-target="#createMyPhotoGroupDialog" data-groupname="groupNameValue" data-groupid="groupIdValue" data-description="groupDescriptionValue" id="editPhotoGroup">编辑相册</a> &nbsp;'+
-        '<a href="javascript:void(0);" id="deletePhotoGroup">删除相册</a></span>'+
+        '<a href="javascript:void(0);" id="deletePhotoGroup_${upId}">删除相册</a></span>'+
         '</div>'+
         '</div>'+
         '</div>'+
@@ -134,80 +136,112 @@ function initMyPhotoGroupData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var count = getPhotoGroupCount(_data.groupId);
         var _replace = myPhotoGroupDivTemplete.replace("${basePath}", path)
             .replace(/groupNameValue/g, _data.groupName)
             .replace("${updated_time}", _data.updatedTime)
             .replace("${created_time}", _data.createdTime)
             .replace(/groupIdValue/g, _data.groupId)
             .replace(/groupDescriptionValue/g, _data.description)
-            .replace(/\$\{upId\}/g,_data.groupId)
-            .replace("${photoCount}", count);
+            .replace(/\$\{upId\}/g,_data.groupId);
         $("#myPhotoGroupContentDiv").append(_replace);
         //查询相册封面以及相应的照片数
         queryPhotoFaceAndCount(_data.groupId,"countSpan_"+_data.groupId);
         //添加监听事件
-        addClickMyLogoListener(_data.groupId);
+        addClickMyLogoListener(_data.groupId,!FRIEND_PHOTO);
+        //添加删除相册的监听事件
+        addDeletePhotoGroupListener(_data.groupId);
     }
-    /**
-     * 设置相册的封面以及相应的照片数量
-     * @param groupId 相册的id
-     * @param index count对应的span id
-     */
-    function queryPhotoFaceAndCount(groupId,index) {
-        if(groupId&&index){
-            $.ajax(path+"/userPhotoGroup/queryPhotoFaceAndCount",{
-                data:{
-                    "groupId":groupId
-                },
-                dataType:"json",
-                type:"POST",
-                success:function (data) {
-                    if(data){
-                      if(data.num){
-                          $("#"+index).html("").html(data.num);
-                      }
-                        if(data.cover){
-                            $("#myPhoto_logo_"+groupId).attr("src",path+data.cover);//设置封面
-                        }
+}
+/**
+ * 设置相册的封面以及相应的照片数量
+ * @param groupId 相册的id
+ * @param index count对应的span id
+ */
+function queryPhotoFaceAndCount(groupId,index) {
+    if(groupId&&index){
+        $.ajax(path+"/userPhotoGroup/queryPhotoFaceAndCount",{
+            data:{
+                "groupId":groupId
+            },
+            dataType:"json",
+            type:"POST",
+            success:function (data) {
+                if(data){
+                    if(data.num){
+                        $("#"+index).html("").html(data.num);
+                    }
+                    if(data.cover){
+                        $("#myPhoto_logo_"+groupId).attr("src",path+data.cover);//设置封面
                     }
                 }
-            })
-        }
+            }
+        })
     }
-
-    /**
-     *Group的A标签删除点击事件
-     *@Author liuchen6
-     *@Date 2016/7/5 15:38
-     */
-    /*$("a[name='deleteFriendGroup']").click(function () {
-     var userFriendGroupId = $(this).attr("data-groupid");
-     $.ajax({
-     url:path+"/userGroup/delete",
-     type:"POST",
-     data:{
-     "groupId":userFriendGroupId
-     },
-     dataType:"json",
-     success:function(){
-     alert("success!");
-     $("#myFriendGroupTab").click(); //重新加载用户分组的数据
-     }
-     })
-     })*/
 }
-
 
 /**
  * 点击我的相册的封面跳转到详情页
  * @param photoId
  */
-function  addClickMyLogoListener(groupId) {
+function  addClickMyLogoListener(groupId,friendPhoto) {
     if(groupId){
         $("#myPhoto_logo_"+groupId).click(function () {
-            $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?groupId="+groupId);
+            $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?groupId="+groupId+"&friendPhoto="+friendPhoto);
         });
+    }
+}
+/**
+ * 删除相册
+ * @param groupId
+ */
+function addDeletePhotoGroupListener(groupId) {
+    //delete
+    $("#deletePhotoGroup_"+groupId).click(function () {
+        deletePhotoGroupById(groupId);
+    });
+}
+/**
+ * 删除相册
+ * @param groupId 相册的id
+ */
+function deletePhotoGroupById(groupId) {
+    if(groupId){
+        $.confirm({
+            theme: 'white',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            title:false,
+            content: '确定删除吗?',
+            confirm: function(){
+                $.ajax({
+                    url:path+"/userPhotoGroup/delete",
+                    type:"POST",
+                    data:{
+                        "groupId":groupId
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data&&data.successful==true){
+                            $.alert({
+                                title:"Tip",
+                                content:common.deleteSuccess,
+                                confirm:function () {
+                                    $("#photoGroupTab").click();//reload data
+                                }
+                            })
+                        }else{
+                            $.alert({
+                                title:"Tip",
+                                content:common.deleteError,
+                                confirm:function () {
+                                    $("#photoGroupTab").click();//reload data
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        })
     }
 }
 
@@ -273,15 +307,16 @@ function getFriendPhotoGroupData(condition){
  */
 function initFriendPhotoGroupData(data) {
     var friendPhotoGroupDivTemplete = '<div class="panel panel-default" style="margin-top:10px;">'+
-        '<div class="panel-body">'+
+        '<div class="panel-body" style="padding: 0px!important;">'+
         '<div class="row">'+
         '<div class="photo pull-left">'+
-        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="friendPhoto_logo_${upId}"/>'+
+        '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
-        '<span class="center-block">groupNameValue</span>'+
+        '<span class="center-block">相册名:groupNameValue</span>'+
+        '<span class="center-block">好友名字:friendName</span>'+
         '<span class="center-block">标签：</span>'+
-        '<span class="center-block">照片数量：2</span>'+
+        '<span class="center-block">照片数量：<span id="friend_countSpan_groupIdValue">0</span></span>'+
         '<span class="center-block">更新于：${updated_time}</span>'+
         '<span class="center-block">创建于：${created_time}</span>'+
         '</div>'+
@@ -295,23 +330,16 @@ function initFriendPhotoGroupData(data) {
             .replace(/groupNameValue/g, _data.groupName)
             .replace("${updated_time}", _data.updatedTime)
             .replace("${created_time}", _data.createdTime)
-            .replace(/groupIdValue/g, _data.groupId).replace("${upId}}",_data.groupId);
+            .replace(/groupIdValue/g, _data.groupId)
+            .replace("${upId}",_data.groupId)
+            .replace("friendName",_data.friendName);
         $("#friendPhotoGroupContentDiv").append(_replace);
-
-        //添加监听事件 
-        addClickFriendLogoListener(_data.groupId);
-    }
-
-}
-
-function  addClickFriendLogoListener(groupId) {
-    if(groupId){
-        $("#friendPhoto_logo_"+groupId).click(function () {
-           $("#content_iframe",window.top.document.body).attr("src",path+"/userPhoto/photoDetail?groupId="+groupId);
-        });
+        //查询相册封面以及相应的照片数
+        queryPhotoFaceAndCount(_data.groupId,"friend_countSpan_"+_data.groupId);
+        //添加监听事件
+        addClickMyLogoListener(_data.groupId,FRIEND_PHOTO);
     }
 }
-
 /**
  * 初始化分页条
  * @param pageData
@@ -336,22 +364,5 @@ function initFriendPhotoGroupPagination(pageData) {
         }
     }
     $("#friendPhotoGroupPaginationDIV").bootstrapPaginator(options);
-}
-
-function getPhotoGroupCount(groupId) {
-    $.ajax({
-        url:path+"/userPhoto/getPhotoCount",
-        type:"POST",
-        async:"false",
-        data:{
-            "photoGroupId":groupId
-        },
-        dataType:"json",
-        success:function(data){
-            return data;
-        }
-    })
-
-    return 0;
 }
 

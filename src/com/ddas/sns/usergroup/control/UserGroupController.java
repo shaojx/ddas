@@ -41,7 +41,6 @@ public class UserGroupController extends BaseController{
 
     /**
      * 保存用户分组
-     *@param groupName
      *@return com.ddas.sns.usergroup.domain.UserGroup
      *@Author liuchen6
      *@Date 2016/7/5 9:27

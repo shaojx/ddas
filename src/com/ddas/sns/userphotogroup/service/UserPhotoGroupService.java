@@ -87,7 +87,7 @@ public class UserPhotoGroupService {
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
         UserPhotoGroupCriteria userPhotoGroupCriteria = new UserPhotoGroupCriteria();
-        userPhotoGroupCriteria.setOrderByClause("created_time");
+        userPhotoGroupCriteria.setOrderByClause("created_time desc");
         userPhotoGroupCriteria.setLimitStart(page.getPageStart());
         userPhotoGroupCriteria.setLimitEnd(pageSize);
         UserPhotoGroupCriteria.Criteria criteria = userPhotoGroupCriteria.createCriteria();
@@ -99,11 +99,21 @@ public class UserPhotoGroupService {
         return page;
     }
 
-    public void deleteUserGroup(UserGroup userGroup){
-        UserGroupCriteria userGroupCriteria = new UserGroupCriteria();
-        UserGroupCriteria.Criteria criteria = userGroupCriteria.createCriteria();
-        criteria.andGroupIdEqualTo(userGroup.getGroupId());
-        //userGroupMapper.deleteByExample(userGroupCriteria);
+    /**
+     *根据相册的id来删除相册
+     * @param groupId 相册的Id
+     *@return int 删除的相册的数量
+     *@author shaojx
+     *@date 2016/8/15 22:13
+     *@version 1.0
+     *@since 1.6
+     */
+    public int deletePhotoGroup(String groupId){
+        UserPhotoGroupCriteria example = new UserPhotoGroupCriteria();
+        UserPhotoGroupCriteria.Criteria criteria = example.createCriteria();
+        criteria.andGroupIdEqualTo(groupId);
+        int deleteByExample = userPhotoGroupMapper.deleteByExample(example);
+        return deleteByExample;
     }
 
     /**
@@ -115,7 +125,7 @@ public class UserPhotoGroupService {
      *@Date 2016/7/5 10:53
      *@since JDK1.7
      */
-    @VipPrivilege("photoCount")
+ /*   @VipPrivilege("photoCount")*/
     public Page queryFriendPhotoGroupRecordsByPage(int currentPage, int pageSize, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);

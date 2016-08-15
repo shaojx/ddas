@@ -19,6 +19,8 @@
     <script type="text/javascript" src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/business/common/language/${local}.js"></script>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
