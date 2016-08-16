@@ -72,6 +72,7 @@
             </div>
         </div>--%>
     </div>
+    <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;">Tip:想查看更多,赶紧<a href="javascript:void(0);" id="toVip">升级为会员</a>吧!</p>
     <%--分页插件--%>
     <ul class="pagination" id="photoPaginationDiv"></ul>
 </div>

@@ -6,8 +6,17 @@ var PAGE_SIZE=12;
  */
 $(function () {
       friendPhoto=$("#friendPhoto").val();
-      getPhotoData(1);
-})
+    //注册 跳转到 升级会员的页面    
+    registerToVIPListener();  
+    getPhotoData(1);
+});
+
+function registerToVIPListener() {
+    $("#toVip").click(function () {
+        //$("#levelVip",window.top.document).click();//点击最上层window的`升级会员`的li
+        $("#content_iframe",window.top.document).attr("src",path+"/vip/gotoVip");
+    });
+}
 
 /**
  * 获取当前页的数据
@@ -28,7 +37,8 @@ function getPhotoData(pageNo){
             data:{
                 "currentPage":pageNo,
                 "pageSize":PAGE_SIZE,
-                "groupId":groupId
+                "groupId":groupId,
+                "friendPhoto":friendPhoto
             },
             dataType:"json",
             success:function(data){
@@ -42,8 +52,17 @@ function getPhotoData(pageNo){
                     initPhotoPagination(data);
                 }
                 initPhotoData(data);
+                //检测是否要提醒升级为vip
+                checkVIP(data.extra);
             }
         })
+    }
+}
+function checkVIP(extra) {
+    if(extra&&extra.vipExtraInfo){//为true要提示
+        $("#vipTip").show();
+    }else{
+        $("#vipTip").hide();
     }
 }
 /**
@@ -86,15 +105,13 @@ function initPhotoData(data) {
         var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl)
                                         .replace(/\$\{index\}/g,index);
         $("#photoDiv").append(_replace);
-        if($("#friendPhoto"))
         if(friendPhoto=="false"){//查看的为自己的相册的详情
             addMouseListener(index,_data.upId,groupId);
         }
     };
-
-    $("#photoDiv").find("img").dblclick(function(){
+    $("#photoDiv").find("img").dblclick(function(){//当查看好友的相册详情时,会直接调用这个注册
        if(window.top.showPhotos){
-           window.top.showPhotos(groupId);
+           window.top.showPhotos(groupId,friendPhoto);
        }
     });
 }
@@ -120,7 +137,7 @@ function addMouseListener(index,upId,groupId) {
     //弹出相应的照片墙
     $("#txtDiv_"+index).dblclick(function () {
         if(window.top.showPhotos){
-            window.top.showPhotos(groupId);
+            window.top.showPhotos(groupId,friendPhoto);
         }
     });
     //设置封面

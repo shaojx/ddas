@@ -70,6 +70,22 @@ public class UserPhotoService {
         return page;
     }
 
+    /**
+     *查看好友的相册时会存在权限问题(所以重新开了一个带权限的方法)
+     * @param currentPage 当前页
+     * @param pageSize 每页的条数
+     * @param groupId 相册的id
+     *@return com.ddas.common.page.Page
+     *@author shaojx
+     *@date 2016/8/16 21:55
+     *@version 1.0
+     *@since 1.6
+     */
+    @VipPrivilege("photoCount")
+    public Page queryUserFriendRecordsByPage(int currentPage,int pageSize,String groupId){
+        return queryRecordsByPage(currentPage,pageSize,groupId);
+    }
+
     public int getPhotoCount(String photoGroupId, UserInfo userInfo){
         UserPhotoCriteria userPhotoCriteria = new UserPhotoCriteria();
         UserPhotoCriteria.Criteria criteria = userPhotoCriteria.createCriteria();

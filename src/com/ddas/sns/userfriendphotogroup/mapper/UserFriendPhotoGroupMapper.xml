@@ -10,10 +10,13 @@
     <result column="cover" property="cover" jdbcType="VARCHAR" />
     <result column="upg_created_time" property="createdTime" jdbcType="VARCHAR" />
     <result column="upg_updated_time" property="updatedTime" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR"/>
+    <result column="tags" property="tags" jdbcType="VARCHAR"/>
   </resultMap>
 
   <sql id="Base_Column_List">
-      uf.user_id AS uf_user_id,friend_id,friend_name,upg.group_id AS upg_group_id,cover,upg.created_time AS upg_created_time,upg.updated_time AS upg_updated_time,group_name
+      uf.user_id AS uf_user_id,friend_id,friend_name,upg.group_id AS upg_group_id,cover,upg.created_time AS upg_created_time,upg.updated_time AS upg_updated_time,group_name,
+      upg.description as description,upg.tags as tags
   </sql>
 
   <select id="queryByPage" parameterType="com.ddas.common.page.Page" resultMap="UserFriendPhotoGroupMap">
