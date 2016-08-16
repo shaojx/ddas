@@ -11,9 +11,10 @@
     <link href="<%=path%>/common/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="<%=path%>/common/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="<%=path%>/common/bxslider/css/jquery.bxslider.css" rel="stylesheet"/>
-    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/common/language/${local}.js"></script>
+    <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.js" type="text/javascript"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
@@ -43,6 +44,11 @@
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
+    <%--引入自定义样式--%>
+
+    <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
+    <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
     <style type="text/css">
         body,html{
             overflow: hidden !important;
@@ -402,7 +408,9 @@
                         <%--新建相册与上传照片--%>
                         <div class="row margin-top-10px">
                             <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn"><spring:message code="uploadPhoto" text="上传照片"/></button>
-                            <button type="button" class="btn btn-info pull-right margin-right-10px" data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
+                            <button type="button" class="btn btn-info pull-right margin-right-10px"
+                                    data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" data-groupid=""
+                                    autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
                         </div>
                         <div id="myPhotoGroupContentDiv">
                         </div>
@@ -432,18 +440,18 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-md-10">
                                             <label for="photoGroupName" class="col-sm-2 control-label "><span class="inline-block width110">
-                                                    <spring:message code="albumName" text="相册名称"/>
-                                                </span></label>
-                                                <span class="inline-block width280" style="margin-left: 5px;">
-                                                    <input  class="form-control" id="photoGroupName" placeholder=<spring:message code="albumName" text="相册名称"/>>
-                                                </span>
+                                    <spring:message code="albumName" text="相册名称"/>
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="photoGroupName" placeholder=<spring:message code="albumName" text="相册名称"/>>
+                                </span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-md-10">
                                             <label for="photoGroupDescription" class="col-sm-2 control-label float-left"><span class="inline-block width110">
-                                                    <spring:message code="albumDescription" text="相册描述"/>
-                                                </span></label>
+                                    <spring:message code="albumDescription" text="相册描述"/>
+                                </span></label>
                                             <div class="float-left" style="margin-left: 10px;">
                                                 <textarea rows="5" id="photoGroupDescription" class="width280"></textarea>
                                             </div>
@@ -452,22 +460,26 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-md-10">
                                             <label for="photoGroupTags" class="col-sm-2 control-label "><span class="inline-block width110">
-                                                    <spring:message code="albumTag" text="相册标签"/>
-                                                </span></label>
-                                                <span class="inline-block width280" style="margin-left: 5px;">
-                                                    <input  class="form-control" id="photoGroupTags" placeholder=<spring:message code="albumTag" text="相册标签"/>>
-                                                </span>
+                                    <spring:message code="albumTag" text="相册标签"/>
+                                </span></label>
+                                <span class="inline-block width280" style="margin-left: 5px;">
+                                    <input  class="form-control" id="photoGroupTags" placeholder=<spring:message code="albumTag" text="相册标签"/>>
+                                </span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-md-10">
                                             <label for="privilege" class="col-sm-2 control-label"><span class="inline-block width110">
-                                                    <spring:message code="logPrivilege" text="权 限"/>
-                                                </span></label>
-                                                 <span class="inline-block width280" style="margin-left: 5px;">
-                                                 <span class="inline-block text-span"><input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
-                                                 <span class="inline-block text-span margin-left-10px"><input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;"></span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
-                                                </span>
+                                     <spring:message code="logPrivilege" text="权 限"/>
+                                 </span></label>
+                                 <span class="inline-block width280" style="margin-left: 5px;">
+                                 <span class="inline-block text-span">
+                                     <input type="radio" id="privilege" name="privilege" style="margin-right: 5px;margin-top: 3px;" value="2" checked="checked">
+                                 </span><span class="inline-block text-span"><spring:message code="privilegeAll" text="全部人可见"/></span>
+                                 <span class="inline-block text-span margin-left-10px">
+                                     <input type="radio" id="privilege2" name="privilege" style="margin-right: 5px;margin-top: 3px;" value="0">
+                                 </span><span class="inline-block text-span"><spring:message code="privilegeMe" text="仅自己可见"/></span>
+                                </span>
                                         </div>
                                     </div>
                                 </form>

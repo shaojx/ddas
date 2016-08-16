@@ -259,6 +259,7 @@ function saveMyLog(){
                     autoClose: 'confirm|1000',
                     cancelButton:false
                 });
+                $("#myLogTab").click();
             }
         })
     }
@@ -523,21 +524,4 @@ function fetchCommentCount(blogId) {
             }
         }
     })
-}
-
-/**
- * 初始化我的日志的数据
- * @param data
- */
-function initMyMessageData(data){
-    var myMessageDivTemplete='<li class="list-group-item">'+
-        '<div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">留言时间：${created_time}</div></div>'+
-        '<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">${messageContent}</div>'+
-        '</li>';
-    var list=data.dataList;
-    for(var index in list){
-        var _data=list[index];
-        var _replace=myMessageDivTemplete.replace("${created_time}",_data.createdTime).replace("${messageContent}",_data.messageContent);
-        $("#myMessageContentDiv").append(_replace);
-    }
 }

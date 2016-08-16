@@ -16,7 +16,7 @@ $(function () {
     //保存我的相册分组按钮点击事件
     $("#savePhotoGroupBtn").click(function () {
         saveOrUpdatePhotoGroup();
-    })
+    });
 
     /**
      * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
