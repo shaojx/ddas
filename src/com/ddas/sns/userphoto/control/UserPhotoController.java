@@ -66,13 +66,16 @@ public class UserPhotoController extends BaseController{
 
     /**
      * 跳转到相册的详情页
-     * @param groupId
+     *
+     * @param groupId     相册的id
+     * @param friendPhoto 是否为查看好友的相册详情{true}为是
      * @return
      */
     @RequestMapping("/photoDetail")
-    public ModelAndView gotoPhotoDetail(String groupId,HttpServletRequest request){
+    public ModelAndView gotoPhotoDetail(String groupId,boolean friendPhoto,HttpServletRequest request){
         ModelAndView modelAndView = withLocal(request, "photo/photoDetail");
         modelAndView.addObject("groupId",groupId);
+        modelAndView.addObject("friendPhoto",friendPhoto);
         return modelAndView;
     }
 

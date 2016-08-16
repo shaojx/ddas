@@ -1,8 +1,11 @@
 var currentIndex=-1000;//记录当前的鼠标位置
+var friendPhoto=null;//记录是否查看的是好友的相册详情
+var PAGE_SIZE=12;
 /**
  * 照片详情
  */
 $(function () {
+      friendPhoto=$("#friendPhoto").val();
       getPhotoData(1);
 })
 
@@ -24,7 +27,7 @@ function getPhotoData(pageNo){
             type:"POST",
             data:{
                 "currentPage":pageNo,
-                "pageSize":4,
+                "pageSize":PAGE_SIZE,
                 "groupId":groupId
             },
             dataType:"json",
@@ -83,7 +86,10 @@ function initPhotoData(data) {
         var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl)
                                         .replace(/\$\{index\}/g,index);
         $("#photoDiv").append(_replace);
-         addMouseListener(index,_data.upId,groupId);
+        if($("#friendPhoto"))
+        if(friendPhoto=="false"){//查看的为自己的相册的详情
+            addMouseListener(index,_data.upId,groupId);
+        }
     };
 
     $("#photoDiv").find("img").dblclick(function(){

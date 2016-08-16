@@ -64,6 +64,32 @@ public class UserPhotoGroupController extends BaseController{
         return msg;
     }
 
+    /**
+     *根据groupID来更新相应的相册
+     * @param userPhotoGroup 相册
+     * @param request
+     *@return com.ddas.common.Msg
+     *@author shaojx
+     *@date 2016/8/15 23:31
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public Msg updatePhotoGroup(UserPhotoGroup userPhotoGroup,HttpServletRequest request){
+        Msg msg=new Msg();
+        try {
+            int updatePhotoGroup = userPhotoGroupService.updatePhotoGroup(userPhotoGroup, getLoginUser(request));
+            if(updatePhotoGroup==1){
+                msg.setSuccessful(true);
+            }
+        } catch (Exception e) {
+            LOGGER.error("更新相册失败!",e);
+            msg.setSuccessful(false);
+        }
+        return msg;
+    }
+
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Page getGroupList(int currentPage, int pageSize,HttpServletRequest request){
@@ -72,11 +98,32 @@ public class UserPhotoGroupController extends BaseController{
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public UserGroup deleteUserGroup(UserGroup userGroup){
-        userPhotoGroupService.deleteUserGroup(userGroup);
-        return userGroup;
+    public Msg deletePhotoGroup(String groupId){
+        Msg msg=new Msg();
+        msg.setSuccessful(false);
+        try {
+            int deleteCount = userPhotoGroupService.deletePhotoGroup(groupId);
+            if(deleteCount==1){
+                msg.setSuccessful(true);
+            }
+        } catch (Exception e) {
+            LOGGER.error("删除相册失败!",e);
+        }
+        return msg;
     }
 
+    /**
+     *获取相应的好友的相册(相册的privilege为2或者为1)
+     * NOTE:privilege=1---分组可见 还未实现
+     * @param currentPage
+     * @param pageSize
+     * @param request
+     *@return com.ddas.common.page.Page
+     *@author shaojx
+     *@date 2016/8/15 22:57
+     *@version 1.0
+     *@since 1.6
+     */
     @RequestMapping(value = "/queryFriendPhotoGroupRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Page getFriendPhotoGroupList(int currentPage, int pageSize, HttpServletRequest request){

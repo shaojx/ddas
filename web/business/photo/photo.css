@@ -5,12 +5,14 @@
     cursor: hand;
 }
 .photo .img{
-    margin-top:10px ;
-    margin-left:10px;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 135px;
+    height: 135px;
 }
 
 #photoInfoDiv span{
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 5px;
 }
  #photoInfoDiv span a{
