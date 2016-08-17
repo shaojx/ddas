@@ -63,4 +63,5 @@ public interface UserPhotoMapper {
     int updateByExample(@Param("record") UserPhoto record, @Param("example") UserPhotoCriteria example);
 
     int userThisPhotoForFace(String upId, String groupId);
+
 }

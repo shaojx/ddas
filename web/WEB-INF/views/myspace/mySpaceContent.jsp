@@ -48,6 +48,7 @@
 
     <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/message/js/message.js"></script>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
     <style type="text/css">
         body,html{
@@ -98,7 +99,7 @@
                     </div>
                     <div id="panel-element-1331" class="panel-collapse in">
                         <div class="panel-body">
-                            <div class="row">
+                            <div class="row" id="latestPhotoContentDiv">
                                 <div class="col-xs-3 col-md-3 width175">
                                     <div class="thumbnail">
                                         <img src="/common/images/140x140.jpg" alt="140x140">
@@ -506,25 +507,13 @@
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                         Mariki <spring:message code="deMessageBoard" text="的留言板"/>
-                        <div style="margin-left:85%;">
+                        <div style="margin-left:80%;">
                             <button type="button" id="createMessage" class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMessageDialog">
                                 <spring:message code="leavingAMessage" text="我要留言"/>
                             </button>
                         </div>
                     </div>
                     <ul class="list-group" id="myMessageContentDiv">
-                        <li class="list-group-item">
-                            <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">留言时间：2016-06-26-14:40:52</div></div>
-                            <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
-                        </li>
-                        <li class="list-group-item">
-                            <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">留言时间：2016-06-26-14:40:52</div></div>
-                            <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
-                        </li>
-                        <li class="list-group-item">
-                            <div><a href="javascript:void(0)">Mariki</a><div style="font-size:12px;color:#aaa;float: right">留言时间：2016-06-26-14:40:52</div></div>
-                            <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">你好a！</div>
-                        </li>
                     </ul>
                     <%--我的留言分页--%>
                     <ul id="myMessagePagnationDiv"></ul>
@@ -623,14 +612,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="messageModalLabel">我要留言</h4>
+                    <h4 class="modal-title" id="messageModalLabel"><spring:message code="leavingAMessage" text="我要留言"/></h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-md-10">
                                 <label for="logContent" class="col-sm-2 control-label float-left"><span class="inline-block width110">
-                                    留言内容
+                                    <spring:message code="messageContent" text="留言内容"/>
                                 </span></label>
                                 <div class="float-left" style="margin-left: 5px;">
                                     <textarea rows="5" id="messageContent" class="width280"></textarea>
