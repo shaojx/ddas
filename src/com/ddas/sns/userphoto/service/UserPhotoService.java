@@ -17,11 +17,16 @@ import com.ddas.sns.usergroup.mapper.UserGroupMapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userphoto.domain.UserPhoto;
 import com.ddas.sns.userphoto.domain.UserPhotoCriteria;
+import com.ddas.sns.userphoto.dto.UserPhotoDto;
 import com.ddas.sns.userphoto.mapper.UserPhotoMapper;
+import com.ddas.sns.userphotogroup.domain.UserPhotoGroup;
+import com.ddas.sns.userphotogroup.mapper.UserPhotoGroupMapper;
 import com.paypal.api.openidconnect.Userinfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ClassName:	UserGroupService
@@ -35,6 +40,8 @@ import javax.annotation.Resource;
 public class UserPhotoService {
     @Resource
     private UserPhotoMapper userPhotoMapper;
+    @Resource
+    private UserPhotoGroupMapper userPhotoGroupMapper;
 
     public void save(UserPhoto userPhoto) {
         String currentDateTime = DateUtil.getCurrentDateString();
@@ -109,4 +116,46 @@ public class UserPhotoService {
         int count = userPhotoMapper.userThisPhotoForFace(upId, groupId);
         return count;
     }
+
+    /**
+     *设置封面
+     * @param loginUser
+     *@return int 更新的数目
+     *@author shaojx
+     *@date 2016/8/5 23:01
+     *@version 1.0
+     *@since 1.6
+     */
+    public Page getLatestPhoto(UserInfo loginUser) {
+        Page page = new Page();
+        page.setCurrentPage(1);
+        page.setPageSize(4);
+        UserPhotoCriteria userPhotoCriteria = new UserPhotoCriteria();
+        userPhotoCriteria.setOrderByClause("created_time");
+        userPhotoCriteria.setLimitStart(page.getPageStart());
+        userPhotoCriteria.setLimitEnd(4);
+        UserPhotoCriteria.Criteria criteria = userPhotoCriteria.createCriteria();
+        criteria.andUserIdEqualTo(loginUser.getUserId());
+
+        List<UserPhoto> userPhotoList = userPhotoMapper.selectByExample(userPhotoCriteria);
+        List<UserPhotoDto> userPhotoDtoList = new ArrayList<UserPhotoDto>();
+
+        for (UserPhoto userPhoto : userPhotoList) {
+            UserPhotoDto userPhotoDto = new UserPhotoDto();
+            userPhotoDto.setUpId(userPhoto.getUpId());
+            userPhotoDto.setCreatedTime(userPhoto.getCreatedTime());
+            userPhotoDto.setPhotoUrl(userPhoto.getPhotoUrl());
+            userPhotoDto.setGroupId(userPhoto.getGroupId());
+            UserPhotoGroup userPhotoGroup = userPhotoGroupMapper.selectByPrimaryKey(userPhoto.getGroupId());
+            if(userPhotoGroup != null) {
+                userPhotoDto.setGroupName(userPhotoGroup.getGroupName());
+            }else{
+                userPhotoDto.setGroupName("");
+            }
+            userPhotoDtoList.add(userPhotoDto);
+        }
+        page.setDataList(userPhotoDtoList);
+        return page;
+    }
+
 }

@@ -12,13 +12,15 @@ import com.ddas.common.page.Page;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
+import com.ddas.sns.userinfo.mapper.UserInfoMapper;
 import com.ddas.sns.usermessage.domain.UserMessage;
 import com.ddas.sns.usermessage.domain.UserMessageCriteria;
+import com.ddas.sns.usermessage.dto.UserMessageDto;
 import com.ddas.sns.usermessage.mapper.UserMessageMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.*;
 
 /**
  * ClassName:	UserInfoService
@@ -32,6 +34,9 @@ import java.util.List;
 public class UserMessageService {
     @Resource
     private UserMessageMapper userMessageMapper;
+
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
     public void save(UserMessage userMessage, UserInfo userInfo) {
         userMessage.setMessageBy(userInfo.getUserId());
@@ -55,9 +60,26 @@ public class UserMessageService {
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userMessageMapper.countByExample(userMessageCriteria));
         }
-        page.setDataList(userMessageMapper.selectByExample(userMessageCriteria));
-        return page;
+        List<UserMessage> list = userMessageMapper.selectByExample(userMessageCriteria);
+        List<UserMessageDto> listDto = new ArrayList<UserMessageDto>();
+        for (UserMessage userMessage : list) {
+            UserMessageDto userMessageDto = new UserMessageDto();
+            userMessageDto.setUmid(userMessage.getUmid());
+            userMessageDto.setCreatedTime(userMessage.getCreatedTime());
+            userMessageDto.setMessageContent(userMessage.getMessageContent());
+            userMessageDto.setMessageBy(userMessage.getMessageBy());
+            UserInfo userInfo = null;
+            userInfo = userInfoMapper.selectByPrimaryKey(userMessage.getMessageBy());
+            if(userInfo != null) {//如果用户存在
+                userMessageDto.setMessageByName(userInfo.getUserName());
+            }else{
+                userMessageDto.setMessageByName("");
+            }
+            listDto.add(userMessageDto);
+        }
+        page.setDataList(listDto);
 
+        return page;
     }
 
 }

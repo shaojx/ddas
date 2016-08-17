@@ -5,7 +5,7 @@ var userPhotoGroupCondition = {
 var currentOp="ADD";//当前的操作(点"保存"按钮时有用) ADD或者为EDIT
 var currentEditGroupId=null;//记录当前修改的相册的id
 var userFriendPhotoGroupCondition = {
-    pageNo:1,
+    pageNo:1
 };//查询好友相册条件初始化
 $(function () {
     //点击"上传照片" 跳转页面

@@ -81,7 +81,7 @@ public class UserPhotoController extends BaseController{
 
     @RequestMapping("/queryRecordsByPage")
     @ResponseBody
-    public Page queryRecordsByPage(int currentPage, int pageSize, String groupId,String friendPhoto){
+    public Page queryRecordsByPageByGroupId(int currentPage, int pageSize, String groupId, String friendPhoto){
         Page page = null;
         try{
             if(friendPhoto!=null&&"true".equals(friendPhoto)){//查看好友的相册(会有权限控制)
@@ -139,4 +139,28 @@ public class UserPhotoController extends BaseController{
         }
         return msg;
     }
+
+    /**
+     *我的首页拿到最近的Photo
+     * @param httpServletRequest 照片的id
+     *@return com.ddas.common.Msg 返回相应的Msg
+     *@author shaojx
+     *@date 2016/8/5 23:06
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/getLatestPhoto")
+    @ResponseBody
+    public Page getLatestPhoto(HttpServletRequest httpServletRequest){
+        Page page = null;
+        try{
+            page = userPhotoService.getLatestPhoto(getLoginUser(httpServletRequest));
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return page;
+    }
+
+
 }
