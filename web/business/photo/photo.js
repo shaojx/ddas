@@ -166,15 +166,15 @@ function initMyPhotoGroupData(data) {
     for (var index in list) {
         var _data = list[index];
         var _replace = myPhotoGroupDivTemplete.replace("${basePath}", path)
-            .replace(/groupNameValue/g, _data.groupName)
+            .replace(/groupNameValue/g, formatNullToEmptyStr(_data.groupName))
             .replace("${updated_time}", _data.updatedTime)
             .replace("${created_time}", _data.createdTime)
             .replace(/groupIdValue/g, _data.groupId)
-            .replace(/groupDescriptionValue/g, _data.description)
+            .replace(/groupDescriptionValue/g, formatNullToEmptyStr(_data.description))
             .replace(/\$\{upId\}/g,_data.groupId)
             .replace("${privis}",getPrivis(_data.privilege))//权限code对应的中文
             .replace("privisCode",_data.privilege)//权限的code
-            .replace(/groupTags/g,_data.tags);
+            .replace(/groupTags/g,formatNullToEmptyStr(_data.tags));
         $("#myPhotoGroupContentDiv").append(_replace);
         //查询相册封面以及相应的照片数
         queryPhotoFaceAndCount(_data.groupId,"countSpan_"+_data.groupId);
@@ -191,6 +191,17 @@ function getPrivis(code){
         case '1':return '分组可见';
         case '2':return '所有人可见';
     }
+}
+/**
+ * 把null转换为""
+ * @param data
+ * @returns {*}
+ */
+function formatNullToEmptyStr(data){
+    if(!data){
+        return "";
+    }
+    return data;
 }
 /**
  * 设置相册的封面以及相应的照片数量
@@ -355,10 +366,9 @@ function initFriendPhotoGroupData(data) {
         '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
-        '<span class="center-block">相册名:groupNameValue</span>'+
-        '<span class="center-block">好友名字:friendName</span>'+
-        '<span class="center-block">标签：</span>'+
-        '<span class="center-block">照片数量：<span id="friend_countSpan_groupIdValue">0</span></span>'+
+        '<span class="center-block">相册名:groupNameValue<span style="margin-left: 20px;">照片数量：<span id="friend_countSpan_groupIdValue">0</span></span></span>'+
+        '<span class="center-block">好友名字:friendName<span>标签:<span>groupTags</span></span></span>'+
+        '<span class="center-block">描述：groupDescriptionValue</span>'+
         '<span class="center-block">更新于：${updated_time}</span>'+
         '<span class="center-block">创建于：${created_time}</span>'+
         '</div>'+
@@ -374,7 +384,9 @@ function initFriendPhotoGroupData(data) {
             .replace("${created_time}", _data.createdTime)
             .replace(/groupIdValue/g, _data.groupId)
             .replace("${upId}",_data.groupId)
-            .replace("friendName",_data.friendName);
+            .replace("friendName",_data.friendName)
+            .replace("groupTags",formatNullToEmptyStr(_data.tags))
+            .replace("groupDescriptionValue",formatNullToEmptyStr(_data.description))
         $("#friendPhotoGroupContentDiv").append(_replace);
         //查询相册封面以及相应的照片数
         queryPhotoFaceAndCount(_data.groupId,"friend_countSpan_"+_data.groupId);

@@ -150,13 +150,14 @@ function addRecommendAddBtnClickListener(addUserBtnId, friendId){
  * 照片弹出
  * @param groupId
  */
-function showPhotos(groupId) {
+function showPhotos(groupId,friendPhoto) {
    if(groupId){
        $.ajax(path+'/userPhoto/queryRecordsByPage',{
            data:{
                "groupId":groupId,
                "currentPage":1,
-               "pageSize":10000
+               "pageSize":10000,
+               "friendPhoto":friendPhoto
            },
            dataType:"json",
            type:"post",

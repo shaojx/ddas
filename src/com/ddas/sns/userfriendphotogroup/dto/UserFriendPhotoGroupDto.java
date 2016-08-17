@@ -11,6 +11,8 @@ public class UserFriendPhotoGroupDto implements Serializable {
     private String cover;
     private String createdTime;
     private String updatedTime;
+    private String description;
+    private String tags;
 
     public String getUserId() {
         return userId;
@@ -74,5 +76,21 @@ public class UserFriendPhotoGroupDto implements Serializable {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }

@@ -81,10 +81,14 @@ public class UserPhotoController extends BaseController{
 
     @RequestMapping("/queryRecordsByPage")
     @ResponseBody
-    public Page queryRecordsByPage(int currentPage, int pageSize, String groupId){
+    public Page queryRecordsByPage(int currentPage, int pageSize, String groupId,String friendPhoto){
         Page page = null;
         try{
-            page = userPhotoService.queryRecordsByPage(currentPage, pageSize, groupId);
+            if(friendPhoto!=null&&"true".equals(friendPhoto)){//查看好友的相册(会有权限控制)
+                page=userPhotoService.queryUserFriendRecordsByPage(currentPage,pageSize,groupId);
+            }else{
+                page = userPhotoService.queryRecordsByPage(currentPage, pageSize, groupId);
+            }
         }catch(Exception e){
             LOGGER.error(e.getMessage(), e);
         }
