@@ -24,6 +24,22 @@
             <pattern>%date [%thread][%level]%logger{80}[%line] - %msg%n</pattern>
         </encoder>
     </appender>
+    <!--info-->
+    <appender name="file—info"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY </onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>D:/logs/info.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date [%thread][%level]%logger{80}[%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
 
     <!-- 时间滚动输出 level为 ERROR 日志 -->
     <appender name="file—error"
@@ -106,9 +122,10 @@
 
     <root level="DEBUG">
         <appender-ref ref="stdout" />
-        <appender-ref ref="file—debug" />
+        <!--<appender-ref ref="file—debug" />-->
         <appender-ref ref="file—error" />
-        <appender-ref ref="file-str" />
+        <appender-ref ref="file—info" />
+      <!--  <appender-ref ref="file-str" />-->
       <!--  <appender-ref ref="db" />-->
     </root>
 

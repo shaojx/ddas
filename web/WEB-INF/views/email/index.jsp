@@ -69,15 +69,20 @@
             </div>
 
             <div role="tabpanel" class="tab-pane" id="CreateEmail">
-                <textarea rows="5" id="emailContent" style="margin: 0px; height: 448px; width: 746px;"></textarea>
-                <div class="row margin-top-10px">
-                    <label class="control-label pull-left margin-left-20px">
-                        <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>
-                    </label>
-                    <select id="friendList" class="form-control width120 pull-left margin-left-10px disabled">
-                    </select>
-                    <button class="btn btn-info pull-right margin-right-15px" type="button" id="sendEmailBtn"><spring:message code="save" text="保存"/></button>
+                <div id="emailContentDiv">
+                    <textarea rows="5" id="emailContent" style="margin: 0px; height: 448px; width: 746px;"></textarea>
+                    <div class="row margin-top-10px">
+                        <label class="control-label pull-left margin-left-20px">
+                            <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>
+                        </label>
+                        <select id="friendList" class="form-control width120 pull-left margin-left-10px disabled">
+                        </select>
+                        <button class="btn btn-info pull-right margin-right-15px" type="button" id="sendEmailBtn"><spring:message code="save" text="保存"/></button>
+                    </div>
                 </div>
+                <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;">
+                    Tip:已达到今天的发送上限!想使用更多权限，赶紧<a href="javascript:void(0);" id="toVip">升级为会员</a>吧!
+                </p>
             </div>
 
         </div>
@@ -102,46 +107,6 @@
                     </form>
                     <%--分页显示--%>
                    <div id="contentDiv" class="clear-both">
-                       <div class="panel panel-default">
-                           <div class="panel-body">
-                               <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                           </div>
-                       </div>
-                       <div class="panel panel-default">
-                           <div class="panel-body">
-                               <p style="font-style: italic;font-size: 12px;">回复给XXX:</p>
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                           </div>
-                       </div>
-                       <div class="panel panel-default">
-                           <div class="panel-body">
-                               <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                           </div>
-                       </div>
-                       <div class="panel panel-default">
-                           <div class="panel-body">
-                               <p style="font-style: italic;font-size: 12px;">回复给XXX:</p>
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                           </div>
-                       </div>
                        <div class="panel panel-default">
                            <div class="panel-body">
                                <p style="font-style: italic;font-size: 12px;">来自XXX:</p>

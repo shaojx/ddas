@@ -13,9 +13,11 @@ import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.email.domain.UserEmail;
 import com.ddas.sns.email.service.EmailService;
+import com.ddas.sns.privilege.service.PrivilegeService;
 import com.sun.javafx.collections.annotations.ReturnsUnmodifiableCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +42,9 @@ public class EmailController extends BaseController{
 
     @Resource
     private EmailService emailService;
+
+    @Autowired
+    private PrivilegeService privilegeService;
 
     /**
      *升级会员页面
@@ -130,6 +135,29 @@ public class EmailController extends BaseController{
            LOGGER.error("回复邮件失败！",e);
             msg.setSuccessful(false);
         }
+        return msg;
+    }
+
+    /**
+     *查询每天的限额值
+     * @param request
+     *@return com.ddas.common.Msg @see msg.setSuccessful==true表示超过
+     *@author shaojx
+     *@date 2016/8/17 22:12
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/checkDailyEmailCount")
+    @ResponseBody
+    public Msg checkDailyEmailCount(HttpServletRequest request){
+        boolean overFlow = false;
+        Msg msg=new Msg();
+        try {
+            overFlow = privilegeService.checkDailyEmailCountOverFlow(getLoginUser(request));
+        } catch (Exception e) {
+            LOGGER.error("查询每天的限额值失败!",e);
+        }
+        msg.setSuccessful(overFlow);
         return msg;
     }
 

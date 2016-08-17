@@ -51,27 +51,7 @@ $(function() {
                 "senderId":emailReceiver
             }
         }
-        //提交
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:data,
-            dataType:"json",
-            success:function(data){
-                if(data&&data.successful==true){
-                    $.confirm({
-                        title:"Tip",
-                        content:common.saveSuccess,
-                        autoClose: 'confirm|1000',
-                        cancelButton:false,
-                        container:"#CreateEmail",
-                        confirm:function(){
-                            $("#emailContent").val("");//清空内容
-                        }
-                    });
-                }
-            }
-        })
+        senderOrReply(url,data);//do it!
     })
 
     $("#sendMailTab").click();
@@ -84,7 +64,70 @@ $(function() {
     $("#replyBtn").click(function () {
         reply();
     });
-})
+
+    //创建邮件click
+    $("#createEmailTab").click(function(){
+        checkUserDailyEmailCount();
+    });
+    //注册 跳转到 升级会员的页面
+    registerToVIPListener();
+});
+
+function registerToVIPListener() {
+    $("#toVip").click(function () {
+        //$("#levelVip",window.top.document).click();//点击最上层window的`升级会员`的li
+        $("#content_iframe",window.top.document).attr("src",path+"/vip/gotoVip");
+    });
+}
+/**
+ * 检测相应的权限
+ */
+function  checkUserDailyEmailCount() {
+    $.ajax(path+"/email/checkDailyEmailCount",{
+        data:{},
+        dataType:"json",
+        async:false,//cancle async
+        type:"POST",
+        success:function (data) {
+            if(data&&data.successful==true){
+                $("#vipTip").show();//Vip Tip
+                $("#emailContentDiv").hide();//显示相应的输入区
+            }else{
+                $("#vipTip").hide();//VIP TIP
+                $("#emailContentDiv").show();//隐藏相应的输入区
+            }
+        }
+    })
+}
+/**
+ * 发送或者回复邮件
+ * @param url 对应的url
+ * @param data 上传的数据
+ */
+function senderOrReply(url,data){
+    //提交
+    $.ajax({
+        url:url,
+        type:"POST",
+        data:data,
+        dataType:"json",
+        success:function(data){
+            if(data&&data.successful==true){
+                $.confirm({
+                    title:"Tip",
+                    content:common.saveSuccess,
+                    autoClose: 'confirm|1000',
+                    cancelButton:false,
+                    container:"#CreateEmail",
+                    confirm:function(){
+                        $("#emailContent").val("");//清空内容
+                        $("#createEmailTab").click();//click tab,refresh data
+                    }
+                });
+            }
+        }
+    })
+}
 
 /**
  * 获取我的好友当前页的数据
