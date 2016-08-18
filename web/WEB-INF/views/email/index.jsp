@@ -81,7 +81,8 @@
                     </div>
                 </div>
                 <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;">
-                    Tip:已达到今天的发送上限!想使用更多权限，赶紧<a href="javascript:void(0);" id="toVip">升级为会员</a>吧!
+                    <spring:message code="upgradeTip" text="Tip:已达到今天的发送上限!想使用更多，赶紧"></spring:message>
+                    <a href="javascript:void(0);" id="toVip"> <spring:message code="upgradeVip" text="升级为会员"></spring:message></a><spring:message code="upgradeLast" text="吧!"></spring:message>
                 </p>
             </div>
 

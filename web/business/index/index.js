@@ -59,6 +59,15 @@ $(function () {
         $("#content_iframe").attr("src",path+"/index/indexContent");
     });
     init();
+
+    //修改头像的加载
+    if(!$("#headPhoto").attr("src")){
+        $("#headPhoto").attr("src",path+"/common/images/people140x140.jpg");
+    }
+    //头像加载失败监听
+    $("#headPhoto").error(function () {
+        $(this).attr("src",path+"/common/images/people140x140.jpg");
+    })
 });
 
 function init(){
@@ -94,7 +103,7 @@ function getRecommendUserListExcludeMeData(pageNo){
 function initRecommendUserListData(data) {
     var recommendUserListDivTemplete = 	'<article class="widget-post">'+
         '<div class="post-image">'+
-        '<a href="post.html"><img src="${basePath}/common/images/people60x55.jpg" alt=""></a>'+
+        '<a href="post.html"><img src="${basePath}" alt=""></a>'+
         '</div>'+
         '<div class="post-body">'+
         '<h2><a href="post.html">${userNameVal}</a></h2>'+
@@ -108,11 +117,19 @@ function initRecommendUserListData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = recommendUserListDivTemplete.replace("${basePath}", path)
+        var photoUrl=_data.headPhotoUrl;
+        var _replace = recommendUserListDivTemplete.replace("${basePath}", photoUrl?photoUrl:path+"/common/images/people60x55.jpg")
             .replace("${userNameVal}", _data.userName).replace("${userId}", _data.userId)
         $("#recommendContentDiv").append(_replace);
         addRecommendAddBtnClickListener("#"+_data.userId+"_addRecommendBtn", _data.userId);
     }
+    //添加头像加载失败的监听
+    addImgLoadedFailedListener();
+}
+function addImgLoadedFailedListener() {
+    $("#recommendContentDiv").find("img").error(function () {
+        $(this).attr("src",path+"/common/images/people60x55.jpg");
+    })
 }
 
 function addRecommendAddBtnClickListener(addUserBtnId, friendId){

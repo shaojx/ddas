@@ -36,7 +36,7 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div>
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" id="photoGroupTab" href="#myPhoto"><spring:message code="myAlbum" text="我的相册"/></a></li>
         <li><a data-toggle="tab" href="#myFriendPhoto" id="friendPhotoGroupTab"><spring:message code="friendAlbum" text="好友相册"/></a></li>

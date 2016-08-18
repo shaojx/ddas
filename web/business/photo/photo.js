@@ -142,7 +142,7 @@ function getMyPhotoGroupData(condition){
 function initMyPhotoGroupData(data) {
     var myPhotoGroupDivTemplete = '<div class="panel panel-default" style="margin-top:10px;">'+
         '<div class="panel-body" style="padding:0!important;">'+
-        '<div class="row">'+
+        '<div class="row"  style="margin-left: 0px;margin-right: 0px;">'+
         '<div class="photo pull-left">'+
         '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
@@ -361,7 +361,7 @@ function getFriendPhotoGroupData(condition){
 function initFriendPhotoGroupData(data) {
     var friendPhotoGroupDivTemplete = '<div class="panel panel-default" style="margin-top:10px;">'+
         '<div class="panel-body" style="padding: 0px!important;">'+
-        '<div class="row">'+
+        '<div class="row" style="margin-left: 0px;margin-right: 0px;">'+
         '<div class="photo pull-left">'+
         '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+

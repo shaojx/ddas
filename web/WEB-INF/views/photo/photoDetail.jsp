@@ -72,7 +72,8 @@
             </div>
         </div>--%>
     </div>
-    <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;">Tip:想查看更多,赶紧<a href="javascript:void(0);" id="toVip">升级为会员</a>吧!</p>
+    <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;"><spring:message code="upgradeTipInPhoto" text="Tip:想查看更多,赶紧"></spring:message>
+        <a href="javascript:void(0);" id="toVip"><spring:message code="upgradeVip" text="升级会员"></spring:message> </a><spring:message code="upgradeLast" text="吧!"></spring:message></p>
     <%--分页插件--%>
     <ul class="pagination" id="photoPaginationDiv"></ul>
 </div>

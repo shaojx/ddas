@@ -120,12 +120,24 @@ $(function() {
 	 * 当添发送邮件的时候，传数据到Model框里面去
 	 */
 	$('#createEmailDialog').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget);// Button that triggered the modal
-		var friendId = button.data('friendid'); // Extract info from data-* attributes
-		var modal = $(this);
-		modal.find('#friendId').val(friendId);
-		modal.find('#emailContent').val("");
-		modal.find('#friendList').children('#'+ friendId).attr("selected", true)
+       var rtn= checkUserDailyEmailCount();//检测权限
+        if(rtn){//超过每日发送的上限 `提示VIP`
+            $("#vipTip").show();//Vip Tip
+            $("#CreateEmail").hide();//显示相应的输入区
+            $("#friendList").hide();
+            $("#friendLabel").hide();
+        }else{
+            $("#vipTip").hide();//VIP TIP
+            $("#CreateEmail").show();//隐藏相应的输入区
+            $("#friendList").show();
+            $("#friendLabel").show();
+            var button = $(event.relatedTarget);// Button that triggered the modal
+            var friendId = button.data('friendid'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('#friendId').val(friendId);
+            modal.find('#emailContent').val("");
+            modal.find('#friendList').children('#'+ friendId).attr("selected", true)
+        }
 	})
 
 	//发送邮件的点击事件
@@ -156,8 +168,36 @@ $(function() {
 	loadUserFriendGroupData();
 	//提前加载所有好友的List，主要用在email选择好友
 	loadMyAllFriendList();
+    //注册 跳转到 升级会员的页面
+    registerToVIPListener();
 });
 
+function registerToVIPListener() {
+    $("#toVip").click(function () {
+        //$("#levelVip",window.top.document).click();//点击最上层window的`升级会员`的li
+        $("#content_iframe",window.top.document).attr("src",path+"/vip/gotoVip");
+    });
+}
+/**
+ * 检测相应的权限
+ */
+function  checkUserDailyEmailCount() {
+    var rtn=true;
+    $.ajax(path+"/email/checkDailyEmailCount",{
+        data:{},
+        dataType:"json",
+        async:false,//cancle async
+        type:"POST",
+        success:function (data) {
+            if(data&&data.successful==true){
+               rtn=true;
+            }else{
+                rtn=false;
+            }
+        }
+    })
+    return rtn;
+}
 //加载搜索条件中的好友分组信息
 function loadGroupSearchCondition() {
 	$("#friendGroupCondition").empty();
