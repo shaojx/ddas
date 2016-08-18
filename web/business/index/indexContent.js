@@ -74,7 +74,7 @@ function initUserListPagination(pageData) {
 function initUserListData(data) {
     var userListDivTemplete = '<div class="col-xs-3 col-md-3">'+
         '<div class="imageDiv">'+
-        '<img alt="140x140" src="${basePath}/common/images/people140x140.jpg" class="img-thumbnail"/>'+
+        '<img alt="140x140" src="${basePath}" class="img-thumbnail"/>'+
         '<p>'+
         '${userNameVal} <a class="btn" href="javascript:void(0)" id="${userId}_addBtn">addFriendBtn</a>'+
         '</p>'+
@@ -83,15 +83,22 @@ function initUserListData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = userListDivTemplete.replace("${basePath}", path)
+        var photoUrl=_data.headPhotoUrl;
+        var _replace = userListDivTemplete.replace("${basePath}", photoUrl?photoUrl:path+"/common/images/people140x140.jpg")
             .replace("${userNameVal}", _data.userName)
             .replace("${userId}", _data.userId)
             .replace(/addFriendBtn/g, indexMsg.addFriendBtn);
         $("#userListContentDiv").append(_replace);
         addAddBtnClickListener("#"+_data.userId+"_addBtn", _data.userId);
     }
+    //添加头像加载失败的监听
+    addImgLoadedFailedListener();
 }
-
+function addImgLoadedFailedListener() {
+    $("#userListContentDiv").find("img").error(function () {
+        $(this).attr("src",path+"/common/images/people140x140.jpg");
+    })
+}
 function addAddBtnClickListener(addUserBtnId, friendId){
     $(addUserBtnId).click(function () {
         $.confirm({
