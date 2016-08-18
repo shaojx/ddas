@@ -2,7 +2,7 @@
     background: url('/common/images/album_bg.gif') no-repeat;
     width:149px;
     height:149px;
-    cursor: hand;
+    cursor: pointer;
 }
 .photo .img{
     margin-top: 5px;
