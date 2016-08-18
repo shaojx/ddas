@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Liuchen
-  Date: 2016/6/28
-  Time: 22:13
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html><html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -111,9 +104,12 @@
 
                                     </div>
                                 </div>
+                                <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;">
+                                    Tip:已达到今天的发送上限!想使用更多权限，赶紧<a href="javascript:void(0);" id="toVip">升级为会员</a>吧!
+                                </p>
                             </div>
                             <div class="modal-footer">
-                                <label class="control-label pull-left margin-left-20px">
+                                <label class="control-label pull-left margin-left-20px" id="friendLabel">
                                     <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>
                                 </label>
                                 <select id="friendList" class="form-control width120 pull-left margin-left-10px"></select>
