@@ -1,5 +1,6 @@
 package com.ddas.sns.vip.control;
 
+import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userinfo.domain.UserInfo;
@@ -61,5 +62,24 @@ public class VipController extends BaseController {
         //return vipPrivses;
         page.setDataList(vipPrivses);
         return  page;
+    }
+
+    /**
+     *用户进行升级支付
+     * @param request 当前请求
+     *@return msg
+     *@author lc
+     *@date 2016/8/12 23:07
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/payForVip")
+    @ResponseBody
+    public Msg payForVip(String userId, String vipType, HttpServletRequest request) {
+        Msg msg = new Msg();
+
+        vipService.payForVip(userId, vipType, getLoginUser(request));
+        msg.setMsg("升级成功！无敌小宇宙");
+        return  msg;
     }
 }

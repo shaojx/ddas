@@ -105,7 +105,7 @@ public class BaseController {
      *@since 1.6
      */
     public void setLoginUserToSession(UserInfo userInfo, HttpServletRequest request){
-        userInfo.setUserPwd("");
+        userInfo.setUserPwd(null);
         request.getSession(true).setAttribute("userInfo", userInfo);
     }
 

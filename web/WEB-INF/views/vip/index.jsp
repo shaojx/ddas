@@ -19,6 +19,7 @@
         var path = "<%=path%>";
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/vip/vip.js"></script>
     <style type="text/css">
        .panel-body input[type="radio"] {
             margin-left: 40%;
@@ -62,7 +63,7 @@
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
                                     <span class="span-height30-center">(1 month)</span>
                                     <span class=center-block" style="display: block;">
-                                    <input type="radio" name="vipType" value="1_20_1">
+                                    <input type="radio" name="vipType" checked="checked" value="1_20_1">
                                 </span>
                                 </div>
                             </div>
@@ -173,17 +174,17 @@
                 <%--选择充值对象--%>
                 <div class="clear-both">
                     <label class="width80"><spring:message code="rechargeTo" text="充值对象"/>:</label>
-                    <input type="radio" name="toWho" style="vertical-align: middle;">
+                    <input type="radio" name="toWho" id="toMe" value="${userInfo.userId}" style="vertical-align: middle;">
                     <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;"><spring:message code="myself" text="冲给自己"/></span>
-                    <input type="radio" name="toWho" style="margin-left: 20px; vertical-align: middle;">
+                    <input type="radio" name="toWho" id="toFriend" value="" style="margin-left: 20px; vertical-align: middle;">
                     <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;"><spring:message code="chargeToFriend" text="冲给好友"/></span>
-                    <select id="myFriends" class="margin-left-10px displayNone">
-                        <option>1</option>
+                    <select id="friendList" class="margin-left-10px displayNone">
+
                     </select>
                 </div>
                 <div class="row">
                     <div style="margin-left: 40%;">
-                        <button class="btn btn-info" type="button"><spring:message code="chargeVip" text="立即升级"/></button>
+                        <button class="btn btn-info" type="button" id="chargeVip"><spring:message code="chargeVip" text="立即升级"/></button>
                     </div>
                 </div>
             </div>
