@@ -26,7 +26,6 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
-
     <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
@@ -35,14 +34,11 @@
     <script type="text/javascript" src="<%=path%>/business/index/indexContent.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
     <%--引入自定义样式--%>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
     <style type="text/css">
-        div.row{
-            margin-left: 0;
-            margin-right: 5px;
-        }
         body,html{
             overflow: hidden !important;
         }
@@ -51,7 +47,7 @@
 <body>
 <div class="row">
         <div class="tabbable" id="tabs-262840">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" style="margin-left: 15px;">
                 <li class="active">
                     <a href="#panel-tabs1" data-toggle="tab"><spring:message code="userList" text="用户列表"/></a>
                 </li>
@@ -65,11 +61,11 @@
                     <a href="#panel-tabs4" data-toggle="tab">分享</a>
                 </li>--%>
             </ul>
-            <div class="tab-content" id="tab-content">
-                <div class="tab-pane active" id="panel-tabs1">
+            <div class="tab-content" id="tab-content" >
+                <div class="tab-pane active" id="panel-tabs1" style="margin-top: 10px;">
                     <div id="userListContentDiv">
                     </div>
-                    <div class="row clearfix" style="clear: both;">
+                    <div class="clearfix" style="clear: both;">
                         <div class="col-md-12">
                             <!--分页控件-->
                             <ul class="pagination" id="userListPaginationDIV">
@@ -80,7 +76,7 @@
 
                 <%--日志 start--%>
                 <div class="tab-pane " id="panel-tabs2">
-                    <div class="panel panel-warning">
+                    <div class="panel">
                         <div class="panel-heading">
                             <div class="tabbable" id="tabs-295323">
                                 <ul class="nav nav-tabs">
@@ -95,11 +91,11 @@
                         </div>
                         <div class="tab-content">
                             <%--我的日志 start--%>
-                            <div class="tab-pane active" id="panel-324017" style="height: 100%;">
+                            <div class="tab-pane active" id="panel-324017" style="height: 100%;margin-right: 15px;margin-left: 15px;">
                                 <%--创建日志 --%>
-                                <div class="row" style="margin-top: 5px;margin-bottom: 3px;">
-                                    <div  style="margin-left:85%;">
-                                        <button type="button" id="createMyLog"  class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
+                                <div class="row" style="margin-bottom: 3px;">
+                                    <div>
+                                        <button style="margin-right: 15px;margin-bottom: 10px;" type="button" id="createMyLog"  class="btn btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
                                             <spring:message code="createLog" text="新建日志"/>
                                         </button>
                                     </div>
@@ -111,7 +107,7 @@
                                 <ul id="myLogPagnationDiv"></ul>
                             </div>
                             <%--朋友日志  start--%>
-                            <div class="tab-pane" id="panel-8940">
+                            <div class="tab-pane" id="panel-8940" style="margin-right: 15px;margin-left: 15px;">
                                 <div id="myFriendsLogContentDiv">
                                 </div>
                                 <%--我的日志分页--%>
@@ -120,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="panel-tabs3">
+                <div class="tab-pane" id="panel-tabs3" style="margin-left: 15px;margin-top: 12px;">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" id="photoGroupTab" href="#myPhoto"><spring:message code="myAlbum" text="我的相册"/></a></li>
                         <li><a data-toggle="tab" href="#myFriendPhoto" id="friendPhotoGroupTab"><spring:message code="friendAlbum" text="好友相册"/></a></li>
@@ -128,18 +124,18 @@
                     <div class="tab-content">
                         <div id="myPhoto" class="tab-pane fade in active">
                             <%--新建相册与上传照片--%>
-                            <div class="row margin-top-10px">
-                                <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn"><spring:message code="uploadPhoto" text="上传照片"/></button>
+                            <div class="row margin-top-10px" style="margin-right: 15px;">
+                                <button type="button" class="btn btn-info pull-right" id="addPhotoBtn"><spring:message code="uploadPhoto" text="上传照片"/></button>
                                 <button type="button" class="btn btn-info pull-right margin-right-10px" data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
                             </div>
-                            <div id="myPhotoGroupContentDiv">
+                            <div id="myPhotoGroupContentDiv" style="margin-right: 15px;">
                             </div>
                             <!--分页控件-->
                             <ul class="pagination" id="myPhotoGroupPaginationDIV">
                             </ul>
                         </div>
                         <div id="myFriendPhoto" class="tab-pane fade">
-                            <div id="friendPhotoGroupContentDiv">
+                            <div id="friendPhotoGroupContentDiv" style="margin-right: 15px;">
                             </div>
                             <!--分页控件-->
                             <ul class="pagination" id="friendPhotoGroupPaginationDIV">

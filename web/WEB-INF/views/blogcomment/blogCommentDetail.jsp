@@ -21,7 +21,6 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
-
     <%--引入业务JS--%>
     <script type="text/javascript" src="<%=path%>/business/blogcomment/blogCommentDetail.js"></script>
 </head>
@@ -42,20 +41,15 @@
         </div>
     </div>
 </div>
-
 <%--评论区--%>
 <p class="bg-info" style="height: 30px; line-height: 30px;padding-right: 0!important;padding-left: 0!important;">评论列表</p>
 <div class="container-fluid">
-
     <%--放置评论内容的div--%>
     <div id="commentContentDiv">
-
     </div>
-
     <%--我的日志分页--%>
-    <ul id="commentPagnationDiv"></ul>
+    <ul id="commentPagnationDiv" style="margin-left: -15px;"></ul>
 </div>
-
 <input type="hidden" id="blogId" value="${blogId}">
 </body>
 </html>

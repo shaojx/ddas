@@ -74,7 +74,7 @@ function initUserListPagination(pageData) {
 function initUserListData(data) {
     var userListDivTemplete = '<div class="col-xs-3 col-md-3">'+
         '<div class="imageDiv">'+
-        '<img alt="140x140" src="${basePath}" class="img-thumbnail"/>'+
+        '<img alt="140x140" src="${basePath}" class="img-thumbnail" style="width: 140px;height: 140px;"/>'+
         '<p>'+
         '${userNameVal} <a class="btn" href="javascript:void(0)" id="${userId}_addBtn">addFriendBtn</a>'+
         '</p>'+

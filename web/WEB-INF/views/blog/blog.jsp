@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/8/2
-  Time: 21:35
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html><html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -39,11 +32,9 @@
                 width:100%;
             }
         </style>
-
         <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
         <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
         <script src="<%=path%>/common/bootstrapvalidator/js/language/${local}.js" type="text/javascript"></script>
-
         <%--datatime picker--%>
         <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
@@ -56,10 +47,10 @@
 <body>
     <%--日志 start--%>
     <div class="tab-pane " id="panel-tabs2">
-    <div class="panel panel-warning">
+    <div class="panel">
         <div class="panel-heading">
             <div class="tabbable" id="tabs-295323">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" style="margin-left: -15px;">
                     <li class="active" id="myLogTab">
                         <a href="#panel-324017" data-toggle="tab"><spring:message code="myBlog" text="我的日志"/></a>
                     </li>
@@ -74,8 +65,8 @@
             <div class="tab-pane active" id="panel-324017" style="height: 100%;">
                 <%--创建日志 --%>
                 <div class="row" style="margin-top: 5px;margin-bottom: 3px;">
-                    <div  style="margin-left:85%;">
-                        <button type="button" id="createMyLog"  class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
+                    <div>
+                        <button style="margin-right: 15px;" type="button" id="createMyLog"  class="btn btn-info pull-right" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
                             <spring:message code="createLog" text="新建日志"/>
                         </button>
                     </div>
