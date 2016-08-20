@@ -26,6 +26,7 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+    <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <%--引入自定义样式--%>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>

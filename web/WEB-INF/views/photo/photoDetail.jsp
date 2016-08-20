@@ -29,8 +29,8 @@
         var path = "<%=path%>";
         var groupId = "<%=groupId%>";
     </script>
-    <script type="text/javascript" src="<%=path%>/business/photo/photoDetail.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/photo/photoDetail.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <style type="text/css">
@@ -61,7 +61,9 @@
     </style>
 </head>
 <body>
-<p class="bg-info" style="height: 30px;line-height: 30px;">照片详情</p>
+<p class="bg-info" style="height: 30px;line-height: 30px;">
+    <spring:message code="photoGroupDetail" text="照片详情"></spring:message>
+</p>
 <div class="container-fluid">
     <div class="row" id="photoDiv">
         <%--<div id="parent_0" class="parentDiv">

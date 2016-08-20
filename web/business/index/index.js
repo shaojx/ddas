@@ -32,7 +32,7 @@ $(function () {
             confirmButtonClass: 'btn-info',
             cancelButtonClass: 'btn-danger',
             title:false,
-            content: '确定要退出么？ <br>期待您下次再来!',
+            content: indexContent.exitTip+'<br>'+indexContent.welcomeNextTime,
             confirm: function(){
                 $.ajax({
                     url:path+"/login/out",
@@ -189,8 +189,7 @@ function showPhotos(groupId,friendPhoto) {
            "title": "Photo",
            "id": 99935,
            "start": 0,
-           "data":[],
-           "html":'<div style="padding:20px;">这里传入自定义的html<p>相册支持左右方向键，支持Esc关闭</p><p>另外还可以通过异步返回json实现相册。更多用法详见官网。</p><p>'+ unescape("B5教程网www.bcty365.com") +'</p><p id="change"></p></div>'
+           "data":[]
        };
        for(var index in data.dataList){
            var _data=data.dataList[index];

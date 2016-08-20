@@ -67,7 +67,7 @@ function initMyMessagePagnation(pageData) {
  */
 function initMyMessageData(data){
     var myMessageDivTemplete='<li class="list-group-item">'+
-        '<div><a href="javascript:void(0)">${messageByName}</a><div style="font-size:12px;color:#aaa;float: right">留言时间：${created_time}</div></div>'+
+        '<div><a href="javascript:void(0)">${messageByName}</a><div style="font-size:12px;color:#aaa;float: right">'+messageContent.messageDate+'：${created_time}</div></div>'+
         '<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;font-size: 15px">${messageContent}</div>'+
         '</li>';
     var list=data.dataList;

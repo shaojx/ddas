@@ -36,6 +36,7 @@
         </style>
         <link rel="stylesheet" href="<%=path%>/common/spinner/css/bootstrap-spinner.css">
         <script type="text/javascript" src="<%=path%>/common/spinner/js/jquery.spinner.min.js"></script>
+        <script type="text/javascript" src="<%=path%>/business/gift/language/${local}.js"></script>
         <script src="<%=path%>/business/gift/gift.js"></script>
     </head>
 <body>

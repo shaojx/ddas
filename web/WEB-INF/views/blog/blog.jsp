@@ -41,6 +41,7 @@
         <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
         <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
         <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
+        <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
         <%--引入业务JS --%>
         <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
     </head>

@@ -202,9 +202,9 @@ function initStaticGiftData(data) {
             .replace(/giftCount/g, _data.giftCount)
             .replace(/createdTime/g, _data.createdTime);
         if(_data.giftProperty == "0") {
-            _replace = _replace.replace(/giftProperty/g, "虚拟礼物")
+            _replace = _replace.replace(/giftProperty/g, gitContent.virtualGift)
         }else if(_data.giftProperty == "1") {
-            _replace = _replace.replace(/giftProperty/g, "真实礼物")
+            _replace = _replace.replace(/giftProperty/g, gitContent.realGift)
         }
         $(staticGiftCondition.contentListDiv).append(_replace);
     }

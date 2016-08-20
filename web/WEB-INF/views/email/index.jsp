@@ -25,6 +25,7 @@
         var currentLoginUserId = "<%=request.getAttribute("currentLoginUserId")%>"
     </script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/email/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>

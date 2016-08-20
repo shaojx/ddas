@@ -18,6 +18,7 @@
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--分页--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/blogcomment/language/${local}.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
@@ -27,7 +28,8 @@
 <body>
 <%--日志详情--%>
 <p class="bg-info" style="height: 30px; line-height: 30px;padding-right: 0!important;padding-left: 0!important; margin-top: 10px;">
-    日志详情</p>
+    <spring:message code="blogDetail" text="日志详情"></spring:message>
+</p>
 <div class="container-fluid">
     <div class="row">
         <div class="panel panel-default">
@@ -35,14 +37,18 @@
             <div class="panel-body">
                 ${blog.blogContent}
                     <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">
-                        标签：${blog.blogTags}&nbsp;&nbsp;&nbsp;评论(<span id="friendCommentCount_${blogId}">0</span>)| 阅读(0)
+                        <spring:message code="tag" text="标签"></spring:message> ：${blog.blogTags}&nbsp;&nbsp;&nbsp;
+                        <spring:message code="comment" text="评论"></spring:message> (<span id="friendCommentCount_${blogId}">0</span>)|
+                        <spring:message code="read" text="阅读"></spring:message> (0)
                     </div>
             </div>
         </div>
     </div>
 </div>
 <%--评论区--%>
-<p class="bg-info" style="height: 30px; line-height: 30px;padding-right: 0!important;padding-left: 0!important;">评论列表</p>
+<p class="bg-info" style="height: 30px; line-height: 30px;padding-right: 0!important;padding-left: 0!important;">
+    <spring:message code="commentList" text="评论列表"></spring:message>
+</p>
 <div class="container-fluid">
     <%--放置评论内容的div--%>
     <div id="commentContentDiv">

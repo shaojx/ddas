@@ -79,7 +79,7 @@ function saveOrUpdatePhotoGroup(){
         data["groupId"]=currentEditGroupId;//增加goupId
     }
     if(groupName == "") {
-        alert("相册标题不能为空");
+        alert(photoContent.photoGroupTitleRequired);
         return;
     }
     $.ajax({
@@ -147,17 +147,17 @@ function initMyPhotoGroupData(data) {
         '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
-        '<span class="center-block">相册名:groupNameValue  <span style="margin-left: 20px;">照片数量:</span>'+'<span id="countSpan_${upId}">'+'0</span></span>'+
-        '<span class="center-block">描述：groupDescriptionValue</span>'+
-        '<span class="center-block">权限：${privis} <span style="margin-left: 20px;">标签:</span>groupTags</span>'+
-        '<span class="center-block">更新于：${updated_time}</span>'+
-        '<span class="center-block">创建于：${created_time}</span>'+
+        '<span class="center-block">'+photoContent.photoGroupName+':groupNameValue  <span style="margin-left: 20px;">'+photoContent.photoCount+':</span>'+'<span id="countSpan_${upId}">'+'0</span></span>'+
+        '<span class="center-block">'+photoContent.describ+'：groupDescriptionValue</span>'+
+        '<span class="center-block">'+photoContent.privilege+'：${privis} <span style="margin-left: 20px;">'+photoContent.tags+':</span>groupTags</span>'+
+        '<span class="center-block">'+photoContent.updateDate+'：${updated_time}</span>'+
+        '<span class="center-block">'+photoContent.createDate+'：${created_time}</span>'+
         '<span class="center-block"><a href="javascript:void(0);" data-toggle="modal" data-backdrop=""  ' +
              'autocomplete="off" data-target="#createMyPhotoGroupDialog" ' +
              'data-groupname="groupNameValue" data-tags="groupTags" ' +
              'data-groupid="groupIdValue" data-description="groupDescriptionValue" data-privis="privisCode" ' +
-             'id="editPhotoGroup">编辑相册</a> &nbsp;'+
-        '<a href="javascript:void(0);" id="deletePhotoGroup_${upId}">删除相册</a></span>'+
+             'id="editPhotoGroup">'+photoContent.editPhotoGroup+'</a> &nbsp;'+
+        '<a href="javascript:void(0);" id="deletePhotoGroup_${upId}">'+photoContent.deletePhotoGroup+'</a></span>'+
         '</div>'+
         '</div>'+
         '</div>'+
@@ -187,9 +187,9 @@ function initMyPhotoGroupData(data) {
 
 function getPrivis(code){
     switch (code){
-        case "0":return '仅自己可见';
-        case '1':return '分组可见';
-        case '2':return '所有人可见';
+        case "0":return photoContent.private;
+        case '1':return photoContent.groupVisible;
+        case '2':return photoContent.public;
     }
 }
 /**
@@ -262,7 +262,7 @@ function deletePhotoGroupById(groupId) {
             confirmButtonClass: 'btn-info',
             cancelButtonClass: 'btn-danger',
             title:false,
-            content: '确定删除吗?',
+            content: photoContent.deleteConfirm,
             confirm: function(){
                 $.ajax({
                     url:path+"/userPhotoGroup/delete",
@@ -366,11 +366,11 @@ function initFriendPhotoGroupData(data) {
         '<img src="${basePath}/common/images/album_logo.jpg" class="img" id="myPhoto_logo_${upId}"/>'+
         '</div>'+
         '<div id="photoInfoDiv" class="pull-left">'+
-        '<span class="center-block">相册名:groupNameValue<span style="margin-left: 20px;">照片数量：<span id="friend_countSpan_groupIdValue">0</span></span></span>'+
-        '<span class="center-block">好友名字:friendName<span>标签:<span>groupTags</span></span></span>'+
-        '<span class="center-block">描述：groupDescriptionValue</span>'+
-        '<span class="center-block">更新于：${updated_time}</span>'+
-        '<span class="center-block">创建于：${created_time}</span>'+
+        '<span class="center-block">'+photoContent.photoGroupName+':groupNameValue<span style="margin-left: 20px;">'+photoContent.photoCount+'：<span id="friend_countSpan_groupIdValue">0</span></span></span>'+
+        '<span class="center-block">'+photoContent.friendName+':friendName<span>'+photoContent.tags+':<span>groupTags</span></span></span>'+
+        '<span class="center-block">'+photoContent.describ+'：groupDescriptionValue</span>'+
+        '<span class="center-block">'+photoContent.updateDate+'：${updated_time}</span>'+
+        '<span class="center-block">'+photoContent.createDate+'：${created_time}</span>'+
         '</div>'+
         '</div>'+
         '</div>'+

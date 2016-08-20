@@ -96,7 +96,7 @@ function initPhotoData(data) {
         +' <img src="${basePath}${imagePath}" alt="140x140" class="img-rounded" data-index="${index}" id="image_${index}">'
         +' <div style="width:140px;height: 140px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"'
         +'  id="txtDiv_${index}">'
-        +' <a class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_${index}">设置为封面</a>'
+        +' <a class="inline-block txtDivSpan" style="cursor:hand;" id="txtDivSpan_${index}">'+photoDetailContent.setForCover+'</a>'
         +' </div>'
         +'  </div>';
     var list = data.dataList;

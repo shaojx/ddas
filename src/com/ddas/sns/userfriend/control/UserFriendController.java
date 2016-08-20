@@ -69,8 +69,8 @@ public class UserFriendController extends BaseController {
      *@since JDK1.6
      */
     @RequestMapping(value = "/myFriend", method = {RequestMethod.GET})
-    public ModelAndView goToMyFriendPage() {
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView goToMyFriendPage(HttpServletRequest request) {
+        ModelAndView modelAndView = containLocal(request);
         modelAndView.setViewName("myspace/myFriendPage");
         return modelAndView;
     }

@@ -1,21 +1,13 @@
-/**
- * Created by Administrator on 2016/7/19.
- */
 var CONST_USE_PROPERTY_BLOG = "2";//使用属性(1是好友分组，2是相册分组，3是日志分组)
 var userBlogGroupData;//日志分组
 var clickedFriendBlogCommentId=null;//保存点击"评论"的id(朋友的日志 )
 var saveCommentBtnOldText="";//保存评论按钮的文本
 $(function () {
-    /**
-     * 当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
-     */
+    //当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
     $('#createMyLogDialog').on('show.bs.modal', function (event) {
         loadUserBlogGroup();
     });
-
-    /**
-     * 当关闭框的时候重置
-     */
+    // 当关闭框的时候重置
     $('#createMyLogDialog').on('hide.bs.modal', function (event) {
         $("#logTitle").val("");
         $("#logTags").val("");
@@ -89,8 +81,6 @@ function initBlogIndex() {
     $("#myLogTab").click();
 }
 
-
-
 /**
  * 创建日志验证器
  */
@@ -121,7 +111,7 @@ function createBlogValidator() {
 function saveMessage() {
     var messageContent = $("#messageContent").val();
     if(messageContent == "") {
-        alert("留言内容不能为空");
+        alert(blogContent.messageContentRequired);
         return;
     }
     $.ajax({
@@ -330,7 +320,6 @@ function getMyLogData(pageNo){
             dataType:"json",
             success:function(data){
                 loader.stop();
-
                 if(pageNo==1){//如果是第一页，则初始化分页
                     initMyLogPagnation(data);
                 }
@@ -373,7 +362,7 @@ function initMyLogData(data){
         '<div id="panel-element-113" class="panel-collapse in">'+
         '<div class="panel-body">'+
         "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;权限：${myLogPrivilege}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">'+blogContent.tags+'：${myLogTags}&nbsp;&nbsp;&nbsp;'+blogContent.privilege+'：${myLogPrivilege}&nbsp;&nbsp;&nbsp;'+blogContent.comments+'(0) | '+blogContent.reads+'(0)</div>'+
         '</div>'+
         '</div>'+
         '</div>';
@@ -383,9 +372,9 @@ function initMyLogData(data){
         var _replace=myLogDivTemplete.replace("${myLogTitle}",_data.blogTitle).replace("${myLogContent}",_data.blogContent)
             .replace("${myLogTags}",_data.blogTags);
         if(_data.blogPrivilege == "0") {
-            _replace = _replace.replace("${myLogPrivilege}","所有人可见");
+            _replace = _replace.replace("${myLogPrivilege}",blogContent.public);
         }else if(_data.blogPrivilege == "1") {
-            _replace = _replace.replace("${myLogPrivilege}","仅自己可见");
+            _replace = _replace.replace("${myLogPrivilege}",blogContent.private);
         }
         $("#myLogContentDiv").append(_replace);
     }
@@ -460,10 +449,10 @@ function initMyFriendsLogData(data){
         '<div id="panel-element-113" class="panel-collapse in">'+
         '<div class="panel-body">'+
         "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${myLogTags}&nbsp;&nbsp;&nbsp;' +
-        '<a href="javascript:void(0);" id="friendCommentedA_${blogId}">评论(<span id="friendCommentCount_${blogId}">0</span>)</a> | 阅读(0)'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">'+blogContent.tags+'：${myLogTags}&nbsp;&nbsp;&nbsp;' +
+        '<a href="javascript:void(0);" id="friendCommentedA_${blogId}">'+blogContent.comments+'(<span id="friendCommentCount_${blogId}">0</span>)</a> | '+blogContent.reads+'(0)'+
         '<span class="pull-right">'+
-        '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" data-blog-id="${blogId}" id="commentFriendA_${blogId}">评论</a>'+
+        '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" data-blog-id="${blogId}" id="commentFriendA_${blogId}">'+blogContent.comment+'</a>'+
         '</span>'+
         '</div>'+
         '</div>'+

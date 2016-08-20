@@ -35,6 +35,7 @@
     <link href="<%=path%>/business/common/css/friendList.css"/>
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/myfriend/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>
 </head>
 <body>

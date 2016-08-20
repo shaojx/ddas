@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName:	BlogCommentController
@@ -98,9 +99,9 @@ public class BlogCommentController extends BaseController {
      * @return
      */
     @RequestMapping("/gotoCommentDetail")
-    public ModelAndView gotoCommentDetail(String blogId){
+    public ModelAndView gotoCommentDetail(String blogId, HttpServletRequest request){
         if(blogId!=null&&!"".equals(blogId)){
-            ModelAndView modelAndView=new ModelAndView("blogcomment/blogCommentDetail");
+            ModelAndView modelAndView=withLocal(request,"blogcomment/blogCommentDetail");
             modelAndView.addObject("blogId",blogId);
             modelAndView.addObject("blog",userBlogService.findById(blogId));
             return  modelAndView;

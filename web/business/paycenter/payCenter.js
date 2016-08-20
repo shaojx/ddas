@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2016/7/15.
- */
 var CONST_USE_PROPERTY_FRIEND = "1";
 var userFriendCondition = {
     pageNo:1,

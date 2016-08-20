@@ -60,7 +60,7 @@ function initCommentDetail(data){
         ' <div class="panel-body">' +
         '     ${commentContent}' +
         '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">' +
-        '评论者:${commentUser} 评论时间:${commentTime}' +
+        blogCommentContent.commentUser+':${commentUser} '+blogCommentContent.commentDate+':${commentTime}' +
         '</div>' +
         ' </div>' +
         ' </div>' +

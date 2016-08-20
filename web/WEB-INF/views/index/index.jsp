@@ -26,6 +26,7 @@
         var path = "<%=path%>";
     </script>
     <script type="text/javascript" src="<%=path%>/common/layer/js/layer.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/index/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
 </head>
 <body>

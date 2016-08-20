@@ -1,6 +1,3 @@
-/**
- * Created by liuchen6 on 2016/6/29.
- */
 var CONST_FRIEND = "1";
 var CONST_APPLY_FRIEND = "0";
 var CONST_USE_PROPERTY_FRIEND = "1";
@@ -63,7 +60,7 @@ $(function() {
 		if(userFriendGroupName == "") {
 			$.confirm({
 				title:"",
-				content:"分组名称不能为空！",
+				content:friendContent.groupNameRequired,
 				autoClose: 'confirm|2000',
 				cancelButton:false
 			});
@@ -82,7 +79,7 @@ $(function() {
 				$("#closeAddGroupModel").click();
 				$.confirm({
 					title:"",
-					content:"创建好友分组成功！",
+					content:friendContent.createGroupSuccess,
 					autoClose: 'confirm|2000',
 					cancelButton:false
 				});
@@ -201,7 +198,7 @@ function  checkUserDailyEmailCount() {
 //加载搜索条件中的好友分组信息
 function loadGroupSearchCondition() {
 	$("#friendGroupCondition").empty();
-	var optionAll = '<option selected data-groupId= "all">全部</option>';
+	var optionAll = '<option selected data-groupId= "all">'+friendContent.all+'</option>';
 	$("#friendGroupCondition").append(optionAll);
 	for(var obj in userFriendGroupData) {
 		var option = "<option data-groupId="+obj+">"+userFriendGroupData[obj].groupName+"</option>";
@@ -304,7 +301,7 @@ function initMyFriendGroupData(data) {
 		'<th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>'+
 		'<td>groupNameValue</td>'+
 		'<td>groupTimeValue</td>'+
-		'<td><a href="javascript:void(0)" data-toggle="modal" data-backdrop="" data-groupid="groupIdValue" data-groupname="groupNameValue" autocomplete="off" data-target="#createMyFriendGroupDialog">编辑</a> | <a href="javascript:void(0)" data-groupid="groupIdValue" name="deleteFriendGroup">删除</a></td>'+
+		'<td><a href="javascript:void(0)" data-toggle="modal" data-backdrop="" data-groupid="groupIdValue" data-groupname="groupNameValue" autocomplete="off" data-target="#createMyFriendGroupDialog">'+friendContent.edit+'</a> | <a href="javascript:void(0)" data-groupid="groupIdValue" name="deleteFriendGroup">'+friendContent.delete+'</a></td>'+
 		'</tr>';
 	var list = data.dataList;
 	for (var index in list) {
@@ -446,7 +443,7 @@ function initMyFriendData(data) {
 				success:function(){
 					$.confirm({
 						title:"",
-						content:"修改好友分组成功",
+						content:friendContent.editGroupNameSuccess,
 						autoClose: 'confirm|2000',
 						cancelButton:false
 					});
@@ -481,7 +478,7 @@ function deleteUserFriend(ufId) {
 			success:function(data){
 				$.confirm({
 					title:"",
-					content:"删除好友成功",
+					content:friendContent.deleteFriendSuccess,
 					autoClose: 'confirm|2000',
 					cancelButton:false
 				});
@@ -562,10 +559,10 @@ function initMyFriendApplyData(data) {
 		'<div style="width: 270px;">'+
 		'<span class="text-muted inline-block pull-left margin-left-10px" style="margin-top: 5px;">${friendName}</span>'+
 		'<span class="pull-right inline-block cursor-pointer" style="margin-left: 10px;margin-top: 5px;">'+
-		'<a href="javascript:void(0)" data-ufId="ufIdValue"  name="refuseAdd">拒绝</a>'+
+		'<a href="javascript:void(0)" data-ufId="ufIdValue"  name="refuseAdd">'+friendContent.refuse+'</a>'+
 		'</span>'+
 		'<span class="pull-right cursor-pointer" style="margin-left: 10px;margin-top: 5px;">'+
-		'<a href="javascript:void(0)" data-ufId="ufIdValue" name="allowAdd">同意</a>'+
+		'<a href="javascript:void(0)" data-ufId="ufIdValue" name="allowAdd">'+friendContent.accept+'</a>'+
 		'</span>'+
 		'</div>'+
 		'<div class="width250 clear-both">'+
@@ -600,7 +597,7 @@ function initMyFriendApplyData(data) {
 				success:function(){
 					$.confirm({
 						title:"",
-						content:"修改好友分组成功",
+						content:friendContent.editGroupNameSuccess,
 						autoClose: 'confirm|2000',
 						cancelButton:false
 					});
@@ -643,7 +640,7 @@ function initMyFriendApplyData(data) {
 	$("a[name='refuseAdd']").click(function () {
 		var ufId = $(this).attr("data-ufId");
 		$.confirm({
-			content:"确定拒绝添加该好友么？",
+			content:friendContent.refuseFriendTip,
 			confirm:function () {
 				//删除该条添加好友的信息
 				$.ajax({
@@ -656,7 +653,7 @@ function initMyFriendApplyData(data) {
 					success:function(){
 						$.confirm({
 							title:"",
-							content:"已拒绝！",
+							content:friendContent.refused,
 							autoClose: 'confirm|2000',
 							cancelButton:false
 						});

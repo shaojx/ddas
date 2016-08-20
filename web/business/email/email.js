@@ -229,7 +229,7 @@ function initEmailSendData(data) {
         '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
-        '<div class="margin-left-10px"><span style="font-style: italic;font-size: 12px;">发送给:</span><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}</div></div>'+
+        '<div class="margin-left-10px"><span style="font-style: italic;font-size: 12px;">TO:</span><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">'+emailContent.emailDate+'：${createdTime}</div></div>'+
         '</div>';
     var list = data.dataList;
     for (var index in list) {
@@ -311,9 +311,9 @@ function initEmailReceiveData(data) {
         '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
-        '<div class="margin-left-10px"><span style="font-style: italic;font-size: 12px;">来自:</span><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">时间：${createdTime}' +
-        '<a href="javascript:void(0);" id="reply_A_${emailId}" style="margin-right: 10px; margin-left: 20px;">回 复</a>' +
-        '<a href="javascript:void(0);" id="detail_A_${emailId}">详 情</a></div></div>'+
+        '<div class="margin-left-10px"><span style="font-style: italic;font-size: 12px;">FROM:</span><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">'+emailContent.emailDate+'：${createdTime}' +
+        '<a href="javascript:void(0);" id="reply_A_${emailId}" style="margin-right: 10px; margin-left: 20px;">'+emailContent.reply+'</a>' +
+        '<a href="javascript:void(0);" id="detail_A_${emailId}">'+emailContent.detail+'</a></div></div>'+
          '<input id="input_reciver_id_${emailId}" type="hidden" value="${revicerId}">'+
         '<input id="input_sender_id_${emailId}" type="hidden" value="${senderId}">'
         '</div>';
@@ -443,10 +443,10 @@ function initEmailDetailData(data) {
         var _replace="";
         if(_data.type =="1"){//表示我回复给别人
             _replace=myLogDivTemplete.replace("${emailContent}",_data.emailContent)
-                .replace("${type}","发送给").replace("${otherUserName}",_data.otherUserName);
+                .replace("${type}","TO").replace("${otherUserName}",_data.otherUserName);
         }else if(_data.type =="0"){//别人发送给我
             _replace= myLogDivTemplete.replace("${emailContent}",_data.emailContent)
-                .replace("${type}","来自").replace("${otherUserName}",_data.otherUserName+" 的回复");
+                .replace("${type}","FROM").replace("${otherUserName}",_data.otherUserName+emailContent.sReply);
         }
         $("#contentDiv").append(_replace);
     }
