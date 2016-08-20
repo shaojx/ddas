@@ -50,30 +50,34 @@
         </div>
         <form class="form-horizontal" style="margin-left: 20%;" id="myForm">
             <DIV class="form-group width300">
-                <label class="control-label">用户名</label>
-                <input type="text" class="form-control " name="username" placeholder="用户名" id="userName"/>
+                <label class="control-label">
+                    <spring:message code="register.userName" text="用户名"></spring:message>
+                </label>
+                <input type="text" class="form-control " name="username" placeholder="<spring:message code="register.userName" text="用户名"></spring:message>" id="userName"/>
             </DIV>
             <DIV class="form-group width300">
-                <label class="control-label">密 码</label>
-                <input type="password" class="form-control" name="password" placeholder="密码" id="password"/>
+                <label class="control-label"><spring:message code="register.pwd" text="密 码"></spring:message> </label>
+                <input type="password" class="form-control" name="password" placeholder="<spring:message code="register.pwd" text="密 码"></spring:message>" id="password"/>
             </DIV>
             <DIV class="form-group width300">
-                <label class="control-label">确认密码</label>
-                <input type="password" class="form-control" name="repeatPwd" placeholder="重复密码" id="repeatPwd"/>
+                <label class="control-label"><spring:message code="register.confirmPwd" text="确认密码"></spring:message> </label>
+                <input type="password" class="form-control" name="repeatPwd" placeholder="<spring:message code="register.repeatPwd" text="重复密码"></spring:message> " id="repeatPwd"/>
             </DIV>
             <DIV class="form-group width300">
-                <label class="control-label">性别</label>
+                <label class="control-label"><spring:message code="register.userSex" text="性别"></spring:message> </label>
                 <select id="sex" class="form-control">
-                    <option id="male">男</option>
-                    <option id="female">女</option>
+                    <option value="Male"><spring:message code="register.male" text="男"></spring:message> </option>
+                    <option value="Female"><spring:message code="register.female" text="女"></spring:message> </option>
                 </select>
             </DIV>
             <DIV class="form-group width300">
-                <label class="control-label">邮 箱</label>
-                <input type="text" class="form-control" name="email" placeholder="邮箱地址" id="email"/>
+                <label class="control-label"><spring:message code="register.email" text="邮 箱"></spring:message> </label>
+                <input type="text" class="form-control" name="email"
+                       placeholder="<spring:message code="register.emailAddress" text="邮箱地址"></spring:message>" id="email"/>
             </DIV>
             <div class="row" style="margin-bottom: 20px;">
-                <input type="button" value=" 注册 " class="btn btn-primary form-control width300 margin-top-10px" id="registerBtn">
+                <input type="button" value=" <spring:message code="register.regist" text="注册"></spring:message> "
+                       class="btn btn-primary form-control width300 margin-top-10px" id="registerBtn">
             </div>
         </form>
     </section>

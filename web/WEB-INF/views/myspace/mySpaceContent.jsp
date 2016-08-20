@@ -18,8 +18,6 @@
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.js" type="text/javascript"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
-    <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/datePickerLocales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <%--分页--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <%--文件上传JS--%>
@@ -40,6 +38,7 @@
     <%--datatime picker--%>
     <link href="<%=path%>/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-datetimepicker/js/datePickerLocales/bootstrap-datetimepicker.Constom_${local}.js" charset="UTF-8"></script>
     <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
@@ -50,6 +49,7 @@
     <script type="text/javascript" src="<%=path%>/business/message/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/message/js/message.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/myspace/userInfoEdit.js"></script>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
     <style type="text/css">
         body,html{
@@ -167,16 +167,26 @@
             <%--个人资料--%>
             <div class="tab-pane " id="panel-tabs1" align="center">
                 <p class="bg-info text-info" style="height: 30px;line-height: 30px;"><spring:message code="myProfileInfo" text="填写完整准确的个人资料，可以让更多的朋友找到您。"></spring:message></p>
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" id="userInfoForm">
                    <div>
                       <div id="left"  style="float:left;width: 400px;">
                           <div class="form-group">
-                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="username" text="用户名"></spring:message></span></label>
-                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block">Mariki</span></label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                                  <span class="inline-block width120"><spring:message code="username" text="用户名"></spring:message></span>
+                              </label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                                  <span class="inline-block">${userInfo.userName}</span>
+                              </label>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left "><span class="inline-block width120"><spring:message code="sex" text="性别"></spring:message></span></label>
-                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block ">女</span></label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left ">
+                                  <span class="inline-block width120"><spring:message code="sex" text="性别"></spring:message></span>
+                              </label>
+                              <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                                  <span class="inline-block" id="sex">
+                                  </span>
+                                  <span style="display: none;" id="sexHidden">${userInfo.userSex}</span>
+                              </label>
                           </div>
                       </div>
                        <div id="right">
@@ -190,28 +200,63 @@
                        </div>
                    </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="height" text="身高"></spring:message></span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
+                            <span class="inline-block width120"><spring:message code="height" text="身高"></spring:message></span>
+                        </label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control width300 pull-left" id="height" />
+                            <input type="text" class="form-control width300 pull-left" id="height" name="userHeight" value="${userInfo.userHeight}" />
                         </div>
                         <label class="col-sm-1 control-label pull-left"><span class="inline-block" style="height: 34px;line-height: 34px;">CM</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="weight" text="体重"></spring:message></span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">
+                            <spring:message code="weight" text="体重"></spring:message></span></label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control width300 pull-left" id="weight" />
+                            <input type="text" class="form-control width300 pull-left" id="weight" name="userWeight" value="${userInfo.userWeight}" />
                         </div>
                         <label class="col-sm-1 control-label pull-left"><span class="inline-block" style="height:34px;line-height: 34px;">KG</span></label>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120"><spring:message code="country" text="国家"></spring:message> </span></label>
+                        <label class="col-sm-offset-1 col-sm-2 control-label pull-left"><span class="inline-block width120">
+                            <spring:message code="country" text="国家"></spring:message>
+                        </span></label>
                         <div class="col-sm-4">
-                            <select class="form-control pull-left width300">
-                                <option>China</option>
-                                <option>U.S.A</option>
-                                <option>TaiWan</option>
-                                <option>HuoXing</option>
-                                <option>Star</option>
+                            <select class="form-control pull-left width300" name="userContury" data-value="${userInfo.userContury}" id="contury">
+                                <option value="Other"><spring:message code="countryOther" text="其他"></spring:message> </option>
+                                <option value="Taiwan">Taiwan</option>
+                                <option value="Hongkong">Hongkong</option>
+                                <option value="China">China</option>
+                                <option value="U.S.A">U.S.A</option>
+                                <option value="Poland">Poland</option>
+                                <option value="Iceland">Iceland</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Israel">Israel</option>
+                                <option value="Denmark">Denmark</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Vietnam">Vietnam</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Chile">Chile</option>
+                                <option value="Burma">Burma</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Russia">Russia</option>
+                                <option value="Holland">Holland</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Macao">Macao</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Korea">Korea</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Britain">Britain</option>
+                                <option value="France">France</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Europe">Europe</option>
+                                <option value="India">India</option>
+                                <option value="Greece">Greece</option>
                             </select>
                         </div>
                     </div>
@@ -221,77 +266,82 @@
                             <span class="inline-block width120"><spring:message code="birthday" text="出生日期"></spring:message></span>
                         </label>
                         <div class="col-sm-5">
-                        <%--    <div class="input-append date  form_datetime width300 pull-left" data-date="2013-02-21" id="datetimepicker">
-                                <input class="form-control" size="16" type="text" value="" readonly>
-                                <span class="add-on"><i class="icon-remove"></i></span>
-                                <span class="add-on"><i class="icon-calendar"></i></span>
-                            </div>--%>
-                           <div  id="datetimepicker" class="input-group date form_date width300 pull-left" data-date="1993-09-16" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                <input class="form-control" size="16" type="text" value="" readonly value="2012-04-19">
+                           <div  id="datetimepicker" class="input-group date form_date width300 pull-left" data-date="${userInfo.userBirth}"
+                                 data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                <input class="form-control" size="16" type="text" readonly value="${userInfo.userBirth}" name="userBirth">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                             <input type="hidden" id="dtp_input2" value="" /><br/>
                         </div>
                     </div>
 
-                    <%--<div class="form-group">
+                    <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120">宗 教</span>
+                            <span class="inline-block width120"><spring:message code="religion" text="宗教"></spring:message> </span>
                         </label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control width300 pull-left" id="religion" />
+                            <input type="text" class="form-control width300 pull-left" id="religion" value="${userInfo.userReligion}" name="userReligion" />
                         </div>
-                    </div>--%>
+                    </div>
 
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
                             <span class="inline-block width120"><spring:message code="education" text="教育"></spring:message></span>
                         </label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control pull-left width300" id="education" />
+                            <input type="text" class="form-control pull-left width300" id="education" name="userEducation" value="${userInfo.userEducation}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120"><spring:message code="description" text="交友宣言"></spring:message></span>
+                            <span class="inline-block width120">
+                                <spring:message code="description" text="交友宣言"></spring:message>
+                            </span>
                         </label>
                         <div class="col-sm-5">
-                            <textarea class="form-control width300 pull-left" id="declaration" rows="3"></textarea>
+                            <textarea class="form-control width300 pull-left" id="declaration" rows="3"
+                                      name="userDeclaration"> ${userInfo.userDeclaration}</textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120"><spring:message code="annualIncome" text="年收入"></spring:message></span>
+                            <span class="inline-block width120">
+                                <spring:message code="annualIncome" text="年收入"></spring:message>
+                            </span>
                         </label>
                         <div class="col-sm-4">
-                            <select class="form-control width300 pull-left">
-                                <option>50,000-100,000</option>
-                                <option>100,000-500,000</option>
-                                <option>500,000 Above</option>
+                            <select class="form-control width300 pull-left" name="userEnroll" data-value="${userInfo.userEnroll}">
+                                <option value="50,000-100,000">50,000-100,000</option>
+                                <option value="100,000-500,000">100,000-500,000</option>
+                                <option value="500,000 Above">500,000 Above</option>
                             </select>
                         </div>
                     </div>
-
-                    <%--<div class="form-group">
+                    <div class="form-group">
                         <label class="col-sm-offset-1 col-sm-2 control-label pull-left">
-                            <span class="inline-block width120">婚恋状态</span>
+                            <span class="inline-block width120">
+                                <spring:message code="marrayStatus" text="婚姻状态"></spring:message>
+                            </span>
                         </label>
                         <div class="col-sm-4">
-                            <select class="form-control width300 pull-left">
-                                <option>单身</option>
-                                <option>已婚</option>
-                                <option>离异</option>
-                                <option>恋爱</option>
+                            <select class="form-control width300 pull-left" name="userMarryStatus" data-value="${userInfo.userMarryStatus}">
+                                <option value="single"><spring:message code="single" text="单身"></spring:message> </option>
+                                <option value="married"><spring:message code="married" text="已婚"></spring:message> </option>
+                                <option value="divorce"><spring:message code="divorce" text="离异"></spring:message> </option>
+                                <option value="loving"><spring:message code="loving" text="恋爱"></spring:message> </option>
                             </select>
                         </div>
-                    </div>--%>
+                    </div>
                     <div class="row">
                         <div class="col-xs-8 col-md-8">
-                            <button class="btn btn-info" type="button"><spring:message code="save" text="保存"></spring:message></button>
+                            <button id="savingPersonal" class="btn btn-info" type="button" data-loading-text='<spring:message code="saving" text="保存中..."></spring:message>'>
+                                <spring:message code="save" text="保存"></spring:message>
+                            </button>
                         </div>
                     </div>
+                    <input type="hidden" name="userId" value="${userInfo.userId}" id="userId2"/>
                 </form>
             </div>
     <%--            &lt;%&ndash;心情&ndash;%&gt;

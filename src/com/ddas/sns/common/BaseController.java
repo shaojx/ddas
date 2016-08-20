@@ -140,7 +140,23 @@ public class BaseController {
         if(key==null||"".equals(key)){
             return "";
         }
-        return SpringContextUtil.getMsgByKey(key,new Locale(getLocal(getCurrentRequest())));
+        return getMsgByKeyViaLocal(key,getCurrentRequest());
+    }
+    /**
+     *从i18n.properties中获取相应的国际化的值
+     * @param key property key
+     * @param request current request
+     *@return java.lang.String value
+     *@author shaojx
+     *@date 2016/8/20 21:28
+     *@version 1.0
+     *@since 1.6
+     */
+    public String getMsgByKeyViaLocal(String key,HttpServletRequest request){
+        if(key==null||"".equals(key)){
+            return "";
+        }
+        return SpringContextUtil.getMsgByKey(key,new Locale(getLocal(request)));
     }
 
 

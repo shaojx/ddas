@@ -38,6 +38,7 @@
           <root url="jar://$USER_HOME$/.ideaLibSources/spring-web-3.2.8.RELEASE-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ideaLibSources/aopalliance-1.0-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ideaLibSources/spring-aop-3.2.8.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ideaLibSources/javax.servlet-api-3.0.1-sources.jar!/" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" />
       </library>

@@ -40,8 +40,8 @@ public class MySpaceController extends BaseController {
      *@since JDK1.6
      */
     @RequestMapping("/gotoIndex")
-    public ModelAndView gotoIndex(){
-        ModelAndView modelAndView=new ModelAndView("/myspace/myHome");
+    public ModelAndView gotoIndex(HttpServletRequest request){
+        ModelAndView modelAndView=withLocal(request,"/myspace/myHome");
         return modelAndView;
     }
 

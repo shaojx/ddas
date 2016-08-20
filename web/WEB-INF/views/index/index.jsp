@@ -52,8 +52,16 @@
             </ul>
             <%--语言条--%>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<%=path%>/index/gotoIndex?language=zh_CN">中 文</a></li>
-                <li><a href="<%=path%>/index/gotoIndex?language=en_US">英 文</a></li>
+                <li>
+                    <a href="<%=path%>/index/gotoIndex?language=zh_CN">
+                        <spring:message code="chinese" text="中文"></spring:message>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%=path%>/index/gotoIndex?language=en_US">
+                        <spring:message code="english" text="英文"></spring:message>
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="logoutBtn"><a href="javascript:void(0)"><spring:message code="logout" text="退出"></spring:message></a></li>

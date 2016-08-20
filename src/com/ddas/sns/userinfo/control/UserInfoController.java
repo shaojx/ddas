@@ -33,6 +33,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -130,5 +131,38 @@ public class UserInfoController extends BaseController {
         //result.put("error","");
         result.put("msg", msg);
         return result;
+    }
+
+    /**
+     *更新用户的信息
+     * @param userInfo 用户的信息
+     * @param request 当前的请求
+     *@return com.ddas.common.Msg 更新的信息
+     *@author shaojx
+     *@date 2016/8/20 21:48
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public Msg updateUserInfo(UserInfo userInfo, HttpServletRequest request) {
+        Msg msg = new Msg();
+        UserInfo newUserInfo = null;
+        try {
+            newUserInfo = userInfoService.updateUserInfo(userInfo);
+            HttpSession session = request.getSession();
+            synchronized (session) {//reset user info into session (thread safe)
+                setLoginUserToSession(newUserInfo, request);
+            }
+            if (newUserInfo != null) {
+                msg.setSuccessful(true);
+                msg.setMsg(getMsgByKeyViaLocal("updateUserInfo.success", request));
+            }
+        } catch (Exception e) {
+            LOGGER.error("更新用户资料失败!", e);
+            msg.setSuccessful(false);
+            msg.setMsg(getMsgByKeyViaLocal("updateUserInfo.fail",request));
+        }
+        return msg;
     }
 }

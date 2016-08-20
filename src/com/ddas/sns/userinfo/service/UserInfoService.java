@@ -228,4 +228,21 @@ public class UserInfoService {
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userId);
         return userInfo;
     }
+
+    /**
+     *更新用户资料
+     * @param userInfo 用户信息
+     *@return com.ddas.sns.userinfo.domain.UserInfo 从数据库中重新获取的用户信息
+     *@author shaojx
+     *@date 2016/8/20 21:45
+     *@version 1.0
+     *@since 1.6
+     */
+    public UserInfo updateUserInfo(UserInfo userInfo) {
+        userInfo.setUpdatedTime(DateUtil.getCurrentDateString());
+        int updateByPrimaryKeySelective = userInfoMapper.updateByPrimaryKeySelective(userInfo);
+        //get new data
+        UserInfo newUserInfo = userInfoMapper.selectByPrimaryKey(userInfo.getUserId());
+        return newUserInfo;
+    }
 }

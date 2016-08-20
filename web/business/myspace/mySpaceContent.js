@@ -2,15 +2,6 @@
  * 我的空间 业务JS
  */
 $(function () {
-
-/* 有Error   //时间选择器
-    $(".form_date").datetimepicker({
-        format: "yyyy-MM-dd",
-        autoclose: true,
-        todayBtn: true,
-        startView: 2,
-        minView: 2
-    });*/
     //创建日志
     /*$("#createMyLog").modal("show");*/
 

@@ -18,6 +18,7 @@
     <link href="<%=path%>/common/bxslider/css/style.css" rel="stylesheet">
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/login/language/${local}.js"></script>
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <%--引入自定义样式--%>
@@ -27,6 +28,7 @@
     </script>
     <%--照片--%>
     <script type="text/javascript" src="<%=path%>/common/layer/js/layer.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/index/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
   <%--  <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>--%>
 </head>
@@ -53,8 +55,16 @@
             </ul>
             <%--语言条--%>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<%=path%>/myspace/gotoIndex?language=zh_CN">中 文</a></li>
-                <li><a href="<%=path%>/myspace/gotoIndex?language=en_US">英 文</a></li>
+                <li>
+                    <a href="<%=path%>/index/gotoIndex?language=zh_CN">
+                        <spring:message code="chinese" text="中文"></spring:message>
+                    </a>
+                </li>
+                <li>
+                    <a href="<%=path%>/index/gotoIndex?language=en_US">
+                        <spring:message code="english" text="英文"></spring:message>
+                    </a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

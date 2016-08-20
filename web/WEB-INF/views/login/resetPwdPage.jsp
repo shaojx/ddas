@@ -44,15 +44,17 @@
     <div class="center-block" id="container">
         <form class="form-horizontal width350 center" id="myForm">
             <div class="form-group ">
-                <label class="control-label">密 码</label>
-                <input type="password" class="form-control" placeholder="密码" id="password" name="password">
+                <label class="control-label"><spring:message code="register.pwd" text="密 码"></spring:message> </label>
+                <input type="password" class="form-control"
+                       placeholder="<spring:message code="register.pwd" text="密 码"></spring:message> " id="password" name="password">
             </div>
             <div class="form-group">
-                <label class="control-label">确认密码</label>
-                <input type="password" class="form-control" placeholder="确认密码" id="repeatPwd" name="repeatPwd">
+                <label class="control-label"><spring:message code="register.confirmPwd" text="确认密码"></spring:message> </label>
+                <input type="password" class="form-control"
+                       placeholder="<spring:message code="register.confirmPwd" text="确认密码"></spring:message>" id="repeatPwd" name="repeatPwd">
             </div>
             <div class="form-group ">
-                <button type="button" class="btn btn-primary col-lg-12" id="resetBtn">确 定</button>
+                <button type="button" class="btn btn-primary col-lg-12" id="resetBtn"><spring:message code="confirm" text="确 定"></spring:message> </button>
             </div>
             <input type="hidden" value="${encodedKey}" id="encodedKey">
         </form>

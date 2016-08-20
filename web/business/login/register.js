@@ -18,7 +18,8 @@ $(function () {
             data:JSON.stringify({
                 "userName":$("#userName").val(),
                 "userPwd":md5($("#password").val()),
-                "userEmail":$("#email").val()
+                "userEmail":$("#email").val(),
+                "userSex":$("#sex").val()
             }),
             dataType:"json",
             type:"POST",
