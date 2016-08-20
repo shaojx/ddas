@@ -1,6 +1,7 @@
 package com.ddas.sns.vip.control;
 
 import com.ddas.common.Msg;
+import com.ddas.common.exception.ServiceException;
 import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userinfo.domain.UserInfo;
@@ -77,9 +78,18 @@ public class VipController extends BaseController {
     @ResponseBody
     public Msg payForVip(String userId, String vipType, HttpServletRequest request) {
         Msg msg = new Msg();
+        boolean success = false;
+        try {
+            success = vipService.payForVip(userId, vipType, getLoginUser(request));
+        }catch (ServiceException e) {
+            success = false;
+            msg.setMsg(getMsgByKeyViaLocal(e.getMessage()));
+        }
+        msg.setSuccessful(success);
+        if(success) {
+            msg.setMsg(getMsgByKeyViaLocal("upgradeSuccess"));
+        }
 
-        vipService.payForVip(userId, vipType, getLoginUser(request));
-        msg.setMsg("升级成功！无敌小宇宙");
         return  msg;
     }
 }

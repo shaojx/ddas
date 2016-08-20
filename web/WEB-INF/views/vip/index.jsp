@@ -15,6 +15,8 @@
     <link href="<%=path%>/business/common/css/common.css" rel="stylesheet"/>
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
@@ -174,7 +176,7 @@
                 <%--选择充值对象--%>
                 <div class="clear-both">
                     <label class="width80"><spring:message code="rechargeTo" text="充值对象"/>:</label>
-                    <input type="radio" name="toWho" id="toMe" value="${userInfo.userId}" style="vertical-align: middle;">
+                    <input type="radio" checked="checked" name="toWho" id="toMe" value="${userInfo.userId}" style="vertical-align: middle;">
                     <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;"><spring:message code="myself" text="冲给自己"/></span>
                     <input type="radio" name="toWho" id="toFriend" value="" style="margin-left: 20px; vertical-align: middle;">
                     <span class="inline-block" style="vertical-align: middle;height: 30px;line-height: 30px;"><spring:message code="chargeToFriend" text="冲给好友"/></span>
