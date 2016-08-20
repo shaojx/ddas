@@ -1,5 +1,18 @@
 
 $(function () {
+    //导航条部分操作
+    $("#friendsNavigation").click(function () {
+        $("#myFriend").click();
+    });
+    $("#levelVipNavigation").click(function () {
+        $("#levelVip").click();
+    });
+    $("#payCenterNavigation").click(function () {
+        $("#payCenter").click();
+    });
+    $("#giftNavigation").click(function () {
+        $("#gift").click();
+    });
     //点击左侧导航"相册"
     $("#myPhoto").click(function(){
         $("#content_iframe").attr("src",path+"/userPhoto/gotoIndex");

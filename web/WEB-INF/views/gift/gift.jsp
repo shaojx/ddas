@@ -45,7 +45,7 @@
     <div class="panel panel-warning">
         <div class="panel-heading">
             <div class="tabbable" id="tabs-295323">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" style="margin-left: -15px;">
                     <li class="active" id="giftTab">
                     <a href="#panel-gift" data-toggle="tab"><spring:message code="gift" text="礼物"/></a>
                     </li>

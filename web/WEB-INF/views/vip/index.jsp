@@ -50,7 +50,7 @@
 
                 <p class="bg-info" style="height: 40px;">
                  <span style="height: 40px;line-height: 40px;" class="inline-block margin-left-5px">
-                    <spring:message code="gold" text="金币"/>:0
+                    <spring:message code="gold" text="金币"/>:${userInfo.userCoin}
                 </span></p>
 
                 <%--面板--%>
