@@ -66,7 +66,12 @@ $(function() {
                 vipType:vipType
             },
             success:function (data) {
-
+                $.confirm({
+                    title:"",
+                    content: data.msg,
+                    autoClose: 'confirm|1000',
+                    cancelButton:false
+                })
             }
         })
     })

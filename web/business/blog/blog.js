@@ -134,7 +134,12 @@ function saveMessage() {
         dataType:"json",
         success:function(){
             $("#closeCreateMessageModelBtn").click();
-            alert("success!");
+            $.confirm({
+                title:"",
+                content: "success",
+                autoClose: 'confirm|1000',
+                cancelButton:false
+            })
         }
     })
 }

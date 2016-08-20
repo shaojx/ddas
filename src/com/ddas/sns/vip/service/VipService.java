@@ -1,5 +1,6 @@
 package com.ddas.sns.vip.service;
 
+import com.ddas.common.exception.ServiceException;
 import com.ddas.common.service.BaseService;
 import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
@@ -108,7 +109,7 @@ public class VipService extends BaseService {
      *@version 1.0
      *@since 1.6
      */
-    public boolean payForVip(String userId, String vipType, UserInfo userInfo){
+    public boolean payForVip(String userId, String vipType, UserInfo userInfo) throws ServiceException{
         Double totalPrice = 0.00;
         String vipCode = "";
         int vipTime = 0;
@@ -150,7 +151,7 @@ public class VipService extends BaseService {
         String myCoin = StringUtil.isEmpty(userInfo.getUserCoin())? "0" : userInfo.getUserCoin();
         Double doubleMyCoin = Double.valueOf(myCoin) - totalPrice;
         if(doubleMyCoin < 0) {//余额不足，此处后面可以自定义异常，抛出去，提示余额不足。
-            return false;
+            throw new ServiceException("moneyNotEnough");//此处的异常信息与国际化文件中的key对应
         }
         //扣除此次的总价，余额存到用户信息中
         userInfo.setUserCoin(df.format(doubleMyCoin));

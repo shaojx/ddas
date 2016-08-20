@@ -25,7 +25,7 @@ function getMyMessageData(pageNo){
             data:{
                 "currentPage":pageNo,
                 "pageSize":4,
-                "userId":"1"
+                "userId":""
             },
             dataType:"json",
             success:function(data){

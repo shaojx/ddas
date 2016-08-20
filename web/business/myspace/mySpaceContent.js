@@ -19,6 +19,11 @@ $(function () {
     //保存我的头像的监听事件
     createSaveHeadPhotoListener();
 
+    $("#mySpaceTab").click(function () {
+        
+    })
+
+
 
 });
 /**
@@ -53,6 +58,7 @@ function createHaedPhotoLisenter() {
 
 function getLatestContent() {
     getLatestPhoto();
+    getLatestBlog();
 }
 
 function getLatestPhoto() {
@@ -60,7 +66,7 @@ function getLatestPhoto() {
     $.ajax({
         url:url,
         type:"POST",
-        data:data,
+        data:{},
         dataType:"json",
         success:function(data){
             initLatestPhoto(data);
@@ -86,5 +92,36 @@ function initLatestPhoto(data) {
         var _replace=latesPhotoDivTemplete.replace(/photoUrl/g,_data.photoUrl).replace(/photoGroupName/g,_data.photoGroupName)
             .replace(/createdTime/g, _data.createdTime);
         $("#latestPhotoContentDiv").append(_replace);
+    }
+}
+
+function getLatestBlog() {
+    var url=path+"/userBlog/queryRecordsByPage";
+    $.ajax({
+        url:url,
+        type:"POST",
+        data:{
+            currentPage:1,
+            pageSize:2
+        },
+        dataType:"json",
+        success:function(data){
+            initLatestBlog(data);
+        }
+    })
+
+}
+
+function initLatestBlog(data) {
+    $("#latestBlogContentDiv").empty();
+    var latesBlogDivTemplete='<div class="panel-body">'+
+        '${blogTitle}'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${blogTag}&nbsp;&nbsp;&nbsp;权限：${blogPrivilege}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>'+
+        '</div>';
+    var list=data.dataList;
+    for(var index in list){
+        var _data=list[index];
+        var _replace=latesBlogDivTemplete.replace("${blogTitle}",_data.blogTitle).replace("${blogTag}",_data.blogTag);
+        $("#latestBlogContentDiv").append(_replace);
     }
 }

@@ -67,7 +67,7 @@
       <div class="tabbable" id="tabs-262840">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#panel-tabs0" data-toggle="tab"><spring:message code="mySpace" text="个人主页"></spring:message></a>
+                <a href="#panel-tabs0" data-toggle="tab" id="mySpaceTab"><spring:message code="mySpace" text="个人主页"></spring:message></a>
             </li>
             <li>
                 <a href="#panel-tabs1" data-toggle="tab"><spring:message code="myProfile" text="用户资料"></spring:message></a>
@@ -141,9 +141,11 @@
                         <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1233"><spring:message code="latestBlog" text="最近日志"></spring:message></a>
                     </div>
                     <div id="panel-element-1233" class="panel-collapse in">
-                        <div class="panel-body">
-                            日志标题是这里
-                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                        <div id="latestBlogContentDiv">
+                            <div class="panel-body">
+                                日志标题是这里
+                                <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -289,74 +291,74 @@
                     </div>
                 </form>
             </div>
-            <%--心情--%>
-            <div class="tab-pane " id="panel-tabs2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestPhotos" text="最近照片"></spring:message></a>
-                    </div>
-                    <div id="panel-element-115111" class="panel-collapse in">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-6 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
+    <%--            &lt;%&ndash;心情&ndash;%&gt;
+                <div class="tab-pane " id="panel-tabs2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestPhotos" text="最近照片"></spring:message></a>
+                        </div>
+                        <div id="panel-element-115111" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3">
+                                        <div class="thumbnail">
+                                            <img src="/common/images/140x140.jpg" alt="140x140">
+                                            <div class="caption">
+                                                <h4>caption/文字</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-6 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
+                                    <div class="col-xs-6 col-md-3">
+                                        <div class="thumbnail">
+                                            <img src="/common/images/140x140.jpg" alt="140x140">
+                                            <div class="caption">
+                                                <h4>caption/文字</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-6 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
+                                    <div class="col-xs-6 col-md-3">
+                                        <div class="thumbnail">
+                                            <img src="/common/images/140x140.jpg" alt="140x140">
+                                            <div class="caption">
+                                                <h4>caption/文字</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-6 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
+                                    <div class="col-xs-6 col-md-3">
+                                        <div class="thumbnail">
+                                            <img src="/common/images/140x140.jpg" alt="140x140">
+                                            <div class="caption">
+                                                <h4>caption/文字</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestBlog" text="最新日志"></spring:message></a>
-                    </div>
-                    <div id="panel-element-115231" class="panel-collapse in">
-                        <div class="panel-body">
-                            日志标题是这里
-                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestBlog" text="最新日志"></spring:message></a>
+                        </div>
+                        <div id="panel-element-115231" class="panel-collapse in">
+                            <div class="panel-body">
+                                日志标题是这里
+                                <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestMessage" text="最新留言"></spring:message></a>
-                    </div>
-                    <div id="panel-element-115232" class="panel-collapse in">
-                        <div class="panel-body">
-                            留言内容在这里
-                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">By：Mate&nbsp;&nbsp;&nbsp;Time:&nbsp;&nbsp;2016/06/26</div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-115285"><spring:message code="latestMessage" text="最新留言"></spring:message></a>
+                        </div>
+                        <div id="panel-element-115232" class="panel-collapse in">
+                            <div class="panel-body">
+                                留言内容在这里
+                                <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">By：Mate&nbsp;&nbsp;&nbsp;Time:&nbsp;&nbsp;2016/06/26</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>--%>
             <%--日志 start--%>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="panel panel-warning">
