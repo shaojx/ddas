@@ -106,6 +106,8 @@ public class BaseController {
      */
     public void setLoginUserToSession(UserInfo userInfo, HttpServletRequest request){
         userInfo.setUserPwd(null);
+        String userCoin = userInfo.getUserCoin();
+        userInfo.setUserCoin((userCoin ==null||"".equals(userCoin))?"0":userCoin);//reset userCoin
         request.getSession(true).setAttribute("userInfo", userInfo);
     }
 

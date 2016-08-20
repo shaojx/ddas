@@ -45,10 +45,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"></spring:message> </a></li>
                 <li><a href="<%=path%>/myspace/gotoIndex"><spring:message code="mySpace" text="我的空间"></spring:message></a></li>
-                <li><a href="#contact"><spring:message code="friends" text="我的好友"></spring:message></a></li>
-                <li><a href="#contact"><spring:message code="upgrade" text="升级"></spring:message></a></li>
-                <li><a href="about.html"><spring:message code="recharge" text="充值"></spring:message></a></li>
-                <li><a href="about.html"><spring:message code="gift" text="礼物"></spring:message></a></li>
+                <li><a href="javascript:void(0);"id="friendsNavigation"><spring:message code="friends" text="我的好友"></spring:message></a></li>
+                <li><a href="javascript:void(0);" id="levelVipNavigation"><spring:message code="upgrade" text="升级"></spring:message></a></li>
+                <li><a href="javascript:void(0);" id="payCenterNavigation"><spring:message code="recharge" text="充值"></spring:message></a></li>
+                <li><a href="javascript:void(0);" id="giftNavigation"><spring:message code="gift" text="礼物"></spring:message></a></li>
             </ul>
             <%--语言条--%>
             <ul class="nav navbar-nav navbar-right">
@@ -82,8 +82,12 @@
             <div class="col-md-2">
                 <div>
                     <img alt="120x120" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto"/>
-                    <div><a style="font-size: larger">${userInfo.userName}</a></div>
-                    <div><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span><spring:message code="gold" text="金币"></spring:message>：</span><span style="color:#FF471F">${userInfo.userCoin}</span></div>
+                    <div style="text-align: center;"><a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${userInfo.userName}</a></div>
+                    <div style="height: 30px;margin-top: 10px;">
+                        <img src="/common/images/golds_img.jpg">
+                        <span style="margin-left: 5px;"><spring:message code="gold" text="金币"></spring:message>:</span>
+                        <span style="color:#FF471F">${userInfo.userCoin}</span>
+                    </div>
                 </div>
 
                 <ul class="nav nav-stacked  nav-pills" id="leftContent">
