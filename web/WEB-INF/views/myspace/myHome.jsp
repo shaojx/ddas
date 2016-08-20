@@ -74,11 +74,14 @@
             <%--left content--%>
             <div class="col-md-2">
                 <div>
-                    <img alt="120x120" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto" />
-                    <div><a style="font-size: larger">${userInfo.userName}</a></div>
-                    <div><img src="/common/images/golds_img.jpg">&nbsp;&nbsp;&nbsp;<span><spring:message code="gold" text="金币"></spring:message>：</span><span style="color:#FF471F">${userInfo.userCoin}</span></div>
+                    <img alt="120x120" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto"/>
+                    <div style="text-align: center;"><a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${userInfo.userName}</a></div>
+                    <div style="height: 30px;margin-top: 10px;">
+                        <img src="/common/images/golds_img.jpg">
+                        <span style="margin-left: 5px;"><spring:message code="gold" text="金币"></spring:message>:</span>
+                        <span style="color:#FF471F">${userInfo.userCoin}</span>
+                    </div>
                 </div>
-
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
                     <a href="javascript:void (0);" id="payCenter"><img src="/common/images/golds_img.jpg"><spring:message code="recharge" text="充值"></spring:message></a>
