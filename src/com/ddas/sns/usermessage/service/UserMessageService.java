@@ -55,7 +55,7 @@ public class UserMessageService {
         userMessageCriteria.setLimitStart(page.getPageStart());
         userMessageCriteria.setLimitEnd(pageSize);
         UserMessageCriteria.Criteria criteria = userMessageCriteria.createCriteria();
-        criteria.andMessageToEqualTo(userId);
+        //criteria.andMessageToEqualTo(userId);
 
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userMessageMapper.countByExample(userMessageCriteria));

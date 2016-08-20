@@ -73,6 +73,7 @@ public class FileUploadController extends BaseController{
                         UserPhoto userPhoto = new UserPhoto();
                         userPhoto.setPhotoUrl("/upload/" + newFileName);
                         userPhoto.setGroupId(photoGroupId);
+                        userPhoto.setUserId(getLoginUser(request).getUserId());
                         userPhotoService.save(userPhoto);
                     }
                 } catch (IOException e) {

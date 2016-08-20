@@ -20,10 +20,8 @@ $(function () {
     createSaveHeadPhotoListener();
 
     $("#mySpaceTab").click(function () {
-        
+        getLatestContent();
     })
-
-
 
 });
 /**
@@ -59,6 +57,7 @@ function createHaedPhotoLisenter() {
 function getLatestContent() {
     getLatestPhoto();
     getLatestBlog();
+    getLatestMessage();
 }
 
 function getLatestPhoto() {
@@ -79,9 +78,9 @@ function initLatestPhoto(data) {
     $("#latestPhotoContentDiv").empty();
     var latesPhotoDivTemplete='<div class="col-xs-3 col-md-3 width175">'+
         '<div class="thumbnail">'+
-        '<img src="photoUrl" alt="140x140" class="width150 height150">'+
+        '<img src="basePathphotoUrl" alt="140x140" class="width150 height150">'+
         '<div class="caption">'+
-        '<h4>photoGroupName</h4>'+
+        '<h5 class="white-space-nowrap">photoGroupName</h5>'+
         '<h5>createdTime</h5>'+
         '</div>'+
         '</div>'+
@@ -89,8 +88,9 @@ function initLatestPhoto(data) {
     var list=data.dataList;
     for(var index in list){
         var _data=list[index];
-        var _replace=latesPhotoDivTemplete.replace(/photoUrl/g,_data.photoUrl).replace(/photoGroupName/g,_data.photoGroupName)
-            .replace(/createdTime/g, _data.createdTime);
+        var _replace=latesPhotoDivTemplete.replace(/photoUrl/g,_data.photoUrl).replace(/photoGroupName/g,_data.groupName)
+            .replace(/createdTime/g, _data.createdTime.substring(0,10))
+            .replace(/basePath/g, path);
         $("#latestPhotoContentDiv").append(_replace);
     }
 }
@@ -116,12 +116,52 @@ function initLatestBlog(data) {
     $("#latestBlogContentDiv").empty();
     var latesBlogDivTemplete='<div class="panel-body">'+
         '${blogTitle}'+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${blogTag}&nbsp;&nbsp;&nbsp;权限：${blogPrivilege}&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：${blogTag}&nbsp;&nbsp;&nbsp;权限：${blogPrivilege}&nbsp;&nbsp;&nbsp;评论(<span id="friendCommentCount_${blogId}">0</span>)</div>'+
         '</div>';
     var list=data.dataList;
     for(var index in list){
         var _data=list[index];
-        var _replace=latesBlogDivTemplete.replace("${blogTitle}",_data.blogTitle).replace("${blogTag}",_data.blogTag);
+        var _replace=latesBlogDivTemplete.replace("${blogTitle}",_data.blogTitle).replace("${blogTag}",_data.blogTags).replace(/\$\{blogId\}/g,_data.ubId);
+        if(_data.blogPrivilege == "0") {
+            _replace = _replace.replace("${blogPrivilege}",blogContent.public);
+        }else if(_data.blogPrivilege == "1") {
+            _replace = _replace.replace("${blogPrivilege}",blogContent.private);
+        }
+        fetchCommentCount(_data.ubId);//获取评论数
+
         $("#latestBlogContentDiv").append(_replace);
+    }
+}
+
+function getLatestMessage() {
+    var url=path+"/userMessage/queryRecordsByPage";
+    $.ajax({
+        url:url,
+        type:"POST",
+        data:{
+            currentPage:1,
+            pageSize:2,
+            userId:""
+        },
+        dataType:"json",
+        success:function(data){
+            initLatestMessage(data);
+        }
+    })
+
+}
+
+function initLatestMessage(data) {
+    $("#latestMessageContentDiv").empty();
+    var latesMessageDivTemplete='<div class="panel-body">'+
+        '${messageContent}'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">By：${messageByName}&nbsp;&nbsp;&nbsp;Time:&nbsp;&nbsp;createdTime</div>'+
+        '</div>';
+    var list=data.dataList;
+    for(var index in list){
+        var _data=list[index];
+        var _replace=latesMessageDivTemplete.replace("${messageContent}",_data.messageContent).replace("${messageByName}",_data.messageByName)
+            .replace(/createdTime/g, _data.createdTime.substring(0,10));
+        $("#latestMessageContentDiv").append(_replace);
     }
 }

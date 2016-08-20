@@ -47,7 +47,8 @@
     <%--引入自定义样式--%>
     <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
-    <script type="text/javascript" src="<%=path%>business/message/language/${local}.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/message/language/${local}.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/message/js/message.js"></script>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
     <style type="text/css">
@@ -154,9 +155,11 @@
                         <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1152"><spring:message code="latestMessage" text="最近留言"></spring:message></a>
                     </div>
                     <div id="panel-element-1152" class="panel-collapse in">
-                        <div class="panel-body">
-                            留言内容在这里
-                            <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">By：Mate&nbsp;&nbsp;&nbsp;Time:&nbsp;&nbsp;2016/06/26</div>
+                        <div id="latestMessageContentDiv">
+                            <div class="panel-body">
+                                留言内容在这里
+                                <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">By：Mate&nbsp;&nbsp;&nbsp;Time:&nbsp;&nbsp;2016/06/26</div>
+                            </div>
                         </div>
                     </div>
                 </div>
