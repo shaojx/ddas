@@ -1,11 +1,49 @@
 /**
  * Created by Administrator on 2016/8/17.
  */
+var memberParm = "";//是否访问其他人的空间
 $(function () {
+    //拼接URL
+    var memberId = $("#memberId", window.top.document).val();
+    alert(memberId);
+    if(memberId) {
+        memberParm = "?memberid=" + memberId
+    }
     $("#messageTab").click(function () {
         getMyMessageData(1);
     });
+
+    $("#saveMessageBtn").click(saveMessage);
 });
+
+/**
+ * 保存留言
+ */
+function saveMessage() {
+    var messageContent = $("#messageContent").val();
+    if(messageContent == "") {
+        alert(blogContent.messageContentRequired);
+        return;
+    }
+    $.ajax({
+        url:path+"/userMessage/save" + memberParm,
+        type:"POST",
+        data:{
+            "messageContent":messageContent
+        },
+        dataType:"json",
+        success:function(){
+            $("#closeCreateMessageModelBtn").click();
+            $("#messageTab").click();
+            $.confirm({
+                title:"",
+                content: "success",
+                autoClose: 'confirm|1000',
+                cancelButton:false
+            })
+        }
+    })
+}
 /**
  * 获取当前留言页的数据
  * @param pageNo 分页
@@ -20,7 +58,7 @@ function getMyMessageData(pageNo){
     loader.start();
     if(pageNo){
         $.ajax({
-            url:path+"/userMessage/queryRecordsByPage",
+            url:path+"/userMessage/queryRecordsByPage" + memberParm,
             type:"POST",
             data:{
                 "currentPage":pageNo,

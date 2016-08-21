@@ -10,6 +10,7 @@ package com.ddas.sns.userblog.control;
 
 import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userblog.domain.UserBlog;
 import com.ddas.sns.userblog.service.UserBlogService;
@@ -42,10 +43,15 @@ public class UserBlogController extends BaseController{
 
     @RequestMapping("/queryRecordsByPage")
     @ResponseBody
-    public Page queryRecordsByPage(int currentPage, int pageSize, HttpServletRequest httpServletRequest){
+    public Page queryRecordsByPage(String memberid, int currentPage, int pageSize, HttpServletRequest httpServletRequest){
         Page page = null;
         try{
-            page = userBlogService.queryRecordsByPage(currentPage, pageSize, getLoginUser(httpServletRequest));
+            if(StringUtil.isNotEmpty(memberid)) {
+                page = userBlogService.queryRecordsByPage(currentPage, pageSize, memberid);
+            }else{
+                page = userBlogService.queryRecordsByPage(currentPage, pageSize, getLoginUser(httpServletRequest).getUserId());
+            }
+
         }catch(Exception e){
             LOGGER.error(e.getMessage(), e);
         }

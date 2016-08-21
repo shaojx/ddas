@@ -116,13 +116,13 @@ function getRecommendUserListExcludeMeData(pageNo){
 function initRecommendUserListData(data) {
     var recommendUserListDivTemplete = 	'<article class="widget-post">'+
         '<div class="post-image">'+
-        '<a href="post.html"><img src="${basePath}" alt=""></a>'+
+        '<a target="_blank" href="_path/memberspace/gotoindex?memberid=_userId"><img class="width60 height60" src="${basePath}" alt=""></a>'+
         '</div>'+
         '<div class="post-body">'+
-        '<h2><a href="post.html">${userNameVal}</a></h2>'+
+        '<h2><a target="_blank" href="_path/memberspace/gotoindex?memberid=_userId">${userNameVal}</a></h2>'+
         '<div class="post-meta">'+
         '<span><div><a href="#"  rel="54">'+
-        '<img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="javascript:void(0)" id="${userId}_addRecommendBtn" rel="54">'+
+        '<img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="javascript:void(0)" id="_userId_addRecommendBtn" rel="54">'+
         '<img src="/common/images/addfriends.gif"></a></div></span>'+
         '</div>'+
         '</div>'+
@@ -132,7 +132,8 @@ function initRecommendUserListData(data) {
         var _data = list[index];
         var photoUrl=_data.headPhotoUrl;
         var _replace = recommendUserListDivTemplete.replace("${basePath}", photoUrl?photoUrl:path+"/common/images/people60x55.jpg")
-            .replace("${userNameVal}", _data.userName).replace("${userId}", _data.userId)
+            .replace("${userNameVal}", _data.userName).replace(/_userId/g, _data.userId)
+            .replace(/_path/g, path);
         $("#recommendContentDiv").append(_replace);
         addRecommendAddBtnClickListener("#"+_data.userId+"_addRecommendBtn", _data.userId);
     }

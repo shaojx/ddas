@@ -10,6 +10,7 @@ package com.ddas.sns.userphoto.control;
 
 import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.userphoto.service.UserPhotoService;
 import org.slf4j.Logger;
@@ -151,10 +152,15 @@ public class UserPhotoController extends BaseController{
      */
     @RequestMapping("/getLatestPhoto")
     @ResponseBody
-    public Page getLatestPhoto(HttpServletRequest httpServletRequest){
+    public Page getLatestPhoto(String memberid, HttpServletRequest httpServletRequest){
         Page page = null;
         try{
-            page = userPhotoService.getLatestPhoto(getLoginUser(httpServletRequest));
+            if(StringUtil.isNotEmpty(memberid)) {
+                page = userPhotoService.getLatestPhoto(memberid);
+            }else {
+                page = userPhotoService.getLatestPhoto(getLoginUser(httpServletRequest).getUserId());
+            }
+
         }catch(Exception e){
             LOGGER.error(e.getMessage(), e);
         }

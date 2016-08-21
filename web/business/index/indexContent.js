@@ -105,7 +105,7 @@ function addAddBtnClickListener(addUserBtnId, friendId){
                     url:path+"/userFriend/applyFriend",
                     type:"POST",
                     data:{
-                        "userId":friendId,
+                        "userId":friendId
                     },
                     dataType:"json",
                     success:function(data){

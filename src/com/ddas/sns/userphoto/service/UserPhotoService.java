@@ -126,7 +126,7 @@ public class UserPhotoService {
      *@version 1.0
      *@since 1.6
      */
-    public Page getLatestPhoto(UserInfo loginUser) {
+    public Page getLatestPhoto(String userId) {
         Page page = new Page();
         page.setCurrentPage(1);
         page.setPageSize(4);
@@ -135,7 +135,7 @@ public class UserPhotoService {
         userPhotoCriteria.setLimitStart(page.getPageStart());
         userPhotoCriteria.setLimitEnd(4);
         UserPhotoCriteria.Criteria criteria = userPhotoCriteria.createCriteria();
-        criteria.andUserIdEqualTo(loginUser.getUserId());
+        criteria.andUserIdEqualTo(userId);
 
         List<UserPhoto> userPhotoList = userPhotoMapper.selectByExample(userPhotoCriteria);
         List<UserPhotoDto> userPhotoDtoList = new ArrayList<UserPhotoDto>();

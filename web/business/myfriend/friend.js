@@ -159,7 +159,7 @@ $(function() {
 				});
 			}
 		})
-	})
+	});
 
 	//加载好友分组
 	loadUserFriendGroupData();
@@ -690,7 +690,7 @@ function getAllMyFriendData(condition){
 				"currentPage":condition.pageNo,
 				"pageSize":1000,
 				"friendName":condition.friendNameCondition,
-				"status":condition.status,
+				"status":condition.status
 			},
 			dataType:"json",
 			success:function(data){

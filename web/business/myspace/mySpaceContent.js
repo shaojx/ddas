@@ -1,7 +1,13 @@
 /**
  * 我的空间 业务JS
  */
+var memberParm = "";
 $(function () {
+    var memberId = $("#memberId", window.top.document).val();
+    alert(memberId);
+    if(memberId) {
+        memberParm = "?memberid=" + memberId
+    }
     //创建日志
     /*$("#createMyLog").modal("show");*/
 
@@ -57,7 +63,7 @@ function getLatestContent() {
 }
 
 function getLatestPhoto() {
-    var url=path+"/userPhoto/getLatestPhoto";
+    var url=path+"/userPhoto/getLatestPhoto" + memberParm;
     $.ajax({
         url:url,
         type:"POST",
@@ -92,7 +98,7 @@ function initLatestPhoto(data) {
 }
 
 function getLatestBlog() {
-    var url=path+"/userBlog/queryRecordsByPage";
+    var url=path+"/userBlog/queryRecordsByPage" + memberParm;
     $.ajax({
         url:url,
         type:"POST",
@@ -130,14 +136,13 @@ function initLatestBlog(data) {
 }
 
 function getLatestMessage() {
-    var url=path+"/userMessage/queryRecordsByPage";
+    var url=path+"/userMessage/queryRecordsByPage" + memberParm;
     $.ajax({
         url:url,
         type:"POST",
         data:{
             currentPage:1,
-            pageSize:2,
-            userId:""
+            pageSize:2
         },
         dataType:"json",
         success:function(data){

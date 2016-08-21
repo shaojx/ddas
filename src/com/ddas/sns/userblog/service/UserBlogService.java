@@ -45,7 +45,7 @@ public class UserBlogService {
      *@Date 2016/7/7 18:04
      *@since JDK1.7
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize, UserInfo userInfo) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, String userId) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -54,7 +54,7 @@ public class UserBlogService {
         userBlogCriteria.setLimitStart(page.getPageStart());
         userBlogCriteria.setLimitEnd(pageSize);
         UserBlogCriteria.Criteria criteria = userBlogCriteria.createCriteria();
-        criteria.andUserIdEqualTo(userInfo.getUserId());
+        criteria.andUserIdEqualTo(userId);
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userBlogMapper.countByExample(userBlogCriteria));
         }

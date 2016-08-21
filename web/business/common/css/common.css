@@ -2,6 +2,9 @@
 .width80{
     width: 80px;
 }
+.width60{
+    width:60px;
+}
 .width110 {
     width: 110px;
 }
@@ -45,6 +48,9 @@
 }
 .height120{
     height:120px;
+}
+.height60{
+    height:60px;
 }
 .inline-block {
     display: inline-block;

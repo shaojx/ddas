@@ -9,6 +9,7 @@
 package com.ddas.sns.usermessage.control;
 
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.usermessage.domain.UserMessage;
 import com.ddas.sns.usermessage.service.UserMessageService;
@@ -40,14 +41,26 @@ public class UserMessageController extends BaseController{
 
     @RequestMapping(value = "/save", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public UserMessage save(UserMessage userMessage, HttpServletRequest request){
-        userMessageService.save(userMessage, getLoginUser(request));
+    public UserMessage save(UserMessage userMessage, String memberid, HttpServletRequest request){
+        if(StringUtil.isNotEmpty(memberid)) {
+            userMessageService.save(userMessage, getLoginUser(request).getUserId(), memberid);
+        }else{
+            userMessageService.save(userMessage, getLoginUser(request).getUserId(), getLoginUser(request).getUserId());
+        }
+
         return userMessage;
     }
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public Page getGroupList(int currentPage, int pageSize, String userId){
-        return userMessageService.queryRecordsByPage(currentPage, pageSize, userId);
+    public Page getMessageList(int currentPage, int pageSize, String memberid, HttpServletRequest request){
+        Page page;
+        if(StringUtil.isNotEmpty(memberid)) {
+            page = userMessageService.queryRecordsByPage(currentPage, pageSize, memberid);
+        }else {
+            page = userMessageService.queryRecordsByPage(currentPage, pageSize, getLoginUser(request).getUserId());
+        }
+
+        return page;
     }
 }

@@ -28,9 +28,9 @@
     </script>
     <%--照片--%>
     <script type="text/javascript" src="<%=path%>/common/layer/js/layer.js"></script>
-    <script type="text/javascript" src="<%=path%>/business/index/language/${local}.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/memberspace/language/${local}.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/memberspace/js/memberSpace.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
-  <%--  <script type="text/javascript" src="<%=path%>/business/myfriend/friend.js"></script>--%>
 </head>
 <body>
 <!-- Navigation -->
@@ -47,7 +47,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"></spring:message> </a></li>
-                <li id="mySpaceNav"><a href="<%=path%>/myspace/gotoIndex"><spring:message code="home" text="个人主页"></spring:message></a></li>
+                <li id="mySpaceNav"><a href="<%=path%>/myspace/gotoIndex"><spring:message code="mySpace" text="我的空间"></spring:message></a></li>
                 <li><a href="javascript:void(0);"id="friendsNavigation"><spring:message code="friends" text="我的好友"></spring:message></a></li>
                 <li><a href="javascript:void(0);" id="levelVipNavigation"><spring:message code="upgrade" text="升级"></spring:message></a></li>
                 <li><a href="javascript:void(0);" id="payCenterNavigation"><spring:message code="recharge" text="充值"></spring:message></a></li>
@@ -84,46 +84,30 @@
             <%--left content--%>
             <div class="col-md-2">
                 <div>
-                    <img alt="120x120" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto"/>
-                    <div style="text-align: center;"><a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${userInfo.userName}</a></div>
+                    <img alt="120x120" class="img-rounded width120 height120" src="${memberInfo.headPhotoUrl}" id="headPhoto"/>
+                    <div style="text-align: center;"><a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${memberInfo.userName}</a></div>
                     <div style="height: 30px;margin-top: 10px;">
-                        <img src="/common/images/golds_img.jpg">
+<%--                        <img src="/common/images/golds_img.jpg">
                         <span style="margin-left: 5px;"><spring:message code="gold" text="金币"></spring:message>:</span>
-                        <span style="color:#FF471F">${userInfo.userCoin}</span>
+                        <span style="color:#FF471F">${userInfo.userCoin}</span>--%>
                     </div>
                 </div>
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
-                    <a href="javascript:void (0);" id="payCenter"><img src="/common/images/golds_img.jpg"><spring:message code="recharge" text="充值"></spring:message></a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="addFriendLeftBar"><img src="/common/images/add.gif"><spring:message code="addFriend" text="加为好友"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" id="levelVip"><img src="/common/images/n_left_shengji.jpg"><spring:message code="upgrade" text="升级"></spring:message></a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="sendEmailLeftBar" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createEmailDialog"><img src="/common/images/mail.gif"><spring:message code="emailTo" text="给他发信"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" id="emailBox"><img src="/common/images/mail.gif"><spring:message code="email" text="邮件"></spring:message>(0)</a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="rechargeLeftBar"><img src="/common/images/chong.gif"><spring:message code="recharge" text="充值"></spring:message>(0)</a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" id="gift" ><img src="/common/images/n_left_gift.jpg"><spring:message code="gift" text="礼物"></spring:message>(0)</a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="sendGiftLeftBar" ><img src="/common/images/ico_hy_gift.jpg"><spring:message code="gift" text="礼物"></spring:message>(0)</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="myFriend"><img src="/common/images/friends.gif"><spring:message code="myFriend" text="我的好友"></spring:message></a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="levelVipLeftBar"><img src="/common/images/n_left_shengji.jpg"><spring:message code="upgrade" text="升级"></spring:message></a>
                 </li>
-                <li>
-                    <a href="javascript:void(0);" id="myPhoto"><img src="/common/images/album.png"><spring:message code="album" text="相册"></spring:message></a>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" id="myBlog"><img src="/common/images/n_left_rizhi.jpg"><spring:message code="blog" text=""></spring:message></a>
-                </li>
-<%--                <li>
-                    <a href="#"><img src="/common/images/n_left_fenxiang.jpg">分享(目前没用)</a>
-                </li>--%>
-<%--                <li>
-                    <a href="#"><img src="/common/images/n_left_mood.jpg">打招呼(3)</a>
-                </li>
-                <li>
-                    <a href="#"><img src="/common/images/n_left_game.jpg">游戏开发ing</a>
-                </li>--%>
-
             </ul>
         </div>
             <%--center --%>
@@ -176,7 +160,7 @@
 
             <%--center panel--%>
             <%--iframe start--%>
-            <iframe id="content_iframe" src="<%=path%>/myspace/getMyspceContent" style="width: 100%;height:900px;overflow: hidden;border: 0;">
+            <iframe id="content_iframe" src="<%=path%>/memberspace/getMyspceContent" style="width: 100%;height:900px;overflow: hidden;border: 0;">
             </iframe>
             <%--iframe end--%>
           </div>
@@ -311,8 +295,43 @@
 </section>
 </div><!-- /.container -->
 
-<footer class="footer">
+<%--创建邮件弹出框 --%>
 
+<div class="modal fade" id="createEmailDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="friendId">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabeTitle"><spring:message code="createEmail" text="新建邮件"/></h4>
+            </div>
+            <div class="modal-body">
+                <div role="tabpanel" class="tab-pane active" id="CreateEmail">
+                    <textarea rows="5" id="emailContent" style="margin: 0px; height: 300px; width: 550px;"></textarea>
+                    <div class="row margin-top-10px">
+
+                    </div>
+                </div>
+                <p id="vipTip" class="bg-danger" style="height: 30px;line-height: 30px;margin-top: 10px;display: none;">
+                    <spring:message code="upgradeTip" text="Tip:已达到今天的发送上限!想使用更多，赶紧"></spring:message>
+                    <a href="javascript:void(0);" id="toVip"> <spring:message code="upgradeVip" text="升级为会员"></spring:message></a><spring:message code="upgradeLast" text="吧!"></spring:message>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <label class="control-label pull-left margin-left-20px" id="friendLabel">
+                    <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="sendTo" text="发送给"/>:</span>
+                </label>
+                <label id="friendList" class="form-control width120 pull-left margin-left-10px text-center">${memberInfo.userName}</label>
+                <button type="button" class="btn btn-default" id="closeModel" data-dismiss="modal"><spring:message code="close" text="关闭"/></button>
+                <button type="button" class="btn btn-primary" id="sendEmailBtn"><spring:message code="save" text="保存"/></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <%--访问的用户id--%>
+    <input type="hidden" id="memberId" name="memberId" data-name="${memberInfo.userName}" value="${memberInfo.userId}">
 </footer>
 
 <script src="<%=path%>/common/bxslider/js/jquery.bxslider.js"></script>

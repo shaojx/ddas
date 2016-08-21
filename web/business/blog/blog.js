@@ -2,7 +2,14 @@ var CONST_USE_PROPERTY_BLOG = "2";//使用属性(1是好友分组，2是相册�
 var userBlogGroupData;//日志分组
 var clickedFriendBlogCommentId=null;//保存点击"评论"的id(朋友的日志 )
 var saveCommentBtnOldText="";//保存评论按钮的文本
+var memberParm = "";//是否访问其他人的空间
 $(function () {
+    //拼接URL
+    var memberId = $("#memberId", window.top.document).val();
+    if(memberId) {
+        memberParm = "?memberid=" + memberId
+    }
+
     //当添加或者编辑Group的Model框显示的时候，传数据到Model框里面去
     $('#createMyLogDialog').on('show.bs.modal', function (event) {
         loadUserBlogGroup();
@@ -49,9 +56,7 @@ $(function () {
 
     //保存我的日志按钮点击事件
     $("#saveMyBlogBtn").click(saveMyLog);
-
-    $("#saveMessageBtn").click(saveMessage);
-
+    
     //创建 日志 的Validator  目前存在换页面的时候提示该方法未注册，先注释掉
     createBlogValidator();
 
@@ -103,35 +108,6 @@ function createBlogValidator() {
             }
         }
     });
-}
-
-/**
- * 保存留言
- */
-function saveMessage() {
-    var messageContent = $("#messageContent").val();
-    if(messageContent == "") {
-        alert(blogContent.messageContentRequired);
-        return;
-    }
-    $.ajax({
-        url:path+"/userMessage/save",
-        type:"POST",
-        data:{
-            "messageContent":messageContent,
-            "messageTo":"1"
-        },
-        dataType:"json",
-        success:function(){
-            $("#closeCreateMessageModelBtn").click();
-            $.confirm({
-                title:"",
-                content: "success",
-                autoClose: 'confirm|1000',
-                cancelButton:false
-            })
-        }
-    })
 }
 
 /**
