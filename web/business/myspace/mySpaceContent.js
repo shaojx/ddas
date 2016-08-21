@@ -12,9 +12,14 @@ $(function () {
 
     $("#mySpaceTab").click(function () {
         getLatestContent();
-    })
+    });
 
+    init();
 });
+
+function init(){
+    getLatestContent();
+}
 /**
  * 保存头像的监听事件
  */

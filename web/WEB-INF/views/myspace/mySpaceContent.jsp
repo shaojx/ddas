@@ -101,38 +101,6 @@
                     <div id="panel-element-1331" class="panel-collapse in">
                         <div class="panel-body">
                             <div class="row" id="latestPhotoContentDiv">
-                                <div class="col-xs-3 col-md-3 width175">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 col-md-3 width175">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 col-md-3 width175">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 col-md-3 width175">
-                                    <div class="thumbnail">
-                                        <img src="/common/images/140x140.jpg" alt="140x140">
-                                        <div class="caption">
-                                            <h4>caption/文字</h4>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,10 +111,6 @@
                     </div>
                     <div id="panel-element-1233" class="panel-collapse in">
                         <div id="latestBlogContentDiv">
-                            <div class="panel-body">
-                                日志标题是这里
-                                <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">标签：今天天气真好&nbsp;&nbsp;&nbsp;权限：自己可见&nbsp;&nbsp;&nbsp;评论(0) | 阅读(0)</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,10 +120,6 @@
                     </div>
                     <div id="panel-element-1152" class="panel-collapse in">
                         <div id="latestMessageContentDiv">
-                            <div class="panel-body">
-                                留言内容在这里
-                                <div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">By：Mate&nbsp;&nbsp;&nbsp;Time:&nbsp;&nbsp;2016/06/26</div>
-                            </div>
                         </div>
                     </div>
                 </div>
