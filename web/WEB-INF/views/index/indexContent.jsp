@@ -33,8 +33,10 @@
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/indexContent.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
     <%--引入自定义样式--%>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>

@@ -5,6 +5,24 @@ $(function () {
     //发送邮件的点击事件
     $("#sendEmailBtn").click(sendEmailToMember);
 
+    $("#friendHomeBar").click(function () {
+        $("#content_iframe",window.top.document).attr("src",path+"/memberspace/getMyspceContent");
+    });
+
+    //左侧 升级会员 点击事件
+    $("#levelVipLeftBar").click(function () {
+        $("#content_iframe").attr("src",path+"/vip/gotoVip");
+    });
+
+    //左侧 充值中心  点击事件
+    $("#rechargeLeftBar").click(function () {
+        $("#content_iframe").attr("src",path+"/payfor/gotoIndex");
+    });
+
+    $("#sendGiftLeftBar").click(function () {
+        $("#content_iframe").attr("src",path+"/gift/gotoIndex");
+    });
+
     $("#addFriendLeftBar").click(addFriendFunc);
 });
 

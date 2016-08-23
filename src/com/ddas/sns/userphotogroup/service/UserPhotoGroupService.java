@@ -6,28 +6,20 @@
  * 创建日期:	2016/6/24
  * Copyright (c) 2016, All Rights Reserved.
  */
-package com.ddas.sns.usergroup.service;
+package com.ddas.sns.userphotogroup.service;
 
 import com.ddas.common.page.Page;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.string.StringUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
-import com.ddas.sns.anotation.VipPrivilege;
-import com.ddas.sns.userfriend.domain.UserFriend;
 import com.ddas.sns.userfriendphotogroup.mapper.UserFriendPhotoGroupMapper;
-import com.ddas.sns.usergroup.domain.UserGroup;
-import com.ddas.sns.usergroup.domain.UserGroupCriteria;
-import com.ddas.sns.usergroup.mapper.UserGroupMapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
-import com.ddas.sns.userphoto.domain.UserPhotoCriteria;
 import com.ddas.sns.userphotogroup.domain.UserPhotoGroup;
 import com.ddas.sns.userphotogroup.domain.UserPhotoGroupCriteria;
 import com.ddas.sns.userphotogroup.mapper.UserPhotoGroupMapper;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +74,7 @@ public class UserPhotoGroupService {
      *@Date 2016/7/5 10:53
      *@since JDK1.7
      */
-    public Page queryRecordsByPage(int currentPage, int pageSize,UserInfo loginUserInfo) {
+    public Page queryRecordsByPage(int currentPage, int pageSize, String userId) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -91,7 +83,7 @@ public class UserPhotoGroupService {
         userPhotoGroupCriteria.setLimitStart(page.getPageStart());
         userPhotoGroupCriteria.setLimitEnd(pageSize);
         UserPhotoGroupCriteria.Criteria criteria = userPhotoGroupCriteria.createCriteria();
-        criteria.andUserIdEqualTo(loginUserInfo.getUserId());
+        criteria.andUserIdEqualTo(userId);
         if(currentPage == 1){//如果是当前第一页，则要求总数
             page.setTotalCount(userPhotoGroupMapper.countByExample(userPhotoGroupCriteria));
         }

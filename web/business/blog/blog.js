@@ -287,7 +287,7 @@ function getMyLogData(pageNo){
     loader.start();
     if(pageNo){
         $.ajax({
-            url:path+"/userBlog/queryRecordsByPage",
+            url:path+"/userBlog/queryRecordsByPage"+memberParm,
             type:"POST",
             data:{
                 "currentPage":pageNo,
@@ -338,21 +338,25 @@ function initMyLogData(data){
         '<div id="panel-element-113" class="panel-collapse in">'+
         '<div class="panel-body">'+
         "${myLogContent}"+
-        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">'+blogContent.tags+'：${myLogTags}&nbsp;&nbsp;&nbsp;'+blogContent.privilege+'：${myLogPrivilege}&nbsp;&nbsp;&nbsp;'+blogContent.comments+'(0) | '+blogContent.reads+'(0)</div>'+
+        '<div style="font-size:12px;color:#aaa;margin-top:15px;padding-left:10px;">'+blogContent.tags+'：${myLogTags}&nbsp;&nbsp;&nbsp;' +
+        '<a href="javascript:void(0);" id="friendCommentedA_${blogId}">'+blogContent.comments+'(<span id="friendCommentCount_${blogId}">0</span>)</a> | '+blogContent.reads+'(0)'+
+        '<span class="pull-right">'+
+        '<a href="javascript:void(0);" data-target="#commentFriendBlog" data-toggle="modal" data-backdrop="" data-blog-id="${blogId}" id="commentFriendA_${blogId}">'+blogContent.comment+'</a>'+
+        '</span>'+
+        '</div>'+
         '</div>'+
         '</div>'+
         '</div>';
     var list=data.dataList;
-    for(var index in list){
-        var _data=list[index];
-        var _replace=myLogDivTemplete.replace("${myLogTitle}",_data.blogTitle).replace("${myLogContent}",_data.blogContent)
-            .replace("${myLogTags}",_data.blogTags);
-        if(_data.blogPrivilege == "0") {
-            _replace = _replace.replace("${myLogPrivilege}",blogContent.public);
-        }else if(_data.blogPrivilege == "1") {
-            _replace = _replace.replace("${myLogPrivilege}",blogContent.private);
-        }
+    for(var index in list) {
+        var _data = list[index];
+        var _replace = myLogDivTemplete.replace("${myLogTitle}", _data.blogTitle).replace("${myLogContent}", _data.blogContent)
+            .replace("${myLogTags}", _data.blogTags).replace(/\$\{blogId\}/g, _data.ubId);
         $("#myLogContentDiv").append(_replace);
+
+        addCommentListener("#commentFriendA_" + _data.ubId);//添加监听事件
+        addCommentDetailListener("#friendCommentedA_" + _data.ubId, _data.ubId);//添加 "评论" 事件 跳转到详情
+        fetchCommentCount(_data.ubId);//获取评论数
     }
 }
 

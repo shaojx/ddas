@@ -94,16 +94,19 @@
                 </div>
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="friendHomeBar"><img src="/common/images/n_left_huodong.png"><spring:message code="personalSpace" text="个人空间"></spring:message></a>
+                </li>
+                <li>
                     <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="addFriendLeftBar"><img src="/common/images/add.gif"><spring:message code="addFriend" text="加为好友"></spring:message></a>
                 </li>
                 <li>
                     <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="sendEmailLeftBar" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createEmailDialog"><img src="/common/images/mail.gif"><spring:message code="emailTo" text="给他发信"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="rechargeLeftBar"><img src="/common/images/chong.gif"><spring:message code="recharge" text="充值"></spring:message>(0)</a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="rechargeLeftBar"><img src="/common/images/chong.gif"><spring:message code="recharge" text="充值"></spring:message></a>
                 </li>
                 <li>
-                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="sendGiftLeftBar" ><img src="/common/images/ico_hy_gift.jpg"><spring:message code="gift" text="礼物"></spring:message>(0)</a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="sendGiftLeftBar" ><img src="/common/images/ico_hy_gift.jpg"><spring:message code="gift" text="礼物"></spring:message></a>
                 </li>
                 <li>
                     <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="levelVipLeftBar"><img src="/common/images/n_left_shengji.jpg"><spring:message code="upgrade" text="升级"></spring:message></a>

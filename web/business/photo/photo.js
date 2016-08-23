@@ -1,17 +1,24 @@
 var FRIEND_PHOTO=true;//记录是否为好友相册的照片详情(要屏蔽一些功能)
 var userPhotoGroupCondition = {
-    pageNo:1,
+    pageNo:1
 };//查询我的相册条件初始化
 var currentOp="ADD";//当前的操作(点"保存"按钮时有用) ADD或者为EDIT
 var currentEditGroupId=null;//记录当前修改的相册的id
 var userFriendPhotoGroupCondition = {
     pageNo:1
 };//查询好友相册条件初始化
+var memberParm = "";//是否访问其他人的空间
 $(function () {
+    //拼接URL
+    var memberId = $("#memberId", window.top.document).val();
+    if(memberId) {
+        memberParm = "?memberid=" + memberId
+    }
+
     //点击"上传照片" 跳转页面
     $("#addPhotoBtn").click(function () {
        $("#content_iframe",window.top.document).attr("src",path+"/userPhoto/gotoUploadPhotoIndex");
-   });
+    });
 
     //保存我的相册分组按钮点击事件
     $("#savePhotoGroupBtn").click(function () {
@@ -42,7 +49,7 @@ $(function () {
         modal.find('#photoGroupName').val("").val(groupName);
         modal.find('#photoGroupDescription').val("").val(description);
         modal.find('#photoGroupTags').val("").val(tags);
-    })
+    });
 
     $("#photoGroupTab").click(function () {
         userPhotoGroupCondition = {
@@ -114,7 +121,7 @@ function getMyPhotoGroupData(condition){
     $("#myPhotoGroupPaginationDIV").html("");//清空页码
     if(condition.pageNo){
         $.ajax({
-            url:path+"/userPhotoGroup/queryRecordsByPage",
+            url:path+"/userPhotoGroup/queryRecordsByPage"+memberParm,
             type:"POST",
             data:{
                 "currentPage":condition.pageNo,

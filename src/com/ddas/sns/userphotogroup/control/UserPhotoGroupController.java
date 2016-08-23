@@ -10,10 +10,10 @@ package com.ddas.sns.userphotogroup.control;
 
 import com.ddas.common.Msg;
 import com.ddas.common.page.Page;
+import com.ddas.common.util.StringUtil;
 import com.ddas.sns.common.BaseController;
-import com.ddas.sns.usergroup.domain.UserGroup;
-import com.ddas.sns.usergroup.service.UserPhotoGroupService;
 import com.ddas.sns.userphotogroup.domain.UserPhotoGroup;
+import com.ddas.sns.userphotogroup.service.UserPhotoGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -92,8 +92,14 @@ public class UserPhotoGroupController extends BaseController{
 
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public Page getGroupList(int currentPage, int pageSize,HttpServletRequest request){
-        return userPhotoGroupService.queryRecordsByPage(currentPage, pageSize,getLoginUser(request));
+    public Page getGroupList(String memberid, int currentPage, int pageSize, HttpServletRequest request){
+        Page page;
+        if(StringUtil.isNotEmpty(memberid)) {
+            page = userPhotoGroupService.queryRecordsByPage(currentPage, pageSize, memberid);
+        }else {
+            page = userPhotoGroupService.queryRecordsByPage(currentPage, pageSize, getLoginUser(request).getUserId());
+        }
+        return page;
     }
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})

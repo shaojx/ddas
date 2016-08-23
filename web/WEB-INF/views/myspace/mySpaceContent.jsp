@@ -31,6 +31,7 @@
         var path = "<%=path%>";
     </script>
     <%--引入业务JS --%>
+    <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/mySpaceContent.js"></script>
     <link href="<%=path%>/common/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
     <script src="<%=path%>/common/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
@@ -44,10 +45,11 @@
     <script type="text/javascript" src="<%=path%>/business/myspace/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
     <%--引入自定义样式--%>
+    <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/blog/blog.js"></script>
+    <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <script type="text/javascript" src="<%=path%>/business/message/language/${local}.js"></script>
-    <script type="text/javascript" src="<%=path%>/business/blog/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/message/js/message.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/userInfoEdit.js"></script>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>

@@ -4,7 +4,6 @@
 var memberParm = "";
 $(function () {
     var memberId = $("#memberId", window.top.document).val();
-    alert(memberId);
     if(memberId) {
         memberParm = "?memberid=" + memberId
     }

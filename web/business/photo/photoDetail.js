@@ -5,7 +5,7 @@ var PAGE_SIZE=12;
  * 照片详情
  */
 $(function () {
-      friendPhoto=$("#friendPhoto").val();
+    friendPhoto=$("#friendPhoto").val();
     //注册 跳转到 升级会员的页面    
     registerToVIPListener();  
     getPhotoData(1);
@@ -105,7 +105,8 @@ function initPhotoData(data) {
         var _replace = photoDivTemplete.replace("${basePath}", path).replace("${imagePath}", _data.photoUrl)
                                         .replace(/\$\{index\}/g,index);
         $("#photoDiv").append(_replace);
-        if(friendPhoto=="false"){//查看的为自己的相册的详情
+        var memberId = $("#memberId", window.top.document).val();//是否是查看网站成员
+        if(!memberId && friendPhoto=="false"){//查看的为自己的相册的详情
             addMouseListener(index,_data.upId,groupId);
         }
     };

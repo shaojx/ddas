@@ -5,7 +5,6 @@ var memberParm = "";//是否访问其他人的空间
 $(function () {
     //拼接URL
     var memberId = $("#memberId", window.top.document).val();
-    alert(memberId);
     if(memberId) {
         memberParm = "?memberid=" + memberId
     }
