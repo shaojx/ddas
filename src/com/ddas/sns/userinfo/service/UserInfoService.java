@@ -144,7 +144,7 @@ public class UserInfoService {
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
         UserInfoCriteria userInfoCriteria = new UserInfoCriteria();
-        userInfoCriteria.setOrderByClause("updated_time");
+        userInfoCriteria.setOrderByClause("updated_time desc");
         userInfoCriteria.setLimitStart(page.getPageStart());
         userInfoCriteria.setLimitEnd(pageSize);
         UserInfoCriteria.Criteria criteria = userInfoCriteria.createCriteria();

@@ -44,4 +44,19 @@ $(function () {
            }
        })
    });
+    createHeadPhotoLoadErrorListener();
 });
+
+/**
+ * 当头像加载失败时，加载默认的图片
+ */
+function createHeadPhotoLoadErrorListener() {
+    //修改头像的加载
+    if(!$("#headPhoto").attr("src")){
+        $("#headPhoto").attr("src",path+"/common/images/people140x140.jpg");
+    }
+    //头像加载失败监听
+    $("#headPhoto").error(function () {
+        $(this).attr("src",path+"/common/images/people140x140.jpg");
+    })
+}

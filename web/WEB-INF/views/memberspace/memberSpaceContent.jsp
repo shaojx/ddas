@@ -152,13 +152,8 @@
                           </div>
                       </div>
                        <div id="right">
-                           <img src="<%=path%>${memberInfo.headPhotoUrl}" alt="120X120" class="img-rounded"
+                           <img id="headPhoto" src="<%=path%>${memberInfo.headPhotoUrl}" alt="120X120" class="img-rounded"
                                 style="width: 100px;height: 100px;">
-                            <div style="width:100px;height: 100px;background:rgba(214, 200, 216, 0.8);text-align: center;position: absolute; left: -1000px;cursor: hand;"
-                                id="txtDiv_0">
-                               <a class="inline-block txtDivSpan" style="cursor:pointer;" id="txtDivSpan_0" data-toggle="modal" data-target="#changeHeadPhoto"
-                                  data-backdrop="" ><spring:message code="change" text="更换头像"></spring:message></a>
-                           </div>
                        </div>
                    </div>
                     <div class="form-group">
