@@ -31,6 +31,7 @@ $(function () {
                         content:data.msg,
                         autoClose: 'confirm|2000',
                         cancelButton:false,
+                        container:"#myForm",
                         confirm:function(){
                             window.top.location.href=path+"/login/gotoLogin";//跳转到登录页面
                         }
@@ -64,8 +65,16 @@ function createValidator(){
                         url: path+'/login/identifyUserName',
                         message:registerMsg.userNameRepeate,
                         delay: 2000
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: registerMsg.userNameReg
+                    },
+                    stringLength:{
+                        min:5,
+                        max:10,
+                        message:registerMsg.userNameLen
                     }
-
                 }
             },
             password: {

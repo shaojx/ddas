@@ -45,10 +45,10 @@
 </head>
 <body>
 <div class="container-fluid">
-    <section class="loginBox row-fluid">
+    <section class="loginBox row-fluid"id=" registerDiv">
         <div class="center-block" style="text-align:center;" id="errorP">
         </div>
-        <form class="form-horizontal" style="margin-left: 20%;" id="myForm">
+        <form  style="margin-left: 20%;" id="myForm">
             <DIV class="form-group width300">
                 <label class="control-label">
                     <spring:message code="register.userName" text="用户名"></spring:message>
@@ -75,7 +75,7 @@
                 <input type="text" class="form-control" name="email"
                        placeholder="<spring:message code="register.emailAddress" text="邮箱地址"></spring:message>" id="email"/>
             </DIV>
-            <div class="row" style="margin-bottom: 20px;">
+            <div  style="margin-bottom: 20px;">
                 <input type="button" value=" <spring:message code="register.regist" text="注册"></spring:message> "
                        class="btn btn-primary form-control width300 margin-top-10px" id="registerBtn">
             </div>
