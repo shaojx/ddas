@@ -161,6 +161,32 @@ public class UserInfoService {
     }
 
     /**
+     *首页推荐用户列表
+     *@author shaojx
+     *@date 2016/7/16 13:08
+     *@version 1.0
+     *@since 1.6
+     */
+    public Page queryUserListExcludeMeAndRecommend(int currentPage, int pageSize, UserInfo userInfo) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+        UserInfoCriteria userInfoCriteria = new UserInfoCriteria();
+        userInfoCriteria.setOrderByClause("updated_time");
+        userInfoCriteria.setLimitStart(page.getPageStart());
+        userInfoCriteria.setLimitEnd(pageSize);
+        UserInfoCriteria.Criteria criteria = userInfoCriteria.createCriteria();
+        criteria.andUserIdNotEqualTo(userInfo.getUserId());
+        criteria.andRecommendEqualTo("2");
+        if(currentPage==1){//如果是当前第一页，则要求总数
+            page.setTotalCount(userInfoMapper.countByExample(userInfoCriteria));
+        }
+        page.setDataList(userInfoMapper.selectByExample(userInfoCriteria));
+        // TODO: 2016/7/19 此处要去掉用户列表的密码信息
+        return page;
+    }
+
+    /**
      *根据用户名来查找注册的邮箱
      * @param userName 用户名
      *@author shaojx

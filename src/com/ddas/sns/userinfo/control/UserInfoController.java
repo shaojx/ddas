@@ -74,6 +74,23 @@ public class UserInfoController extends BaseController {
     }
 
     /**
+     * 拿到推荐的userList
+     *
+     * @param currentPage
+     * @param pageSize
+     * @param httpServletRequest
+     * @return com.ddas.common.page.Page
+     * @Author liuchen6
+     * @Date 2016/7/1 14:51
+     * @since JDK1.6
+     */
+    @RequestMapping(value = "/queryUserListExcludeMeAndRecommend", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public Page getUserListExcludeMeAndRecommend(int currentPage, int pageSize, HttpServletRequest httpServletRequest) {
+        return userInfoService.queryUserListExcludeMeAndRecommend(currentPage, pageSize, getLoginUser(httpServletRequest));
+    }
+
+    /**
      * 修改用户的头像照片
      *
      * @param headPhoto file 类型
