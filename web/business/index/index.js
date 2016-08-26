@@ -95,7 +95,7 @@ function getRecommendUserListExcludeMeData(pageNo){
     $("#recommendContentDiv").html("");//清空数据
     if(pageNo){
         $.ajax({
-            url:path+"/userInfo/queryUserListExcludeMe",
+            url:path+"/userInfo/queryUserListExcludeMeAndRecommend",
             type:"POST",
             data:{
                 "currentPage":pageNo,

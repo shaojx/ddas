@@ -94,7 +94,10 @@
                 </div>
             <ul class="nav nav-stacked  nav-pills" id="leftContent">
                 <li>
-                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="friendHomeBar"><img src="/common/images/n_left_huodong.png"><spring:message code="personalSpace" text="个人空间"></spring:message></a>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="friendHomeBar"><img src="/common/images/space.png"><spring:message code="personalSpace" text="个人空间"></spring:message></a>
+                </li>
+                <li>
+                    <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="liveHomeBar"><img src="/common/images/live.png"><spring:message code="liveSpace" text="直播间"></spring:message></a>
                 </li>
                 <li>
                     <a href="javascript:void (0);" data-memberid="${memberInfo.userId}" id="addFriendLeftBar"><img src="/common/images/add.gif"><spring:message code="addFriend" text="加为好友"></spring:message></a>
@@ -172,63 +175,8 @@
                 <aside>
                     <!-- sidebar-widget -->
                     <div class="sidebar-widget">
-                        <h3 class="sidebar-title">Recommend</h3>
-                        <div class="widget-container">
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
+                        <h3 class="sidebar-title"><spring:message code="recommend"></spring:message></h3>
+                        <div class="widget-container" id="recommendContentDiv">
                         </div>
                     </div>
                     <!-- sidebar-widget -->
