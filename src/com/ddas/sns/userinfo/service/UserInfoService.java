@@ -12,21 +12,21 @@ import com.ddas.common.page.Page;
 import com.ddas.common.util.StringUtil;
 import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
-import com.ddas.sns.userfriend.domain.UserFriendCriteria;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
-import com.sun.xml.internal.bind.v2.TODO;
-import org.apache.http.impl.client.TunnelRefusedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName:	UserInfoService
- * Function: 	todo ADD FUNCTION
+ * Function: 	用户信息的Service
  *
  * @author shaojunxiang
  * @date 13:59
@@ -34,6 +34,7 @@ import java.util.List;
  */
 @Service
 public class UserInfoService {
+    private static final Logger LOGGER= LoggerFactory.getLogger(UserInfoService.class);
     @Resource
     private UserInfoMapper userInfoMapper;
     /**
@@ -270,5 +271,48 @@ public class UserInfoService {
         //get new data
         UserInfo newUserInfo = userInfoMapper.selectByPrimaryKey(userInfo.getUserId());
         return newUserInfo;
+    }
+
+    /**
+     *更改用户的密码
+     * 返回值说明:
+     *<p> -9999 说明用户不存在，当作系统错误处理</p>
+     * <p>-1 输入的旧密码与数据库中的不一致</p>
+     *<p>200 表示更新成功</p>
+     * @param oldPwd 旧密码
+     * @param newPwd 新密码
+     * @param loginUserInfo 当前登录的用户
+     *@return java.util.Map<java.lang.String,java.lang.Object>
+     *@author shaojx
+     *@date 2016/8/26 23:15
+     *@version 1.0
+     *@since 1.6
+     */
+    public Map<String, Object> comparePwd(String oldPwd, String newPwd, UserInfo loginUserInfo) {
+        Map<String,Object> map=new HashMap<String, Object>();
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(loginUserInfo.getUserId());
+        if(userInfo==null){
+            LOGGER.error("用户为空--->更新用户密码时出错!",new RuntimeException());
+            map.put("success",false);
+            map.put("reason",-9999);
+            return map;
+        }
+        //输入旧密码与数据库中不一致
+       if(!StringUtil.equals(oldPwd,userInfo.getUserPwd())){
+           map.put("success",false);
+           map.put("reason",-1);
+           return map;
+       }
+
+       //update(new one for not UserInfo other data,e.g. userinfo in `session`)
+        UserInfo userinfo=new UserInfo();
+        userinfo.setUserId(loginUserInfo.getUserId());
+        userinfo.setUserPwd(newPwd);
+        int updateByPrimaryKeySelective = userInfoMapper.updateByPrimaryKeySelective(userinfo);
+        if(updateByPrimaryKeySelective==1){
+            map.put("success",true);
+            map.put("reason",200);//success
+        }
+        return map;
     }
 }

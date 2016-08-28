@@ -182,4 +182,34 @@ public class UserInfoController extends BaseController {
         }
         return msg;
     }
+
+    @RequestMapping("/changePwd")
+    @ResponseBody
+    public Msg changePwd(String oldPwd, String newPwd, String repeatPwd, HttpServletRequest request) {
+        Msg msg = new Msg();
+        if (StringUtil.isEmpty(oldPwd) || StringUtil.isEmpty(newPwd) || StringUtil.isEmpty(repeatPwd)) {
+            //nerver happen this
+            msg.setSuccessful(false);
+            msg.setMsg(getMsgByKeyViaLocal("login.sysError", request));
+            return msg;
+        }
+        Map<String, Object> stringObjectMap = userInfoService.comparePwd(oldPwd, newPwd, getLoginUser(request));
+        Boolean success = (Boolean) stringObjectMap.get("success");
+        if(success){//success
+            msg.setMsg(getMsgByKeyViaLocal("changePwd.success",request));
+            msg.setSuccessful(true);
+        }else{
+            int reason=(Integer)stringObjectMap.get("reason");
+            if(-9999==reason){//用户不存在，当作系统错误处理
+                msg.setSuccessful(false);
+                msg.setMsg(getMsgByKeyViaLocal("login.sysError", request));
+                return msg;
+            }else if(-1==reason){//输入的旧密码与数据库中不一致
+                msg.setSuccessful(false);
+                msg.setMsg(getMsgByKeyViaLocal("changePwd.notSame", request));
+                return msg;
+            }//....
+        }
+        return msg;
+    }
 }

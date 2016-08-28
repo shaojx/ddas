@@ -91,12 +91,7 @@
                 <div>
                     <img alt="120x120" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto"/>
                     <div style="text-align: center;">
-                        <a style="font-size: larger;margin-left: 15px;" href="javascript:void(0);">${userInfo.userName}</a>
-                        <a href="javascript:void(0);" style="margin-left: 10px;font-size: 12px;">
-                            <div style="width: 15px;display: inline-block;vertical-align: middle;
-                                    height: 15px;background-image: url('<%=path%>/common/images/modify.png')"></div>
-                            修改密码
-                        </a>
+                        <a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${userInfo.userName}</a>
                     </div>
                     <div style="height: 30px;margin-top: 10px;">
                         <img src="/common/images/golds_img.jpg">
