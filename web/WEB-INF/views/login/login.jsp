@@ -39,11 +39,50 @@
             MARGIN-LEFT: auto;
         }
     </style>
+    <script src="/business/login/js/sHover.min.js"></script>
+    <script>
+        window.onload=function(){
+            var a=new sHover("sHoverItem","sIntro");
+            a.set({
+                slideSpeed:5,
+                opacityChange:true,
+                opacity:80
+            });
+        }
+        function scrollToBottom(a){
+            if(windowHeight()){
+                clearInterval(a.scrollTimer);
+                var scrollSpeed=100;
+                a.scrollTimer=setInterval(function(){
+                    document.documentElement.scrollTop+=scrollSpeed;
+                    document.body.scrollTop+=scrollSpeed;
+                    if((document.documentElement.scrollTop>=(document.documentElement.scrollHeight-windowHeight()))||(document.body.scrollTop>=(document.documentElement.scrollHeight-windowHeight()))){
+                        clearInterval(a.scrollTimer);
+                    }
+                },13);
+            }else{
+                //a.setAttribute('href', 'http://www.baidu.com');
+            }
+        }
+        function windowHeight(){
+            if(document.documentElement){
+                return document.documentElement.clientHeight;
+            }else{
+                return document.body.clientHeight;
+            }
+        }
+    </script>
 </head>
 <body>
-<div class="container">
+<div class="header">
+    <a class="icon" onclick="baihe.bhtongji.tongji({'event':'0','spm':'4.10.56.257.1104'});" href="http://my.baihe.com/login">登 录</a>
+    <a class="logo" href="http://www.baihe.com">百合网·实名婚恋网开创者</a>
+    <h1><strong>1亿</strong>会员<span>|</span>实名婚恋网开创者<span>|</span>每天上千对牵手幸福！</h1>
+</div>
+
+<div class="container" style="position:fixed;z-index: 9999;top:50%;width: 420px;margin-left: -210px;left:50%;" >
     <section class="loginBox row-fluid">
-        <div class="center-block" style="text-align:center;" id="errorP">
+        <div id="errorP">
         </div>
         <form class="form-horizontal" style="margin-top: 10px;margin-left: 25px;" id="myForm" action="#">
             <DIV class="form-group width350">
@@ -116,5 +155,93 @@
         </div>
     </div>
 </div>
+<div id="part3" class="part">
+    <div class="container">
+        <div id="item1" class="sHoverItem">
+            <img id="img1" src="/business/login/images/1.jpg">
+				<span id="intro1" class="sIntro">
+					<h2>Flowers</h2>
+					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+				</span>
+        </div>
+        <div id="item2" class="sHoverItem">
+            <img src="/business/login/images/2.jpg">
+				<span class="sIntro">
+					<h2>You know</h2>
+					<p>one loves the sunset, when one is so sad</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/3.jpg">
+				<span class="sIntro">
+					<h2>For</h2>
+					<p>For she did not want him to see her crying. She was such a proud flower</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/4.jpg">
+				<span class="sIntro">
+					<h2>Volcanoes</h2>
+					<p>It is of some use to my volcanoes, and it is of some use to my flower, that I own them. But you are of no </p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/5.jpg">
+				<span class="sIntro">
+					<h2>I thought</h2>
+					<p>I thought that I was rich, with a flower that was unique in all the world; and all I had was a common</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/6.jpg">
+				<span class="sIntro">
+					<h2>For she</h2>
+					<p>For she did not want him to see her crying. She was such a proud flower</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/7.jpg">
+				<span class="sIntro">
+					<h2>Thorns</h2>
+					<p>She has only four thorns to defend herself against the world. And I have left on my planet, all alone!</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/8.jpg">
+				<span class="sIntro">
+					<h2>A little boy</h2>
+					<p>To me, you are still nothing more than a little boy who is just like a hundred thousand other little boys.</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/9.jpg">
+				<span class="sIntro">
+					<h2>And I</h2>
+					<p>And I have no need of you. And you, on your part, have no need of me.</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/10.jpg">
+				<span class="sIntro">
+					<h2>Foxes</h2>
+					<p>I am nothing more than a fox like a hundred thousand other foxes.</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/11.jpg">
+				<span class="sIntro">
+					<h2>Tame</h2>
+					<p>But if you tame me, then we shall need each other.</p>
+				</span>
+        </div>
+        <div class="sHoverItem">
+            <img src="/business/login/images/12.jpg">
+				<span class="sIntro">
+					<h2>Unique</h2>
+					<p>To me,you will be unique in all the world. To you, I shall be unique in all the world. </p>
+				</span>
+        </div>
+    </div><!-- /container -->
+</div><!-- /part3 -->
 </body>
 </html>
