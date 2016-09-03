@@ -126,3 +126,21 @@
     text-overflow:ellipsis;
     overflow:hidden;
 }
+/*语言条style*/
+.language {
+    font-size: 12px;
+    list-style: none;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: #fff;
+}
+.language li{
+   float:left;
+}
+.language a{
+  color:#fff;
+}
+.language a:hover{
+    color: #ffb911;
+}
