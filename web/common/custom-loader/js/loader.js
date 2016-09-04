@@ -23,7 +23,8 @@
            // bgColor: '#2ecc71', // Default background color
             bgColor:"#fcf5f1",//Default background color
             spinner: 'spinner7', // Default Spinner
-            imagePath: '' // Default Path custom image
+            imagePath: '', // Default Path custom image
+            reposition:false //是否要重新根据el的位置来重新定位loaderDiv的位置(默认为`否`)
         };
         var _options = $.extend(defaultOptions, options);//继承
         //Customized Spinners
@@ -63,6 +64,15 @@
                 isNull=false;
             }
            $(el).find("#loaderDiv").css({height:winH,width:winW});
+            //add by shaojx modifty 2016-9-4 重定位loaderDiv的位置
+            if(options.reposition){
+             //   var elPosition = $(el).position();
+                $(el).find("#loaderDiv").css({
+                    "position": "absolute",
+                    "top": "0",
+                    "left": "0"
+                })
+            }
         }
 
         //Center Spinner
@@ -93,6 +103,7 @@
         }
 
         function start() {
+            stop();
             var spinner = getSinner();
             $(_options.ele).append(containerDiv);//添加
             initLoaderDivCss();

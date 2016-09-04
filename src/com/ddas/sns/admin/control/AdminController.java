@@ -8,13 +8,17 @@
  */
 package com.ddas.sns.admin.control;
 
+import com.ddas.common.page.Page;
 import com.ddas.sns.common.BaseController;
+import com.ddas.sns.admin.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,6 +34,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/admin")
 public class AdminController extends BaseController{
     private static  final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
+
+    @Resource
+    private AdminService adminService;
 
     /**
      *admin 首页
@@ -90,5 +97,23 @@ public class AdminController extends BaseController{
         response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
         ModelAndView modelAndView=withLocal(request,"admin/giftInfos");
         return modelAndView;
+    }
+
+    /**
+     *获取所有的用户信息
+     * @param pageNo 当前页
+     * @param pageSize 每页的数据量
+     * @param request 当前请求
+     *@return com.ddas.common.page.Page
+     *@author shaojx
+     *@date 2016/9/5 0:04
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/findAllUserInfos")
+    @ResponseBody
+    public Page findAllUserInfos(int pageNo, int pageSize, HttpServletRequest request) {
+        Page page = adminService.findAllUserInfos(pageNo, pageSize, getLoginUser(request));
+        return page;
     }
 }

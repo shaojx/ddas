@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
     <script src="<%=path%>/common/jquery/jquery.js"></script>
     <script src="<%=path%>/common/bootstrap/js/bootstrap.min.js"></script>
+    <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--分页的JS--%>
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>

@@ -32,9 +32,12 @@
     <script src="<%=path%>/common/pixel-admin/js/ie.min.js" type="text/javascript"></script>
     <![endif]-->
     <%--pjax--%>
-  <script src="<%=path%>/common/pjax/jquery.pjax.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/pjax/jquery.pjax.js" type="text/javascript"></script>
    <%-- vue--%>
-    <script src="<%=path%>/common/vue/vue.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/vue/vue.js" type="text/javascript"></script>
+    <%--loading--%>
+    <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
+    <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <%--vue-resource--%>
    <%-- <script src="<%=path%>/common/vue/resource/vue-resource.min.js" type="text/javascript"></script>--%>
     <script type="text/javascript">
@@ -328,7 +331,7 @@
         </div>
     </div>
     <%--内容区--%>
-    <div id="content-wrapper">
+    <div id="content-wrapper" style="width: 100%;">
     </div>
 </div>
 <div id="main-menu-bg"></div>

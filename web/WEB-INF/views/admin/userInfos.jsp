@@ -29,7 +29,10 @@
     <%--vue--%>
     <script src="<%=path%>/common/vue/vue.js" type="text/javascript"></script>
     <%--vue-resource--%>
-    <script src="<%=path%>/common/vue/resource/vue-resource.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/common/vue/resource/vue-resource.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var path='<%=path%>';
+    </script>
 </head>
 <body>
 <div id="userInfoDiv">
@@ -50,7 +53,7 @@
                                 <span class="input-group-addon"
                                       style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i
                                         class="fa fa-search"></i></span>
-                            <input type="text" placeholder="Search..." class="form-control no-padding-hr"
+                            <input type="text" id="userInfoSearchTxt" placeholder="Search..." class="form-control no-padding-hr"
                                    style="border:none;background: #fff;background: rgba(0,0,0,.05);">
                         </div>
                     </form>
@@ -86,76 +89,16 @@
                 </tr>
                 </thead>
                 <tbody class="valign-middle">
-                <tr>
-                    <td>1</td>
+                <tr v-for="data in dataList">
+                    <td>{{$index+1}}</td>
                     <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#"
-                                                                                            title="">@rjang</a>
+                        <img  :src="data.headPhotoUrl | photoUrl" alt=""
+                             style="width:26px;height:26px;" class="rounded"/>
+                        &nbsp;&nbsp;
+                        <a href="#" title="">{{data.userEmail}}</a>
                     </td>
-                    <td>Robert Jang</td>
-                    <td>rjang@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@mbortz</a>
-                    </td>
-                    <td>Michelle Bortz</td>
-                    <td>mbortz@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@towens</a>
-                    </td>
-                    <td>Timothy Owens</td>
-                    <td>towens@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/5.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@dsteiner</a>
-                    </td>
-                    <td>Denise Steiner</td>
-                    <td>dsteiner@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#"
-                                                                                            title="">@rjang</a>
-                    </td>
-                    <td>Robert Jang</td>
-                    <td>rjang@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@mbortz</a>
-                    </td>
-                    <td>Michelle Bortz</td>
-                    <td>mbortz@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@towens</a>
-                    </td>
-                    <td>Timothy Owens</td>
-                    <td>towens@example.com</td>
+                    <td>{{data.userName}}</td>
+                    <td>{{data.userEmail}}</td>
                     <td></td>
                 </tr>
                 </tbody>
