@@ -43,7 +43,7 @@ public class PayService {
     private static final String clientID = "AdXFF0sPxNMYjNltGOGlwfbBvqFrsql7fOBv-_5ww0V4izpmmgzrCArQGblGhYoGX_IB2LrkpBavEs7c";
     private static final String clientSecret = "EMef1NW1OGzzHn-86cjxfXTEecNTEc3dklDRVQ9TwWKNUM1SnqzgfSjaNoACkaurSWsl355GVAEza-QD";
 
-    public String getRedirectUrl(String userId, String mount) throws PayPalRESTException {
+    public String getRedirectUrl(String userId, String mount, UserInfo userInfo) throws PayPalRESTException {
         APIContext context = new APIContext(clientID, clientSecret, "sandbox");
         // Create Payment Object
         Payer payer = new Payer();
@@ -61,8 +61,8 @@ public class PayService {
         futurePayment.setIntent("sale");
         futurePayment.setPayer(payer);
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8080/payfor/callBack?userid="+ userId);//userid全小写是因为返回来的参数名会自动全部小写
-        redirectUrls.setReturnUrl("http://localhost:8080/payfor/paypalProcess?userid="+ userId);
+        redirectUrls.setCancelUrl("http://localhost:8080/payfor/callBack?userid=" + userId + "&& hquserid=" +userInfo.getUserId());//userid全小写是因为返回来的参数名会自动全部小写
+        redirectUrls.setReturnUrl("http://localhost:8080/payfor/paypalProcess?userid=" + userId + "&& hquserid=" +userInfo.getUserId());
         futurePayment.setRedirectUrls(redirectUrls);
         futurePayment.setTransactions(transactions);
         Payment createdPayment = futurePayment.create(context);

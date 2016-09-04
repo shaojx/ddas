@@ -4,7 +4,10 @@
 }
 
 body {
-    background: #444 url(http://sandbox.runjs.cn/uploads/rs/418/nkls38xx/carbon_fibre_big.png)
+    margin: 0;
+    padding: 0;
+    background:white;
+    min-height: 400px;
 }
 
 .loginBox {
@@ -37,4 +40,98 @@ body {
     border-right: 1px solid #ccc;
     height: 100%;
     padding-right: 20px;
+}
+
+.sHoverItem {
+    width: 260px;
+    height: 180px;
+    margin:10px;
+    float: left;
+    font-family: "arial";
+}
+
+.header a.icon {
+    float:right;
+    width:92px;
+    height:32px;
+    margin:45px 50px 0 0;
+    font:18px/30px Microsoft Yahei;
+    color:#666;
+    text-align:center;
+    border:1px solid #ddd;
+    overflow:hidden;
+    zoom:1;
+}
+
+.header a.icon:hover {
+    border:1px solid #ff8000;
+    background:#ff8000;
+    color:#fff;
+}
+.header a.logo {
+    display:block;
+    float:left;
+    width:210px;
+    height:70px;
+    margin:10px 0 0 50px;
+    text-indent:-99999px;
+    background:url(/business/login/images/logo1.gif) no-repeat;
+    overflow:hidden;
+    zoom:1;
+}
+.header h1 {
+    float:left;
+    padding:47px 0 0;
+    font:16px/24px Microsoft Yahei;
+    color:#999;
+}
+.header h1 strong {
+    color:#ff8000;
+}
+.header h1 span {
+    padding:0 10px;
+    color:#ddd;
+}
+
+.header {
+    width: 100%;
+    height: 103px;
+}
+
+.sIntro {
+    background-color: rgb(235,137,112);
+    text-align: center;
+    font-family: "arial";
+}
+
+.sHoverItem img {
+    height:180px;
+    width:260px;
+}
+.sIntro h2 {
+    font-family: "arial";
+    font-size:36px;
+    text-align: center;
+    color: #FFF;
+    border-bottom: 1px dashed #fff;
+    margin:0px 20px;
+    padding:10px;
+}
+.sIntro p {
+    font-size:14px;
+    text-align: center;
+    color: #FFF;
+    margin:0px 10px;
+    padding: 10px;
+    color: #438199;
+}
+
+.sIntro button {
+    font-family: "arial";
+    font-size:16px;
+    color: white;
+    background-color: #0AB5DA;
+    border:none;
+    border-radius: 10px;
+    padding:4px 10px;
 }

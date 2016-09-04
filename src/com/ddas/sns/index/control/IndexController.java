@@ -52,7 +52,7 @@ public class IndexController extends BaseController{
     @RequestMapping("/gotoIndex")
     public ModelAndView gotoIndex(HttpServletRequest httpServletRequest){
         ModelAndView mav = withLocal(httpServletRequest, "index/index");
-
+        setLoginUserToSession(getLoginUser(httpServletRequest), httpServletRequest);
         return mav;
     }
 }

@@ -42,6 +42,7 @@ public class MySpaceController extends BaseController {
     @RequestMapping("/gotoIndex")
     public ModelAndView gotoIndex(HttpServletRequest request){
         ModelAndView modelAndView=withLocal(request,"/myspace/myHome");
+        setLoginUserToSession(getLoginUser(request), request);
         return modelAndView;
     }
 

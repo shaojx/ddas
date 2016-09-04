@@ -168,7 +168,7 @@ public class UserInfoService {
      *@version 1.0
      *@since 1.6
      */
-    public Page queryUserListExcludeMeAndRecommend(int currentPage, int pageSize, UserInfo userInfo) {
+    public Page queryUserListExcludeMeAndRecommend(int currentPage, int pageSize, String recommendType, UserInfo userInfo) {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
@@ -178,7 +178,7 @@ public class UserInfoService {
         userInfoCriteria.setLimitEnd(pageSize);
         UserInfoCriteria.Criteria criteria = userInfoCriteria.createCriteria();
         criteria.andUserIdNotEqualTo(userInfo.getUserId());
-        criteria.andRecommendEqualTo("2");
+        criteria.andRecommendLikeInsensitive("%" + recommendType + "%");
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userInfoMapper.countByExample(userInfoCriteria));
         }

@@ -6,6 +6,8 @@ import com.ddas.sns.common.BaseController;
 import com.ddas.sns.payfor.service.PayService;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.service.UserInfoService;
+import com.ddas.sns.userrechargerecords.domain.UserRechargeRecord;
+import com.ddas.sns.userrechargerecords.service.UserRechargeRecordService;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PaymentExecution;
 import com.paypal.base.rest.APIContext;
@@ -44,6 +46,9 @@ public class PayForController extends BaseController{
 
     @Resource
     private UserInfoService userInfoService;
+
+    @Resource
+    private UserRechargeRecordService userRechargeRecordService;
     /**
      *跳转到 充值中心 的首页
      *@return java.lang.String
@@ -70,11 +75,11 @@ public class PayForController extends BaseController{
      */
     @RequestMapping("/payPalRedirect")
     @ResponseBody
-    public Msg gotoPaypal(String userId, String payMethod, String mount){
+    public Msg gotoPaypal(String userId, String payMethod, String mount, HttpServletRequest request){
         String redirectUrl = "";
         if("1".equals(payMethod)) {//使用paypal支付
             try {
-                redirectUrl = payService.getRedirectUrl(userId, mount);
+                redirectUrl = payService.getRedirectUrl(userId, mount, getLoginUser(request));
             }catch(Exception e){
                 LOGGER.error("Paypal 支付失败！" + e.getMessage(), e);
             }
@@ -86,11 +91,9 @@ public class PayForController extends BaseController{
         return msg;
     }
 
-
-
     @RequestMapping("/paypalProcess")
     @ResponseBody
-    public Msg callBackForPaypal(String userid, String paymentId, String token, String PayerID){
+    public Msg callBackForPaypal(String userid, String paymentId, String token, String PayerID, String hquserid){//userid代表钱冲到哪个用户，hquserid代表花钱的用户ID
         APIContext context = new APIContext(clientID, clientSecret, "sandbox");
         Payment payment = new Payment();
         payment.setId(paymentId);
@@ -107,6 +110,8 @@ public class PayForController extends BaseController{
                 DecimalFormat df = new DecimalFormat("0.00");//保留两位小数，存到数据库
                 userInfo.setUserCoin(df.format(totalAmount));
                 userInfoService.saveUserInfo(userInfo);
+                userRechargeRecordService.saveRechargeRecords(userid, hquserid, payAmount);
+
                 msg.setMsg("支付成功！");
             }else {
                 msg.setMsg("支付失败！");

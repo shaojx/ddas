@@ -32,7 +32,7 @@
     <script type="text/javascript" src="<%=path%>/business/memberspace/js/memberSpace.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
 </head>
-<body>
+<body style=" background:url('<%=path%>/common/images/home_bg.png') ">
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -80,10 +80,10 @@
 
   </header>
   <section>
-            <div class="row">
+            <div class="row bg-white">
             <%--left content--%>
             <div class="col-md-2">
-                <div>
+                <div class="margin-top-10px">
                     <img alt="120x120" class="img-rounded width120 height120" src="${memberInfo.headPhotoUrl}" id="headPhoto"/>
                     <div style="text-align: center;"><a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${memberInfo.userName}</a></div>
                     <div style="height: 30px;margin-top: 10px;">
@@ -182,63 +182,7 @@
                     <!-- sidebar-widget -->
                     <div class="sidebar-widget">
                         <h3 class="sidebar-title">Recent visitor</h3>
-                        <div class="widget-container">
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="widget-post">
-                                <div class="post-image">
-                                    <a href="post.html"><img src="/common/images/90x60-1.jpg" alt=""></a>
-                                </div>
-                                <div class="post-body">
-                                    <h2><a href="post.html">Name...</a></h2>
-                                    <div class="post-meta">
-                                        <span><div><a href="#" class="dazhaohu" rel="54"><img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="#" rel="54" class="hy"><img src="/common/images/addfriends.gif"></a></div></span>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
+                        <div class="widget-container" id="recentVisitorContentDiv">
                     </div>
                 </aside>
             </div>

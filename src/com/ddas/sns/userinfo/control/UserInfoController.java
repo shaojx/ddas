@@ -86,8 +86,8 @@ public class UserInfoController extends BaseController {
      */
     @RequestMapping(value = "/queryUserListExcludeMeAndRecommend", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public Page getUserListExcludeMeAndRecommend(int currentPage, int pageSize, HttpServletRequest httpServletRequest) {
-        return userInfoService.queryUserListExcludeMeAndRecommend(currentPage, pageSize, getLoginUser(httpServletRequest));
+    public Page getUserListExcludeMeAndRecommend(int currentPage, int pageSize, String recommendType, HttpServletRequest httpServletRequest) {
+        return userInfoService.queryUserListExcludeMeAndRecommend(currentPage, pageSize, recommendType, getLoginUser(httpServletRequest));
     }
 
     /**

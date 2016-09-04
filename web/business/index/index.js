@@ -84,26 +84,28 @@ $(function () {
 });
 
 function init(){
-    getRecommendUserListExcludeMeData(1);//拿到首页的推荐用户的数据
+    getRecommendUserListExcludeMeData(1, "2", "#recommendContentDiv");//拿到首页的推荐用户的数据,2代表推荐的
+    getRecommendUserListExcludeMeData(1, "3", "#recentVisitorContentDiv");//拿到最近访问的用户的数据,3代表最近访问
 }
 
 /**
  * 获取首页的用户列表数据
  * @param pageNo 分页
  */
-function getRecommendUserListExcludeMeData(pageNo){
-    $("#recommendContentDiv").html("");//清空数据
+function getRecommendUserListExcludeMeData(pageNo, recommendType, containerId){//拿到首页的推荐用户的数据,2代表推荐的,拿到最近访问的用户的数据,3代表最近访问
+    $(containerId).html("");//清空数据
     if(pageNo){
         $.ajax({
             url:path+"/userInfo/queryUserListExcludeMeAndRecommend",
             type:"POST",
             data:{
                 "currentPage":pageNo,
-                "pageSize":5
+                "pageSize":5,
+                "recommendType":recommendType
             },
             dataType:"json",
             success:function(data){
-                initRecommendUserListData(data);
+                initRecommendUserListData(data, containerId);
             }
         })
     }
@@ -113,7 +115,7 @@ function getRecommendUserListExcludeMeData(pageNo){
  * 初始化好友相册分组的数据
  * @param data
  */
-function initRecommendUserListData(data) {
+function initRecommendUserListData(data, containerId) {
     var recommendUserListDivTemplete = 	'<article class="widget-post">'+
         '<div class="post-image">'+
         '<a target="_blank" href="_path/memberspace/gotoindex?memberid=_userId"><img class="width60 height60" src="${basePath}" alt=""></a>'+
@@ -122,7 +124,7 @@ function initRecommendUserListData(data) {
         '<h2><a target="_blank" href="_path/memberspace/gotoindex?memberid=_userId">${userNameVal}</a></h2>'+
         '<div class="post-meta">'+
         '<span><div><a href="#"  rel="54">'+
-        '<img src="/common/images/hi_img.jpg"></a>&nbsp;&nbsp;<a href="javascript:void(0)" id="_userId_addRecommendBtn" rel="54">'+
+        '<a href="javascript:void(0)" id="_userId_addRecommendBtn" rel="54">'+
         '<img src="/common/images/addfriends.gif"></a></div></span>'+
         '</div>'+
         '</div>'+
@@ -134,7 +136,7 @@ function initRecommendUserListData(data) {
         var _replace = recommendUserListDivTemplete.replace("${basePath}", photoUrl?photoUrl:path+"/common/images/people60x55.jpg")
             .replace("${userNameVal}", _data.userName).replace(/_userId/g, _data.userId)
             .replace(/_path/g, path);
-        $("#recommendContentDiv").append(_replace);
+        $(containerId).append(_replace);
         addRecommendAddBtnClickListener("#"+_data.userId+"_addRecommendBtn", _data.userId);
     }
     //添加头像加载失败的监听

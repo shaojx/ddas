@@ -53,6 +53,7 @@ public class MemberSpaceController extends BaseController {
         }
         modelAndView.addObject("memberInfo", memberInfo);
         request.getSession().setAttribute("memberInfo", memberInfo);
+        setLoginUserToSession(getLoginUser(request), request);
 
         return modelAndView;
     }
