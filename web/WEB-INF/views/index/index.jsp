@@ -50,22 +50,9 @@
                 <li><a href="javascript:void(0);" id="payCenterNavigation"><spring:message code="recharge" text="充值"></spring:message></a></li>
                 <li><a href="javascript:void(0);" id="giftNavigation"><spring:message code="gift" text="礼物"></spring:message></a></li>
             </ul>
-            <%--语言条--%>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="<%=path%>/index/gotoIndex?language=zh_CN">
-                        <spring:message code="chinese" text="中文"></spring:message>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%=path%>/index/gotoIndex?language=en_US">
-                        <spring:message code="english" text="英文"></spring:message>
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="clear: right;margin-right: 3px;">
                 <li id="logoutBtn"><a href="javascript:void(0)"><spring:message code="logout" text="退出"></spring:message></a></li>
-                <li><a href="#"><i class="fa fa-reddit"></i></a></li>
+               <%-- <li><a href="#"><i class="fa fa-reddit"></i></a></li>--%>
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
@@ -73,11 +60,23 @@
                 </div>
                 <button type="button" id="searchUserBtn" class="btn btn-default"><spring:message code="search" text="搜索"></spring:message></button>
             </form>
-
-
         </div>
-        <!--/.nav-collapse -->
+
     </div>
+    <%--语言条--%>
+    <ul class="language">
+        <li >
+            <a href="<%=path%>/index/gotoIndex?language=zh_CN">
+                <spring:message code="chinese" text="中文"></spring:message>
+            </a>
+            <span style="margin-right: 5px;">|</span>
+        </li>
+        <li style="float:left;">
+            <a href="<%=path%>/index/gotoIndex?language=en_US">
+                <spring:message code="english" text="英文"></spring:message>
+            </a>
+        </li>
+    </ul>
 </nav>
 
 <div class="container">

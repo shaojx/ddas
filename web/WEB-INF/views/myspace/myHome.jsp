@@ -36,14 +36,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-     <%--   <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>--%>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"></spring:message> </a></li>
@@ -53,26 +45,25 @@
                 <li><a href="javascript:void(0);" id="payCenterNavigation"><spring:message code="recharge" text="充值"></spring:message></a></li>
                 <li><a href="javascript:void(0);" id="giftNavigation"><spring:message code="gift" text="礼物"></spring:message></a></li>
             </ul>
-            <%--语言条--%>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="<%=path%>/index/gotoIndex?language=zh_CN">
-                        <spring:message code="chinese" text="中文"></spring:message>
-                    </a>
-                </li>
-                <li>
-                    <a href="<%=path%>/index/gotoIndex?language=en_US">
-                        <spring:message code="english" text="英文"></spring:message>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right"  style="clear: right;margin-right: 3px;">
                 <li id="logoutBtn"><a href="javascript:void(0)"><spring:message code="logout" text="退出"></spring:message></a></li>
-                <li><a href="#"><i class="fa fa-reddit"></i></a></li>
             </ul>
         </div>
     </div>
+    <%--语言条--%>
+    <ul class="language">
+        <li>
+            <a href="<%=path%>/index/gotoIndex?language=zh_CN">
+                <spring:message code="chinese" text="中文"></spring:message>
+            </a>
+            <span style="margin-right: 5px;">|</span>
+        </li>
+        <li>
+            <a href="<%=path%>/index/gotoIndex?language=en_US">
+                <spring:message code="english" text="英文"></spring:message>
+            </a>
+        </li>
+    </ul>
 </nav>
 
 <div class="container">
