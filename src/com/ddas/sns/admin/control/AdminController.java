@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * ClassName:	AdminController
@@ -31,7 +32,7 @@ public class AdminController extends BaseController{
     private static  final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
 
     /**
-     *升级会员页面
+     *admin 首页
      *@return java.lang.String 升级会员的页面
      *@author shaojx
      *@date 2016/7/8 21:45
@@ -44,4 +45,50 @@ public class AdminController extends BaseController{
         return mav;
     }
 
+    /**
+     *跳转到用户的信息页面
+     * @param request
+     *@return org.springframework.web.servlet.ModelAndView
+     *@author shaojx
+     *@date 2016/9/4 14:39
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/gotoUserInfos")
+    public ModelAndView gotoUserInfos(HttpServletRequest request, HttpServletResponse response){
+        response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
+        ModelAndView modelAndView=withLocal(request,"admin/userInfos");
+        return modelAndView;
+    }
+    /**
+     *跳转到充值记录的信息页面
+     * @param request
+     *@return org.springframework.web.servlet.ModelAndView
+     *@author shaojx
+     *@date 2016/9/4 14:39
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/gotoRecordsInfos")
+    public ModelAndView gotoRecordsInfos(HttpServletRequest request,HttpServletResponse response){
+        response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
+        ModelAndView modelAndView=withLocal(request,"admin/recordsInfos");
+        return modelAndView;
+    }
+
+    /**
+     *跳转到充值记录的信息页面
+     * @param request
+     *@return org.springframework.web.servlet.ModelAndView
+     *@author shaojx
+     *@date 2016/9/4 14:39
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/gotoGiftInfos")
+    public ModelAndView gotoGiftInfos(HttpServletRequest request,HttpServletResponse response){
+        response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
+        ModelAndView modelAndView=withLocal(request,"admin/giftInfos");
+        return modelAndView;
+    }
 }
