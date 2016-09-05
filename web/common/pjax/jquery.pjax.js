@@ -767,7 +767,14 @@ function executeScriptTags(scripts) {
     var matchedScripts = existingScripts.filter(function() {
       return this.src === src
     })
-    if (matchedScripts.length) return
+
+      //=========自定义=============
+      //  todo 原始 现在重新加载所有的js
+      //原始
+     //  if (matchedScripts.length) return
+      //修改后加入这一行代码
+      this.remove();
+      //===============自定义结束========================
 
     var script = document.createElement('script')
     var type = $(this).attr('type')

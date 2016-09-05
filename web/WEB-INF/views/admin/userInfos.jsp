@@ -30,6 +30,7 @@
     <script src="<%=path%>/common/vue/vue.js" type="text/javascript"></script>
     <%--vue-resource--%>
     <script src="<%=path%>/common/vue/resource/vue-resource.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <script type="text/javascript">
         var path='<%=path%>';
     </script>
@@ -53,7 +54,8 @@
                                 <span class="input-group-addon"
                                       style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i
                                         class="fa fa-search"></i></span>
-                            <input type="text" id="userInfoSearchTxt" placeholder="Search..." class="form-control no-padding-hr"
+                            <input type="text" id="userInfoSearchTxt" v-model="searchTxt" @keyup="loadDatas('1') | debounce 500"
+                                   placeholder="Search..." class="form-control no-padding-hr"
                                    style="border:none;background: #fff;background: rgba(0,0,0,.05);">
                         </div>
                     </form>
@@ -67,15 +69,9 @@
             <div class="panel-heading">
                 <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>用户信息</span>
                 <div class="panel-heading-controls">
-                    <ul class="pagination pagination-xs">
-                        <li><a href="#">«</a></li>
-                        <li class="active">
-                            <a href="javascript:void(0);" @click="clickPage('1')">1</a>
-                        </li>
-                        <li><a href="javascript:void(0);" @click="clickPage('2')">2</a></li>
-                        <li><a href="javascript:void(0);" @click="clickPage('3')">3</a></li>
-                        <li><a href="javascript:void(0);" @click="clickPage('>>')">»</a></li>
+                    <ul class="pagination pagination-xs" id="pageUl">
                     </ul>
+                    <span style="margin-left: 10px;">{{page.currentPage}}/{{page.totalPages}}页</span>
                 </div>
             </div>
             <table class="table">
@@ -83,8 +79,8 @@
                 <tr>
                     <th>#</th>
                     <th>Username</th>
-                    <th>Full Name</th>
                     <th>E-mail</th>
+                    <th>金币</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -95,10 +91,10 @@
                         <img  :src="data.headPhotoUrl | photoUrl" alt=""
                              style="width:26px;height:26px;" class="rounded"/>
                         &nbsp;&nbsp;
-                        <a href="#" title="">{{data.userEmail}}</a>
+                        <a href="#" title="">{{data.userName}}</a>
                     </td>
-                    <td>{{data.userName}}</td>
                     <td>{{data.userEmail}}</td>
+                    <td>{{data.userCoin?data.userCoin:'0'}}</td>
                     <td></td>
                 </tr>
                 </tbody>

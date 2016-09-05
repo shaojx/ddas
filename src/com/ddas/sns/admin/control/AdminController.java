@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * ClassName:	AdminController
@@ -112,8 +113,8 @@ public class AdminController extends BaseController{
      */
     @RequestMapping("/findAllUserInfos")
     @ResponseBody
-    public Page findAllUserInfos(int pageNo, int pageSize, HttpServletRequest request) {
-        Page page = adminService.findAllUserInfos(pageNo, pageSize, getLoginUser(request));
+    public Page findAllUserInfos(int pageNo, int pageSize, String searchTime,String searchTxt, HttpServletRequest request) {
+        Page page = adminService.findAllUserInfos(pageNo, pageSize,searchTime,searchTxt, getLoginUser(request));
         return page;
     }
 }

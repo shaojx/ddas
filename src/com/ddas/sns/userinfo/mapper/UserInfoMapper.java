@@ -3,6 +3,8 @@ package com.ddas.sns.userinfo.mapper;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {
@@ -93,4 +95,8 @@ public interface UserInfoMapper {
      * @mbggenerated Thu Aug 25 23:33:20 CST 2016
      */
     int updateByPrimaryKey(UserInfo record);
+
+    int countAllUsers(Map<String, Object> queryParams);
+
+    List<UserInfo> selectAllUsers(Map<String, Object> queryParams);
 }

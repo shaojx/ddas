@@ -38,6 +38,7 @@
     <%--loading--%>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <%--vue-resource--%>
    <%-- <script src="<%=path%>/common/vue/resource/vue-resource.min.js" type="text/javascript"></script>--%>
     <script type="text/javascript">

@@ -30,9 +30,11 @@
     <script src="<%=path%>/common/vue/vue.min.js" type="text/javascript"></script>
     <%--vue-resource--%>
     <script src="<%=path%>/common/vue/resource/vue-resource.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+
 </head>
 <body>
-<div>
+<div id="recordInfoDiv">
     <div class="page-header">
         <div class="row">
             <%--头部的字体--%>
@@ -161,5 +163,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="<%=path%>/business/admin/recordsInfos/recordsInfos.js"></script>
 </body>
 </html>
