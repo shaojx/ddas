@@ -52,7 +52,8 @@
                                 <span class="input-group-addon"
                                       style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i
                                         class="fa fa-search"></i></span>
-                            <input type="text" placeholder="Search..." class="form-control no-padding-hr"
+                            <input type="text" id="userInfoSearchTxt" v-model="searchTxt" @keyup="loadDatas('1') | debounce 500"
+                                   placeholder="Search..." class="form-control no-padding-hr"
                                    style="border:none;background: #fff;background: rgba(0,0,0,.05);">
                         </div>
                     </form>
@@ -66,12 +67,7 @@
             <div class="panel-heading">
                 <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>用户信息</span>
                 <div class="panel-heading-controls">
-                    <ul class="pagination pagination-xs">
-                        <li><a href="#">«</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">»</a></li>
+                    <ul class="pagination pagination-xs" id="recordPageUl">
                     </ul>
                 </div>
             </div>
@@ -79,85 +75,31 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Username</th>
-                    <th>Full Name</th>
-                    <th>E-mail</th>
-                    <th></th>
+                    <th>用户名</th>
+                    <th>充值帐户</th>
+                    <th>充值金额</th>
+                    <th>充值时间</th>
                 </tr>
                 </thead>
                 <tbody class="valign-middle">
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#"
-                                                                                            title="">@rjang</a>
-                    </td>
-                    <td>Robert Jang</td>
-                    <td>rjang@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@mbortz</a>
-                    </td>
-                    <td>Michelle Bortz</td>
-                    <td>mbortz@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@towens</a>
-                    </td>
-                    <td>Timothy Owens</td>
-                    <td>towens@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/5.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@dsteiner</a>
-                    </td>
-                    <td>Denise Steiner</td>
-                    <td>dsteiner@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#"
-                                                                                            title="">@rjang</a>
-                    </td>
-                    <td>Robert Jang</td>
-                    <td>rjang@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@mbortz</a>
-                    </td>
-                    <td>Michelle Bortz</td>
-                    <td>mbortz@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@towens</a>
-                    </td>
-                    <td>Timothy Owens</td>
-                    <td>towens@example.com</td>
-                    <td></td>
-                </tr>
+                    <tr v-for="data in dataList">
+                        <td>{{$index+1}}</td>
+                        <td>
+                            <img  :src="data.userPhotoUrl | photoUrl" alt=""
+                                  style="width:26px;height:26px;" class="rounded"/>
+                            &nbsp;&nbsp;
+                            <a href="#" title="">{{data.userName}}</a>
+                        </td>
+                        <td>
+                            <img  :src="data.rechargePhotoUrl | photoUrl" alt=""
+                                  style="width:26px;height:26px;" class="rounded"/>
+                            &nbsp;&nbsp;
+                            <a href="#" title="">{{data.rechargeUserName}}</a>
+                        </td>
+                        <td>{{data.rechargeMount?data.rechargeMount:'0'}}</td>
+                        <td>{{data.rechargeTime}}</td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

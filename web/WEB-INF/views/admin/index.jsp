@@ -56,8 +56,8 @@
                 class="hide-menu-text">HIDE MENU</span></button>
         <div class="navbar-inner">
             <div class="navbar-header">
-                <a href="index.html" class="navbar-brand">
-                    <div><img alt="Pixel Admin"
+                <a href="<%=path%>/admin/gotoIndex" class="navbar-brand">
+                    <div><img alt="Index"
                               src="<%=path%>/common/pixel-admin/images/pixel-admin/main-navbar-logo.png"></div>
                 </a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -269,8 +269,8 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                    <img src="<%=path%>/common/pixel-admin/demo/avatars/1.jpg" alt="">
-                                    <span>John Doe</span>
+                                    <img src="<%=path%>${userInfo.headPhotoUrl}" alt="">
+                                    <span>${userInfo.userName}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a>
@@ -295,9 +295,9 @@
         <div id="main-menu-inner">
             <div class="menu-content top" id="menu-content-demo">
                 <div>
-                    <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">John</span>
+                    <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">${userInfo.userName}</span>
                     </div>
-                    <img src="<%=path%>/common/pixel-admin/demo/avatars/1.jpg" alt="" class="">
+                    <img src="<%=path%>${userInfo.headPhotoUrl}" alt="" class="">
                     <div class="btn-group">
                         <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
                         <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>

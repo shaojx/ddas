@@ -1,5 +1,5 @@
 /*用户页面的view*/
-var userInfoMv=new Vue({
+var giftInfoMv=new Vue({
     data:{
         dataList:[],
         page:{
@@ -8,7 +8,7 @@ var userInfoMv=new Vue({
             "totalCount":0,
             "currentPage":1,
             "renderPages":2,//在页面上要显示的页数,默认为7页 //第一页数据是默认加载的关，所以要减1
-             "condition":{
+            "condition":{
                 "searchTime":""
             }
         },
@@ -23,31 +23,31 @@ var userInfoMv=new Vue({
     methods:{
         loadDatas:function (pageNo) {
             var vm=this;
-            $.ajax(path+"/admin/findAllUserInfos",{
-              dataType:"json",
-              data:{
-                  pageNo:pageNo,
-                  pageSize:vm.page.pageSize,
-                  searchTxt:vm.searchTxt,
-                  searchTime:vm.page.condition.searchTime
-              },
-              type:"POST",
-              success:function(data){
-                if(data){
-                    vm.dataList=data.dataList;
-                    vm.page.pageSize=data.pageSize;
-                    vm.page.totalCount=data.totalCount;
-                    vm.page.currentPage=data.currentPage;
-                   if(pageNo==1){//加载第一页数据的时才会加载相应的页数信息
-                       vm.page.totalPages=data.totalPages;
-                       createPagnation(1,data.totalPages);//创建分页
-                   }
-                   if(data.condition&&data.condition.searchTime){
-                        vm.page.condition.searchTime=data.condition.searchTime;
+            $.ajax(path+"/admin/findGiftInfos",{
+                dataType:"json",
+                data:{
+                    pageNo:pageNo,
+                    pageSize:vm.page.pageSize,
+                    searchTxt:vm.searchTxt,
+                    searchTime:vm.page.condition.searchTime
+                },
+                type:"POST",
+                success:function(data){
+                    if(data){
+                        vm.dataList=data.dataList;
+                        vm.page.pageSize=data.pageSize;
+                        vm.page.totalCount=data.totalCount;
+                        vm.page.currentPage=data.currentPage;
+                        if(pageNo==1){//加载第一页数据的时才会加载相应的页数信息
+                            vm.page.totalPages=data.totalPages;
+                            createGiftPagnation(1,data.totalPages);//创建分页
+                        }
+                        if(data.condition&&data.condition.searchTime){
+                            vm.page.condition.searchTime=data.condition.searchTime;
+                        }
                     }
                 }
-              }
-          })
+            })
         }
     },
     filters: {
@@ -57,10 +57,10 @@ var userInfoMv=new Vue({
     }
 });
 //由于使用Pjax，相当于动态创建了元素内容，要重新绑定相应的挂载点
-userInfoMv.$mount('#userInfoDiv');
+giftInfoMv.$mount('#giftInfoDiv');
 
-function createPagnation(pageIndex,totalPages){
-    $("#pageUl").html("");
+function createGiftPagnation(pageIndex,totalPages){
+    $("#giftPageUl").html("");
     if (pageIndex > totalPages || pageIndex < 1) {
         return;
     }
@@ -74,9 +74,9 @@ function createPagnation(pageIndex,totalPages){
             if (oldPage==newPage) {
                 return;
             } else {
-                userInfoMv.loadDatas(newPage);
+                giftInfoMv.loadDatas(newPage);
             }
         }
     };
-    $("#pageUl").bootstrapPaginator(options);
+    $("#giftPageUl").bootstrapPaginator(options);
 }

@@ -1,8 +1,11 @@
 package com.ddas.sns.gift.mapper;
 
+import com.ddas.sns.admin.dto.UserRechargeRecordDto;
 import com.ddas.sns.gift.domain.UserGift;
 import com.ddas.sns.gift.domain.UserGiftCriteria;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserGiftMapper {
@@ -93,4 +96,8 @@ public interface UserGiftMapper {
      * @mbggenerated Tue Aug 09 22:22:17 CST 2016
      */
     int updateByPrimaryKey(UserGift record);
+
+    int countAllRecords(Map<String, Object> queryParams);
+
+    List<UserRechargeRecordDto> selectAllRecords(Map<String, Object> queryParams);
 }

@@ -117,4 +117,40 @@ public class AdminController extends BaseController{
         Page page = adminService.findAllUserInfos(pageNo, pageSize,searchTime,searchTxt, getLoginUser(request));
         return page;
     }
+
+    /**
+     *获取所有的用户信息
+     * @param pageNo 当前页
+     * @param pageSize 每页的数据量
+     * @param request 当前请求
+     *@return com.ddas.common.page.Page
+     *@author shaojx
+     *@date 2016/9/5 0:04
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/findUserRechargeInfos")
+    @ResponseBody
+    public Page findUserRechargeInfos(int pageNo, int pageSize, String searchTime,String searchTxt, HttpServletRequest request) {
+        Page page = adminService.findUserRechargeInfos(pageNo, pageSize,searchTime,searchTxt, getLoginUser(request));
+        return page;
+    }
+
+    /**
+     *获取所有的用户信息
+     * @param pageNo 当前页
+     * @param pageSize 每页的数据量
+     * @param request 当前请求
+     *@return com.ddas.common.page.Page
+     *@author shaojx
+     *@date 2016/9/5 0:04
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/findGiftInfos")
+    @ResponseBody
+    public Page findGiftInfos(int pageNo, int pageSize, String searchTime,String searchTxt, HttpServletRequest request) {
+        Page page = adminService.findGiftInfos(pageNo, pageSize,searchTime,searchTxt, getLoginUser(request));
+        return page;
+    }
 }

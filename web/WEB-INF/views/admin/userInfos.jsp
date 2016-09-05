@@ -78,9 +78,9 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Username</th>
-                    <th>E-mail</th>
-                    <th>金币</th>
+                    <th>用户名</th>
+                    <th>邮 箱</th>
+                    <th>金 币</th>
                     <th></th>
                 </tr>
                 </thead>

@@ -30,14 +30,16 @@
     <script src="<%=path%>/common/vue/vue.min.js" type="text/javascript"></script>
     <%--vue-resource--%>
     <script src="<%=path%>/common/vue/resource/vue-resource.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
+
 </head>
 <body>
-<div>
+<div id="giftInfoDiv">
     <div class="page-header">
         <div class="row">
             <%--头部的字体--%>
             <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-dashboard page-header-icon"></i>
-                &nbsp;&nbsp;礼物统计信息
+                &nbsp;&nbsp;礼物记录统计信息
             </h1>
             <div class="col-xs-12 col-sm-8">
                 <div class="row">
@@ -50,7 +52,8 @@
                                 <span class="input-group-addon"
                                       style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i
                                         class="fa fa-search"></i></span>
-                            <input type="text" placeholder="Search..." class="form-control no-padding-hr"
+                            <input type="text" id="userInfoSearchTxt" v-model="searchTxt" @keyup="loadDatas('1') | debounce 500"
+                                   placeholder="Search..." class="form-control no-padding-hr"
                                    style="border:none;background: #fff;background: rgba(0,0,0,.05);">
                         </div>
                     </form>
@@ -64,12 +67,7 @@
             <div class="panel-heading">
                 <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>用户信息</span>
                 <div class="panel-heading-controls">
-                    <ul class="pagination pagination-xs">
-                        <li><a href="#">«</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">»</a></li>
+                    <ul class="pagination pagination-xs" id="giftPageUl">
                     </ul>
                 </div>
             </div>
@@ -77,83 +75,35 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Username</th>
-                    <th>Full Name</th>
-                    <th>E-mail</th>
-                    <th></th>
+                    <th>用户名</th>
+                    <th>对方帐户</th>
+                    <th>礼物名称</th>
+                    <th>礼物数量</th>
+                    <th>礼物单价</th>
+                    <th>礼物总价</th>
+                    <th>赠送时间</th>
                 </tr>
                 </thead>
                 <tbody class="valign-middle">
-                <tr>
-                    <td>1</td>
+                <tr v-for="data in dataList">
+                    <td>{{$index+1}}</td>
                     <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#"
-                                                                                            title="">@rjang</a>
+                        <img  :src="data.userPhotoUrl | photoUrl" alt=""
+                              style="width:26px;height:26px;" class="rounded"/>
+                        &nbsp;&nbsp;
+                        <a href="#" title="">{{data.userName}}</a>
                     </td>
-                    <td>Robert Jang</td>
-                    <td>rjang@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2</td>
                     <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@mbortz</a>
+                        <img  :src="data.rechargePhotoUrl | photoUrl" alt=""
+                              style="width:26px;height:26px;" class="rounded"/>
+                        &nbsp;&nbsp;
+                        <a href="#" title="">{{data.rechargeUserName}}</a>
                     </td>
-                    <td>Michelle Bortz</td>
-                    <td>mbortz@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@towens</a>
-                    </td>
-                    <td>Timothy Owens</td>
-                    <td>towens@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/5.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@dsteiner</a>
-                    </td>
-                    <td>Denise Steiner</td>
-                    <td>dsteiner@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#"
-                                                                                            title="">@rjang</a>
-                    </td>
-                    <td>Robert Jang</td>
-                    <td>rjang@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@mbortz</a>
-                    </td>
-                    <td>Michelle Bortz</td>
-                    <td>mbortz@example.com</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>
-                        <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt=""
-                             style="width:26px;height:26px;" class="rounded">&nbsp;&nbsp;<a href="#" title="">@towens</a>
-                    </td>
-                    <td>Timothy Owens</td>
-                    <td>towens@example.com</td>
+                    <td>{{data.giftName}}{{data.giftProperty=='0'?"(虚拟)":""}}</td>
+                    <td>{{data.giftCount}}</td>
+                    <td>{{data.giftPrice}}</td>
+                    <td>{{data.giftTotalPrice?data.giftTotalPrice:'0'}}</td>
+                    <td>{{data.createdTime}}</td>
                     <td></td>
                 </tr>
                 </tbody>
@@ -161,5 +111,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="<%=path%>/business/admin/giftInfos/giftInfos.js"></script>
 </body>
 </html>

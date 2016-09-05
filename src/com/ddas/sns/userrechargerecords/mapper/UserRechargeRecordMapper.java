@@ -1,8 +1,12 @@
 package com.ddas.sns.userrechargerecords.mapper;
 
+import com.ddas.sns.admin.dto.UserRechargeRecordDto;
+import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userrechargerecords.domain.UserRechargeRecord;
 import com.ddas.sns.userrechargerecords.domain.UserRechargeRecordCriteria;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserRechargeRecordMapper {
@@ -93,4 +97,9 @@ public interface UserRechargeRecordMapper {
      * @mbggenerated Sun Sep 04 16:05:14 CST 2016
      */
     int updateByPrimaryKey(UserRechargeRecord record);
+
+    int countAllRecords(Map<String, Object> queryParams);
+
+    List<UserRechargeRecordDto> selectAllRecords(Map<String, Object> queryParams);
+
 }
