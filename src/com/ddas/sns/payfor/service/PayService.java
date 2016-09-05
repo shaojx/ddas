@@ -61,8 +61,8 @@ public class PayService {
         futurePayment.setIntent("sale");
         futurePayment.setPayer(payer);
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8080/payfor/callBack?userid=" + userId + "&& hquserid=" +userInfo.getUserId());//userid全小写是因为返回来的参数名会自动全部小写
-        redirectUrls.setReturnUrl("http://localhost:8080/payfor/paypalProcess?userid=" + userId + "&& hquserid=" +userInfo.getUserId());
+        redirectUrls.setCancelUrl("http://localhost:8080/payfor/callBack?userid=" + userId + "&&hquserid=" + userInfo.getUserId());//userid全小写是因为返回来的参数名会自动全部小写
+        redirectUrls.setReturnUrl("http://localhost:8080/payfor/paypalProcess?userid=" + userId + "&&hquserid=" + userInfo.getUserId());
         futurePayment.setRedirectUrls(redirectUrls);
         futurePayment.setTransactions(transactions);
         Payment createdPayment = futurePayment.create(context);

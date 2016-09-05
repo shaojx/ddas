@@ -93,7 +93,7 @@ public class PayForController extends BaseController{
 
     @RequestMapping("/paypalProcess")
     @ResponseBody
-    public Msg callBackForPaypal(String userid, String paymentId, String token, String PayerID, String hquserid){//userid代表钱冲到哪个用户，hquserid代表花钱的用户ID
+    public ModelAndView callBackForPaypal(String userid, String paymentId, String token, String PayerID, String hquserid, HttpServletRequest request){//userid代表钱冲到哪个用户，hquserid代表花钱的用户ID
         APIContext context = new APIContext(clientID, clientSecret, "sandbox");
         Payment payment = new Payment();
         payment.setId(paymentId);
@@ -112,15 +112,17 @@ public class PayForController extends BaseController{
                 userInfoService.saveUserInfo(userInfo);
                 userRechargeRecordService.saveRechargeRecords(userid, hquserid, payAmount);
 
-                msg.setMsg("支付成功！");
+                msg.setMsg("Pay Success，the balance on your account is <strong>" + userAmount + " </strong>coins");
             }else {
-                msg.setMsg("支付失败！");
+                msg.setMsg("Pay failed！Please contact customer service.");
             }
         }catch(Exception e){
             LOGGER.error(e.getMessage(), e);
-            msg.setMsg("支付失败！");
+            msg.setMsg("Pay failed！Please contact customer service.");
         }
 
-        return msg;
+        ModelAndView mav = withLocal(request, "payfor/callBack");
+        mav.addObject("msg", msg);
+        return mav;
     }
 }

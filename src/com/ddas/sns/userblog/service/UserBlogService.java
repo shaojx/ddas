@@ -50,7 +50,7 @@ public class UserBlogService {
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
         UserBlogCriteria userBlogCriteria = new UserBlogCriteria();
-        userBlogCriteria.setOrderByClause("created_time");
+        userBlogCriteria.setOrderByClause("created_time desc");
         userBlogCriteria.setLimitStart(page.getPageStart());
         userBlogCriteria.setLimitEnd(pageSize);
         UserBlogCriteria.Criteria criteria = userBlogCriteria.createCriteria();

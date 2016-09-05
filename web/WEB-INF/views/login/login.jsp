@@ -75,9 +75,22 @@
 </head>
 <body>
 <div class="header">
-    <a class="icon" onclick="baihe.bhtongji.tongji({'event':'0','spm':'4.10.56.257.1104'});" href="http://my.baihe.com/login">登 录</a>
-    <a class="logo" href="http://www.baihe.com">百合网·实名婚恋网开创者</a>
-    <h1><strong>1亿</strong>会员<span>|</span>实名婚恋网开创者<span>|</span>每天上千对牵手幸福！</h1>
+    <a class="icon" onclick="baihe.bhtongji.tongji({'event':'0','spm':'4.10.56.257.1104'});" href="/login/gotoRegister"><spring:message code="register.regist" text="注册"/></a>
+    <a class="logo" href=""></a>
+    <h1><strong>Million</strong> members<span>|</span>Friends from all over the world<span>|</span>Just High</h1>
+    <ul class="language" style="color: black">
+        <li>
+            <a href="/login/gotoLoginPage?language=zh_CN" style="color: black">
+                中文
+            </a>
+            <span style="margin-right: 5px;">|</span>
+        </li>
+        <li style="float:left;">
+            <a href="/login/gotoLoginPage?language=en_US" style="color: black">
+                English
+            </a>
+        </li>
+    </ul>
 </div>
 
 <div class="container" style="position:fixed;z-index: 9999;top:50%;width: 420px;margin-left: -210px;left:50%;" >
@@ -106,7 +119,7 @@
                     <span ><a href="javascript:void(0);" id="forgetPwd" style="margin-left: 15px;"  data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#resetPwdDialog">
                         <spring:message code="forgetPwd" text="忘记密码?"></spring:message>
                     </a></span>
-                    <span class="col-md-offset-7 margin-top-10px">
+                    <span class="col-md-offset-6 margin-top-10px">
                         <spring:message code="noAccount" text="没有帐号?"></spring:message>
                         <a href="javascript:void(0);" id="registerBtn">
                             <spring:message code="register.regist" text="注 册"></spring:message>
