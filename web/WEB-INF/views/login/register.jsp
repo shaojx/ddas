@@ -90,7 +90,7 @@
         </li>
         <li style="float:left;">
             <a href="/login/gotoLoginPage?language=en_US" style="color: black">
-                英文
+                English
             </a>
         </li>
     </ul>

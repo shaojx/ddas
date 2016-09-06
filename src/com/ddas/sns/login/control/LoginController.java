@@ -15,6 +15,7 @@ import com.ddas.sns.common.BaseController;
 import com.ddas.sns.login.service.MailService;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.service.UserInfoService;
+import com.ddas.sns.util.AddressUtils;
 import com.ddas.sns.util.DESCoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +110,7 @@ public class LoginController extends BaseController {
             msg.setMsg(msgByKey);
             return msg;
         }
+
         boolean loginInResult = userInfoFromDb != null;
         if (loginInResult) {
             if (remeberme != null && remeberme.equals("true")) {//保存用户名到cookie
@@ -119,6 +121,20 @@ public class LoginController extends BaseController {
                 response.addCookie(userPwdCookie);
                 response.addCookie(userRemermeCookie);
             }
+
+            try {//记录登录IP和地址
+                String ip = "";
+                String address = "";
+                AddressUtils addressUtils = new AddressUtils();
+                ip = addressUtils.getIpAddr(request);
+                address = addressUtils.getAddresses(ip, "utf-8");
+                userInfoFromDb.setLoginIp(ip);
+                userInfoFromDb.setLoginAddress(address);
+                userInfoService.save(userInfoFromDb);
+            }catch (Exception e){
+                LOGGER.error(e.getMessage(), e);
+            }
+
             setLoginUserToSession(userInfoFromDb, request);
             Msg msg = new Msg();
             msg.setMsg("success");
@@ -183,12 +199,23 @@ public class LoginController extends BaseController {
     @ResponseBody
     public Msg register(@RequestBody UserInfo userInfo, String repeatPwd, HttpServletRequest request) {
         boolean save = false;
+
         try {
-            save = userInfoService.save(userInfo);
+            String ip = "";
+            String address = "";
+            AddressUtils addressUtils = new AddressUtils();
+            ip = addressUtils.getIpAddr(request);
+            address = addressUtils.getAddresses(ip, "utf-8");
+            userInfo.setLoginIp(ip);
+            userInfo.setLoginAddress(address);
+            if (address.contains("中国")) {
+                userInfo.setUserStatus("0");//用0表示中国用户，后面会进行登录审核
+            }
         }catch (Exception e){
             LOGGER.error(e.getMessage(), e);
         }
 
+        save = userInfoService.save(userInfo);
         if (save) {
             Msg msg = new Msg();
             Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);

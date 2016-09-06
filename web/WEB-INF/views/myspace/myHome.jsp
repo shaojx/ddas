@@ -39,7 +39,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="<%=path%>/index/gotoIndex"><spring:message code="index" text="首页"></spring:message> </a></li>
-                <li id="mySpaceNav"><a href="<%=path%>/myspace/gotoIndex"><spring:message code="home" text="个人主页"></spring:message></a></li>
+                <li id="mySpaceNav"><a href="<%=path%>/myspace/gotoIndex"><spring:message code="mySpace" text="个人主页"></spring:message></a></li>
                 <li><a href="javascript:void(0);"id="friendsNavigation"><spring:message code="friends" text="我的好友"></spring:message></a></li>
                 <li><a href="javascript:void(0);" id="levelVipNavigation"><spring:message code="upgrade" text="升级"></spring:message></a></li>
                 <li><a href="javascript:void(0);" id="payCenterNavigation"><spring:message code="recharge" text="充值"></spring:message></a></li>

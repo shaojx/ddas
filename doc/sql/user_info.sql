@@ -34,7 +34,7 @@ CREATE TABLE `user_info` (
   `user_declaration` varchar(50) DEFAULT NULL COMMENT '交友誓言',
   `user_enroll` varchar(50) DEFAULT NULL COMMENT '年收入(只存储数据字典值)',
   `user_marry_status` varchar(50) DEFAULT NULL COMMENT '婚姻状态(只存储数据字典值)',
-  `user_status` varchar(50) DEFAULT NULL COMMENT '用户状态(可以对用户进行相应的限制)',
+  `user_status` varchar(50) DEFAULT NULL COMMENT '用户状态(可以对用户进行相应的限制,0表示中国用户,需要审核)',
   `created_time` varchar(32) DEFAULT NULL COMMENT '创建时间',
   `updated_time` varchar(32) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`user_id`)

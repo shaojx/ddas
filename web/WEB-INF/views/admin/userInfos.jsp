@@ -81,6 +81,7 @@
                     <th>用户名</th>
                     <th>邮 箱</th>
                     <th>金 币</th>
+                    <th>登录地址</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -95,6 +96,7 @@
                     </td>
                     <td>{{data.userEmail}}</td>
                     <td>{{data.userCoin?data.userCoin:'0'}}</td>
+                    <td>{{data.loginAddress?data.loginAddress:' '}}</td>
                     <td></td>
                 </tr>
                 </tbody>

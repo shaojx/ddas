@@ -110,10 +110,15 @@ public class UserInfoService {
             return false;
         }
         String currentDateTime = DateUtil.getCurrentDateString();
-        userInfo.setUserId(UUIDUtil.createUUID16());//id
-        userInfo.setCreatedTime(currentDateTime);
         userInfo.setUpdatedTime(currentDateTime);
-        userInfoMapper.insertSelective(userInfo);
+        if (StringUtil.isEmpty(userInfo.getUserId())) {//如果用户ID不存在，表明是新建的用户
+            userInfo.setUserId(UUIDUtil.createUUID16());//id
+            userInfo.setCreatedTime(currentDateTime);
+            userInfoMapper.insertSelective(userInfo);
+        }else{
+            userInfoMapper.updateByPrimaryKeySelective(userInfo);
+        }
+
         return true;
     }
 

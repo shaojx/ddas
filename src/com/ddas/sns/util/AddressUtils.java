@@ -1,5 +1,7 @@
 package com.ddas.sns.util;
 
+import com.ddas.common.util.StringUtil;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 根据IP地址获取详细的地域信息
@@ -27,7 +30,6 @@ public class AddressUtils {
         String returnStr = this.getResult(urlStr, content, encodingString);
         if (returnStr != null) {
             // 处理返回的省市区信息
-            System.out.println(returnStr);
             String[] temp = returnStr.split(",");
             if (temp.length < 3) {
                 return "0";//无效IP，局域网测试
@@ -71,7 +73,7 @@ public class AddressUtils {
             }
 
             System.out.println(country + "=" + area + "=" + region + "=" + city + "=" + county + "=" + isp);
-            return region;
+            return country + region + city + country + isp;
         }
         return null;
     }
@@ -192,11 +194,42 @@ public class AddressUtils {
         return outBuffer.toString();
     }
 
+    /**
+     * 获取访问者IP
+     *
+     * 在一般情况下使用Request.getRemoteAddr()即可，但是经过nginx等反向代理软件后，这个方法会失效。
+     *
+     * 本方法先从Header中获取X-Real-IP，如果不存在再从X-Forwarded-For获得第一个IP(用,分割)，
+     * 如果还不存在则调用Request .getRemoteAddr()。
+     *
+     * @param request
+     * @return
+     */
+    public String getIpAddr(HttpServletRequest request) {
+        String ip = request.getHeader("X-Real-IP");
+        if (!StringUtil.isBlank(ip) && !"unknown".equalsIgnoreCase(ip)) {
+            return ip;
+        }
+        ip = request.getHeader("X-Forwarded-For");
+        if (!StringUtil.isBlank(ip) && !"unknown".equalsIgnoreCase(ip)) {
+            // 多次反向代理后会有多个IP值，第一个为真实IP。
+            int index = ip.indexOf(',');
+            if (index != -1) {
+                return ip.substring(0, index);
+            } else {
+                return ip;
+            }
+        } else {
+            return request.getRemoteAddr();
+        }
+    }
+
     // 测试
     public static void main(String[] args) {
         AddressUtils addressUtils = new AddressUtils();
         // 测试ip 219.136.134.157 中国=华南=广东省=广州市=越秀区=电信
-        String ip = "125.70.11.136";
+        //String ip = "125.70.11.136";
+        String ip = "119.75.218.70";
         String address = "";
         try {
             address = addressUtils.getAddresses("ip=" + ip, "utf-8");

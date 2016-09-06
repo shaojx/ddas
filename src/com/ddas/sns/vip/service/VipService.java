@@ -7,12 +7,10 @@ import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
-import com.ddas.sns.vip.domain.UserVipInfo;
-import com.ddas.sns.vip.domain.UserVipInfoCriteria;
-import com.ddas.sns.vip.domain.VipPrivs;
-import com.ddas.sns.vip.domain.VipPrivsCriteria;
+import com.ddas.sns.vip.domain.*;
 import com.ddas.sns.vip.mapper.UserVipInfoMapper;
 import com.ddas.sns.vip.mapper.VipPrivsMapper;
+import com.ddas.sns.vip.mapper.VipRechargeRecordMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +39,9 @@ public class VipService extends BaseService {
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    @Autowired
+    private VipRechargeRecordMapper vipRechargeRecordMapper;
 
     /**
      *根据VIP的类型来获取相应的权限信息
@@ -182,6 +183,17 @@ public class VipService extends BaseService {
         userVipInfo.setVipEndStart(vipEndTime);
 
         userVipInfoMapper.insertSelective(userVipInfo);
+
+        //存储到vip record表中
+        VipRechargeRecord vipRechargeRecord = new VipRechargeRecord();
+        vipRechargeRecord.setRecordsId(UUIDUtil.createUUID16());
+        vipRechargeRecord.setUserId(userInfo.getUserId());
+        vipRechargeRecord.setRechargeToUser(userId);
+        vipRechargeRecord.setRechargeDate(DateUtil.getCurrentDateString());
+        vipRechargeRecord.setVipCode(vipCode);
+        vipRechargeRecord.setRechargeMoneyCount(String.valueOf(totalPrice));
+        vipRechargeRecord.setRechargeMonthsCount(String.valueOf(vipTime));
+        vipRechargeRecordMapper.insertSelective(vipRechargeRecord);
 
         return true;
     }

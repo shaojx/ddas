@@ -99,6 +99,7 @@ function addImgLoadedFailedListener() {
 function addAddBtnClickListener(addUserBtnId, friendId){
     $(addUserBtnId).click(function () {
         $.confirm({
+            container:window.top.document.body,
             content:indexMsg.confirmAddFriend,
             confirm:function () {
                 $.ajax({
