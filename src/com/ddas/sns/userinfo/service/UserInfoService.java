@@ -37,6 +37,12 @@ public class UserInfoService {
     private static final Logger LOGGER= LoggerFactory.getLogger(UserInfoService.class);
     @Resource
     private UserInfoMapper userInfoMapper;
+    /*user_info表中status为'9999'时来表明为一个管理员用户*/
+    public static final String ADMIN_TEMP_FLAG = "9999";
+
+    /*Admin密码写死*/
+    private static  final String ADMIN_PWD="feca5b56a3c2799bc896fbb59ff998da";
+
     /**
      * 根据用户ID找到用户
      * @author liuchen
@@ -319,5 +325,26 @@ public class UserInfoService {
             map.put("reason",200);//success
         }
         return map;
+    }
+
+    public UserInfo loginInProxyByAdmin(UserInfo userInfo) {
+        // FIXME: 2016/9/8 admin 用户登录
+        if("admin".equals(userInfo.getUserName())&&ADMIN_PWD.equals(userInfo.getUserPwd())){
+            return userInfo;
+        }else {
+            return null;
+        }
+      /*  if (userInfo == null) {
+            return null;
+        }
+        UserInfoCriteria example = new UserInfoCriteria();
+        UserInfoCriteria.Criteria criteria = example.createCriteria();
+        criteria.andUserNameEqualTo(userInfo.getUserName()).andUserPwdEqualTo(userInfo.getUserPwd())
+                .andUserStatusEqualTo(ADMIN_TEMP_FLAG);
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
+        if (userInfos != null && userInfos.size() == 1) {//有且只有一条记录
+            return userInfos.get(0);
+        }
+        return null;*/
     }
 }

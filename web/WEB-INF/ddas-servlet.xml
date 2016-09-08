@@ -61,8 +61,20 @@
            <mvc:exclude-mapping path="/login/fetchEmailByUserName"/>
            <mvc:exclude-mapping path="/login/gotoResetPwdPage"/>
            <mvc:exclude-mapping path="/login/doResetPwd"/>
+
+           <!--admin一些action-->
+           <mvc:exclude-mapping path="/admin/**"/>
            <bean id="loginInterceptor" class="com.ddas.common.interceptor.LoginRequiredInterceptor"/>
        </mvc:interceptor>
+
+        <!--admin 登录拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <!--登录限制-->
+            <mvc:exclude-mapping path="/admin/gotoLogin"/>
+            <mvc:exclude-mapping path="/admin/in"/>
+            <bean class="com.ddas.common.interceptor.AdminLoginRequiredInterceptor"/>
+        </mvc:interceptor>
 
         <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="language"/>

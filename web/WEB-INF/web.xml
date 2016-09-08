@@ -45,11 +45,11 @@
   
   <error-page>
   	<error-code>404</error-code>
-  	<location>/404</location>
+  	<location>/WEB-INF/views/errorpages/pages-404.jsp</location>
   </error-page>
   <error-page>
   	<error-code>500</error-code>
-  	<location>/500</location>
+  	<location>/WEB-INF/views/errorpages/pages-500.jsp</location>
   </error-page>
 
 

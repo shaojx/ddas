@@ -305,6 +305,16 @@ public class LoginController extends BaseController {
             msg.setSuccessful(false);
             msg.setMsg("login.resetPwd.error");
             LOGGER.error("用户id为空,重置失败!",new IllegalArgumentException());
+            return msg;
+        }
+        //check user is existed(when the server is shut down,so the DESCoder will not be same as the last instance,
+        // so check user info for secure!) this will be optimze in the future! // FIXME: 2016/9/8
+        UserInfo userInfo = userInfoService.fetchUserInfoByUserId(userId);
+        if(userInfo==null){
+            msg.setSuccessful(false);
+            msg.setMsg("login.resetPwd.error");
+            LOGGER.error("找不到对应的用户信息(可以在期间重启了服务器--导致加密实例不一致！),重置失败!",new IllegalArgumentException());
+            return msg;
         }
         int count = userInfoService.resetPwd(userId, resetPwd);
         if(count==1){
