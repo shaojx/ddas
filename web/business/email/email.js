@@ -5,6 +5,7 @@ var CONST_FRIEND = "1";//1代表已经添加的好友
 var reply_to_eamil_id=null;//记录当前回复的邮件(点开详情页"回复"以及直接"回复"有用)
 var EMAIL_DETAIL_PAGE_SIZE=5;//默认一页显示5条记录
 var click_new_email_by_reply=false;//标记是否为直接回复才而点击`新建邮件`tab页
+var default_head_photo="/common/images/people.jpg";
 var userFriendCondition = {
     pageNo:1,
     friendNameCondition:"",
@@ -235,7 +236,7 @@ function initEmailSendData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = emailSendDivTemplete.replace("${basePath}", path+_data.receiverHeadPhotoUrl)
+        var _replace = emailSendDivTemplete.replace("${basePath}", path+(_data.receiverHeadPhotoUrl?_data.receiverHeadPhotoUrl:default_head_photo))
             .replace("${emailReceiver}", _data.emailReceiverName)
             .replace(/emailContentVal/g, _data.emailContent)
             .replace("${createdTime}", _data.createdTime);
@@ -323,7 +324,7 @@ function initEmailReceiveData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = emailReceiveDivTemplete.replace("${basePath}", path+_data.senderHeadPhotoUrl)
+        var _replace = emailReceiveDivTemplete.replace("${basePath}", path+(_data.senderHeadPhotoUrl?_data.senderHeadPhotoUrl:default_head_photo))
             .replace("${emailReceiver}", _data.emailSenderName)
             .replace(/emailContentVal/g, _data.emailContent)
             .replace("${createdTime}", _data.createdTime)
