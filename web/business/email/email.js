@@ -224,8 +224,9 @@ function initEmailSendPagination(pageData) {
  * @param data
  */
 function initEmailSendData(data) {
+    /*/common/images/people.jpg*/
     var emailSendDivTemplete = '<div class="panel panel-default ">'+
-        '<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
+        '<img src="${basePath}" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
         '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
@@ -234,12 +235,13 @@ function initEmailSendData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = emailSendDivTemplete.replace("${basePath}", path)
+        var _replace = emailSendDivTemplete.replace("${basePath}", path+_data.receiverHeadPhotoUrl)
             .replace("${emailReceiver}", _data.emailReceiverName)
             .replace(/emailContentVal/g, _data.emailContent)
             .replace("${createdTime}", _data.createdTime);
         $("#sendEmailListDiv").append(_replace);
     }
+    addImageLoadFailedListener("#sendEmailListDiv");
 }
 
 /**
@@ -306,8 +308,9 @@ function initEmailReceivePagination(pageData) {
  * @param data
  */
 function initEmailReceiveData(data) {
+    /*/common/images/people.jpg*/
     var emailReceiveDivTemplete = '<div class="panel panel-default ">'+
-        '<img src="${basePath}/common/images/people.jpg" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
+        '<img src="${basePath}" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
         '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
@@ -320,7 +323,7 @@ function initEmailReceiveData(data) {
     var list = data.dataList;
     for (var index in list) {
         var _data = list[index];
-        var _replace = emailReceiveDivTemplete.replace("${basePath}", path)
+        var _replace = emailReceiveDivTemplete.replace("${basePath}", path+_data.senderHeadPhotoUrl)
             .replace("${emailReceiver}", _data.emailSenderName)
             .replace(/emailContentVal/g, _data.emailContent)
             .replace("${createdTime}", _data.createdTime)
@@ -332,6 +335,14 @@ function initEmailReceiveData(data) {
         //添加监听事件
         addListener(_data.ueId);
     }
+
+    addImageLoadFailedListener("#receiveEmailListDiv");
+}
+
+function addImageLoadFailedListener(divId) {
+    $(divId).find("img").error(function () {
+        $(this).attr("src",path+"/common/images/people.jpg");
+    })
 }
 /**
  * 添加监听事件
