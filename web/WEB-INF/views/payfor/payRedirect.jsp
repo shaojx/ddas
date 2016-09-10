@@ -10,6 +10,7 @@
 </head>
 <body>
 <div>正跳转到支付页面...</div>
+<input type="hidden" id="payMethod" value="${payMethod}">
 <form name="form_starPay" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="cmd" value="_xclick">
     <!--input type="hidden" name="business" value="ijfhkjhfjdksg@163.com"-->
@@ -26,28 +27,27 @@
 </form>
 
 <form name="cashU_payment_info" action="https://www.payssion.com/payment/create.html" method="post">
-    <input type="hidden" name="api_key" value="57a5993533c46c75">
-    <input type="hidden" name="api_sig" value="">
-    <input type="hidden" name="pm_id" value="">
-    <input type="hidden" name="track_id" value="1-1473431258">
-    <input type="hidden" name="sub_track_id" value="413-413">
+    <input type="hidden" name="api_key" value="${apiKey}">
+    <input type="hidden" name="api_sig" value="${apiSig}">
+    <input type="hidden" name="pm_id" value="${payssionMethod}">
+    <input type="hidden" name="track_id" value="${tracId}">
+    <input type="hidden" name="sub_track_id" value="${custom}">
     <input type="hidden" name="description" value="recharge">
-    <input type="hidden" name="amount" value="100">
+    <input type="hidden" name="amount" value="${amount}">
     <input type="hidden" name="currency" value="USD">
     <input type="hidden" name="language" value="en">
-    <input type="hidden" name="notify_url" value="http://www.feelcome.com/index.php?c=payssion">
-    <input type="hidden" name="success_url" value="http://www.feelcome.com/index.php?c=payssion">
-    <input type="hidden" name="redirect_url" value="http://www.feelcome.com/index.php?c=payssion">
+    <input type="hidden" name="notify_url" value="http://localhost:8080/payfor/paypalProcessPayssion">
+    <input type="hidden" name="success_url" value="http://localhost:8080/payfor/paypalProcessPayssion">
+    <input type="hidden" name="redirect_url" value="http://localhost:8080/payfor/paypalProcessPayssion">
     <input style="visibility:hidden" type="submit" value="Submit">
 </form>
 <script>
     $(function(){
-        if("1"=="1"){
+        if($("#payMethod").val()=="1"){
             $("form[name='form_starPay']").submit();
         }else{
             $("form[name='cashU_payment_info']").submit();
         }
-
     })
 </script>
 </body>

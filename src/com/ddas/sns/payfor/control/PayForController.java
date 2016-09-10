@@ -2,12 +2,14 @@ package com.ddas.sns.payfor.control;
 
 import com.ddas.common.Msg;
 import com.ddas.common.util.StringUtil;
+import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.payfor.service.PayService;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.service.UserInfoService;
 import com.ddas.sns.userrechargerecords.domain.UserRechargeRecord;
 import com.ddas.sns.userrechargerecords.service.UserRechargeRecordService;
+import com.ddas.sns.util.MD5Util;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PaymentExecution;
 import com.paypal.base.rest.APIContext;
@@ -137,13 +139,28 @@ public class PayForController extends BaseController{
      *@since 1.6
      */
     @RequestMapping("/payPalRedirect1")
-    public ModelAndView gotoRedirect(String userId1, String payMethod1, String mount1, HttpServletRequest request){
+    public ModelAndView gotoRedirect(String userId1, String payMethod1, String mount1, String payssionMethod1, HttpServletRequest request){
         ModelAndView mav = withLocal(request, "payfor/payRedirect");
         if("1".equals(payMethod1)) {//使用paypal支付
             mav.addObject("payMethod", "1");
             String custom = userId1 + "_" + getLoginUser(request).getUserId();
             mav.addObject("custom", custom);
             mav.addObject("amount", mount1);
+        }else if("2".equals(payMethod1)) {
+            mav.addObject("payMethod", "2");
+            String custom = userId1 + "_" + getLoginUser(request).getUserId();
+            String tracId = "tracId";
+            String apiKey = "72638118097ffbd4";
+            String secretKey = "286a0b747c946e3d902f017cf75d3bd1";
+            String currency = "USD";
+            String apiSig = MD5Util.getMD5(apiKey + "|" + payssionMethod1 + "|" + mount1 + "|" + currency + "|" + tracId + "|" + custom + "|" + secretKey);
+            mav.addObject("custom", custom);
+            mav.addObject("tracId", tracId);
+            mav.addObject("amount", mount1);
+            mav.addObject("payssionMethod", payssionMethod1);
+            mav.addObject("apiSig", apiSig);
+            mav.addObject("apiKey", apiKey);
+
         }
         return mav;
     }
@@ -158,7 +175,6 @@ public class PayForController extends BaseController{
         try {
             String payment_status  = request.getParameter("payment_status");
             String mc_gross  = request.getParameter("mc_gross");
-            String mc_currency = request.getParameter("mc_currency");
             String custom = request.getParameter("custom");
 
             //*************************************这段代码打印返回参数
@@ -180,7 +196,7 @@ public class PayForController extends BaseController{
                 String[] customArray = custom.split("_");
                 String userid = customArray[0];
                 String hquserid = customArray[1];
-                UserInfo userInfo = userInfoService.fetchUserInfoByUserId(custom);
+                UserInfo userInfo = userInfoService.fetchUserInfoByUserId(userid);
                 String payAmount = mc_gross;
                 Double userAmount = Double.valueOf(StringUtil.isEmpty(userInfo.getUserCoin()) ? "0.00" : userInfo.getUserCoin());
                 Double totalAmount = userAmount + Double.valueOf(payAmount);//将用户的剩余金额和此次支付成功的金额加起来
@@ -191,6 +207,68 @@ public class PayForController extends BaseController{
 
                 msg.setMsg("Pay Success，the balance on your account is <strong>" + userAmount + " </strong>coins");
             } else if ("Pending".equals(payment_status)) {
+                msg.setMsg("Pay Pending...Please contact customer service.");
+                LOGGER.error(request.getParameter("pending_reason"));
+            } else {
+                msg.setMsg("Pay failed！Please contact customer service.");
+            }
+
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+            msg.setMsg("Pay failed！Please contact customer service.");
+        }
+        ModelAndView mav = new ModelAndView("payfor/callBack");
+        mav.addObject("msg", msg);
+        return mav;
+    }
+
+    @RequestMapping("/paypalProcessPayssion")
+    public ModelAndView callBackForPassion(HttpServletRequest request){//userid代表钱冲到哪个用户，hquserid代表花钱的用户ID
+        Msg msg = new Msg();
+        try {
+            String payment_status  = request.getParameter("state");
+            String amount  = request.getParameter("amount");
+            String customId = request.getParameter("sub_track_id");
+
+            //*************************************这段代码打印返回参数
+            String parameterName = null;
+            String parameterValue = null;
+            Enumeration parameterNames = null;
+            parameterNames = request.getParameterNames();
+            while(parameterNames.hasMoreElements()){//循环打印paypal的返回参数信息
+                parameterName = (String) parameterNames.nextElement();
+                parameterValue = request.getParameter(parameterName);
+                if (parameterValue == null) {
+                    parameterValue = "";
+                }
+                LOGGER.error("parameterName" + parameterName + ":" + "parameterValue" + parameterValue);
+            }
+            //*************************************这段代码打印返回参数
+
+            //1、将api_key, pm_id, amount, currency, track_id, sub_track_id, state以及应用的sercret_key字符串，以 “|”为分隔符串联成一个字符串
+            //2、将第一步骤串联起来的的字符串经md5加密生成最终的notify_sig 具体代码示例：
+            //3.$msg = implode("|", array($api_key, $pm_id, $amount, $currency,$track_id, $sub_track_id, $state, $secret_key));
+            //$notify_sig = md5($msg);
+            //这个$notify_sig应该和返回的notify_sig参数一致，就代表客户的支付是正确的，一切参数正常
+            //后面再看看是否需要验证一致性
+
+            //以上的代码是验证回调是否正确
+            if(("completed").equals(payment_status)){//付款成功
+
+                String[] customArray = customId.split("_");
+                String userid = customArray[0];
+                String hquserid = customArray[1];
+                UserInfo userInfo = userInfoService.fetchUserInfoByUserId(userid);
+                String payAmount = amount;
+                Double userAmount = Double.valueOf(StringUtil.isEmpty(userInfo.getUserCoin()) ? "0.00" : userInfo.getUserCoin());
+                Double totalAmount = userAmount + Double.valueOf(payAmount);//将用户的剩余金额和此次支付成功的金额加起来
+                DecimalFormat df = new DecimalFormat("0.00");//保留两位小数，存到数据库
+                userInfo.setUserCoin(df.format(totalAmount));
+                userInfoService.saveUserInfo(userInfo);
+                userRechargeRecordService.saveRechargeRecords(userid, hquserid, payAmount);
+
+                msg.setMsg("Pay Success，the balance on your account is <strong>" + userAmount + " </strong>coins");
+            } else if ("pending".equals(payment_status)) {
                 msg.setMsg("Pay Pending...Please contact customer service.");
                 LOGGER.error(request.getParameter("pending_reason"));
             } else {

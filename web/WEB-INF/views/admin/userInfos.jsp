@@ -82,6 +82,7 @@
                     <th>邮 箱</th>
                     <th>金 币</th>
                     <th>登录地址</th>
+
                     <th></th>
                 </tr>
                 </thead>
