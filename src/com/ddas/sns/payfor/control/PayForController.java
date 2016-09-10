@@ -25,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * ClassName:	PayForController
@@ -122,6 +124,84 @@ public class PayForController extends BaseController{
         }
 
         ModelAndView mav = withLocal(request, "payfor/callBack");
+        mav.addObject("msg", msg);
+        return mav;
+    }
+
+    /**
+     *跳转到 充值中心 的首页
+     *@return java.lang.String
+     *@author shaojx
+     *@date 2016/7/9 18:49
+     *@version 1.0
+     *@since 1.6
+     */
+    @RequestMapping("/payPalRedirect1")
+    public ModelAndView gotoRedirect(String userId1, String payMethod1, String mount1, HttpServletRequest request){
+        ModelAndView mav = withLocal(request, "payfor/payRedirect");
+        if("1".equals(payMethod1)) {//使用paypal支付
+            mav.addObject("payMethod", "1");
+            String custom = userId1 + "_" + getLoginUser(request).getUserId();
+            mav.addObject("custom", custom);
+            mav.addObject("amount", mount1);
+        }
+        return mav;
+    }
+
+    @RequestMapping("/paypalProcess1")
+    public ModelAndView callBackForPaypal1(HttpServletRequest request){//userid代表钱冲到哪个用户，hquserid代表花钱的用户ID
+        Msg msg = new Msg();
+        String business = request.getParameter("business");
+        if (!"felixliu2011-facilitator@outlook.com".equals(business)) {//对比订单
+            LOGGER.error("不是像这个号付款felixliu2011-facilitator@outlook.com");
+        }
+        try {
+            String payment_status  = request.getParameter("payment_status");
+            String mc_gross  = request.getParameter("mc_gross");
+            String mc_currency = request.getParameter("mc_currency");
+            String custom = request.getParameter("custom");
+
+            //*************************************这段代码打印返回参数
+            String parameterName = null;
+            String parameterValue = null;
+            Enumeration parameterNames = null;
+            parameterNames = request.getParameterNames();
+            while(parameterNames.hasMoreElements()){//循环打印paypal的返回参数信息
+                parameterName = (String) parameterNames.nextElement();
+                parameterValue = request.getParameter(parameterName);
+                if (parameterValue == null) {
+                    parameterValue = "";
+                }
+                LOGGER.error("parameterName" + parameterName + ":" + "parameterValue" + parameterValue);
+            }
+            //*************************************这段代码打印返回参数
+            if(("Completed").equals(payment_status)){//付款成功
+
+                String[] customArray = custom.split("_");
+                String userid = customArray[0];
+                String hquserid = customArray[1];
+                UserInfo userInfo = userInfoService.fetchUserInfoByUserId(custom);
+                String payAmount = mc_gross;
+                Double userAmount = Double.valueOf(StringUtil.isEmpty(userInfo.getUserCoin()) ? "0.00" : userInfo.getUserCoin());
+                Double totalAmount = userAmount + Double.valueOf(payAmount);//将用户的剩余金额和此次支付成功的金额加起来
+                DecimalFormat df = new DecimalFormat("0.00");//保留两位小数，存到数据库
+                userInfo.setUserCoin(df.format(totalAmount));
+                userInfoService.saveUserInfo(userInfo);
+                userRechargeRecordService.saveRechargeRecords(userid, hquserid, payAmount);
+
+                msg.setMsg("Pay Success，the balance on your account is <strong>" + userAmount + " </strong>coins");
+            } else if ("Pending".equals(payment_status)) {
+                msg.setMsg("Pay Pending...Please contact customer service.");
+                LOGGER.error(request.getParameter("pending_reason"));
+            } else {
+                msg.setMsg("Pay failed！Please contact customer service.");
+            }
+
+        }catch(Exception e){
+            LOGGER.error(e.getMessage(), e);
+            msg.setMsg("Pay failed！Please contact customer service.");
+        }
+        ModelAndView mav = new ModelAndView("payfor/callBack");
         mav.addObject("msg", msg);
         return mav;
     }

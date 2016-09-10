@@ -209,7 +209,7 @@ public class LoginController extends BaseController {
             userInfo.setLoginIp(ip);
             userInfo.setLoginAddress(address);
             if (address.contains("中国")) {
-                userInfo.setUserStatus("0");//用0表示中国用户，后面会进行登录审核
+                userInfo.setUserStatus("0");//用0表示中国用户，前台会拦截掉，后台会进行登录审核，审核通过的
             }
         }catch (Exception e){
             LOGGER.error(e.getMessage(), e);

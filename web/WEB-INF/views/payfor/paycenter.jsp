@@ -91,6 +91,11 @@
                         <button class="btn btn-info" type="button" id="payBtn"><spring:message code="submitCharge" text="立即充值"/></button>
                     </div>
                 </div>
+                <form id="payForm" action="/payfor/payPalRedirect1" method="post" target="_blank">
+                    <input type="hidden" id="payMethod1" name="payMethod1">
+                    <input type="hidden" id="userId1" name="userId1">
+                    <input type="hidden" id="mount1" name="mount1">
+                </form>
             </div>
         </div>
     </div>
