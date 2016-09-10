@@ -39,6 +39,7 @@ $(function () {
     //点击"我的日志 "tab页
     $("#myLogTab").click(function(){
         getMyLogData(1);
+        loadUserBlogGroupData();
     });
 
     //点击'日志'tab页
@@ -46,7 +47,7 @@ $(function () {
         //点击'日志'tab页，默认选中‘我的日志’tab页，
         //加载 我的日志 数据
         getMyLogData(1);
-        loadUserBlogGroupData();
+        //loadUserBlogGroupData();
     });
 
     //点击朋友的日志tab页

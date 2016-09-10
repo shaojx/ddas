@@ -94,6 +94,7 @@ public class EmailService {
                 if (userInfo != null) {
                     userEmailDto.setEmailSenderName(userInfo.getUserName());
                     userEmailDto.setEmailSender(userEmail.getEmailSender());
+                    userEmailDto.setSenderHeadPhotoUrl(userInfo.getHeadPhotoUrl());
                 }
             }
             if(StringUtil.isNotEmpty(userEmail.getEmailReceiver())) {
@@ -101,6 +102,7 @@ public class EmailService {
                 if(userInfo!=null){
                     userEmailDto.setEmailReceiverName(userInfo.getUserName());
                     userEmailDto.setEmailReceiver(userEmail.getEmailReceiver());
+                    userEmailDto.setReceiverHeadPhotoUrl(userInfo.getHeadPhotoUrl());
                 }
             }
 

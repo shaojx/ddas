@@ -41,9 +41,31 @@
     <script type="text/javascript" src="<%=path%>/common/bootstrap-paginator/js/bootstrap-paginator.js"></script>
     <%--vue-resource--%>
    <%-- <script src="<%=path%>/common/vue/resource/vue-resource.min.js" type="text/javascript"></script>--%>
+    <link rel="stylesheet" href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css">
+    <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript">
         var path='<%=path%>';
     </script>
+
+    <style type="text/css">
+        .custom{
+            vertical-align: top;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 2px !important;
+            margin-top: -2px !important;
+        }
+        .fa-vip{
+            background-image: url("<%=path%>/common/images/VIP-20.png");
+        }
+        .fa-vip-w{
+            background-image: url("<%=path%>/common/images/VIP-20-w.png");
+        }
+        .fa-vip-b{
+            background-image: url("<%=path%>/common/images/VIP-20-b.png");
+        }
+    </style>
 </head>
 <body class="theme-default main-menu-animated">
 <%--这部分的JS后续合并进相应的JQuery中--%>
@@ -167,97 +189,6 @@
                                                 2h ago
                                             </div>
                                         </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Michelle Bortz</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Timothy Owens</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/5.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Denise Steiner</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Robert Jang</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Robert Jang</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/3.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Michelle Bortz</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/4.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Timothy Owens</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/5.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Denise Steiner</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
-                                        <div class="message">
-                                            <img src="<%=path%>/common/pixel-admin/demo/avatars/2.jpg" alt="" class="message-avatar">
-                                            <a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
-                                            <div class="message-description">
-                                                from <a href="#">Robert Jang</a>
-                                                &nbsp;&nbsp;·&nbsp;&nbsp;
-                                                2h ago
-                                            </div>
-                                        </div> <!-- / .message -->
-
                                     </div> <!-- / .messages-list -->
                                     <a href="#" class="messages-link">MORE MESSAGES</a>
                                 </div> <!-- / .dropdown-menu -->
@@ -269,8 +200,9 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                    <img src="<%=path%>${userInfo.headPhotoUrl}" alt="">
-                                    <span>${userInfo.userName}</span>
+                                   <%-- <img src="<%=path%>${adminUserInfo.headPhotoUrl}" alt="">--%>
+                                    <img src="<%=path%>/common/images/admin-default.png" alt="">
+                                    <span>${adminUserInfo.userName}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a>
@@ -279,7 +211,7 @@
                                     </li>
                                     <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log
+                                    <li><a href="javascript:void(0);" @click="logOut();"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log
                                         Out</a></li>
                                 </ul>
                             </li>
@@ -295,9 +227,10 @@
         <div id="main-menu-inner">
             <div class="menu-content top" id="menu-content-demo">
                 <div>
-                    <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">${userInfo.userName}</span>
+                    <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">${adminUserInfo.userName}</span>
                     </div>
-                    <img src="<%=path%>${userInfo.headPhotoUrl}" alt="" class="">
+                    <%--<img src="<%=path%>${adminUserInfo.headPhotoUrl}" alt="" class="">--%>
+                    <img src="<%=path%>/common/images/admin-default.png" alt="" class="">
                     <div class="btn-group">
                         <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
                         <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
@@ -325,6 +258,12 @@
                         <i class="menu-icon fa fa-list"></i><span class="mm-text">礼物信息</span>
                     </a>
                 </li>
+               <%-- <li>
+                    <a href="<%=path%>/admin/gotoVipInfos">
+                        <i class="menu-icon fa fa-vip custom"></i>
+                        <span class="mm-text" style="margin-left: -5px !important;">会员信息</span>
+                    </a>
+                </li>--%>
             </ul>
             <%--	<div class="menu-content">
                     <a href="pages-invoice.html" class="btn btn-primary btn-block btn-outline dark">Create Invoice</a>

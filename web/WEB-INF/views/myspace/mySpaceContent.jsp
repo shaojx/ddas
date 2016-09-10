@@ -434,7 +434,7 @@
             <%--日志 start--%>
             <div class="tab-pane " id="panel-tabs3">
                 <div class="panel">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="padding: 5px 0;">
                         <div class="tabbable" id="tabs-295323">
                             <ul class="nav nav-tabs">
                                 <li class="active" id="myLogTab">
@@ -451,8 +451,9 @@
                         <div class="tab-pane active" id="panel-324017" style="height: 100%;">
                             <%--创建日志 --%>
                             <div class="row" style="margin-top: 5px;margin-bottom: 3px;">
-                                <div  style="margin-left:85%;">
-                                    <button type="button" id="createMyLog"  class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
+                                <div>
+                                    <button type="button" id="createMyLog" style="float: right;margin-right: 15px;"
+                                            class="btn btn-info" data-toggle="modal" data-backdrop="" autocomplete="off" data-target="#createMyLogDialog">
                                         <spring:message code="createLog" text="新建日志"/>
                                     </button>
                                 </div>
