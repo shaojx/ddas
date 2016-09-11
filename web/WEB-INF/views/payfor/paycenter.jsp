@@ -83,7 +83,42 @@
 
                 <div class="clear-both divRow">
                     <label class="width120"><spring:message code="payMethod" text="支付方式"/>:</label>
-                    <span><input type="radio" name="payMethod" checked="checked" value="1"><img class="width200" src="/common/images/papy.jpg"></span>
+                    <span>
+                        <input type="radio" name="payMethod" checked="checked" value="1"><img class="width200" src="/common/images/papy.jpg">
+                        <input type="radio" name="payMethod" value="2"><img src="/common/images/payssion.png" style="width:120px;height:30px;">
+                    </span>
+                </div>
+
+                <div class="clear-both divRow">
+                    <div style="margin-top: 10px;display: none;width: 80%;" id="payssionMethod">
+                        <span><input type="radio" class="payssionInput" name="payssionMethodRadio" value="molpay" checked=""><img class="payssion" src="/common/images/molpay.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="dineromail_ar"><img class="payssion" src="/common/images/dineromail.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="boleto_br"><img class="payssion" src="/common/images/boleto.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="bancodobrasil_br"><img class="payssion" src="/common/images/bancodobrasil.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="itau_br"><img class="payssion"src="/common/images/itau.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="bradesco_br"><img class="payssion"src="/common/images/bradesco.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="caixa_br"><img class="payssion"src="/common/images/caixa.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="mastercard_br"><img class="payssion"src="/common/images/mastercard.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="americanexpress_br"><img class="payssion"src="/common/images/americanexpress.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="dinersclub_br"><img class="payssion"src="/common/images/dinersclub.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="hipercard_br"><img class="payssion"src="/common/images/hipercard.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="webpay_cl"><img class="payssion"src="/common/images/bcp.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="bbva_pe"><img class="payssion"src="/common/images/bbva.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="interbank_pe"><img class="payssion"src="/common/images/interbank.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="pagofectivo_pe"><img class="payssion"src="/common/images/pagoefectivo.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="bancomer_mx"><img class="payssion"src="/common/images/bancomer.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="banamex_mx"><img class="payssion"src="/common/images/banamex.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="oxxo_mx"><img class="payssion"src="/common/images/oxxo.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="redpagos_uy"><img class="payssion"src="/common/images/redpagos.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="qiwi"><img class="payssion"src="/common/images/qiwi.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="sofort"><img class="payssion"src="/common/images/sofort.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="trustpay"><img class="payssion"src="/common/images/trustpay.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="polipayment"><img class="payssion"src="/common/images/poli.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="cashu"><img class="payssion"src="/common/images/cashu.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="onecard"><img class="payssion"src="/common/images/onecard.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="maybank2u_my"><img class="payssion"src="/common/images/maybank2u.png"></span>
+                        <span ><input type="radio" class="payssionInput" name="payssionMethodRadio" value="enets_sg"><img class="payssion"src="/common/images/enets.png"></span>
+                    </div>
                 </div>
 
                 <div class="row divRow">
@@ -95,6 +130,7 @@
                     <input type="hidden" id="payMethod1" name="payMethod1">
                     <input type="hidden" id="userId1" name="userId1">
                     <input type="hidden" id="mount1" name="mount1">
+                    <input type="hidden" id="payssionMethod1" name="payssionMethod1">
                 </form>
             </div>
         </div>

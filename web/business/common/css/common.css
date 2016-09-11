@@ -52,6 +52,9 @@
 .height60{
     height:60px;
 }
+.height30{
+    height:30px;
+}
 .inline-block {
     display: inline-block;
 }
@@ -147,4 +150,16 @@
 }
 .language a:hover{
     color: #ffb911;
+}
+
+.payssion{
+    height: 40px;!important;
+    width: 85px;!important;
+    margin-left: 15px;!important;
+    margin-bottom: 10px!important;
+}
+
+.payssionInput{
+    height: 15px;!important;
+    width: 15px;!important;
 }

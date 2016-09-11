@@ -29,9 +29,13 @@ $(function () {
             mount = $('input[name="payValueChoose"]:checked ').val();
         }
 
+        var payssionMethod = $('input[name="payssionMethodRadio"]:checked ').val();
+
         $("#payMethod1").val(payMethod);
         $("#userId1").val(payToId);
         $("#mount1").val(mount);
+        $("#payssionMethod1").val(payssionMethod);
+
         $("#payForm").submit();
 
         //等待中
@@ -57,6 +61,16 @@ $(function () {
                 window.open(redirectUrl);
             }
         })*/
+
+    })
+
+    $("input[name='payMethod']").change(function(){
+        var val = $(this).val();
+        if(val=="2"){
+            $("#payssionMethod").show();
+        }else{
+            $("#payssionMethod").hide();
+        }
 
     })
 
