@@ -125,7 +125,7 @@ function initRecommendUserListData(data, containerId) {
         '<div class="post-meta">'+
         '<span><div><a href="#"  rel="54">'+
         '<a href="javascript:void(0)" id="_userId_addRecommendBtn" rel="54">'+
-        '<img src="/common/images/addfriends.gif"></a></div></span>'+
+        '<img src="/common/images/addfriends.gif" alt="'+indexContent.addFriend+'" title="'+indexContent.addFriend+'"></a></div></span>'+
         '</div>'+
         '</div>'+
         '</article>';

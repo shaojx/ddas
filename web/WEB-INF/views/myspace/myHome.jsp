@@ -182,7 +182,7 @@
                     </div>
                     <!-- sidebar-widget -->
                     <div class="sidebar-widget">
-                        <h3 class="sidebar-title">Recent visitor</h3>
+                        <h3 class="sidebar-title"><spring:message code="recentVisitor"></spring:message></h3>
                         <div class="widget-container" id="recentVisitorContentDiv">
                         </div>
                     </div>
