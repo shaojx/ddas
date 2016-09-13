@@ -13,13 +13,15 @@
 <input type="hidden" id="payMethod" value="${payMethod}">
 <form name="form_starPay" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="cmd" value="_xclick">
+    <!-- 定义IPN的返回方式，2代表post. -->
+    <input type="hidden" name="rm" value="2">
     <!--input type="hidden" name="business" value="ijfhkjhfjdksg@163.com"-->
     <input type="hidden" name="business" value="felixliu2011-facilitator@outlook.com">
     <input type="hidden" name="item_name" value="Recharge">
     <input type="hidden" name="amount" value="${amount}">
     <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="return" value="http://localhost/payfor/paypalProcess1">
-    <input type="hidden" name="notify_url" value="http://localhost/payfor/paypalProcess1">
+    <input type="hidden" name="return" value="http://47.90.53.90/payfor/paypalProcess1">
+    <input type="hidden" name="notify_url" value="http://47.90.53.90/payfor/paypalProcess1">
     <input type="hidden" name="invoice" value="">
     <input type="hidden" name="custom" value="${custom}">
     <input type="hidden" name="lc" value="EN">

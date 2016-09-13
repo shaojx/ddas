@@ -2,33 +2,26 @@ package com.ddas.sns.payfor.control;
 
 import com.ddas.common.Msg;
 import com.ddas.common.util.StringUtil;
-import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.common.BaseController;
 import com.ddas.sns.payfor.service.PayService;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.service.UserInfoService;
-import com.ddas.sns.userrechargerecords.domain.UserRechargeRecord;
 import com.ddas.sns.userrechargerecords.service.UserRechargeRecordService;
 import com.ddas.sns.util.MD5Util;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PaymentExecution;
 import com.paypal.base.rest.APIContext;
-import com.paypal.base.rest.PayPalRESTException;
-import com.sun.xml.internal.bind.v2.TODO;
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
 import java.util.Enumeration;
-import java.util.Vector;
 
 /**
  * ClassName:	PayForController
@@ -150,8 +143,8 @@ public class PayForController extends BaseController{
             mav.addObject("payMethod", "2");
             String custom = userId1 + "_" + getLoginUser(request).getUserId();
             String tracId = "tracId";
-            String apiKey = "72638118097ffbd4";
-            String secretKey = "286a0b747c946e3d902f017cf75d3bd1";
+            String apiKey = "2883f09148b3c151";
+            String secretKey = "4d752511795e119711ecd6f67ab520f6";
             String currency = "USD";
             String apiSig = MD5Util.getMD5(apiKey + "|" + payssionMethod1 + "|" + mount1 + "|" + currency + "|" + tracId + "|" + custom + "|" + secretKey);
             mav.addObject("custom", custom);
@@ -267,7 +260,7 @@ public class PayForController extends BaseController{
                 userInfoService.saveUserInfo(userInfo);
                 userRechargeRecordService.saveRechargeRecords(userid, hquserid, payAmount);
 
-                msg.setMsg("Pay Success，the balance on your account is <strong>" + userAmount + " </strong>coins");
+                msg.setMsg("Pay Success，the balance on your account is <strong>" + totalAmount + " </strong>coins");
             } else if ("pending".equals(payment_status)) {
                 msg.setMsg("Pay Pending...Please contact customer service.");
                 LOGGER.error(request.getParameter("pending_reason"));
