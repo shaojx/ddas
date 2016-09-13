@@ -24,7 +24,7 @@
         var path = "<%=path%>";
         var currentLoginUserId = "<%=request.getAttribute("currentLoginUserId")%>"
     </script>
-    <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
+   <%-- <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>--%>
     <script type="text/javascript" src="<%=path%>/business/email/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/email/email.js"></script>
     <link  rel="stylesheet" href="<%=path%>/common/custom-loader/css/sllib.css"/>
@@ -72,6 +72,7 @@
             <div role="tabpanel" class="tab-pane" id="CreateEmail">
                 <div id="emailContentDiv">
                     <textarea rows="5" id="emailContent" style="margin: 0px; height: 448px; width: 746px;"></textarea>
+                    <%--<img id="face" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>--%>
                     <div class="row margin-top-10px">
                         <label class="control-label pull-left margin-left-20px">
                             <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>

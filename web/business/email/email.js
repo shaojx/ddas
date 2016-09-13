@@ -70,9 +70,23 @@ $(function() {
     $("#createEmailTab").click(function(){
         checkUserDailyEmailCount();
     });
+
+    //表情
+    $("#face").mouseover(function () {
+        $(this).attr("src",path+"/common/images/Happy-25-g.png");
+    }).mouseleave(function () {
+        $(this).attr("src",path+"/common/images/Happy-25-b.png");
+    }).click(function () {
+       showFace();
+    });
     //注册 跳转到 升级会员的页面
     registerToVIPListener();
 });
+
+//展示表情列表
+function showFace(){
+
+}
 
 function registerToVIPListener() {
     $("#toVip").click(function () {
