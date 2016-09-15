@@ -23,6 +23,7 @@
     <script type="text/javascript">
         var path = "<%=path%>";
         var currentLoginUserId = "<%=request.getAttribute("currentLoginUserId")%>"
+        var localStr="<%=request.getAttribute("local")%>";
     </script>
    <%-- <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>--%>
     <script type="text/javascript" src="<%=path%>/business/email/language/${local}.js"></script>
@@ -31,6 +32,9 @@
     <script type="text/javascript" src="<%=path%>/common/custom-loader/js/loader.js"></script>
     <link href="<%=path%>/common/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
+    <%--表情插件--%>
+    <link href="<%=path%>/common/jquery-emotion/jquery-sinaEmotion-2.1.0.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-emotion/jquery-sinaEmotion-2.1.0.js"></script>
    <style type="text/css">
         html,body{
             overflow: hidden;
@@ -71,8 +75,10 @@
 
             <div role="tabpanel" class="tab-pane" id="CreateEmail">
                 <div id="emailContentDiv">
-                    <textarea rows="5" id="emailContent" style="margin: 0px; height: 448px; width: 746px;"></textarea>
-                    <%--<img id="face" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>--%>
+                    <%--<textarea rows="5" id="emailContent" style="margin: 0px; height: 350px; width: 746px;"></textarea>--%>
+                    <div id="emailContent" style="margin: 0px;border-radius: 4px;height: 350px; width: 746px;border:1px solid gray;"
+                         contenteditable="true"></div>
+                     <img id="face" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>
                     <div class="row margin-top-10px">
                         <label class="control-label pull-left margin-left-20px">
                             <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>

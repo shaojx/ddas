@@ -12,6 +12,13 @@ var userFriendCondition = {
     status:CONST_FRIEND
 };//查询条件初始化
 
+//增加补丁方法
+if (!String.prototype.trim) {
+    String.prototype.trim = function () {
+        return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+    };
+}
+
 var sendEmailCondition = {
     pageNo:1,
     emailSender:currentLoginUserId
@@ -37,17 +44,25 @@ $(function() {
 
     //提交Email按钮点击事件
     $("#sendEmailBtn").click(function () {
-        var emailContent = $("#emailContent").val();
+        var _emailContent =  $("#emailContent").getSubmitText();
+        if(!_emailContent.trim()){
+            $.alert({
+                title:"Tip",
+                content:emailContent.msgRequired,
+                container:top.window.document.body
+            });
+            return;
+        }
         var emailReceiver = $("#friendList").children('option:selected').attr("id");
         var url=path+"/email/save";
         var data= {
-            "emailContent":emailContent,
+            "emailContent":_emailContent,
             "emailReceiver":emailReceiver
         };
         if(click_new_email_by_reply){//为回复
             url=path+"/email/reply";
             data={
-                "emailContent":emailContent,
+                "emailContent":_emailContent,
                 "emailId":reply_to_eamil_id,
                 "senderId":emailReceiver
             }
@@ -77,7 +92,10 @@ $(function() {
     }).mouseleave(function () {
         $(this).attr("src",path+"/common/images/Happy-25-b.png");
     }).click(function () {
-       showFace();
+        if(! $('#sinaEmotion').is(':visible')){
+            $(this).sinaEmotion("#emailContent");
+            event.stopPropagation();
+        }
     });
     //注册 跳转到 升级会员的页面
     registerToVIPListener();
@@ -242,7 +260,7 @@ function initEmailSendData(data) {
     /*/common/images/people.jpg*/
     var emailSendDivTemplete = '<div class="panel panel-default ">'+
         '<img src="${basePath}" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
-        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
+        '<span id="send_span_id_${index}" class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
         '<div class="margin-left-10px"><span style="font-style: italic;font-size: 12px;">TO:</span><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">'+emailContent.emailDate+'：${createdTime}</div></div>'+
@@ -253,8 +271,10 @@ function initEmailSendData(data) {
         var _replace = emailSendDivTemplete.replace("${basePath}", path+(_data.receiverHeadPhotoUrl?_data.receiverHeadPhotoUrl:default_head_photo))
             .replace("${emailReceiver}", _data.emailReceiverName)
             .replace(/emailContentVal/g, _data.emailContent)
-            .replace("${createdTime}", _data.createdTime);
+            .replace("${createdTime}", _data.createdTime)
+            .replace("${index}",index);
         $("#sendEmailListDiv").append(_replace);
+        $("#send_span_id_"+index).parseEmotion();
     }
     addImageLoadFailedListener("#sendEmailListDiv");
 }
@@ -326,7 +346,7 @@ function initEmailReceiveData(data) {
     /*/common/images/people.jpg*/
     var emailReceiveDivTemplete = '<div class="panel panel-default ">'+
         '<img src="${basePath}" style="vertical-align:top;width:59px;height:59px;margin: 5px;">'+
-        '<span class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
+        '<span id="receive_span_id_${index}" class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'+
         'emailContentVal'+
         '</span>'+
         '<div class="margin-left-10px"><span style="font-style: italic;font-size: 12px;">FROM:</span><a href="javascript:void(0)">${emailReceiver}</a><div style="font-size:12px;color:#aaa;float: right">'+emailContent.emailDate+'：${createdTime}' +
@@ -344,9 +364,10 @@ function initEmailReceiveData(data) {
             .replace("${createdTime}", _data.createdTime)
             .replace(/\$\{emailId\}/gi,_data.ueId)
             .replace("${revicerId}",_data.emailReceiver)
-            .replace("${senderId}",_data.emailSender);
+            .replace("${senderId}",_data.emailSender)
+            .replace("${index}",index);
         $("#receiveEmailListDiv").append(_replace);
-
+        $("#receive_span_id_"+index).parseEmotion();
         //添加监听事件
         addListener(_data.ueId);
     }

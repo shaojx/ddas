@@ -482,8 +482,11 @@ function onPjaxPopstate(event) {
           previousState: previousState
         })
         container.trigger(beforeReplaceEvent, [contents, options])
-        container.html(contents)
-
+       //fixme================原始================
+        // container.html(contents)
+          //==========modify========
+            pjax(options)//reload force ,because javascript is invalidate
+          //===================
         container.trigger('pjax:end', [null, options])
       } else {
         pjax(options)

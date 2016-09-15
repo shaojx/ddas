@@ -62,7 +62,7 @@ public class AdminController extends AdminBaseController{
      *@since 1.6
      */
     @RequestMapping("/gotoIndex")
-    public ModelAndView gotoEmail(HttpServletRequest httpServletRequest){
+    public ModelAndView gotoIndex(HttpServletRequest httpServletRequest){
         ModelAndView mav = withLocal(httpServletRequest,"admin/index");
         return mav;
     }
@@ -78,7 +78,10 @@ public class AdminController extends AdminBaseController{
      */
     @RequestMapping("/gotoUserInfos")
     public ModelAndView gotoUserInfos(HttpServletRequest request, HttpServletResponse response){
-        response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
+        ModelAndView mv = checkIsXPjaxReuqest(request);
+        if(mv!=null){
+            return mv;
+        }
         ModelAndView modelAndView=withLocal(request,"admin/userInfos");
         return modelAndView;
     }
@@ -93,7 +96,10 @@ public class AdminController extends AdminBaseController{
      */
     @RequestMapping("/gotoRecordsInfos")
     public ModelAndView gotoRecordsInfos(HttpServletRequest request,HttpServletResponse response){
-        response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
+        ModelAndView mv = checkIsXPjaxReuqest(request);
+        if(mv!=null){
+            return mv;
+        }
         ModelAndView modelAndView=withLocal(request,"admin/recordsInfos");
         return modelAndView;
     }
@@ -109,7 +115,10 @@ public class AdminController extends AdminBaseController{
      */
     @RequestMapping("/gotoGiftInfos")
     public ModelAndView gotoGiftInfos(HttpServletRequest request,HttpServletResponse response){
-        response.addHeader("X-PJAX-URL",request.getContextPath()+"/admin/gotoIndex");
+        ModelAndView mv = checkIsXPjaxReuqest(request);
+        if(mv!=null){
+            return mv;
+        }
         ModelAndView modelAndView=withLocal(request,"admin/giftInfos");
         return modelAndView;
     }
@@ -237,20 +246,6 @@ public class AdminController extends AdminBaseController{
                 response.addCookie(userPwdCookie);
                 response.addCookie(userRemermeCookie);
             }
-
-        /*    try {//记录登录IP和地址
-                String ip = "";
-                String address = "";
-                AddressUtils addressUtils = new AddressUtils();
-                ip = addressUtils.getIpAddr(request);
-                address = addressUtils.getAddresses(ip, "utf-8");
-                userInfoFromDb.setLoginIp(ip);
-                userInfoFromDb.setLoginAddress(address);
-                userInfoService.save(userInfoFromDb);
-            }catch (Exception e){
-                LOGGER.error(e.getMessage(), e);
-            }*/
-
             setLoginUserToSession(userInfoFromDb, request);
             Msg msg = new Msg();
             msg.setMsg("success");
@@ -294,7 +289,6 @@ public class AdminController extends AdminBaseController{
         request.getSession(true).removeAttribute("adminUserInfo");
         Msg msg = new Msg();
         msg.setSuccessful(true);
-
         return msg;
     }
 }

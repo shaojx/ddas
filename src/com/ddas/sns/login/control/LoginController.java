@@ -38,7 +38,7 @@ import java.util.Map;
 
 /**
  * ClassName:	LoginController
- * Function: 	todo ADD FUNCTION
+ * Function: 	登录Controller
  *
  * @author shaojunxiang
  * @date 12:30
@@ -86,12 +86,9 @@ public class LoginController extends BaseController {
             }
         } else {
             //locale 只为了前端页面的 validator的国际化
-            Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
+            String local = getLocal(request);
             modelAndView.setViewName("login/login");
-            if (locale == null) {
-                locale = Locale.getDefault();
-            }
-            modelAndView.addObject("local", locale.toString());
+            modelAndView.addObject("local",local);
         }
         return modelAndView;
     }
@@ -117,6 +114,11 @@ public class LoginController extends BaseController {
                 Cookie userNameCookie = new Cookie("userName", userInfo.getUserName());
                 Cookie userPwdCookie = new Cookie("userPwd", userInfo.getUserPwd());
                 Cookie userRemermeCookie = new Cookie("remeberme", remeberme);
+                //set cookie for expire 7days
+                userNameCookie.setMaxAge(60*60*24*7);
+                userPwdCookie.setMaxAge(60*60*24*7);
+                userRemermeCookie.setMaxAge(60*60*24*7);
+
                 response.addCookie(userNameCookie);
                 response.addCookie(userPwdCookie);
                 response.addCookie(userRemermeCookie);
@@ -143,8 +145,7 @@ public class LoginController extends BaseController {
         } else {
             Msg msg = new Msg();
             msg.setSuccessful(false);
-            Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
-            msg.setMsg(SpringContextUtil.getMsgByKey("login.errorUserNameOrPwd", locale));
+            msg.setMsg(SpringContextUtil.getMsgByKey("login.errorUserNameOrPwd", getLocal(request)));
             return msg;
         }
     }
@@ -218,15 +219,13 @@ public class LoginController extends BaseController {
         save = userInfoService.save(userInfo);
         if (save) {
             Msg msg = new Msg();
-            Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
-            msg.setMsg(SpringContextUtil.getMsgByKey("register.success", locale));
+            msg.setMsg(SpringContextUtil.getMsgByKey("register.success", getLocal(request)));
             msg.setSuccessful(true);
             return msg;
         } else {
             Msg msg = new Msg();
             msg.setSuccessful(false);
-            Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
-            msg.setMsg(SpringContextUtil.getMsgByKey("register.error", locale));
+            msg.setMsg(SpringContextUtil.getMsgByKey("register.error", getLocal(request)));
             return msg;
         }
     }
@@ -308,7 +307,7 @@ public class LoginController extends BaseController {
             return msg;
         }
         //check user is existed(when the server is shut down,so the DESCoder will not be same as the last instance,
-        // so check user info for secure!) this will be optimze in the future! // FIXME: 2016/9/8
+        // so check user info for secure!) this will be optimize in the future! // FIXME: 2016/9/8
         UserInfo userInfo = userInfoService.fetchUserInfoByUserId(userId);
         if(userInfo==null){
             msg.setSuccessful(false);

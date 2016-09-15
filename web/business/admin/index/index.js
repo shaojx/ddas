@@ -1,24 +1,20 @@
 /*admin 首页的js*/
 var loader=null;//加载条
+
+if(!String.prototype.endsWith){
+    String.prototype.endsWith = function(pattern) {
+        var d = this.length - pattern.length;
+        return d >= 0 && this.lastIndexOf(pattern) === d;
+    };
+}
 $(document).ready(function () {
  $(".navigation").pjax("a","#content-wrapper",{
-       timeout:4000,
+       timeout:1000*60,
        fragment:"body"
    });
 
     /*加载Loading*/
     $(document).on('pjax:send', function() {
-
-    });
-    $(document).on('pjax:complete', function() {
-        if(loader){
-            loader.stop();
-        }
-    });
-    /*添加选中的样式*/
-    $(".navigation").find("li").click(function () {
-        $(".navigation").find("li").removeClass("active");
-        $(this).addClass("active");
         loader=SLLib.loader({
             ele:"#content-wrapper",
             spinner:"spinner2",
@@ -27,7 +23,34 @@ $(document).ready(function () {
             reposition:true
         });
         loader.start();
-    })
+    });
+    $(document).on('pjax:complete', function(xhr) {
+        if(loader){
+            loader.stop();
+        }
+    });
+    $(document).on('pjax:end', function(event,placeholder,options) {
+        if(event.relatedTarget){
+            $(".navigation").find("li").removeClass("active");
+            $(event.relatedTarget).closest("li").addClass("active");
+        }else if(options.url){//backward
+           if(options.url.endsWith("/gotoIndex")){
+               $("#userInfos").click();
+           }else{
+               $(".navigation").find("li").removeClass("active");
+               $(".navigation").find("a").each(function(index,ele){
+                   if($(ele).attr("href").endsWith(options.url.substring(options.url.lastIndexOf("/")))){
+                       $(ele).closest("li").addClass("active");
+                   }
+               });
+           }
+        }
+    });
+    /*添加选中的样式*/
+  /*  $(".navigation").find("li").click(function () {
+        $(".navigation").find("li").removeClass("active");
+        $(this).addClass("active");
+    })*/
     /*click userInfos li*/
     $("#userInfos").click();
 
@@ -74,6 +97,9 @@ $(document).ready(function () {
     });
 
     $(".navigation").find("li").click(function () {
+        if(!$(".navigation").find(".custom").length){
+            return;
+        }
         var classes=$(".navigation").find(".custom").attr("class").split(" ");
         var className=null;
         for(var index in classes){
@@ -87,6 +113,50 @@ $(document).ready(function () {
         }
     });
 });
+
+window.onbeforeunload = function(e) {
+    //return 'Dialog text here.';
+  /*  if (window.event) {//for ie
+        if (window.event.clientX < 40 && window.event.clientY < 0) {
+            // alert("back button is clicked");
+        } else {
+            //alert("refresh button is clicked");
+            window.location.href=path+"/admin/gotoIndex";
+        }
+    } else {
+
+        if (event.currentTarget.performance.navigation.type == 2) {
+            // alert("back button is clicked");
+        }
+        if (event.currentTarget.performance.navigation.type == 1) {
+            //alert("refresh button is clicked");
+            alert("??")
+            window.location.href=path+"/admin/gotoIndex";
+        }
+    }*/
+};
+
+/*function CallbackFunction(event) {
+    console.log("test")
+    if (window.event) {//for ie
+        if (window.event.clientX < 40 && window.event.clientY < 0) {
+           // alert("back button is clicked");
+        } else {
+            //alert("refresh button is clicked");
+            window.location.href=path+"/admin/gotoIndex";
+        }
+    } else {
+
+        if (event.currentTarget.performance.navigation.type == 2) {
+           // alert("back button is clicked");
+        }
+        if (event.currentTarget.performance.navigation.type == 1) {
+            //alert("refresh button is clicked");
+            alert("??")
+            window.location.href=path+"/admin/gotoIndex";
+        }
+    }
+}*/
 var mv=new Vue({
     el:"#main-wrapper",
     data:{},

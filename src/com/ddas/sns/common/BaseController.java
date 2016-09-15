@@ -38,12 +38,15 @@ public class BaseController {
      *@since 1.6
      */
     public String getLocal(HttpServletRequest request) {
-        //locale 只为了前端页面的 validator的国际化
+        return getLocalObject(request).toString();
+    }
+
+    public Locale getLocalObject(HttpServletRequest request){
         Locale locale = (Locale) WebUtils.getSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
         if(locale==null){
-            locale=Locale.getDefault();
+            locale=Locale.SIMPLIFIED_CHINESE;
         }
-        return locale.toString();
+        return locale;
     }
 
     /**

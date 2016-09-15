@@ -36,7 +36,7 @@ public class AdminLoginRequiredInterceptor implements HandlerInterceptor {
         HttpSession session = req.getSession(true);
         UserInfo userInfo = (UserInfo) session.getAttribute("adminUserInfo");
         if (userInfo == null && !requestURL.contains("gotoLoginPage")) {
-            System.out.println("adminUserInfo is null");
+          //  System.out.println("adminUserInfo is null");
             try {
                 response.getWriter().write("<script type='text/javascript'>window.top.location.href='" + req.getContextPath() + "/admin/gotoLoginPage" + "';</script>");
             } catch (IOException e) {
