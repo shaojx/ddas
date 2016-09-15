@@ -20,8 +20,8 @@
     <input type="hidden" name="item_name" value="Recharge">
     <input type="hidden" name="amount" value="${amount}">
     <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="return" value="http://47.90.53.90/payfor/paypalProcess1">
-    <input type="hidden" name="notify_url" value="http://47.90.53.90/payfor/paypalProcess1">
+    <input type="hidden" name="return" value="http://47.90.53.90/payfor/paypalProcess">
+    <input type="hidden" name="notify_url" value="http://47.90.53.90/payfor/paypalProcess">
     <input type="hidden" name="invoice" value="">
     <input type="hidden" name="custom" value="${custom}">
     <input type="hidden" name="lc" value="EN">
@@ -38,9 +38,9 @@
     <input type="hidden" name="amount" value="${amount}">
     <input type="hidden" name="currency" value="USD">
     <input type="hidden" name="language" value="en">
-    <input type="hidden" name="notify_url" value="http://localhost:8080/payfor/paypalProcessPayssion">
-    <input type="hidden" name="success_url" value="http://localhost:8080/payfor/paypalProcessPayssion">
-    <input type="hidden" name="redirect_url" value="http://localhost:8080/payfor/paypalProcessPayssion">
+    <input type="hidden" name="notify_url" value="http://47.90.53.90/payfor/payssionProcess">
+    <input type="hidden" name="success_url" value="http://47.90.53.90/payfor/payssionProcess">
+    <input type="hidden" name="redirect_url" value="http://47.90.53.90/payfor/payssionProcess">
     <input style="visibility:hidden" type="submit" value="Submit">
 </form>
 <script>
