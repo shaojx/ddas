@@ -231,7 +231,7 @@ public class AdminController extends AdminBaseController{
             LOGGER.error("系统出现错误!",e);
             Msg msg = new Msg();
             msg.setSuccessful(false);
-            String msgByKey = SpringContextUtil.getMsgByKey("login.sysError", getLocal(request));
+            String msgByKey = SpringContextUtil.getMsgByKey("login.sysError", getLocalObject(request));
             msg.setMsg(msgByKey);
             return msg;
         }
