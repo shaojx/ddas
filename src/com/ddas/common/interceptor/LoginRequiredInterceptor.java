@@ -30,11 +30,14 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
         //用户登录判断
         HttpSession session = req.getSession(true);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        if (requestURL.contains("Process")) {
+            return true;
+        }
         if (userInfo == null) {
             try {
-                // req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);
+                req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req,response);
                 //retry login in with cookie
-                response.getWriter().write("<script type='text/javascript'>window.top.location.href='" + req.getContextPath() + "/login/gotoLogin" + "';</script>");
+                //response.getWriter().write("<script type='text/javascript'>window.top.location.href='" + req.getContextPath() + "/login/gotoLogin" + "';</script>");
             } catch (IOException e) {
                 e.printStackTrace();
             }

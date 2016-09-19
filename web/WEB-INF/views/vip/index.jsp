@@ -20,6 +20,7 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
+    <script type="text/javascript" src="<%=path%>/business/index/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
     <script type="text/javascript" src="<%=path%>/business/vip/vip.js"></script>
     <style type="text/css">

@@ -76,9 +76,10 @@
             <div role="tabpanel" class="tab-pane" id="CreateEmail">
                 <div id="emailContentDiv">
                     <%--<textarea rows="5" id="emailContent" style="margin: 0px; height: 350px; width: 746px;"></textarea>--%>
-                    <div id="emailContent" style="margin: 0px;border-radius: 4px;height: 350px; width: 746px;border:1px solid gray;"
-                         contenteditable="true"></div>
-                     <img id="face" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>
+                    <div id="emailContent" style="margin: 0px;border-radius: 4px;height: 250px; width: 746px;border:1px solid gray;"
+                         contenteditable="true">
+                    </div>
+                    <img id="face" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>
                     <div class="row margin-top-10px">
                         <label class="control-label pull-left margin-left-20px">
                             <span class="inline-block" style="height: 30px;line-height: 30px;"><spring:message code="friendName" text="好友名字"/></span>
@@ -107,9 +108,13 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="headPhotoForm">
-                        <div>
+<%--                        <div>
                             <textarea id="replyTxtArea" rows="5" cols="97"></textarea>
+                        </div>--%>
+                        <div id="replyTxtArea" style="margin: 0px;border-radius: 4px;height: 150px; width: 700px;border:1px solid gray;"
+                             contenteditable="true">
                         </div>
+                        <img id="face1" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>
                         <div class="margin-top-10px clear-both" >
                            <button type="button" class="btn btn-info float-right" style="margin-bottom: 5px;" id="replyBtn"><spring:message code="reply" text="回复"/></button>
                         </div>
@@ -119,10 +124,6 @@
                        <div class="panel panel-default">
                            <div class="panel-body">
                                <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
-                               这里面是一些邮内容，回复自amdin
                                这里面是一些邮内容，回复自amdin
                            </div>
                        </div>

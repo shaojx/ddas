@@ -97,6 +97,18 @@ $(function() {
             event.stopPropagation();
         }
     });
+
+    //表情
+    $("#face1").mouseover(function () {
+        $(this).attr("src",path+"/common/images/Happy-25-g.png");
+    }).mouseleave(function () {
+        $(this).attr("src",path+"/common/images/Happy-25-b.png");
+    }).click(function () {
+        if(! $('#sinaEmotion').is(':visible')){
+            $(this).sinaEmotion("#replyTxtArea");
+            event.stopPropagation();
+        }
+    });
     //注册 跳转到 升级会员的页面
     registerToVIPListener();
 });
@@ -339,7 +351,7 @@ function initEmailReceivePagination(pageData) {
     $("#emailReceivePaginationDIV").bootstrapPaginator(options);
 }
 /**
- * 初始化我的好友的数据
+ * 初始化我收到的
  * @param data
  */
 function initEmailReceiveData(data) {
@@ -504,12 +516,21 @@ function initEmailDetailData(data) {
  */
 function reply(){
     var senderId=$("#input_sender_id_"+reply_to_eamil_id).val();//发送者的id
+    var _replyTxtAreaContent =  $("#replyTxtArea").getSubmitText();
+    if(!_replyTxtAreaContent.trim()){
+        $.alert({
+            title:"Tip",
+            content:emailContent.msgRequired,
+            container:top.window.document.body
+        });
+        return;
+    }
     if(senderId&&reply_to_eamil_id){
         $.ajax(path+"/email/reply",{
             data:{
                 "emailId":reply_to_eamil_id,
                 "senderId":senderId,
-                "emailContent":$("#replyTxtArea").val()
+                "emailContent":_replyTxtAreaContent
             },
             dataType:"json",
             type:"POST",

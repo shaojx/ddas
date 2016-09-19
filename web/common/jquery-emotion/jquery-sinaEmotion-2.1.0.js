@@ -226,6 +226,7 @@
 				showCategory(defCategory);
 				showCatPage(0);
 			});
+			$("#sinaEmotion").css("z-index",1050);
 			$('#sinaEmotion').css({
 				top: offset.top + $that.outerHeight() + 5,
 				left: offset.left
