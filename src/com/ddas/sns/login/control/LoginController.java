@@ -103,7 +103,7 @@ public class LoginController extends BaseController {
             LOGGER.error("系统出现错误!",e);
             Msg msg = new Msg();
             msg.setSuccessful(false);
-            String msgByKey = SpringContextUtil.getMsgByKey("login.sysError", getLocal(request));
+            String msgByKey = SpringContextUtil.getMsgByKey("login.sysError", getLocalObject(request));
             msg.setMsg(msgByKey);
             return msg;
         }
@@ -145,7 +145,7 @@ public class LoginController extends BaseController {
         } else {
             Msg msg = new Msg();
             msg.setSuccessful(false);
-            msg.setMsg(SpringContextUtil.getMsgByKey("login.errorUserNameOrPwd", getLocal(request)));
+            msg.setMsg(SpringContextUtil.getMsgByKey("login.errorUserNameOrPwd", getLocalObject(request)));
             return msg;
         }
     }
@@ -219,13 +219,13 @@ public class LoginController extends BaseController {
         save = userInfoService.save(userInfo);
         if (save) {
             Msg msg = new Msg();
-            msg.setMsg(SpringContextUtil.getMsgByKey("register.success", getLocal(request)));
+            msg.setMsg(SpringContextUtil.getMsgByKey("register.success", getLocalObject(request)));
             msg.setSuccessful(true);
             return msg;
         } else {
             Msg msg = new Msg();
             msg.setSuccessful(false);
-            msg.setMsg(SpringContextUtil.getMsgByKey("register.error", getLocal(request)));
+            msg.setMsg(SpringContextUtil.getMsgByKey("register.error", getLocalObject(request)));
             return msg;
         }
     }
@@ -252,7 +252,7 @@ public class LoginController extends BaseController {
         UserInfo userInfo = userInfoService.fetchUserInfoByUserName(userName);
         if(userInfo==null||email==null||!email.equals(userInfo.getUserEmail())){//不匹配
             msg.setSuccessful(false);
-            msg.setMsg(SpringContextUtil.getMsgByKey("login.resetPwd.eamilError", getLocal(getCurrentRequest())));
+            msg.setMsg(SpringContextUtil.getMsgByKey("login.resetPwd.eamilError", getLocalObject(request)));
             return msg;
         }
         //发送邮件
