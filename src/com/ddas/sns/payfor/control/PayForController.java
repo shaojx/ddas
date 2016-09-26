@@ -210,6 +210,7 @@ public class PayForController extends BaseController{
                 LOGGER.error(request.getParameter("pending_reason"));
             } else {
                 msg.setMsg("Pay failed！Please contact customer service.");
+                LOGGER.error("支付状态payment_status为：" + payment_status);
             }
 
         }catch(Exception e){

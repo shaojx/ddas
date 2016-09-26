@@ -83,6 +83,7 @@ $(function() {
 
     //创建邮件click
     $("#createEmailTab").click(function(){
+        $("#emailContent").val("");//清空内容
         checkUserDailyEmailCount();
     });
 
@@ -492,8 +493,10 @@ function initEmailPagenation(pageData) {
 function initEmailDetailData(data) {
     var myLogDivTemplete='<div class="panel panel-default">'
         +'<div class="panel-body">'
-        +'<p style="font-style: italic;font-size: 12px;">${type} ${otherUserName}:</p>' +
-        '${emailContent}'
+        +'<p style="font-style: italic;font-size: 12px;">${type} ${otherUserName}:</p>'
+        + '<span id="reply_span_id_${index}" class="inline-block" style="text-overflow:ellipsis;margin-top:10px;font-size: 13px;width: 90%;word-break: break-all;">'
+        + '${emailContent}'
+        + '</span>'
         +'</div>'
         +'</div>';
     var list=data.dataList;
@@ -507,7 +510,9 @@ function initEmailDetailData(data) {
             _replace= myLogDivTemplete.replace("${emailContent}",_data.emailContent)
                 .replace("${type}","FROM").replace("${otherUserName}",_data.otherUserName+emailContent.sReply);
         }
+        _replace = _replace.replace("${index}",index);
         $("#contentDiv").append(_replace);
+        $("#reply_span_id_"+index).parseEmotion();
     }
 }
 

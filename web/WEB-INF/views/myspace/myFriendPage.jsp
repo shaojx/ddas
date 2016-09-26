@@ -23,6 +23,7 @@
     <script type="text/javascript" src="<%=path%>/common/jquery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript">
         var path = "<%=path%>";
+        var localStr="<%=request.getAttribute("local")%>";
     </script>
     <style type="text/css">
         div.row{
@@ -34,6 +35,9 @@
     </style>
     <%--引入自定义样式--%>
     <link href="<%=path%>/business/common/css/friendList.css"/>
+    <%--表情插件--%>
+    <link href="<%=path%>/common/jquery-emotion/jquery-sinaEmotion-2.1.0.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-emotion/jquery-sinaEmotion-2.1.0.js"></script>
     <%--引入自定义JS--%>
     <script type="text/javascript" src="<%=path%>/business/common/js/header.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myfriend/language/${local}.js"></script>
@@ -101,7 +105,11 @@
                             </div>
                             <div class="modal-body">
                                 <div role="tabpanel" class="tab-pane active" id="CreateEmail">
-                                    <textarea rows="5" id="emailContent" style="margin: 0px; height: 300px; width: 700px;"></textarea>
+                                    <%--<textarea rows="5" id="emailContent" style="margin: 0px; height: 300px; width: 700px;"></textarea>--%>
+                                        <div id="emailContent" style="margin: 0px;border-radius: 4px;height: 200px; width: 700px;border:1px solid gray;"
+                                             contenteditable="true">
+                                        </div>
+                                        <img id="face" src="<%=path%>/common/images/Happy-25-b.png" style="width: 25px;height: 25px;cursor: pointer; margin-top: 5px;"/>
                                     <div class="row margin-top-10px">
 
                                     </div>

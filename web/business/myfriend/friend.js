@@ -132,10 +132,21 @@ $(function() {
             var friendId = button.data('friendid'); // Extract info from data-* attributes
             var modal = $(this);
             modal.find('#friendId').val(friendId);
-            modal.find('#emailContent').val("");
+            modal.find('#emailContent').html("");
             modal.find('#friendList').children('#'+ friendId).attr("selected", true)
         }
 	})
+
+	/**
+	 * 当添发送邮件的时候，传数据到Model框里面去
+	 */
+	$('#createEmailDialog').on('hide.bs.modal', function (event) {
+		var modal = $(this);
+		var friendId = $("#friendId").val();
+		modal.find('#emailContent').html("");
+		modal.find('#friendList').children('#'+ friendId).attr("selected", false)
+	});
+
 
 	//发送邮件的点击事件
 	$("#sendEmailBtn").click(function () {
@@ -152,6 +163,7 @@ $(function() {
 			success:function(){
 				$("#closeModel").click();
 				$.confirm({
+					container:window.top.document.body,
 					title:"",
 					content:"Email send success!",
 					autoClose: 'confirm|2000',
@@ -167,6 +179,18 @@ $(function() {
 	loadMyAllFriendList();
     //注册 跳转到 升级会员的页面
     registerToVIPListener();
+
+	//表情
+	$("#face").mouseover(function () {
+		$(this).attr("src",path+"/common/images/Happy-25-g.png");
+	}).mouseleave(function () {
+		$(this).attr("src",path+"/common/images/Happy-25-b.png");
+	}).click(function () {
+		if(! $('#sinaEmotion').is(':visible')){
+			$(this).sinaEmotion("#emailContent");
+			event.stopPropagation();
+		}
+	});
 });
 
 function registerToVIPListener() {
