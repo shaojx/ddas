@@ -86,7 +86,7 @@ $(function() {
 				$("#myFriendGroupTab").click(); //重新加载用户分组的数据
 			}
 		})
-	})
+	});
 
 	/**
 	 * 管理好友分组的Tab的点击事件
@@ -110,7 +110,7 @@ $(function() {
 		var modal = $(this);
 		modal.find('#userFriendGroupName').val(groupName);
 		modal.find('#userFriendGroupId').val(groupId);
-	})
+	});
 
 
 	/**
@@ -135,7 +135,7 @@ $(function() {
             modal.find('#emailContent').html("");
             modal.find('#friendList').children('#'+ friendId).attr("selected", true)
         }
-	})
+	});
 
 	/**
 	 * 当添发送邮件的时候，传数据到Model框里面去
@@ -144,9 +144,8 @@ $(function() {
 		var modal = $(this);
 		var friendId = $("#friendId").val();
 		modal.find('#emailContent').html("");
-		modal.find('#friendList').children('#'+ friendId).attr("selected", false)
+		modal.find('#friendList').children('#'+ friendId).attr("selected", false);
 	});
-
 
 	//发送邮件的点击事件
 	$("#sendEmailBtn").click(function () {
@@ -216,7 +215,7 @@ function  checkUserDailyEmailCount() {
                 rtn=false;
             }
         }
-    })
+    });
     return rtn;
 }
 //加载搜索条件中的好友分组信息
@@ -325,12 +324,25 @@ function initMyFriendGroupData(data) {
 		'<th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>'+
 		'<td>groupNameValue</td>'+
 		'<td>groupTimeValue</td>'+
-		'<td><a href="javascript:void(0)" data-toggle="modal" data-backdrop="" data-groupid="groupIdValue" data-groupname="groupNameValue" autocomplete="off" data-target="#createMyFriendGroupDialog">'+friendContent.edit+'</a> | <a href="javascript:void(0)" data-groupid="groupIdValue" name="deleteFriendGroup">'+friendContent.delete+'</a></td>'+
+		'<td><a href="javascript:void(0)" data-toggle="modal" data-backdrop="" data-groupid="groupIdValue" data-groupname="groupNameValue" autocomplete="off" data-target="#createMyFriendGroupDialog"><i class="fa fa-pencil"></i>'+friendContent.edit+'</a> | <a href="javascript:void(0)" data-groupid="groupIdValue" name="deleteFriendGroup"><i class="fa fa-times"></i>'+friendContent.delete+'</a></td>'+
 		'</tr>';
+	var defaultGroupDivTemplate = '<tr>'+
+		'<th scope="row"><input type="checkbox" class="checkbox" name="types_checkbox"></th>'+
+		'<td>groupNameValue</td>'+
+		'<td>groupTimeValue</td>'+
+		'<td><a href="javascript:void(0)" style="cursor:not-allowed"><i class="fa fa-pencil"></i>'+friendContent.edit+'</a> | <a href="javascript:void(0)" style="cursor:not-allowed"><i class="fa fa-times"></i>'+friendContent.delete+'</a></td>'+
+		'</tr>';
+
 	var list = data.dataList;
 	for (var index in list) {
 		var _data = list[index];
-		var _replace = myFriendGroupDivTemplete.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime);
+		var _replace = "";
+		if(_data.userId == "1000") {
+			_replace = defaultGroupDivTemplate
+		}else {
+			_replace = myFriendGroupDivTemplete;
+		}
+		_replace = _replace.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime).replace(/Default Group/g, friendContent.defaultGroup);
 		$("#myFriendGroupContentDiv").append(_replace);
 	}
 

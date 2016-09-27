@@ -10,5 +10,6 @@ friendContent.accept="Accept";
 friendContent.refuse="Refuse";
 friendContent.refuseFriendTip="Confirm refuse add this friend?";
 friendContent.refused="Refused!";
+friendContent.defaultGroup="Default Group";
 
 

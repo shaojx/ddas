@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : root
-Source Server Version : 50624
-Source Host           : localhost:3306
+Source Server         : 47.90.53.90
+Source Server Version : 50633
+Source Host           : 47.90.53.90:3306
 Source Database       : social_work
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50633
 File Encoding         : 65001
 
-Date: 2016-08-17 23:22:43
+Date: 2016-09-27 21:47:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,4 +35,4 @@ CREATE TABLE `user_photo_group` (
 -- ----------------------------
 -- Records of user_photo_group
 -- ----------------------------
-INSERT INTO `user_photo_group` VALUES ('df1a40b4d478ffc4', '039bbb50491faff0', '一只美丽的逗B', '/upload/5418a404480653d0.jpg', '0', 'aaa', '2016-08-16 22:16:48', '2016-08-16 23:13:00', 'aa');
+INSERT INTO `user_photo_group` VALUES ('3', '1000', '默认分组', '', '2', '默认分组', '2016-08-16 22:16:48', '2016-08-16 23:13:00', '');

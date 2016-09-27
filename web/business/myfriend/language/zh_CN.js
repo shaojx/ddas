@@ -10,3 +10,4 @@ friendContent.accept="同意";
 friendContent.refuse="拒绝";
 friendContent.refuseFriendTip="确定拒绝添加该好友么?";
 friendContent.refused="已拒绝!";
+friendContent.defaultGroup="默认分组";

@@ -26,7 +26,6 @@
     <script type="text/javascript">
         var path = "<%=path%>";
     </script>
-    <script type="text/javascript" src="<%=path%>/business/index/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/language/${local}.js"></script>
     <script type="text/javascript" src="<%=path%>/business/photo/photo.js"></script>
     <%--引入自定义样式--%>
@@ -48,7 +47,7 @@
             <%--新建相册与上传照片--%>
             <div class="row margin-top-10px">
                 <button type="button" class="btn btn-info pull-right" style="margin-right: 17px;" id="addPhotoBtn"><spring:message code="uploadPhoto" text="上传照片"/></button>
-                <button type="button" class="btn btn-info pull-right margin-right-10px"
+                <button type="button" class="btn btn-info pull-right margin-right-15px"
                         data-toggle="modal" data-backdrop="" data-target="#createMyPhotoGroupDialog" data-groupid=""
                         autocomplete="off" id="addPhotoGroup"><spring:message code="createAlbum" text="新建相册"/></button>
             </div>

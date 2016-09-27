@@ -131,8 +131,10 @@ function getMyPhotoGroupData(condition){
             success:function(data){
                 if(data.dataList.length < 1) {
                     $("#myPhotoGroupPaginationDIV").html("");//清空页码
-                    return; //如果没有查询到数据，就不分页
+                    $("#addPhotoBtn").hide();
+                    return; //如果没有查询到数据，就不分页,且不显示上传照片按钮
                 }
+                $("#addPhotoBtn").show();
                 if(condition.pageNo==1){//如果是第一页，则初始化分页
                     initMyPhotoGroupPagination(data);
                 }
@@ -265,9 +267,7 @@ function addDeletePhotoGroupListener(groupId) {
 function deletePhotoGroupById(groupId) {
     if(groupId){
         $.confirm({
-            theme: 'white',
-            confirmButtonClass: 'btn-info',
-            cancelButtonClass: 'btn-danger',
+            container:window.top.document.body,
             title:false,
             content: photoContent.deleteConfirm,
             confirm: function(){
