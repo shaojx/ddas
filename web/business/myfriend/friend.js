@@ -338,11 +338,11 @@ function initMyFriendGroupData(data) {
 		var _data = list[index];
 		var _replace = "";
 		if(_data.userId == "1000") {
-			_replace = defaultGroupDivTemplate
+			_replace = defaultGroupDivTemplate;
 		}else {
 			_replace = myFriendGroupDivTemplete;
 		}
-		_replace = _replace.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime).replace(/Default Group/g, friendContent.defaultGroup);
+		_replace = _replace.replace(/groupNameValue/g, _data.groupName).replace(/groupIdValue/g, _data.groupId).replace(/groupTimeValue/g, _data.createdTime);
 		$("#myFriendGroupContentDiv").append(_replace);
 	}
 
@@ -508,7 +508,7 @@ function deleteUserFriend(ufId) {
 			url:path+"/userFriend/delete",
 			type:"POST",
 			data:{
-				"ufId":ufId,
+				"ufId":ufId
 			},
 			dataType:"json",
 			success:function(data){
@@ -707,7 +707,7 @@ function loadMyAllFriendList() {
 	var userAllFriendCondition = {
 		pageNo:1,
 		friendName:"",
-		status:CONST_FRIEND,
+		status:CONST_FRIEND
 	};//查询条件初始化
 
 	getAllMyFriendData(userAllFriendCondition);//取到好友列表

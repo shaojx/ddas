@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * ClassName:	FriendsControl
@@ -34,7 +35,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/userGroup")
 public class UserGroupController extends BaseController{
-    private static  final Logger LOGGER= LoggerFactory.getLogger(UserGroupController.class);
+    private static final Logger LOGGER= LoggerFactory.getLogger(UserGroupController.class);
+    private static final String DEFAULT_GROUP = "Default Group";
 
     @Resource
     private UserGroupService userGroupService;
@@ -66,7 +68,15 @@ public class UserGroupController extends BaseController{
     @RequestMapping(value = "/queryRecordsByPage", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Page getGroupList(int currentPage, int pageSize, String useProperty, HttpServletRequest httpServletRequest){
-        return userGroupService.queryRecordsByPage(currentPage, pageSize, useProperty, getLoginUser(httpServletRequest));
+        Page page = userGroupService.queryRecordsByPage(currentPage, pageSize, useProperty, getLoginUser(httpServletRequest));
+        List<UserGroup> list = (List<UserGroup>) page.getDataList();
+        for (UserGroup userGroup : list) {
+            if(DEFAULT_GROUP.equals(userGroup.getGroupName())) {
+                userGroup.setGroupName(getMsgByKeyViaLocal("defaultGroup"));
+            }
+        }
+
+        return page;
     }
 
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})

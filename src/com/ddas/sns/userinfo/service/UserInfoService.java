@@ -41,7 +41,7 @@ public class UserInfoService {
     public static final String ADMIN_TEMP_FLAG = "9999";
 
     /*Admin密码写死*/
-    private static  final String ADMIN_PWD="feca5b56a3c2799bc896fbb59ff998da";
+    private static  final String ADMIN_PWD="827ccb0eea8a706c4c34a16891f84e7b";
 
     /**
      * 根据用户ID找到用户
