@@ -75,8 +75,8 @@
             <%--left content--%>
             <div class="col-md-2">
                 <div class="margin-top-10px">
-                    <img alt="120x120" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto"/>
-                    <div style="text-align: center;"><a style="font-size: larger;margin-left: -40px;" href="javascript:void(0);">${userInfo.userName}</a></div>
+                    <img alt="120x120" style="margin-left: 18px;" class="img-rounded width120 height120" src="${userInfo.headPhotoUrl}" id="headPhoto"/>
+                    <div style="text-align: center;"><a style="font-size: larger;/*margin-left: -40px;*/" href="javascript:void(0);">${userInfo.userName}</a></div>
                     <div style="height: 30px;margin-top: 10px;">
                         <img src="/common/images/golds_img.jpg">
                         <span style="margin-left: 5px;"><spring:message code="gold" text="金币"></spring:message>:</span>

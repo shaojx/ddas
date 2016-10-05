@@ -163,3 +163,7 @@
     height: 15px;!important;
     width: 15px;!important;
 }
+
+.pagination>li{
+    cursor:pointer;
+}
