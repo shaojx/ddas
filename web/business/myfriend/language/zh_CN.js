@@ -11,3 +11,5 @@ friendContent.refuse="拒绝";
 friendContent.refuseFriendTip="确定拒绝添加该好友么?";
 friendContent.refused="已拒绝!";
 friendContent.defaultGroup="默认分组";
+friendContent.confirmDeleteFriend="确认删除好友吗？";
+friendContent.sendEmailSuccess="邮件发送成功！";

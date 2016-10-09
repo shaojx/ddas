@@ -59,6 +59,7 @@ $(function() {
 		var userFriendGroupId = $("#userFriendGroupId").val();
 		if(userFriendGroupName == "") {
 			$.confirm({
+				container:window.top.document.body,
 				title:"",
 				content:friendContent.groupNameRequired,
 				autoClose: 'confirm|2000',
@@ -164,7 +165,7 @@ $(function() {
 				$.confirm({
 					container:window.top.document.body,
 					title:"",
-					content:"Email send success!",
+					content:friendContent.sendEmailSuccess,
 					autoClose: 'confirm|2000',
 					cancelButton:false
 				});
@@ -492,7 +493,8 @@ function initMyFriendData(data) {
 	$(".glyphicon-remove").click(function () {
 		var ufid = $(this).attr("data-ufid");
 		$.confirm({
-			content:"确定要删除好友么？",
+			container:window.top.document.body,
+			content:friendContent.confirmDeleteFriend,
 			confirm:function () {
 				deleteUserFriend(ufid);
 			},
@@ -513,6 +515,7 @@ function deleteUserFriend(ufId) {
 			dataType:"json",
 			success:function(data){
 				$.confirm({
+					container:window.top.document.body,
 					title:"",
 					content:friendContent.deleteFriendSuccess,
 					autoClose: 'confirm|2000',
@@ -546,7 +549,7 @@ function getMyFriendApplyData(condition){
 			dataType:"json",
 			success:function(data){
 				if(data.dataList.length < 1) {
-					$("#myFriendApplyPaginationDIV").html("");//清空页码
+					$("#myFriendPaginationApplyDIV").html("");//清空页码
 					return; //如果没有查询到数据，就不分页
 				}
 				if(condition.pageNo==1){//如果是第一页，则初始化分页
@@ -632,6 +635,7 @@ function initMyFriendApplyData(data) {
 				dataType:"json",
 				success:function(){
 					$.confirm({
+						container:window.top.document.body,
 						title:"",
 						content:friendContent.editGroupNameSuccess,
 						autoClose: 'confirm|2000',
@@ -658,6 +662,7 @@ function initMyFriendApplyData(data) {
 			dataType:"json",
 			success:function(data){
 				$.confirm({
+					container:window.top.document.body,
 					title:"",
 					content:data.msg,
 					autoClose: 'confirm|2000',
@@ -676,6 +681,7 @@ function initMyFriendApplyData(data) {
 	$("a[name='refuseAdd']").click(function () {
 		var ufId = $(this).attr("data-ufId");
 		$.confirm({
+			container:window.top.document.body,
 			content:friendContent.refuseFriendTip,
 			confirm:function () {
 				//删除该条添加好友的信息
@@ -688,6 +694,7 @@ function initMyFriendApplyData(data) {
 					dataType:"json",
 					success:function(){
 						$.confirm({
+							container:window.top.document.body,
 							title:"",
 							content:friendContent.refused,
 							autoClose: 'confirm|2000',

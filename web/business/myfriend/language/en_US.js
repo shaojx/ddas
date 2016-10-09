@@ -11,5 +11,7 @@ friendContent.refuse="Refuse";
 friendContent.refuseFriendTip="Confirm refuse add this friend?";
 friendContent.refused="Refused!";
 friendContent.defaultGroup="Default Group";
+friendContent.confirmDeleteFriend="Confirm delete this friend?";
+friendContent.sendEmailSuccess="Email send success！";
 
 
