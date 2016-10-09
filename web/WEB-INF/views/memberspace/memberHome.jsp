@@ -32,7 +32,10 @@
     <script type="text/javascript" src="<%=path%>/business/memberspace/js/memberSpace.js"></script>
     <script type="text/javascript" src="<%=path%>/business/index/index.js"></script>
 </head>
-<body style=" background:url('<%=path%>/common/images/home_bg.png') ">
+<body style="width: 100%;height: 100%;">
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1">
+    <img src="<%=path%>/common/images/home_bg.png" height="100%" width="100%"/>
+</div>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -224,10 +227,8 @@
     </div>
 </div>
 
-<footer class="footer">
-    <%--访问的用户id--%>
-    <input type="hidden" id="memberId" name="memberId" data-name="${memberInfo.userName}" value="${memberInfo.userId}">
-</footer>
+<%--访问的用户id--%>
+<input type="hidden" id="memberId" name="memberId" data-name="${memberInfo.userName}" value="${memberInfo.userId}">
 
 <script src="<%=path%>/common/bxslider/js/jquery.bxslider.js"></script>
 <script src="<%=path%>/common/mooz.scripts.min.js"></script>
