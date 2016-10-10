@@ -81,10 +81,16 @@ function initUserListData(data) {
     for (var index in list) {
         var _data = list[index];
         var photoUrl=_data.headPhotoUrl;
+        var vipIcon = '<img src="http://images6.baihe.com/icon/icon_01.gif" alt="">';
         var _replace = userListDivTemplete.replace("${basePath}", photoUrl?photoUrl:path+"/common/images/people140x140.jpg")
-            .replace("${userNameVal}", _data.userName)
+
             .replace("${userId}", _data.userId)
             .replace(/addFriendBtn/g, indexMsg.addFriendBtn);
+        if(_data.vipTypeCode == "1" || _data.vipTypeCode == "2") {//是vip就带上vip的图标
+            _replace = _replace.replace("${userNameVal}", _data.userName + vipIcon);
+        }else{
+            _replace = _replace.replace("${userNameVal}", _data.userName);
+        }
         $("#userListContentDiv").append(_replace);
         addAddBtnClickListener("#"+_data.userId+"_addBtn", _data.userId);
     }
