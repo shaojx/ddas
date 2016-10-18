@@ -118,6 +118,7 @@ function addAddBtnClickListener(addUserBtnId, friendId){
                     success:function(data){
                         if(data.successful){
                             $.confirm({
+                                container:window.top.document.body,
                                 title:"",
                                 content:data.msg,
                                 cancelButton:false,

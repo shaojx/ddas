@@ -25,6 +25,7 @@
     var path = "<%=path%>";
     var msg = $("#msg").val();
     $.confirm({
+        container:window.top.document.body,
         title:"",
         content:msg,
         cancelButton:false,

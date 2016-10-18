@@ -57,6 +57,7 @@ function changePwd(btn) {
                 if(data){
                     if(data.successful){
                         $.confirm({
+                            container:window.top.document.body,
                             title:"Tip",
                             content:data.msg,
                             autoClose: 'confirm|3000',

@@ -55,12 +55,12 @@
                 </span></p>
 
                 <%--面板--%>
-                <div class="panel panel-default" style="height: 250px;">
+                <div class="panel panel-warning" style="height: 250px;">
                     <div class="panel-heading"><spring:message code="seniorVip" text="高级会员"/></div>
 
                     <div class="clear-both">
                         <div class="panel-body width185 pull-left innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">20</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">50</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">90</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -100,7 +100,7 @@
                     </div>
                     <div class="clear-both">
                         <div class="panel-body width185 pull-left innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">150</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -115,12 +115,12 @@
                 </div>
 
                 <%--VIP面板--%>
-                <div class="panel panel-default" style="height: 250px;">
+                <div class="panel panel-warning" style="height: 250px;">
                     <div class="panel-heading">VIP</div>
 
                     <div class="clear-both">
                         <div class="panel-body width185 pull-left innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">99</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">269</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -146,7 +146,7 @@
                         </div>
 
                         <div class="panel-body width185 pull-left margin-left-30px innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">489</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">
@@ -160,7 +160,7 @@
                     </div>
                     <div class="clear-both">
                         <div class="panel-body width185 pull-left innerDiv">
-                            <div class="panel panel-default width185">
+                            <div class="panel panel-warning width185">
                                 <div class="panel-body">
                                     <span class="span-height30-center">899</span>
                                     <img src="<%=path%>/common/images/dollerX30.png" class="doller">

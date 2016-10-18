@@ -70,7 +70,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="panel-virtualGift">
-                        <div class="panel panel-default">
+                        <div class="panel panel-warning">
                             <div id="panel-element-virtual-gift" class="panel-collapse in">
                                 <div class="panel-body">
                                     <div class="row" id="virtualGiftContentDiv">
@@ -81,7 +81,7 @@
                         <ul class="pagination" id="virtualGiftPaginationDiv"></ul>
                     </div>
                     <div class="tab-pane" id="panel-trueGift">
-                        <div class="panel panel-default">
+                        <div class="panel panel-warning">
                             <div id="panel-element-true-gift" class="panel-collapse in">
                                 <div class="panel-body">
                                     <div class="row" id="trueGiftContentDiv">
@@ -101,7 +101,7 @@
                                 <h4 class="modal-title" id="myModalLabel"><spring:message code="giftInfo" text="礼物详情"/></h4>
                             </div>
                             <div class="modal-body">
-                                <div class="panel panel-default">
+                                <div class="panel panel-warning">
                                     <div class="panel-collapse in">
                                         <div class="panel-body">
                                             <div class="row clearfix">

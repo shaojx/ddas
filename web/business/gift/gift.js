@@ -249,6 +249,7 @@ function sendGiftToFriend() {
         dataType:"json",
         success:function(data){
             $.confirm({
+                container:window.top.document.body,
                 title:"",
                 content:data.msg,
                 autoClose: 'confirm|1000',

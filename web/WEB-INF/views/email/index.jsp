@@ -121,7 +121,7 @@
                     </form>
                     <%--分页显示--%>
                    <div id="contentDiv" class="clear-both">
-                       <div class="panel panel-default">
+                       <div class="panel panel-warning">
                            <div class="panel-body">
                                <p style="font-style: italic;font-size: 12px;">来自XXX:</p>
                                这里面是一些邮内容，回复自amdin
