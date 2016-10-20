@@ -53,6 +53,9 @@
     <script type="text/javascript" src="<%=path%>/business/message/js/message.js"></script>
     <script type="text/javascript" src="<%=path%>/business/myspace/userInfoEdit.js"></script>
     <link type="text/css" href="<%=path%>/business/photo/photo.css" rel="stylesheet"/>
+    <%--表情插件--%>
+    <link href="<%=path%>/common/jquery-emotion/jquery-sinaEmotion-2.1.0.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=path%>/common/jquery-emotion/jquery-sinaEmotion-2.1.0.js"></script>
     <style type="text/css">
         body,html{
             overflow: hidden !important;

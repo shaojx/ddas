@@ -150,13 +150,21 @@ $(function() {
 
 	//发送邮件的点击事件
 	$("#sendEmailBtn").click(function () {
-		var emailContent = $("#emailContent").val();
+		var _emailContent =  $("#emailContent").getSubmitText();
+		if(!_emailContent.trim()){
+			$.alert({
+				title:"Tip",
+				content:emailContent.msgRequired,
+				container:top.window.document.body
+			});
+			return;
+		}
 		var emailReceiver = $("#friendList").children('option:selected').attr("id");
 		$.ajax({
 			url:path+"/email/save",
 			type:"POST",
 			data:{
-				"emailContent":emailContent,
+				"emailContent":_emailContent,
 				"emailReceiver":emailReceiver
 			},
 			dataType:"json",

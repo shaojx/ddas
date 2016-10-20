@@ -89,8 +89,9 @@
 		emotions = {};
 		categories = [];
 		emotionsMap = {};
+        var tip=local!="zh_CN"?"Loading,please wait...":"正在加载，请稍后...";
 
-		$('body').append('<div id="sinaEmotion">正在加载，请稍后...</div>');
+		$('body').append('<div id="sinaEmotion">'+tip+'</div>');
 
 		initEvents();
 
