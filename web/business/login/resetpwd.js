@@ -22,6 +22,7 @@ $(function () {
             success:function (data) {
                 if (data&&data.successful==true){
                     $.confirm({
+                        container:window.top.document.body,
                         title:"",
                         content:data.msg,
                         autoClose: 'confirm|2000',

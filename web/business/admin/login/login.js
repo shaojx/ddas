@@ -148,6 +148,7 @@ function sendEmail() {
         success:function (data) {
             if (data&&data.successful==true){
                 $.confirm({
+                    container:window.top.document.body,
                     title:"",
                     content:data.msg,
                     autoClose: 'confirm|3000',
@@ -159,6 +160,7 @@ function sendEmail() {
             }else{
                 if(data&&data.msg){//发送失败
                     $.confirm({
+                        container:window.top.document.body,
                         title:"",
                         content:data.msg,
                      //   autoClose: 'confirm|3000',

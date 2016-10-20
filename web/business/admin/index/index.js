@@ -164,6 +164,7 @@ var mv=new Vue({
         //退出
         logOut:function () {
             $.confirm({
+                container:window.top.document.body,
                 theme: 'black',
                 confirmButtonClass: 'btn-info',
                 cancelButtonClass: 'btn-danger',

@@ -99,7 +99,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="panel-tabs0">
-                <div class="panel panel-default">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
                         <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1331"><spring:message code="latestPhotos" text="最近照片"></spring:message></a>
                     </div>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
                         <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1233"><spring:message code="latestBlog" text="最近日志"></spring:message></a>
                     </div>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
                         <a class="panel-title" data-toggle="collapse" data-parent="#panel-839153" href="#panel-element-1152"><spring:message code="latestMessage" text="最近留言"></spring:message></a>
                     </div>

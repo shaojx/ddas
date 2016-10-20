@@ -172,6 +172,7 @@ function saveComment() {
                     if(data){
                         if(data.msg=="success"){
                             $.confirm({
+                                container:window.top.document.body,
                                 title:"",
                                 content:mySpaceContent.saveSuccess,
                                 autoClose: 'confirm|1000',
@@ -188,6 +189,7 @@ function saveComment() {
                             $("#friendCommentCount_"+clickedFriendBlogCommentId).text(oldCount+1);
                         }else{
                             $.confirm({
+                                container:window.top.document.body,
                                 title:"",
                                 content:data.msg,
                                 cancelButton:false
@@ -226,6 +228,7 @@ function saveMyLog(){
             success:function(data){
                 $("#closeCreateBlogModelBtn").click();
                 $.confirm({
+                    container:window.top.document.body,
                     title:"",
                     content:data.msg,
                     autoClose: 'confirm|1000',
@@ -297,10 +300,15 @@ function getMyLogData(pageNo){
             dataType:"json",
             success:function(data){
                 loader.stop();
-                if(pageNo==1){//如果是第一页，则初始化分页
-                    initMyLogPagnation(data);
+                if(data.dataList && data.dataList.length > 0) {
+                    if(pageNo==1){//如果是第一页，则初始化分页
+                        initMyLogPagnation(data);
+                    }
+                    initMyLogData(data);
+                }else{
+                    $("#myLogPagnationDiv").empty();
                 }
-                initMyLogData(data);
+
             }
         })
     }

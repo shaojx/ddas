@@ -14,12 +14,17 @@ import com.ddas.common.util.date.DateUtil;
 import com.ddas.common.util.uuid.UUIDUtil;
 import com.ddas.sns.userinfo.domain.UserInfo;
 import com.ddas.sns.userinfo.domain.UserInfoCriteria;
+import com.ddas.sns.userinfo.dto.UserInfoDto;
 import com.ddas.sns.userinfo.mapper.UserInfoMapper;
+import com.ddas.sns.vip.domain.UserVipInfo;
+import com.ddas.sns.vip.domain.UserVipInfoCriteria;
+import com.ddas.sns.vip.mapper.UserVipInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,8 +42,14 @@ public class UserInfoService {
     private static final Logger LOGGER= LoggerFactory.getLogger(UserInfoService.class);
     @Resource
     private UserInfoMapper userInfoMapper;
+
+    @Resource
+    private UserVipInfoMapper userVipInfoMapper;
     /*user_info表中status为'9999'时来表明为一个管理员用户*/
     public static final String ADMIN_TEMP_FLAG = "9999";
+
+    /*code为0代表普通用户*/
+    public static final String NORMAL_USER = "0";
 
     /*Admin密码写死*/
     private static  final String ADMIN_PWD="827ccb0eea8a706c4c34a16891f84e7b";
@@ -167,8 +178,9 @@ public class UserInfoService {
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userInfoMapper.countByExample(userInfoCriteria));
         }
-        page.setDataList(userInfoMapper.selectByExample(userInfoCriteria));
-        // TODO: 2016/7/19 此处要去掉用户列表的密码信息
+        List<UserInfo> list = userInfoMapper.selectByExample(userInfoCriteria);
+        page.setDataList(convertToDto(list));
+
         return page;
     }
 
@@ -193,8 +205,9 @@ public class UserInfoService {
         if(currentPage==1){//如果是当前第一页，则要求总数
             page.setTotalCount(userInfoMapper.countByExample(userInfoCriteria));
         }
-        page.setDataList(userInfoMapper.selectByExample(userInfoCriteria));
-        // TODO: 2016/7/19 此处要去掉用户列表的密码信息
+        List<UserInfo> list = userInfoMapper.selectByExample(userInfoCriteria);
+        page.setDataList(convertToDto(list));
+
         return page;
     }
 
@@ -346,5 +359,69 @@ public class UserInfoService {
             return userInfos.get(0);
         }
         return null;*/
+    }
+
+    public List<UserInfoDto> convertToDto(List<UserInfo> userInfoList) {
+        List<UserInfoDto> dtoList = new ArrayList<UserInfoDto>();
+        for(UserInfo userInfo : userInfoList) {
+            UserInfoDto userInfoDto = new UserInfoDto();
+            userInfoDto.setUserId(userInfo.getUserId());
+            userInfoDto.setUserCoin(userInfo.getUserCoin());
+            userInfoDto.setUserStatus(userInfo.getUserStatus());
+            userInfoDto.setUserBirth(userInfo.getUserBirth());
+            userInfoDto.setCreatedTime(userInfo.getCreatedTime());
+            userInfoDto.setHeadPhotoUrl(userInfo.getHeadPhotoUrl());
+            userInfoDto.setLoginAddress(userInfo.getLoginAddress());
+            userInfoDto.setLoginIp(userInfo.getLoginIp());
+            userInfoDto.setRecommend(userInfo.getRecommend());
+            userInfoDto.setUpdatedTime(userInfo.getUpdatedTime());
+            userInfoDto.setUserContury(userInfo.getUserContury());
+            userInfoDto.setUserDeclaration(userInfo.getUserDeclaration());
+            userInfoDto.setUserMarryStatus(userInfo.getUserMarryStatus());
+            userInfoDto.setUserEmail(userInfo.getUserEmail());
+            userInfoDto.setUserEducation(userInfo.getUserEducation());
+            userInfoDto.setUserDeclaration(userInfo.getUserDeclaration());
+            userInfoDto.setUserEnroll(userInfo.getUserEnroll());
+            userInfoDto.setUserReligion(userInfo.getUserReligion());
+            userInfoDto.setUserSex(userInfo.getUserSex());
+            userInfoDto.setUserWeight(userInfo.getUserWeight());
+            userInfoDto.setUserName(userInfo.getUserName());
+            userInfoDto.setUserHeight(userInfo.getUserHeight());
+
+            UserVipInfo userVipInfo = fetchUserVipInfoCodeByUserId(userInfo.getUserId());
+            if(userVipInfo != null) {
+                userInfoDto.setVipTypeCode(userVipInfo.getVipTypeCode());
+            }else {
+                userInfoDto.setVipTypeCode(NORMAL_USER);
+            }
+
+            dtoList.add(userInfoDto);
+        }
+
+        return dtoList;
+    }
+
+    /**
+     *根据用户的id来获取用户的权限信息
+     * @param userId
+     *@return com.ddas.sns.vip.domain.UserVipInfo
+     *@author shaojx
+     *@date 2016/8/14 13:47
+     *@version 1.0
+     *@since 1.6
+     */
+    public UserVipInfo fetchUserVipInfoCodeByUserId(String userId){
+        if(StringUtil.isNotEmpty(userId)){
+            UserVipInfoCriteria example = new UserVipInfoCriteria();
+            UserVipInfoCriteria.Criteria criteria = example.createCriteria();
+            criteria.andUserIdEqualTo(userId);
+            String dateStr= DateUtil.getCurrentDateString();
+            criteria.andVipEndStartGreaterThanOrEqualTo(dateStr);
+            List<UserVipInfo> userVipInfos = userVipInfoMapper.selectByExample(example);
+            if (userVipInfos != null&&userVipInfos.size()>0) {
+                return userVipInfos.get(0);
+            }
+        }
+        return null;
     }
 }
